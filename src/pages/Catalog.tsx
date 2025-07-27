@@ -357,8 +357,8 @@ export default function Catalog() {
                       </div>
                       
                       <div className="flex gap-2 pt-2">
-                        <Button className="flex-1 bg-primary hover:bg-primary/90">
-                          Подробнее
+                        <Button className="flex-1 bg-primary hover:bg-primary/90" asChild>
+                          <a href={`/product/${monument.id}`}>Подробнее</a>
                         </Button>
                         <Button variant="outline" size="icon">
                           <Icon name="Heart" size={18} />
