@@ -35,7 +35,7 @@ export default function Index() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="font-heading text-2xl font-bold text-foreground">Мемориальная студия</h1>
           <div className="hidden md:flex space-x-8">
-            <a href="#catalog" className="text-muted-foreground hover:text-foreground transition-colors">Каталог</a>
+            <a href="/catalog" className="text-muted-foreground hover:text-foreground transition-colors">Каталог</a>
             <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
             <a href="#gallery" className="text-muted-foreground hover:text-foreground transition-colors">Галерея</a>
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">О компании</a>
