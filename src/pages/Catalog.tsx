@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
@@ -445,14 +446,7 @@ export default function Catalog() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t bg-background">
-        <div className="container mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2024 Мемориальная студия. Все права защищены.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

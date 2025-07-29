@@ -12,6 +12,10 @@ import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import Comparison from "./pages/Comparison";
 import RecentlyViewed from "./pages/RecentlyViewed";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PersonalData from "./pages/PersonalData";
+import OfferAgreement from "./pages/OfferAgreement";
+import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +35,10 @@ const App = () => (
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/recently-viewed" element={<RecentlyViewed />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/personal-data" element={<PersonalData />} />
+            <Route path="/offer-agreement" element={<OfferAgreement />} />
+            <Route path="/sitemap" element={<Sitemap />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

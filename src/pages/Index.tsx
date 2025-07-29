@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Index() {
   const [selectedMaterial, setSelectedMaterial] = useState('granite');
@@ -292,14 +293,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t bg-background">
-        <div className="container mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2024 Мемориальная студия. Все права защищены.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

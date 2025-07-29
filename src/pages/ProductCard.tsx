@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function ProductCard() {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -459,14 +460,7 @@ export default function ProductCard() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t bg-background">
-        <div className="container mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2024 Мемориальная студия. Все права защищены.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
