@@ -114,7 +114,9 @@ export default function Header() {
       <div className="border-b border-border/40 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-10 text-sm">
-            <div className="hidden md:flex items-center space-x-4">
+            {/* Left side - Always visible functional buttons */}
+            <div className="flex items-center space-x-2">
+              {/* WhatsApp - always visible */}
               <a 
                 href="https://wa.me/74952013227" 
                 target="_blank" 
@@ -124,65 +126,8 @@ export default function Header() {
               >
                 <Icon name="MessageCircle" size={14} />
               </a>
-              <a 
-                href="mailto:info@postament.ru" 
-                className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Icon name="Mail" size={14} />
-                <span>info@postament.ru</span>
-              </a>
-              
-              {/* Search */}
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Icon name="Search" size={14} />
-              </Button>
 
-              {/* Favorites */}
-              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                <Link to="/favorites">
-                  <Icon name="Heart" size={14} />
-                  {state.favorites.length > 0 && (
-                    <Badge 
-                      variant="destructive" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                    >
-                      {state.favorites.length}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
-
-              {/* Comparison */}
-              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                <Link to="/comparison">
-                  <Icon name="BarChart3" size={14} />
-                  {state.comparison.length > 0 && (
-                    <Badge 
-                      variant="secondary" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                    >
-                      {state.comparison.length}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
-
-              {/* Recently Viewed */}
-              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                <Link to="/recently-viewed">
-                  <Icon name="Eye" size={14} />
-                  {state.recentlyViewed.length > 0 && (
-                    <Badge 
-                      variant="outline" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                    >
-                      {state.recentlyViewed.length}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
-
-              {/* Cart */}
+              {/* Cart - always visible */}
               <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
                 <Link to="/cart">
                   <Icon name="ShoppingCart" size={14} />
@@ -196,14 +141,77 @@ export default function Header() {
                   )}
                 </Link>
               </Button>
+
+              {/* Search - visible on sm+ */}
+              <Button variant="ghost" size="icon" className="h-8 w-8 hidden sm:flex">
+                <Icon name="Search" size={14} />
+              </Button>
+
+              {/* Desktop only buttons */}
+              <div className="hidden md:flex items-center space-x-2">
+                <a 
+                  href="mailto:info@postament.ru" 
+                  className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Icon name="Mail" size={14} />
+                  <span>info@postament.ru</span>
+                </a>
+
+                {/* Favorites */}
+                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                  <Link to="/favorites">
+                    <Icon name="Heart" size={14} />
+                    {state.favorites.length > 0 && (
+                      <Badge 
+                        variant="destructive" 
+                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                      >
+                        {state.favorites.length}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
+                {/* Comparison */}
+                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                  <Link to="/comparison">
+                    <Icon name="BarChart3" size={14} />
+                    {state.comparison.length > 0 && (
+                      <Badge 
+                        variant="secondary" 
+                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                      >
+                        {state.comparison.length}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
+                {/* Recently Viewed */}
+                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                  <Link to="/recently-viewed">
+                    <Icon name="Eye" size={14} />
+                    {state.recentlyViewed.length > 0 && (
+                      <Badge 
+                        variant="outline" 
+                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                      >
+                        {state.recentlyViewed.length}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+              </div>
             </div>
-            <div className="flex items-center space-x-6">
-              <button className="text-muted-foreground hover:text-primary transition-colors">
+
+            {/* Right side - Contact info */}
+            <div className="flex items-center space-x-3">
+              <button className="hidden sm:block text-muted-foreground hover:text-primary transition-colors text-xs">
                 Заказать звонок
               </button>
-              <a href="tel:+74952013227" className="flex items-center space-x-2 hover:text-primary transition-colors">
+              <a href="tel:+74952013227" className="flex items-center space-x-1 hover:text-primary transition-colors">
                 <Icon name="Phone" size={14} />
-                <span className="font-medium">+7 (495) 201-32-27</span>
+                <span className="font-medium text-xs sm:text-sm">+7 (495) 201-32-27</span>
               </a>
             </div>
           </div>
@@ -315,12 +323,95 @@ export default function Header() {
                     </CollapsibleContent>
                   </Collapsible>
                 ))}
+
+                {/* Contacts Link */}
+                <Link
+                  to="/contacts"
+                  className="block px-3 py-2 text-sm hover:text-foreground rounded-md hover:bg-accent font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Контакты
+                </Link>
                 
+                {/* Mobile Functional Links */}
+                <div className="pt-4 border-t space-y-2">
+                  <div className="px-3 py-1 text-xs text-muted-foreground font-medium">Функции</div>
+                  
+                  <Link
+                    to="/favorites"
+                    className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Icon name="Heart" size={16} />
+                      <span>Избранное</span>
+                    </div>
+                    {state.favorites.length > 0 && (
+                      <Badge variant="destructive" className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                        {state.favorites.length}
+                      </Badge>
+                    )}
+                  </Link>
+
+                  <Link
+                    to="/comparison"
+                    className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Icon name="BarChart3" size={16} />
+                      <span>Сравнение</span>
+                    </div>
+                    {state.comparison.length > 0 && (
+                      <Badge variant="secondary" className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                        {state.comparison.length}
+                      </Badge>
+                    )}
+                  </Link>
+
+                  <Link
+                    to="/recently-viewed"
+                    className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Icon name="Eye" size={16} />
+                      <span>Просмотренные</span>
+                    </div>
+                    {state.recentlyViewed.length > 0 && (
+                      <Badge variant="outline" className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                        {state.recentlyViewed.length}
+                      </Badge>
+                    )}
+                  </Link>
+
+                  <Link
+                    to="/cart"
+                    className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Icon name="ShoppingCart" size={16} />
+                      <span>Корзина</span>
+                    </div>
+                    {getCartCount() > 0 && (
+                      <Badge variant="default" className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                        {getCartCount()}
+                      </Badge>
+                    )}
+                  </Link>
+                </div>
+
                 {/* Mobile Contact */}
                 <div className="pt-4 border-t">
+                  <div className="px-3 py-1 text-xs text-muted-foreground font-medium">Контакты</div>
                   <div className="flex items-center space-x-2 px-3 py-2">
                     <Icon name="Phone" size={16} />
                     <span className="text-sm font-medium">+7 (495) 201-32-27</span>
+                  </div>
+                  <div className="flex items-center space-x-2 px-3 py-2">
+                    <Icon name="Mail" size={16} />
+                    <span className="text-sm">info@postament.ru</span>
                   </div>
                 </div>
               </div>
