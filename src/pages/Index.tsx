@@ -37,9 +37,9 @@ export default function Index() {
       {/* Hero Section */}
       <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="font-heading text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
                 Памятники <br />
                 <span className="text-primary">премиум класса</span>
               </h2>
@@ -58,12 +58,12 @@ export default function Index() {
             </div>
             
             {/* 3D Model Request Form */}
-            <div className="bg-card rounded-2xl p-8 shadow-xl border border-primary/10">
-              <div className="grid lg:grid-cols-2 gap-8">
+            <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-primary/10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 {/* Left side - Monument Image */}
                 <div className="space-y-4">
                   <div className="text-center lg:text-left">
-                    <h3 className="font-heading text-2xl font-bold mb-2">3D макет памятника</h3>
+                    <h3 className="font-heading text-xl sm:text-2xl font-bold mb-2">3D макет памятника</h3>
                     <p className="text-muted-foreground text-sm">
                       Получите реалистичную визуализацию перед изготовлением
                     </p>
@@ -83,22 +83,22 @@ export default function Index() {
                   {/* Benefits */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <Icon name="Eye" size={16} className="text-green-600" />
                       </div>
-                      <span className="text-sm">Точная визуализация до изготовления</span>
+                      <span className="text-sm flex-1">Точная визуализация до изготовления</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <Icon name="RotateCcw" size={16} className="text-blue-600" />
                       </div>
-                      <span className="text-sm">Внесение изменений на этапе проекта</span>
+                      <span className="text-sm flex-1">Внесение изменений на этапе проекта</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <Icon name="Clock" size={16} className="text-purple-600" />
                       </div>
-                      <span className="text-sm">Готовность за 2-3 дня</span>
+                      <span className="text-sm flex-1">Готовность за 2-3 дня</span>
                     </div>
                   </div>
                 </div>
