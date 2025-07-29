@@ -177,8 +177,7 @@ export default function Index() {
                       />
                     </div>
 
-                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-base font-medium">
-                      <Icon name="Send" size={18} className="mr-2" />
+                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-sm sm:text-base font-medium">
                       Заказать 3D макет бесплатно
                     </Button>
 
