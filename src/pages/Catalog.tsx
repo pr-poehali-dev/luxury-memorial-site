@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
+import Header from '@/components/Header';
 
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -145,30 +146,10 @@ export default function Catalog() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <a href="/" className="font-heading text-2xl font-bold text-foreground">Мемориальная студия</a>
-            <Separator orientation="vertical" className="h-6" />
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <a href="/" className="hover:text-foreground transition-colors">Главная</a>
-              <Icon name="ChevronRight" size={16} />
-              <span className="text-foreground">Каталог</span>
-            </div>
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <a href="/#services" className="text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
-            <a href="/#gallery" className="text-muted-foreground hover:text-foreground transition-colors">Галерея</a>
-            <a href="/#about" className="text-muted-foreground hover:text-foreground transition-colors">О компании</a>
-            <a href="/#contacts" className="text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
-          </div>
-          <Button className="bg-primary hover:bg-primary/90">Консультация</Button>
-        </div>
-      </nav>
+      <Header />
 
       {/* Header */}
-      <section className="pt-24 pb-12 px-4">
+      <section className="pt-4 pb-12 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-8">
             <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-4 text-foreground">

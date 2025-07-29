@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import Header from '@/components/Header';
 
 export default function Index() {
   const [selectedMaterial, setSelectedMaterial] = useState('granite');
@@ -30,23 +31,10 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="font-heading text-2xl font-bold text-foreground">Мемориальная студия</h1>
-          <div className="hidden md:flex space-x-8">
-            <a href="/catalog" className="text-muted-foreground hover:text-foreground transition-colors">Каталог</a>
-            <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
-            <a href="#gallery" className="text-muted-foreground hover:text-foreground transition-colors">Галерея</a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">О компании</a>
-            <a href="#contacts" className="text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
-          </div>
-          <Button className="bg-primary hover:bg-primary/90">Консультация</Button>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4">
+      <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>

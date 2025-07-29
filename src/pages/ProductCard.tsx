@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
+import Header from '@/components/Header';
 
 export default function ProductCard() {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -99,26 +100,10 @@ export default function ProductCard() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <a href="/" className="font-heading text-2xl font-bold text-foreground">Мемориальная студия</a>
-            <Separator orientation="vertical" className="h-6" />
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <a href="/" className="hover:text-foreground transition-colors">Главная</a>
-              <Icon name="ChevronRight" size={16} />
-              <a href="/catalog" className="hover:text-foreground transition-colors">Каталог</a>
-              <Icon name="ChevronRight" size={16} />
-              <span className="text-foreground">Классический памятник</span>
-            </div>
-          </div>
-          <Button className="bg-primary hover:bg-primary/90">Консультация</Button>
-        </div>
-      </nav>
+      <Header />
 
       {/* Main Content */}
-      <section className="pt-24 pb-16 px-4">
+      <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Product Images */}
