@@ -67,7 +67,7 @@ const monumentCategories: MenuCategory[] = [
   }
 ];
 
-const NavigationMenu = () => {
+const MonumentsDropdown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMonumentsOpen, setIsMonumentsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('forms');
@@ -128,99 +128,78 @@ const NavigationMenu = () => {
   const activeCategory = monumentCategories.find(cat => cat.id === activeTab);
 
   return (
-    <nav className="relative bg-white border-b border-gray-200" ref={menuRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <span className="text-xl font-bold text-gray-900">MemorialStone</span>
-          </div>
+    <div className="relative" ref={menuRef}>
+      {/* Desktop Menu */}
+      <div className="hidden md:block">
+        <div
+          className="relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Button
+            variant="ghost"
+            className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium flex items-center h-10"
+          >
+            Памятники
+            <Icon name="ChevronDown" size={16} className="ml-1" />
+          </Button>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <div
-                className="relative"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Button
-                  variant="ghost"
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium flex items-center"
-                >
-                  Памятники
-                  <Icon name="ChevronDown" size={16} className="ml-1" />
-                </Button>
+          {/* Desktop Dropdown */}
+          {isMonumentsOpen && (
+            <div className="absolute left-0 top-full mt-1 w-[90vw] max-w-[800px] bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+              <div className="p-6">
+                {/* Tabs */}
+                <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200">
+                  {monumentCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveTab(category.id)}
+                      className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+                        activeTab === category.id
+                          ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                          : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                      }`}
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                </div>
 
-                {/* Desktop Dropdown */}
-                {isMonumentsOpen && (
-                  <div className="absolute left-0 top-full mt-1 w-[800px] bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                    <div className="p-6">
-                      {/* Tabs */}
-                      <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200">
-                        {monumentCategories.map((category) => (
-                          <button
-                            key={category.id}
-                            onClick={() => setActiveTab(category.id)}
-                            className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
-                              activeTab === category.id
-                                ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
-                            }`}
-                          >
-                            {category.name}
-                          </button>
-                        ))}
-                      </div>
-
-                      {/* Tab Content */}
-                      {activeCategory && (
-                        <div className="grid grid-cols-4 gap-4">
-                          {activeCategory.items.map((item, index) => (
-                            <a
-                              key={index}
-                              href="#"
-                              className="text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md transition-colors"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                {/* Tab Content */}
+                {activeCategory && (
+                  <div className="grid grid-cols-4 gap-4">
+                    {activeCategory.items.map((item, index) => (
+                      <a
+                        key={index}
+                        href="#"
+                        className="text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md transition-colors"
+                      >
+                        {item}
+                      </a>
+                    ))}
                   </div>
                 )}
               </div>
-
-              <Button variant="ghost" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
-                Услуги
-              </Button>
-              <Button variant="ghost" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
-                О нас
-              </Button>
-              <Button variant="ghost" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
-                Контакты
-              </Button>
             </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              onClick={toggleMobileMenu}
-              className="text-gray-700 hover:text-gray-900"
-            >
-              <Icon name={isMenuOpen ? "X" : "Menu"} size={24} />
-            </Button>
-          </div>
+          )}
         </div>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden">
+        <Button
+          variant="ghost"
+          onClick={toggleMobileMenu}
+          className="text-gray-700 hover:text-gray-900 h-10 px-3"
+        >
+          <Icon name={isMenuOpen ? "X" : "Menu"} size={20} />
+        </Button>
       </div>
 
       {/* Mobile Menu */}
       {isMobile && isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 mt-1">
+          <div className="p-4 space-y-2">
             <div>
               <Button
                 variant="ghost"
@@ -274,21 +253,11 @@ const NavigationMenu = () => {
                 </div>
               )}
             </div>
-
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:text-gray-900 px-3 py-2 text-base font-medium">
-              Услуги
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:text-gray-900 px-3 py-2 text-base font-medium">
-              О нас
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:text-gray-900 px-3 py-2 text-base font-medium">
-              Контакты
-            </Button>
           </div>
         </div>
       )}
-    </nav>
+    </div>
   );
 };
 
-export default NavigationMenu;
+export default MonumentsDropdown;

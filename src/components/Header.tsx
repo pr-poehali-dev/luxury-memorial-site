@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import MonumentsDropdown from '@/components/NavigationMenu';
 import {
   Sheet,
   SheetContent,
@@ -24,17 +25,6 @@ import { cn } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
 
 const menuItems = [
-  {
-    title: 'Памятники',
-    href: '/catalog?category=monuments',
-    items: [
-      { title: 'Гранитные памятники', href: '/catalog?category=monuments&type=granite' },
-      { title: 'Мраморные памятники', href: '/catalog?category=monuments&type=marble' },
-      { title: 'Детские памятники', href: '/catalog?category=monuments&type=children' },
-      { title: 'Семейные памятники', href: '/catalog?category=monuments&type=family' },
-      { title: 'Эксклюзивные памятники', href: '/catalog?category=monuments&type=exclusive' },
-    ],
-  },
   {
     title: 'Комплексы',
     href: '/catalog?category=complexes',
@@ -230,8 +220,10 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList>
+        <div className="hidden lg:flex items-center space-x-4">
+          <MonumentsDropdown />
+          <NavigationMenu>
+            <NavigationMenuList>
             {menuItems.map((item) => (
               <NavigationMenuItem key={item.title}>
                 <NavigationMenuTrigger className="h-10">
@@ -273,8 +265,9 @@ export default function Header() {
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
