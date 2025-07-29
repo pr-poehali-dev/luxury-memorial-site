@@ -17,6 +17,8 @@
 
     --primary: 120 60% 45%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 120 100% 60%;
+    --primary-hover-foreground: 0 0% 0%;
 
     --secondary: 0 0% 36%;
     --secondary-foreground: 0 0% 100%;
@@ -37,19 +39,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -65,6 +60,8 @@
 
     --primary: 120 60% 45%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 120 100% 60%;
+    --primary-hover-foreground: 0 0% 0%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -99,5 +96,268 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* УНИВЕРСАЛЬНЫЕ ЭФФЕКТЫ СВЕЧЕНИЯ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ */
+
+  /* Базовые переходы для всех интерактивных элементов */
+  *,
+  *:hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Универсальное зелёное свечение при hover */
+  button:hover:not(.no-glow),
+  [role="button"]:hover:not(.no-glow),
+  a:hover:not(.no-glow),
+  .cursor-pointer:hover:not(.no-glow),
+  [tabindex]:not([tabindex="-1"]):hover:not(.no-glow),
+  .hover-glow:hover,
+  nav *:hover:not(.no-glow),
+  header *:hover:not(.no-glow),
+  .navigation *:hover:not(.no-glow),
+  .menu *:hover:not(.no-glow),
+  .header *:hover:not(.no-glow),
+  div:hover:not(.no-glow),
+  section:hover:not(.no-glow),
+  article:hover:not(.no-glow),
+  span:hover:not(.no-glow),
+  p:hover:not(.no-glow),
+  h1:hover:not(.no-glow),
+  h2:hover:not(.no-glow),
+  h3:hover:not(.no-glow),
+  h4:hover:not(.no-glow),
+  h5:hover:not(.no-glow),
+  h6:hover:not(.no-glow) {
+    color: hsl(120 100% 60%) !important;
+    text-shadow:
+      0 0 10px hsla(120, 100%, 60%, 0.8),
+      0 0 20px hsla(120, 100%, 60%, 0.6),
+      0 0 30px hsla(120, 100%, 60%, 0.4);
+    transform: translateY(-1px);
+    filter: brightness(1.1) saturate(1.2);
+  }
+
+  /* СПЕЦИАЛЬНЫЕ ЭФФЕКТЫ ДЛЯ ШАПКИ ПРОФИЛЯ */
+
+  /* Элементы профиля в шапке - усиленные эффекты */
+  header [role="button"]:hover,
+  header button:hover,
+  header a:hover,
+  .header [role="button"]:hover,
+  .header button:hover,
+  .header a:hover {
+    color: hsl(120 100% 60%) !important;
+    text-shadow:
+      0 0 12px hsla(120, 100%, 60%, 0.9),
+      0 0 24px hsla(120, 100%, 60%, 0.7),
+      0 0 36px hsla(120, 100%, 60%, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    filter: brightness(1.3) saturate(1.4);
+  }
+
+  /* Иконки в шапке с поворотом */
+  header svg:hover,
+  header .icon:hover,
+  .header svg:hover,
+  .header .icon:hover {
+    fill: hsl(120 100% 60%) !important;
+    stroke: hsl(120 100% 60%) !important;
+    filter: drop-shadow(0 0 10px hsla(120, 100%, 60%, 0.9))
+      drop-shadow(0 0 20px hsla(120, 100%, 60%, 0.6)) brightness(1.3);
+    transform: scale(1.15) rotate(10deg);
+  }
+
+  /* Кнопки профиля (корзина, избранное, сравнение) */
+  header [data-testid*="button"]:hover,
+  header .relative:hover,
+  .header [data-testid*="button"]:hover,
+  .header .relative:hover {
+    background-color: hsla(120, 100%, 60%, 0.15) !important;
+    border-color: hsl(120 100% 60%) !important;
+    box-shadow:
+      0 0 25px hsla(120, 100%, 60%, 0.6),
+      0 0 50px hsla(120, 100%, 60%, 0.4),
+      inset 0 0 15px hsla(120, 100%, 60%, 0.1);
+    transform: translateY(-3px) scale(1.08);
+  }
+
+  /* Badge элементы в шапке */
+  header [class*="badge"]:hover,
+  header .absolute:hover,
+  .header [class*="badge"]:hover,
+  .header .absolute:hover {
+    background-color: hsl(120 100% 60%) !important;
+    color: hsl(0 0% 0%) !important;
+    box-shadow:
+      0 0 20px hsla(120, 100%, 60%, 0.8),
+      0 0 40px hsla(120, 100%, 60%, 0.6);
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  /* Контактные ссылки */
+  header a[href^="tel"]:hover,
+  header a[href^="mailto"]:hover,
+  header a[href^="https://wa.me"]:hover,
+  .header a[href^="tel"]:hover,
+  .header a[href^="mailto"]:hover,
+  .header a[href^="https://wa.me"]:hover
+  {
+    color: hsl(120 100% 60%) !important;
+    text-shadow:
+      0 0 12px hsla(120, 100%, 60%, 0.9),
+      0 0 24px hsla(120, 100%, 60%, 0.7);
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  /* Логотип с вращением */
+  header .bg-primary:hover {
+    background-color: hsl(120 100% 60%) !important;
+    box-shadow:
+      0 0 30px hsla(120, 100%, 60%, 0.7),
+      0 0 60px hsla(120, 100%, 60%, 0.5);
+    transform: scale(1.15) rotate(15deg);
+  }
+
+  /* Дополнительные эффекты для блочных элементов */
+  div:hover:not(.no-glow),
+  section:hover:not(.no-glow),
+  article:hover:not(.no-glow),
+  .card:hover:not(.no-glow),
+  .item:hover:not(.no-glow),
+  nav:hover:not(.no-glow),
+  header:hover:not(.no-glow) {
+    box-shadow:
+      0 0 15px hsla(120, 100%, 60%, 0.4),
+      0 0 30px hsla(120, 100%, 60%, 0.3),
+      0 0 45px hsla(120, 100%, 60%, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: hsl(120 100% 60%);
+  }
+
+  /* Особые эффекты для кнопок */
+  button:hover:not(.no-glow),
+  [role="button"]:hover:not(.no-glow),
+  input[type="submit"]:hover:not(.no-glow),
+  input[type="button"]:hover:not(.no-glow) {
+    background-color: hsl(120 100% 60%) !important;
+    color: hsl(0 0% 0%) !important;
+    box-shadow:
+      0 0 20px hsla(120, 100%, 60%, 0.6),
+      0 0 40px hsla(120, 100%, 60%, 0.4),
+      0 0 60px hsla(120, 100%, 60%, 0.2),
+      0 4px 15px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 hsla(120, 100%, 80%, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    border: 1px solid hsl(120 100% 60%);
+  }
+
+  /* Эффекты для форм */
+  input:hover:not(.no-glow),
+  textarea:hover:not(.no-glow),
+  select:hover:not(.no-glow) {
+    border-color: hsl(120 100% 60%) !important;
+    box-shadow:
+      0 0 10px hsla(120, 100%, 60%, 0.4),
+      0 0 20px hsla(120, 100%, 60%, 0.2);
+  }
+
+  input:focus:not(.no-glow),
+  textarea:focus:not(.no-glow),
+  select:focus:not(.no-glow) {
+    border-color: hsl(120 100% 60%) !important;
+    box-shadow:
+      0 0 15px hsla(120, 100%, 60%, 0.5),
+      0 0 30px hsla(120, 100%, 60%, 0.3);
+    outline: none;
+  }
+
+  /* Пульсирующая анимация */
+  @keyframes intense-green-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px hsla(120, 100%, 60%, 0.6),
+        0 0 40px hsla(120, 100%, 60%, 0.4);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow:
+        0 0 30px hsla(120, 100%, 60%, 0.8),
+        0 0 60px hsla(120, 100%, 60%, 0.6),
+        0 0 90px hsla(120, 100%, 60%, 0.3);
+      transform: scale(1.02);
+    }
+  }
+
+  /* Специальная анимация для профильных элементов */
+  @keyframes profile-glow-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px hsla(120, 100%, 60%, 0.6),
+        0 0 40px hsla(120, 100%, 60%, 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 35px hsla(120, 100%, 60%, 0.8),
+        0 0 70px hsla(120, 100%, 60%, 0.6),
+        0 0 105px hsla(120, 100%, 60%, 0.4);
+    }
+  }
+
+  /* Применение пульсации к важным элементам профиля */
+  header .relative:hover,
+  .header .relative:hover {
+    animation: profile-glow-pulse 1.8s ease-in-out infinite;
+  }
+
+  /* Волновая анимация */
+  @keyframes green-wave {
+    0% {
+      box-shadow:
+        0 0 0 0 hsla(120, 100%, 60%, 0.7),
+        0 0 20px hsla(120, 100%, 60%, 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 0 10px hsla(120, 100%, 60%, 0),
+        0 0 40px hsla(120, 100%, 60%, 0.6);
+    }
+    100% {
+      box-shadow:
+        0 0 0 20px hsla(120, 100%, 60%, 0),
+        0 0 20px hsla(120, 100%, 60%, 0.4);
+    }
+  }
+
+  /* Специальные классы для анимаций */
+  .glow-pulse:hover {
+    animation: intense-green-pulse 1.5s ease-in-out infinite;
+  }
+
+  .glow-wave:hover {
+    animation: green-wave 2s ease-out infinite;
+  }
+
+  .glow-intense:hover {
+    box-shadow:
+      0 0 30px hsla(120, 100%, 60%, 0.8),
+      0 0 60px hsla(120, 100%, 60%, 0.6),
+      0 0 90px hsla(120, 100%, 60%, 0.4),
+      0 0 120px hsla(120, 100%, 60%, 0.2);
+    filter: brightness(1.3) saturate(1.5);
+  }
+
+  /* Отключение эффектов */
+  .no-glow,
+  .no-glow:hover,
+  .no-glow * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
   }
 }
