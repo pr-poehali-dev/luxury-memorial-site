@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import NavigationMenu from '@/components/NavigationMenu';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -38,9 +37,9 @@ export default function Index() {
       {/* Hero Section */}
       <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+              <h2 className="font-heading text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
                 Памятники <br />
                 <span className="text-primary">премиум класса</span>
               </h2>
@@ -59,12 +58,12 @@ export default function Index() {
             </div>
             
             {/* 3D Model Request Form */}
-            <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-primary/10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="bg-card rounded-2xl p-8 shadow-xl border border-primary/10">
+              <div className="grid lg:grid-cols-2 gap-8">
                 {/* Left side - Monument Image */}
                 <div className="space-y-4">
                   <div className="text-center lg:text-left">
-                    <h3 className="font-heading text-xl sm:text-2xl font-bold mb-2">3D макет памятника</h3>
+                    <h3 className="font-heading text-2xl font-bold mb-2">3D макет памятника</h3>
                     <p className="text-muted-foreground text-sm">
                       Получите реалистичную визуализацию перед изготовлением
                     </p>
@@ -84,22 +83,22 @@ export default function Index() {
                   {/* Benefits */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                         <Icon name="Eye" size={16} className="text-green-600" />
                       </div>
-                      <span className="text-sm flex-1">Точная визуализация до изготовления</span>
+                      <span className="text-sm">Точная визуализация до изготовления</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                         <Icon name="RotateCcw" size={16} className="text-blue-600" />
                       </div>
-                      <span className="text-sm flex-1">Внесение изменений на этапе проекта</span>
+                      <span className="text-sm">Внесение изменений на этапе проекта</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
                         <Icon name="Clock" size={16} className="text-purple-600" />
                       </div>
-                      <span className="text-sm flex-1">Готовность за 2-3 дня</span>
+                      <span className="text-sm">Готовность за 2-3 дня</span>
                     </div>
                   </div>
                 </div>
@@ -178,7 +177,8 @@ export default function Index() {
                       />
                     </div>
 
-                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-sm sm:text-base font-medium">
+                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-base font-medium">
+                      <Icon name="Send" size={18} className="mr-2" />
                       Заказать 3D макет бесплатно
                     </Button>
 
@@ -403,13 +403,13 @@ export default function Index() {
 
           {/* Additional CTA */}
           <div className="text-center mt-12">
-            <div className="flex flex-col sm:flex-row sm:inline-flex items-center gap-4 bg-white rounded-2xl sm:rounded-full px-6 sm:px-8 py-4 shadow-lg max-w-md sm:max-w-none mx-auto">
-              <Icon name="Phone" size={20} className="text-primary flex-shrink-0" />
-              <div className="text-center sm:text-left">
-                <p className="font-medium text-sm sm:text-base">Не знаете, что выбрать?</p>
-                <p className="text-xs sm:text-sm text-muted-foreground">Получите бесплатную консультацию</p>
+            <div className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 shadow-lg">
+              <Icon name="Phone" size={20} className="text-primary" />
+              <div className="text-left">
+                <p className="font-medium">Не знаете, что выбрать?</p>
+                <p className="text-sm text-muted-foreground">Получите бесплатную консультацию</p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto">
+              <Button className="bg-primary hover:bg-primary/90">
                 Позвонить
               </Button>
             </div>
