@@ -114,24 +114,15 @@ export default function Header() {
       <div className="border-b border-border/40 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-10 text-sm">
-            <div className="flex items-center space-x-6">
-              <a href="tel:+74952013227" className="flex items-center space-x-2 hover:text-primary transition-colors">
-                <Icon name="Phone" size={14} />
-                <span className="font-medium">+7 (495) 201-32-27</span>
-              </a>
-              <button className="text-muted-foreground hover:text-primary transition-colors">
-                Заказать звонок
-              </button>
-            </div>
             <div className="hidden md:flex items-center space-x-4">
               <a 
                 href="https://wa.me/74952013227" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-green-600 hover:text-green-700 transition-colors"
+                className="text-green-600 hover:text-green-700 transition-colors"
+                title="WhatsApp"
               >
                 <Icon name="MessageCircle" size={14} />
-                <span>WhatsApp</span>
               </a>
               <a 
                 href="mailto:info@postament.ru" 
@@ -152,6 +143,15 @@ export default function Header() {
                   </span>
                 )}
               </Link>
+            </div>
+            <div className="flex items-center space-x-6">
+              <button className="text-muted-foreground hover:text-primary transition-colors">
+                Заказать звонок
+              </button>
+              <a href="tel:+74952013227" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                <Icon name="Phone" size={14} />
+                <span className="font-medium">+7 (495) 201-32-27</span>
+              </a>
             </div>
           </div>
         </div>
@@ -274,11 +274,13 @@ export default function Header() {
             <Icon name="Search" size={20} />
           </Button>
 
-          {/* Phone */}
-          <div className="hidden lg:flex items-center space-x-2 text-sm">
-            <Icon name="Phone" size={16} />
-            <span className="font-medium">+7 (800) 123-45-67</span>
-          </div>
+          {/* Contacts Button */}
+          <Button variant="ghost" size="sm" className="hidden lg:flex" asChild>
+            <Link to="/contacts">
+              <Icon name="MapPin" size={16} className="mr-2" />
+              Контакты
+            </Link>
+          </Button>
 
           {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
