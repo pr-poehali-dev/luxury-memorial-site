@@ -57,62 +57,140 @@ export default function Index() {
               </div>
             </div>
             
-            {/* 3D Configurator */}
-            <div className="bg-card rounded-2xl p-8 shadow-xl">
-              <h3 className="font-heading text-2xl font-semibold mb-6">Конфигуратор памятника</h3>
-              
-              {/* Material Preview */}
-              <div className="mb-6">
-                <div className="aspect-square bg-muted rounded-xl overflow-hidden mb-4">
-                  <img 
-                    src={materials.find(m => m.id === selectedMaterial)?.image}
-                    alt="Monument preview"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+            {/* 3D Model Request Form */}
+            <div className="bg-card rounded-2xl p-8 shadow-xl border border-primary/10">
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Left side - Monument Image */}
+                <div className="space-y-4">
+                  <div className="text-center lg:text-left">
+                    <h3 className="font-heading text-2xl font-bold mb-2">3D макет памятника</h3>
+                    <p className="text-muted-foreground text-sm">
+                      Получите реалистичную визуализацию перед изготовлением
+                    </p>
+                  </div>
+                  
+                  <div className="relative">
+                    <img 
+                      src="/img/4252ac99-551d-421d-856a-a497eefb82c9.jpg"
+                      alt="3D макет памятника"
+                      className="w-full rounded-xl shadow-lg object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">
+                      3D визуализация
+                    </div>
+                  </div>
 
-              {/* Material Selection */}
-              <div className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground mb-2 block">Материал</label>
-                  <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {materials.map(material => (
-                        <SelectItem key={material.id} value={material.id}>
-                          <div className="flex items-center gap-2">
-                            <div 
-                              className="w-4 h-4 rounded-full" 
-                              style={{ backgroundColor: material.color }}
-                            />
-                            {material.name}
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground mb-2 block">Тип памятника</label>
-                  <Select value={selectedType} onValueChange={setSelectedType}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="classic">Классический</SelectItem>
-                      <SelectItem value="modern">Современный</SelectItem>
-                      <SelectItem value="artistic">Художественный</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  {/* Benefits */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <Icon name="Eye" size={16} className="text-green-600" />
+                      </div>
+                      <span className="text-sm">Точная визуализация до изготовления</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Icon name="RotateCcw" size={16} className="text-blue-600" />
+                      </div>
+                      <span className="text-sm">Внесение изменений на этапе проекта</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <Icon name="Clock" size={16} className="text-purple-600" />
+                      </div>
+                      <span className="text-sm">Готовность за 2-3 дня</span>
+                    </div>
+                  </div>
                 </div>
 
-                <Button className="w-full bg-primary hover:bg-primary/90">
-                  Рассчитать стоимость
-                </Button>
+                {/* Right side - Form */}
+                <div className="space-y-4">
+                  <form className="space-y-4">
+                    {/* Name and Phone */}
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
+                        <input
+                          type="text"
+                          placeholder="Введите имя"
+                          className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Телефон *</label>
+                        <input
+                          type="tel"
+                          placeholder="+7 (999) 123-45-67"
+                          className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Monument Type */}
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Тип памятника</label>
+                      <Select value={selectedType} onValueChange={setSelectedType}>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Выберите тип" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="vertical">Вертикальный</SelectItem>
+                          <SelectItem value="horizontal">Горизонтальный</SelectItem>
+                          <SelectItem value="complex">Мемориальный комплекс</SelectItem>
+                          <SelectItem value="family">Семейный памятник</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Material */}
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Материал</label>
+                      <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Выберите материал" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {materials.map(material => (
+                            <SelectItem key={material.id} value={material.id}>
+                              <div className="flex items-center gap-2">
+                                <div 
+                                  className="w-4 h-4 rounded-full border" 
+                                  style={{ backgroundColor: material.color }}
+                                />
+                                {material.name}
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Special Requirements */}
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Особые пожелания</label>
+                      <textarea
+                        placeholder="Опишите ваши пожелания к дизайну, размерам, надписям..."
+                        rows={3}
+                        className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
+                      />
+                    </div>
+
+                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-base font-medium">
+                      <Icon name="Send" size={18} className="mr-2" />
+                      Заказать 3D макет бесплатно
+                    </Button>
+
+                    <div className="bg-muted/30 rounded-lg p-4">
+                      <p className="text-xs text-center text-muted-foreground">
+                        🎁 <strong>Макет бесплатно</strong> при заказе памятника
+                        <br />
+                        📅 Готовность: 2-3 рабочих дня
+                      </p>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
