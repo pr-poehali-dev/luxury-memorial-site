@@ -403,13 +403,13 @@ export default function Index() {
 
           {/* Additional CTA */}
           <div className="text-center mt-12">
-            <div className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 shadow-lg">
-              <Icon name="Phone" size={20} className="text-primary" />
-              <div className="text-left">
-                <p className="font-medium">Не знаете, что выбрать?</p>
-                <p className="text-sm text-muted-foreground">Получите бесплатную консультацию</p>
+            <div className="flex flex-col sm:flex-row sm:inline-flex items-center gap-4 bg-white rounded-2xl sm:rounded-full px-6 sm:px-8 py-4 shadow-lg max-w-md sm:max-w-none mx-auto">
+              <Icon name="Phone" size={20} className="text-primary flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <p className="font-medium text-sm sm:text-base">Не знаете, что выбрать?</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">Получите бесплатную консультацию</p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90">
+              <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto">
                 Позвонить
               </Button>
             </div>
