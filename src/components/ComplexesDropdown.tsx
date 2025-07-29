@@ -96,7 +96,7 @@ const ComplexesDropdown = () => {
 
           {/* Desktop Dropdown */}
           {isComplexesOpen && (
-            <div className="absolute left-0 top-full mt-1 w-[300px] bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+            <div className="absolute left-0 top-full mt-1 w-[300px] bg-white rounded-lg shadow-lg border border-gray-200 z-50 animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200">
               <div className="p-4">
                 <div className="space-y-1">
                   {complexItems.map((item, index) => (
@@ -128,7 +128,7 @@ const ComplexesDropdown = () => {
 
       {/* Mobile Menu */}
       {isMobile && isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 mt-1">
+        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 mt-1 animate-in fade-in-0 slide-in-from-top-2 duration-200">
           <div className="p-4 space-y-2">
             <div>
               <Button
