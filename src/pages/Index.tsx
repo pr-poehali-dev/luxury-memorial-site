@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import NavigationMenu from '@/components/NavigationMenu';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -32,6 +33,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
+      <NavigationMenu />
       <Header />
 
       {/* Hero Section */}
