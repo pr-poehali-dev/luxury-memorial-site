@@ -12,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import MonumentsDropdown from '@/components/NavigationMenu';
+import ComplexesDropdown from '@/components/ComplexesDropdown';
 import {
   Sheet,
   SheetContent,
@@ -25,16 +26,6 @@ import { cn } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
 
 const menuItems = [
-  {
-    title: 'Комплексы',
-    href: '/catalog?category=complexes',
-    items: [
-      { title: 'Мемориальные комплексы', href: '/catalog?category=complexes&type=memorial' },
-      { title: 'Семейные захоронения', href: '/catalog?category=complexes&type=family' },
-      { title: 'Элитные комплексы', href: '/catalog?category=complexes&type=elite' },
-      { title: 'Склепы и усыпальницы', href: '/catalog?category=complexes&type=crypts' },
-    ],
-  },
   {
     title: 'Благоустройство',
     href: '/catalog?category=improvement',
@@ -221,6 +212,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-4">
+          <ComplexesDropdown />
           <MonumentsDropdown />
           <NavigationMenu>
             <NavigationMenuList>
