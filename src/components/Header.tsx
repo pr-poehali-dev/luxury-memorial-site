@@ -131,18 +131,71 @@ export default function Header() {
                 <Icon name="Mail" size={14} />
                 <span>info@postament.ru</span>
               </a>
-              <Link 
-                to="/cart" 
-                className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Icon name="ShoppingCart" size={14} />
-                <span>Корзина</span>
-                {getCartCount() > 0 && (
-                  <span className="bg-primary text-primary-foreground rounded-full px-2 py-0.5 text-xs">
-                    {getCartCount()}
-                  </span>
-                )}
-              </Link>
+              
+              {/* Search */}
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Icon name="Search" size={14} />
+              </Button>
+
+              {/* Favorites */}
+              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                <Link to="/favorites">
+                  <Icon name="Heart" size={14} />
+                  {state.favorites.length > 0 && (
+                    <Badge 
+                      variant="destructive" 
+                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                    >
+                      {state.favorites.length}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+
+              {/* Comparison */}
+              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                <Link to="/comparison">
+                  <Icon name="BarChart3" size={14} />
+                  {state.comparison.length > 0 && (
+                    <Badge 
+                      variant="secondary" 
+                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                    >
+                      {state.comparison.length}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+
+              {/* Recently Viewed */}
+              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                <Link to="/recently-viewed">
+                  <Icon name="Eye" size={14} />
+                  {state.recentlyViewed.length > 0 && (
+                    <Badge 
+                      variant="outline" 
+                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                    >
+                      {state.recentlyViewed.length}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+
+              {/* Cart */}
+              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+                <Link to="/cart">
+                  <Icon name="ShoppingCart" size={14} />
+                  {getCartCount() > 0 && (
+                    <Badge 
+                      variant="default" 
+                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                    >
+                      {getCartCount()}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
             </div>
             <div className="flex items-center space-x-6">
               <button className="text-muted-foreground hover:text-primary transition-colors">
@@ -209,71 +262,6 @@ export default function Header() {
 
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
-          {/* Favorites */}
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link to="/favorites">
-              <Icon name="Heart" size={20} />
-              {state.favorites.length > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
-                >
-                  {state.favorites.length}
-                </Badge>
-              )}
-            </Link>
-          </Button>
-
-          {/* Comparison */}
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link to="/comparison">
-              <Icon name="BarChart3" size={20} />
-              {state.comparison.length > 0 && (
-                <Badge 
-                  variant="secondary" 
-                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
-                >
-                  {state.comparison.length}
-                </Badge>
-              )}
-            </Link>
-          </Button>
-
-          {/* Recently Viewed */}
-          <Button variant="ghost" size="icon" className="relative hidden md:flex" asChild>
-            <Link to="/recently-viewed">
-              <Icon name="Eye" size={20} />
-              {state.recentlyViewed.length > 0 && (
-                <Badge 
-                  variant="outline" 
-                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
-                >
-                  {state.recentlyViewed.length}
-                </Badge>
-              )}
-            </Link>
-          </Button>
-
-          {/* Cart */}
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link to="/cart">
-              <Icon name="ShoppingCart" size={20} />
-              {getCartCount() > 0 && (
-                <Badge 
-                  variant="default" 
-                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
-                >
-                  {getCartCount()}
-                </Badge>
-              )}
-            </Link>
-          </Button>
-
-          {/* Search */}
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <Icon name="Search" size={20} />
-          </Button>
-
           {/* Contacts Button */}
           <Button variant="ghost" size="sm" className="hidden lg:flex" asChild>
             <Link to="/contacts">
