@@ -109,8 +109,57 @@ export default function Header() {
   const { state, getCartCount } = useApp();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Top Contact Bar */}
+      <div className="border-b border-border/40 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-10 text-sm">
+            <div className="flex items-center space-x-6">
+              <a href="tel:+74952013227" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                <Icon name="Phone" size={14} />
+                <span className="font-medium">+7 (495) 201-32-27</span>
+              </a>
+              <button className="text-muted-foreground hover:text-primary transition-colors">
+                Заказать звонок
+              </button>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <a 
+                href="https://wa.me/74952013227" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-green-600 hover:text-green-700 transition-colors"
+              >
+                <Icon name="MessageCircle" size={14} />
+                <span>WhatsApp</span>
+              </a>
+              <a 
+                href="mailto:info@postament.ru" 
+                className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Icon name="Mail" size={14} />
+                <span>info@postament.ru</span>
+              </a>
+              <Link 
+                to="/cart" 
+                className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Icon name="ShoppingCart" size={14} />
+                <span>Корзина</span>
+                {getCartCount() > 0 && (
+                  <span className="bg-primary text-primary-foreground rounded-full px-2 py-0.5 text-xs">
+                    {getCartCount()}
+                  </span>
+                )}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Main Header */}
+      <div className="border-b">
+        <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
@@ -280,7 +329,7 @@ export default function Header() {
                 <div className="pt-4 border-t">
                   <div className="flex items-center space-x-2 px-3 py-2">
                     <Icon name="Phone" size={16} />
-                    <span className="text-sm font-medium">+7 (800) 123-45-67</span>
+                    <span className="text-sm font-medium">+7 (495) 201-32-27</span>
                   </div>
                 </div>
               </div>
