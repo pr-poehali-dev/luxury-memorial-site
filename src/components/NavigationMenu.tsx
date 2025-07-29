@@ -92,14 +92,16 @@ const MonumentsDropdown = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMonumentsOpen(false);
+        if (activeDropdown === 'monuments') {
+          setActiveDropdown(null);
+        }
         setIsMenuOpen(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [activeDropdown, setActiveDropdown]);
 
   const handleMouseEnter = () => {
     if (!isMobile) {

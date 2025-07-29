@@ -46,14 +46,16 @@ const ComplexesDropdown = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsComplexesOpen(false);
+        if (activeDropdown === 'complexes') {
+          setActiveDropdown(null);
+        }
         setIsMenuOpen(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [activeDropdown, setActiveDropdown]);
 
   const handleMouseEnter = () => {
     if (!isMobile) {
