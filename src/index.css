@@ -17,7 +17,7 @@
 
     --primary: 120 70% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 45 100% 50%;
+    --primary-hover: 120 100% 60%;
     --primary-hover-foreground: 0 0% 0%;
 
     --secondary: 0 85% 55%;
@@ -67,7 +67,7 @@
 
     --primary: 120 70% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 45 100% 50%;
+    --primary-hover: 120 100% 60%;
     --primary-hover-foreground: 0 0% 0%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -107,36 +107,102 @@
 }
 
 @layer components {
+  /* Базовые переходы для всех primary элементов */
+  .bg-primary,
+  .text-primary,
+  .border-primary,
+  .fill-primary,
+  .stroke-primary,
+  button.bg-primary,
+  [role="button"].bg-primary {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   /* Hover эффекты для primary элементов */
   .bg-primary:hover {
     background-color: hsl(var(--primary-hover));
     color: hsl(var(--primary-hover-foreground));
+    box-shadow:
+      0 0 20px hsla(var(--primary-hover), 0.6),
+      0 0 40px hsla(var(--primary-hover), 0.4),
+      0 0 60px hsla(var(--primary-hover), 0.2);
   }
 
   .text-primary:hover {
     color: hsl(var(--primary-hover));
+    text-shadow:
+      0 0 10px hsla(var(--primary-hover), 0.8),
+      0 0 20px hsla(var(--primary-hover), 0.6);
   }
 
   .border-primary:hover {
     border-color: hsl(var(--primary-hover));
+    box-shadow:
+      0 0 10px hsla(var(--primary-hover), 0.5),
+      inset 0 0 10px hsla(var(--primary-hover), 0.2);
   }
 
   .fill-primary:hover {
     fill: hsl(var(--primary-hover));
+    filter: drop-shadow(0 0 8px hsla(var(--primary-hover), 0.7));
   }
 
   .stroke-primary:hover {
     stroke: hsl(var(--primary-hover));
+    filter: drop-shadow(0 0 6px hsla(var(--primary-hover), 0.6));
   }
 
-  /* Специальные hover эффекты для кнопок */
+  /* Усиленные эффекты для кнопок */
   button.bg-primary:hover,
   [role="button"].bg-primary:hover,
   .btn-primary:hover {
     background-color: hsl(var(--primary-hover)) !important;
     color: hsl(var(--primary-hover-foreground)) !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px hsla(var(--primary-hover), 0.3);
-    transition: all 0.2s ease-in-out;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 8px 25px hsla(var(--primary-hover), 0.4),
+      0 0 30px hsla(var(--primary-hover), 0.6),
+      0 0 50px hsla(var(--primary-hover), 0.3),
+      inset 0 1px 0 hsla(120, 100%, 80%, 0.3);
+    border: 1px solid hsl(var(--primary-hover));
+  }
+
+  /* Дополнительные эффекты для интерактивных элементов */
+  button.bg-primary:active,
+  [role="button"].bg-primary:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow:
+      0 4px 15px hsla(var(--primary-hover), 0.5),
+      0 0 20px hsla(var(--primary-hover), 0.7);
+  }
+
+  /* Анимация пульсации для особо важных элементов */
+  @keyframes green-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px hsla(var(--primary-hover), 0.6),
+        0 0 40px hsla(var(--primary-hover), 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 30px hsla(var(--primary-hover), 0.8),
+        0 0 60px hsla(var(--primary-hover), 0.6);
+    }
+  }
+
+  /* Специальный класс для пульсирующих элементов */
+  .green-pulse:hover {
+    animation: green-pulse 2s ease-in-out infinite;
+  }
+
+  /* Эффект для ссылок и текстовых элементов */
+  a.text-primary:hover,
+  .link-primary:hover {
+    color: hsl(var(--primary-hover));
+    text-shadow:
+      0 0 8px hsla(var(--primary-hover), 0.8),
+      0 0 16px hsla(var(--primary-hover), 0.5);
+    text-decoration: none;
   }
 }
