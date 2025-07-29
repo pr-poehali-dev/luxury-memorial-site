@@ -257,17 +257,19 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ))}
+            {/* Contacts as Navigation Item */}
+            <NavigationMenuItem>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+                <Link to="/contacts" className="h-10">
+                  Контакты
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
-          {/* Contacts Button */}
-          <Button variant="ghost" size="sm" className="hidden lg:flex ml-2" asChild>
-            <Link to="/contacts">
-              Контакты
-            </Link>
-          </Button>
 
           {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
