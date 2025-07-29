@@ -263,9 +263,8 @@ export default function Header() {
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
           {/* Contacts Button */}
-          <Button variant="ghost" size="sm" className="hidden lg:flex" asChild>
+          <Button variant="ghost" size="sm" className="hidden lg:flex ml-2" asChild>
             <Link to="/contacts">
-              <Icon name="MapPin" size={16} className="mr-2" />
               Контакты
             </Link>
           </Button>
