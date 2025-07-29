@@ -15,24 +15,26 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 12%;
 
-    --primary: 120 60% 45%;
+    --primary: 120 70% 45%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 45 100% 50%;
+    --primary-hover-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 36%;
+    --secondary: 0 85% 55%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 15 90% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 45%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 120 70% 45%;
 
     --radius: 0.5rem;
 
@@ -63,8 +65,10 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 120 60% 45%;
+    --primary: 120 70% 45%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 45 100% 50%;
+    --primary-hover-foreground: 0 0% 0%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -99,5 +103,40 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Hover эффекты для primary элементов */
+  .bg-primary:hover {
+    background-color: hsl(var(--primary-hover));
+    color: hsl(var(--primary-hover-foreground));
+  }
+
+  .text-primary:hover {
+    color: hsl(var(--primary-hover));
+  }
+
+  .border-primary:hover {
+    border-color: hsl(var(--primary-hover));
+  }
+
+  .fill-primary:hover {
+    fill: hsl(var(--primary-hover));
+  }
+
+  .stroke-primary:hover {
+    stroke: hsl(var(--primary-hover));
+  }
+
+  /* Специальные hover эффекты для кнопок */
+  button.bg-primary:hover,
+  [role="button"].bg-primary:hover,
+  .btn-primary:hover {
+    background-color: hsl(var(--primary-hover)) !important;
+    color: hsl(var(--primary-hover-foreground)) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsla(var(--primary-hover), 0.3);
+    transition: all 0.2s ease-in-out;
   }
 }
