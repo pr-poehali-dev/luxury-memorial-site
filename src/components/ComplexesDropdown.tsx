@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useDropdown } from '@/contexts/DropdownContext';
 
 const complexItems = [
   'Все комплексы',
@@ -18,11 +19,13 @@ const complexItems = [
 ];
 
 const ComplexesDropdown = () => {
-  const [isComplexesOpen, setIsComplexesOpen] = useState(false);
+  const { activeDropdown, setActiveDropdown } = useDropdown();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
+  
+  const isComplexesOpen = activeDropdown === 'complexes';
 
   useEffect(() => {
     const checkMobile = () => {
@@ -57,20 +60,22 @@ const ComplexesDropdown = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsComplexesOpen(true);
+      setActiveDropdown('complexes');
     }
   };
 
   const handleMouseLeave = () => {
     if (!isMobile) {
       timeoutRef.current = setTimeout(() => {
-        setIsComplexesOpen(false);
+        if (activeDropdown === 'complexes') {
+          setActiveDropdown(null);
+        }
       }, 150);
     }
   };
 
   const toggleComplexes = () => {
-    setIsComplexesOpen(!isComplexesOpen);
+    setActiveDropdown(isComplexesOpen ? null : 'complexes');
   };
 
   const toggleMobileMenu = () => {

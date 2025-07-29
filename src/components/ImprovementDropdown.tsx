@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useDropdown } from '@/contexts/DropdownContext';
 
 const improvementItems = [
   'Цветники',
@@ -21,11 +22,13 @@ const improvementItems = [
 ];
 
 const ImprovementDropdown = () => {
-  const [isImprovementOpen, setIsImprovementOpen] = useState(false);
+  const { activeDropdown, setActiveDropdown } = useDropdown();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
+  
+  const isImprovementOpen = activeDropdown === 'improvement';
 
   useEffect(() => {
     const checkMobile = () => {
@@ -60,20 +63,22 @@ const ImprovementDropdown = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsImprovementOpen(true);
+      setActiveDropdown('improvement');
     }
   };
 
   const handleMouseLeave = () => {
     if (!isMobile) {
       timeoutRef.current = setTimeout(() => {
-        setIsImprovementOpen(false);
+        if (activeDropdown === 'improvement') {
+          setActiveDropdown(null);
+        }
       }, 150);
     }
   };
 
   const toggleImprovement = () => {
-    setIsImprovementOpen(!isImprovementOpen);
+    setActiveDropdown(isImprovementOpen ? null : 'improvement');
   };
 
   const toggleMobileMenu = () => {

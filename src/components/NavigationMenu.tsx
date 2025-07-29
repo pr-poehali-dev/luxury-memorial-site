@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useDropdown } from '@/contexts/DropdownContext';
 
 interface MenuCategory {
   id: string;
@@ -68,12 +69,14 @@ const monumentCategories: MenuCategory[] = [
 ];
 
 const MonumentsDropdown = () => {
+  const { activeDropdown, setActiveDropdown } = useDropdown();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMonumentsOpen, setIsMonumentsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('forms');
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const isMonumentsOpen = activeDropdown === 'monuments';
 
   useEffect(() => {
     const checkMobile = () => {
@@ -103,14 +106,16 @@ const MonumentsDropdown = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsMonumentsOpen(true);
+      setActiveDropdown('monuments');
     }
   };
 
   const handleMouseLeave = () => {
     if (!isMobile) {
       timeoutRef.current = setTimeout(() => {
-        setIsMonumentsOpen(false);
+        if (activeDropdown === 'monuments') {
+          setActiveDropdown(null);
+        }
       }, 150);
     }
   };
@@ -121,7 +126,7 @@ const MonumentsDropdown = () => {
 
   const toggleMonuments = () => {
     if (isMobile) {
-      setIsMonumentsOpen(!isMonumentsOpen);
+      setActiveDropdown(isMonumentsOpen ? null : 'monuments');
     }
   };
 

@@ -25,6 +25,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import Icon from '@/components/ui/icon';
 import { cn } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
+import { DropdownProvider } from '@/contexts/DropdownContext';
 
 const menuItems = [
   {
@@ -201,11 +202,12 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center space-x-4">
-          <ComplexesDropdown />
-          <ImprovementDropdown />
-          <MonumentsDropdown />
-          <NavigationMenu>
+        <DropdownProvider>
+          <div className="hidden lg:flex items-center space-x-4">
+            <MonumentsDropdown />
+            <ComplexesDropdown />
+            <ImprovementDropdown />
+            <NavigationMenu>
             <NavigationMenuList>
             {menuItems.map((item) => (
               <NavigationMenuItem key={item.title}>
@@ -250,7 +252,8 @@ export default function Header() {
             </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-        </div>
+          </div>
+        </DropdownProvider>
 
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
