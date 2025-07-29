@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,6 +21,7 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import Icon from '@/components/ui/icon';
 import { cn } from '@/lib/utils';
+import { useApp } from '@/contexts/AppContext';
 
 const menuItems = [
   {
@@ -104,6 +106,7 @@ const ListItem = ({ className, title, children, href, ...props }: any) => {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { state, getCartCount } = useApp();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -156,7 +159,67 @@ export default function Header() {
         </NavigationMenu>
 
         {/* Header Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          {/* Favorites */}
+          <Button variant="ghost" size="icon" className="relative" asChild>
+            <Link to="/favorites">
+              <Icon name="Heart" size={20} />
+              {state.favorites.length > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+                >
+                  {state.favorites.length}
+                </Badge>
+              )}
+            </Link>
+          </Button>
+
+          {/* Comparison */}
+          <Button variant="ghost" size="icon" className="relative" asChild>
+            <Link to="/comparison">
+              <Icon name="BarChart3" size={20} />
+              {state.comparison.length > 0 && (
+                <Badge 
+                  variant="secondary" 
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+                >
+                  {state.comparison.length}
+                </Badge>
+              )}
+            </Link>
+          </Button>
+
+          {/* Recently Viewed */}
+          <Button variant="ghost" size="icon" className="relative hidden md:flex" asChild>
+            <Link to="/recently-viewed">
+              <Icon name="Eye" size={20} />
+              {state.recentlyViewed.length > 0 && (
+                <Badge 
+                  variant="outline" 
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+                >
+                  {state.recentlyViewed.length}
+                </Badge>
+              )}
+            </Link>
+          </Button>
+
+          {/* Cart */}
+          <Button variant="ghost" size="icon" className="relative" asChild>
+            <Link to="/cart">
+              <Icon name="ShoppingCart" size={20} />
+              {getCartCount() > 0 && (
+                <Badge 
+                  variant="default" 
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+                >
+                  {getCartCount()}
+                </Badge>
+              )}
+            </Link>
+          </Button>
+
           {/* Search */}
           <Button variant="ghost" size="icon" className="hidden md:flex">
             <Icon name="Search" size={20} />

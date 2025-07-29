@@ -6,11 +6,15 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
+import { useApp } from '@/contexts/AppContext';
+import { Link } from 'react-router-dom';
 
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
+  
+  const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
 
   const categories = [
     { id: 'all', name: 'Все категории', count: 45 },
@@ -338,11 +342,42 @@ export default function Catalog() {
                       </div>
                       
                       <div className="flex gap-2 pt-2">
-                        <Button className="flex-1 bg-primary hover:bg-primary/90" asChild>
-                          <a href={`/product/${monument.id}`}>Подробнее</a>
+                        <Button 
+                          className="flex-1 bg-primary hover:bg-primary/90"
+                          onClick={() => addToCart({
+                            ...monument,
+                            quantity: 1,
+                            selectedMaterial: 'granite',
+                            selectedSize: 'standard'
+                          })}
+                        >
+                          <Icon name="ShoppingCart" size={16} className="mr-2" />
+                          В корзину
                         </Button>
-                        <Button variant="outline" size="icon">
-                          <Icon name="Heart" size={18} />
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => addToFavorites(monument)}
+                          className={isInFavorites(monument.id) ? "text-red-500" : ""}
+                        >
+                          <Icon 
+                            name="Heart" 
+                            size={18} 
+                            className={isInFavorites(monument.id) ? "fill-current" : ""} 
+                          />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => addToComparison(monument)}
+                          className={isInComparison(monument.id) ? "text-blue-500" : ""}
+                        >
+                          <Icon name="BarChart3" size={18} />
+                        </Button>
+                        <Button variant="outline" size="icon" asChild>
+                          <Link to={`/product/${monument.id}`}>
+                            <Icon name="Eye" size={18} />
+                          </Link>
                         </Button>
                       </div>
                     </CardContent>
