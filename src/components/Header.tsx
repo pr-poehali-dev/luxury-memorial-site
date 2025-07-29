@@ -11,9 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import MonumentsDropdown from '@/components/NavigationMenu';
-import ComplexesDropdown from '@/components/ComplexesDropdown';
-import ImprovementDropdown from '@/components/ImprovementDropdown';
+import UnifiedNavigation from '@/components/UnifiedNavigation';
 import {
   Sheet,
   SheetContent,
@@ -203,55 +201,8 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <DropdownProvider>
-          <div className="hidden lg:flex items-center space-x-4">
-            <MonumentsDropdown />
-            <ComplexesDropdown />
-            <ImprovementDropdown />
-            <NavigationMenu>
-            <NavigationMenuList>
-            {menuItems.map((item) => (
-              <NavigationMenuItem key={item.title}>
-                <NavigationMenuTrigger className="h-10">
-                  {item.title}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to={item.href}
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            {item.title}
-                          </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Посмотреть все товары в категории "{item.title}"
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    {item.items.map((subItem) => (
-                      <ListItem
-                        key={subItem.title}
-                        href={subItem.href}
-                        title={subItem.title}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))}
-            {/* Contacts as Navigation Item */}
-            <NavigationMenuItem>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-                <Link to="/contacts" className="h-10">
-                  Контакты
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <div className="hidden lg:flex items-center">
+            <UnifiedNavigation />
           </div>
         </DropdownProvider>
 
