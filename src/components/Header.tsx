@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import MonumentsDropdown from '@/components/NavigationMenu';
 import ComplexesDropdown from '@/components/ComplexesDropdown';
+import ImprovementDropdown from '@/components/ImprovementDropdown';
 import {
   Sheet,
   SheetContent,
@@ -26,17 +27,6 @@ import { cn } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
 
 const menuItems = [
-  {
-    title: 'Благоустройство',
-    href: '/catalog?category=improvement',
-    items: [
-      { title: 'Облицовка могил', href: '/catalog?category=improvement&type=tiling' },
-      { title: 'Цветники и вазы', href: '/catalog?category=improvement&type=flowers' },
-      { title: 'Ограды и заборы', href: '/catalog?category=improvement&type=fences' },
-      { title: 'Скамейки и столы', href: '/catalog?category=improvement&type=furniture' },
-      { title: 'Дорожки и ступени', href: '/catalog?category=improvement&type=paths' },
-    ],
-  },
   {
     title: 'Оформление',
     href: '/catalog?category=decoration',
@@ -213,6 +203,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-4">
           <ComplexesDropdown />
+          <ImprovementDropdown />
           <MonumentsDropdown />
           <NavigationMenu>
             <NavigationMenuList>
