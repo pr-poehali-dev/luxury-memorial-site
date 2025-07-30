@@ -63,7 +63,7 @@ export default function Index() {
                   <img 
                     src="https://cdn.poehali.dev/files/2f6194d4-96fc-4373-a105-199c5a4748d6.png"
                     alt="3D макет памятника - мемориальный комплекс"
-                    className="w-full h-96 sm:h-[500px] lg:h-[600px] rounded-2xl shadow-2xl object-cover"
+                    className="w-full max-h-96 sm:max-h-[500px] lg:max-h-[600px] rounded-2xl shadow-2xl object-contain bg-gradient-to-br from-gray-50 to-gray-100"
                   />
                   <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                     <Icon name="Cube" size={16} className="inline mr-2" />
