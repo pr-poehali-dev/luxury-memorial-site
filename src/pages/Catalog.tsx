@@ -49,7 +49,7 @@ export default function Catalog() {
       subtitle: 'Гранит габбро-диабаз',
       price: '45 000 ₽',
       originalPrice: '52 000 ₽',
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      image: 'https://cdn.poehali.dev/files/9ea16e16-350f-4074-a7e0-e0d0a3132ecc.png',
       material: 'granite-black',
       category: 'vertical',
       dimensions: '100×50×8 см',
