@@ -510,92 +510,141 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {/* Masonry-style Reviews Grid */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-12">
             {[
               {
                 name: "Анна Михайловна",
-                role: "Клиент",
+                role: "Москва • Семейный памятник",
                 rating: 5,
                 text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне, портрет получился очень похожим. Установили быстро и аккуратно. Рекомендую!",
                 avatar: "AM",
-                date: "2 недели назад"
+                date: "2 недели назад",
+                color: "from-rose-500 to-pink-600",
+                bgPattern: "bg-gradient-to-br from-rose-50 to-pink-50",
+                service: "Портрет + гравировка"
               },
               {
                 name: "Дмитрий Петров",
-                role: "Клиент", 
+                role: "СПб • Красный гранит", 
                 rating: 5,
-                text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл все ожидания. Профессиональный подход, качественные материалы, разумные цены.",
+                text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл все ожидания. Профессиональный подход, качественные материалы, разумные цены. Очень довольны сотрудничеством!",
                 avatar: "ДП",
-                date: "1 месяц назад"
+                date: "1 месяц назад",
+                color: "from-blue-500 to-indigo-600",
+                bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-50",
+                service: "Семейный комплекс"
               },
               {
                 name: "Елена Васильевна",
-                role: "Клиент",
+                role: "Казань • Мраморный памятник",
                 rating: 5,
-                text: "Спасибо за терпение и понимание в такой трудный момент. Помогли выбрать достойный памятник, всё объяснили, сделали точно в срок. Очень благодарна!",
+                text: "Спасибо за терпение и понимание в такой трудный момент. СПаціалісты очень деликатно всё объяснили.",
                 avatar: "ЕВ",
-                date: "3 недели назад"
+                date: "3 недели назад",
+                color: "from-emerald-500 to-teal-600",
+                bgPattern: "bg-gradient-to-br from-emerald-50 to-teal-50",
+                service: "Консультация + установка"
               },
               {
                 name: "Александр К.",
-                role: "Клиент",
+                role: "Екатеринбург • Вертикальный",
                 rating: 5,
-                text: "Отличное соотношение цена-качество. Гранитный памятник простоял уже 2 года, выглядит как новый. Гравировка чёткая, полировка держится отлично.",
+                text: "Отличное соотношение цена-качество. Гранитный памятник простоял уже 2 года, выглядит как новый. Гравировка чёткая, полировка держится отлично. Спасибо за качественную работу и честные цены!",
                 avatar: "АК",
-                date: "1 неделю назад"
+                date: "1 неделю назад",
+                color: "from-amber-500 to-orange-600",
+                bgPattern: "bg-gradient-to-br from-amber-50 to-orange-50",
+                service: "Гранит + полировка"
               },
               {
                 name: "Мария Сергеевна",
-                role: "Клиент",
+                role: "Нижний Новгород • Ручная работа",
                 rating: 5,
                 text: "Заказывала мраморный памятник с ручной гравировкой. Работа художника просто потрясающая! Портрет получился живым, будто фотография на камне.",
                 avatar: "МС",
-                date: "2 месяца назад"
+                date: "2 месяца назад",
+                color: "from-purple-500 to-violet-600",
+                bgPattern: "bg-gradient-to-br from-purple-50 to-violet-50",
+                service: "Ручная гравировка"
               },
               {
                 name: "Игорь Николаевич",
-                role: "Клиент",
+                role: "Самара • Бронзовые элементы",
                 rating: 5,
-                text: "Профессиональная команда! От консультации до установки всё прошло гладко. Особенно ценю индивидуальный подход и внимание к деталям.",
+                text: "Профессиональная команда! От консультации до установки всё прошло гладко. Особенно ценю индивидуальный подход и внимание к деталям. Результат превосходный.",
                 avatar: "ИН",
-                date: "3 дня назад"
+                date: "3 дня назад",
+                color: "from-cyan-500 to-blue-600",
+                bgPattern: "bg-gradient-to-br from-cyan-50 to-blue-50",
+                service: "Индивидуальный проект"
               }
-            ].map((review, index) => (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CardHeader className="relative z-10 pb-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      {review.avatar}
+            ].map((review, index) => {
+              const isLarge = index === 1 || index === 3;
+              return (
+                <div 
+                  key={index} 
+                  className={`break-inside-avoid mb-8 group cursor-pointer ${isLarge ? 'transform hover:scale-105' : 'hover:scale-102'} transition-all duration-700`}
+                >
+                  <div className={`relative ${review.bgPattern} rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-white/60`}>
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
+                      <div className={`w-full h-full bg-gradient-to-br ${review.color} rounded-full blur-3xl`}></div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-slate-800">{review.name}</h4>
-                      <p className="text-sm text-muted-foreground">{review.role}</p>
+                    <div className="absolute -bottom-8 -left-8 w-24 h-24 opacity-5">
+                      <Icon name="Quote" size={96} className="text-current" />
                     </div>
-                    <div className="flex gap-1">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
-                      ))}
+                    
+                    {/* Content */}
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className={`w-14 h-14 bg-gradient-to-br ${review.color} rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg transform group-hover:rotate-6 transition-transform duration-500`}>
+                          {review.avatar}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-slate-800 text-lg">{review.name}</h4>
+                          <p className="text-sm text-slate-600 mb-2">{review.role}</p>
+                          <div className="flex items-center gap-2">
+                            <div className="flex gap-1">
+                              {[...Array(review.rating)].map((_, i) => (
+                                <Icon key={i} name="Star" size={14} className="text-yellow-400 fill-current" />
+                              ))}
+                            </div>
+                            <span className="text-xs text-slate-500">•</span>
+                            <span className="text-xs text-slate-500">{review.date}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Service Badge */}
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${review.color} text-white text-xs font-medium mb-4 shadow-sm`}>
+                        <Icon name="Award" size={12} />
+                        {review.service}
+                      </div>
+                      
+                      {/* Review Text */}
+                      <blockquote className={`text-slate-700 leading-relaxed mb-6 ${isLarge ? 'text-lg' : 'text-base'} relative`}>
+                        <Icon name="Quote" size={20} className="text-slate-300 absolute -top-2 -left-1" />
+                        <span className="pl-6">{review.text}</span>
+                      </blockquote>
+                      
+                      {/* Footer */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Icon name="CheckCircle2" size={16} className="text-green-500" />
+                          <span className="text-xs text-green-600 font-medium">Подтверждённый отзыв</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-slate-400">
+                          <Icon name="ThumbsUp" size={14} />
+                          <span className="text-xs">{Math.floor(Math.random() * 20) + 5}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="relative z-10 pt-0">
-                  <blockquote className="text-slate-700 leading-relaxed mb-4 italic">
-                    "{review.text}"
-                  </blockquote>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Icon name="Calendar" size={14} className="text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{review.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Icon name="CheckCircle2" size={14} className="text-green-500" />
-                      <span className="text-xs text-green-600 font-medium">Подтверждён</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
           </div>
 
           {/* Stats Section */}
