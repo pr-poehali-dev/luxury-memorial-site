@@ -74,6 +74,7 @@ const menuItems = [
       { title: 'Как заказать памятник', href: '/how-to-order' },
       { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
       { title: 'Памятники в Балашихе', href: '/balashiha-monuments' },
+      { title: 'Фото наших работ', href: '/portfolio' },
       { title: 'О компании', href: '/about' },
       { title: 'Доставка и установка', href: '/delivery' },
       { title: 'Гарантии', href: '/warranty' },
