@@ -32,7 +32,7 @@ export default function ProductCard() {
     rating: 4.8,
     reviewsCount: 24,
     images: [
-      '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      'https://cdn.poehali.dev/files/f8c87ddf-cfee-41b9-a522-244254aebd83.png',
       '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
       '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg'
     ],
@@ -181,7 +181,7 @@ export default function ProductCard() {
 
   const relatedProducts = [
     { id: 2, title: 'Горизонтальный элегант', price: '38 000 ₽', image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
-    { id: 3, title: 'Семейный комплекс', price: '85 000 ₽', image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
+    { id: 3, title: 'Семейный комплекс', price: '85 000 ₽', image: 'https://cdn.poehali.dev/files/f8c87ddf-cfee-41b9-a522-244254aebd83.png' },
     { id: 4, title: 'Мемориальная плита', price: '25 000 ₽', image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' }
   ];
 
