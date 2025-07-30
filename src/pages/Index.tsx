@@ -1,21 +1,11 @@
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function Index() {
-  const [selectedMaterial, setSelectedMaterial] = useState('granite');
-  const [selectedType, setSelectedType] = useState('classic');
-
-  const materials = [
-    { id: 'granite', name: 'Гранит', color: '#2c2c2c', image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
-    { id: 'marble', name: 'Мрамор', color: '#f5f5f5', image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
-    { id: 'bronze', name: 'Бронза', color: '#8b7355', image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' }
-  ];
 
   const monuments = [
     { id: 1, title: 'Классический вертикальный', price: 'от 45 000 ₽', image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
@@ -59,136 +49,118 @@ export default function Index() {
             
             {/* 3D Model Request Form */}
             <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-primary/10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-                {/* Left side - Monument Image */}
-                <div className="space-y-4">
-                  <div className="text-center lg:text-left">
-                    <h3 className="font-heading text-xl sm:text-2xl font-bold mb-2">3D макет памятника</h3>
-                    <p className="text-muted-foreground text-sm">
-                      Получите реалистичную визуализацию перед изготовлением
-                    </p>
+              <div className="space-y-6">
+                {/* Header */}
+                <div className="text-center">
+                  <h3 className="font-heading text-2xl sm:text-3xl font-bold mb-3">3D макет памятника</h3>
+                  <p className="text-muted-foreground">
+                    Получите реалистичную визуализацию перед изготовлением
+                  </p>
+                </div>
+                
+                {/* Large 3D Visualization Image */}
+                <div className="relative">
+                  <img 
+                    src="/img/4252ac99-551d-421d-856a-a497eefb82c9.jpg"
+                    alt="3D макет памятника"
+                    className="w-full h-96 sm:h-[500px] lg:h-[600px] rounded-2xl shadow-2xl object-cover"
+                  />
+                  <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                    <Icon name="Cube" size={16} className="inline mr-2" />
+                    3D визуализация
                   </div>
-                  
-                  <div className="relative">
-                    <img 
-                      src="/img/4252ac99-551d-421d-856a-a497eefb82c9.jpg"
-                      alt="3D макет памятника"
-                      className="w-full rounded-xl shadow-lg object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">
-                      3D визуализация
-                    </div>
-                  </div>
-
-                  {/* Benefits */}
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon name="Eye" size={16} className="text-green-600" />
-                      </div>
-                      <span className="text-sm flex-1">Точная визуализация до изготовления</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon name="RotateCcw" size={16} className="text-blue-600" />
-                      </div>
-                      <span className="text-sm flex-1">Внесение изменений на этапе проекта</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon name="Clock" size={16} className="text-purple-600" />
-                      </div>
-                      <span className="text-sm flex-1">Готовность за 2-3 дня</span>
-                    </div>
+                  <div className="absolute bottom-6 right-6 bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    Реальный размер
                   </div>
                 </div>
 
-                {/* Right side - Form */}
-                <div className="space-y-4">
-                  <form className="space-y-4">
-                    {/* Name and Phone */}
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {/* Benefits */}
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-lg mb-4">Преимущества 3D макета:</h4>
                     <div className="space-y-4">
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
-                        <input
-                          type="text"
-                          placeholder="Введите имя"
-                          className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                          required
-                        />
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon name="Eye" size={20} className="text-green-600" />
+                        </div>
+                        <div>
+                          <div className="font-medium">Точная визуализация</div>
+                          <div className="text-sm text-muted-foreground">Увидите результат до изготовления</div>
+                        </div>
                       </div>
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Телефон *</label>
-                        <input
-                          type="tel"
-                          placeholder="+7 (999) 123-45-67"
-                          className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                          required
-                        />
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon name="RotateCcw" size={20} className="text-blue-600" />
+                        </div>
+                        <div>
+                          <div className="font-medium">Внесение изменений</div>
+                          <div className="text-sm text-muted-foreground">Корректировки на этапе проекта</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon name="Clock" size={20} className="text-purple-600" />
+                        </div>
+                        <div>
+                          <div className="font-medium">Быстрая готовность</div>
+                          <div className="text-sm text-muted-foreground">Готовность за 2-3 рабочих дня</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon name="Gift" size={20} className="text-orange-600" />
+                        </div>
+                        <div>
+                          <div className="font-medium">Бесплатно</div>
+                          <div className="text-sm text-muted-foreground">При заказе памятника</div>
+                        </div>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Monument Type */}
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Тип памятника</label>
-                      <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="h-12">
-                          <SelectValue placeholder="Выберите тип" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="vertical">Вертикальный</SelectItem>
-                          <SelectItem value="horizontal">Горизонтальный</SelectItem>
-                          <SelectItem value="complex">Мемориальный комплекс</SelectItem>
-                          <SelectItem value="family">Семейный памятник</SelectItem>
-                        </SelectContent>
-                      </Select>
+                  {/* Simplified Form */}
+                  <div className="space-y-6">
+                    <div className="bg-muted/30 rounded-xl p-6">
+                      <h4 className="font-semibold text-lg mb-4 text-center">Заказать 3D макет</h4>
+                      <form className="space-y-4">
+                        <div>
+                          <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
+                          <input
+                            type="text"
+                            placeholder="Введите ваше имя"
+                            className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium mb-2 block">Телефон *</label>
+                          <input
+                            type="tel"
+                            placeholder="+7 (999) 123-45-67"
+                            className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                            required
+                          />
+                        </div>
+
+                        <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-base font-medium">
+                          <Icon name="Cube" size={18} className="mr-2" />
+                          Заказать 3D макет бесплатно
+                        </Button>
+
+                        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 border border-green-200">
+                          <div className="text-center">
+                            <div className="flex items-center justify-center gap-2 mb-2">
+                              <Icon name="Gift" size={16} className="text-green-600" />
+                              <span className="font-semibold text-green-800">Макет бесплатно</span>
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              При заказе памятника • Готовность: 2-3 дня
+                            </p>
+                          </div>
+                        </div>
+                      </form>
                     </div>
-
-                    {/* Material */}
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Материал</label>
-                      <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                        <SelectTrigger className="h-12">
-                          <SelectValue placeholder="Выберите материал" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {materials.map(material => (
-                            <SelectItem key={material.id} value={material.id}>
-                              <div className="flex items-center gap-2">
-                                <div 
-                                  className="w-4 h-4 rounded-full border" 
-                                  style={{ backgroundColor: material.color }}
-                                />
-                                {material.name}
-                              </div>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Special Requirements */}
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Особые пожелания</label>
-                      <textarea
-                        placeholder="Опишите ваши пожелания к дизайну, размерам, надписям..."
-                        rows={3}
-                        className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
-                      />
-                    </div>
-
-                    <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-sm sm:text-base font-medium">
-                      Заказать 3D макет бесплатно
-                    </Button>
-
-                    <div className="bg-muted/30 rounded-lg p-4">
-                      <p className="text-xs text-center text-muted-foreground">
-                        🎁 <strong>Макет бесплатно</strong> при заказе памятника
-                        <br />
-                        📅 Готовность: 2-3 рабочих дня
-                      </p>
-                    </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
