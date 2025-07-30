@@ -71,7 +71,6 @@ const menuItems = [
     title: 'Информация',
     href: '/info',
     items: [
-      { title: 'Как заказать памятник', href: '/how-to-order' },
       { title: 'О компании', href: '/about' },
       { title: 'Доставка и установка', href: '/delivery' },
       { title: 'Гарантии', href: '/warranty' },
