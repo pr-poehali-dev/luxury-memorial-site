@@ -9,8 +9,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useApp } from '@/contexts/AppContext';
 
 export default function ProductCard() {
+  const { addToCart } = useApp();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedMaterial, setSelectedMaterial] = useState('granite-black');
   const [selectedElements, setSelectedElements] = useState({
@@ -20,6 +22,56 @@ export default function ProductCard() {
   });
   const [selectedServices, setSelectedServices] = useState<string[]>(['gravir-epitafiya', 'gravir-cvety']);
   const [quantity, setQuantity] = useState(1);
+
+  const getTotalPrice = () => {
+    const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
+    const materialPrice = selectedMaterialData?.price || 0;
+    
+    const elementsPrice = Object.entries(selectedElements)
+      .filter(([, config]) => config.enabled)
+      .reduce((total, [elementId, config]) => {
+        const element = monumentElements[elementId as keyof typeof monumentElements];
+        const size = element.sizes.find(s => s.id === config.size);
+        return total + (size?.price || 0);
+      }, 0);
+    
+    const servicesPrice = [
+      { id: 'portrait-gravir', price: 8000 },
+      { id: 'portrait-hand', price: 15000 },
+      { id: 'fio-gravir', price: 2000 },
+      { id: 'fio-skarpel', price: 4000 },
+      { id: 'fio-gold', price: 6000 },
+      { id: 'gravir-cross', price: 3000 },
+      { id: 'gravir-cvety', price: 0 },
+      { id: 'gravir-epitafiya', price: 0 },
+      { id: 'gravir-vinetka', price: 2500 },
+      { id: 'gravir-svechi', price: 1500 },
+      { id: 'gravir-ikona', price: 5000 },
+      { id: 'gravir-kartinka', price: 3500 },
+      { id: 'retush-photo', price: 1000 },
+      { id: 'protection', price: 4000 },
+      { id: 'storage', price: 500 }
+    ]
+      .filter(service => selectedServices.includes(service.id))
+      .reduce((total, service) => total + service.price, 0);
+    
+    return product.basePrice + materialPrice + elementsPrice + servicesPrice;
+  };
+
+  const handleAddToCart = () => {
+    const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
+    
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: getTotalPrice(),
+      image: product.images[0],
+      category: 'vertical',
+      quantity: quantity,
+      selectedMaterial: selectedMaterialData?.name,
+      selectedSize: 'standard'
+    });
+  };
 
   const product = {
     id: 1,
@@ -462,7 +514,11 @@ export default function ProductCard() {
               {/* Actions */}
               <div className="space-y-4">
                 <div className="flex gap-4">
-                  <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-lg">
+                  <Button 
+                    onClick={handleAddToCart}
+                    size="lg" 
+                    className="flex-1 bg-primary hover:bg-primary/90 text-lg"
+                  >
                     <Icon name="ShoppingCart" className="mr-2" size={20} />
                     В корзину
                   </Button>
