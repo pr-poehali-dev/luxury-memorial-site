@@ -182,19 +182,36 @@ export default function ProductCard() {
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
-                {product.images.map((image, index) => (
+                {[
+                  { id: 'classic', name: 'Классическое', preview: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
+                  { id: 'with-flowers', name: 'С цветами', preview: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
+                  { id: 'with-cross', name: 'С крестом', preview: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' }
+                ].map((style, index) => (
                   <div 
-                    key={index}
-                    className={`aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer border-2 transition-colors ${
+                    key={style.id}
+                    className={`aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer border-2 transition-colors relative ${
                       selectedImage === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground'
                     }`}
                     onClick={() => setSelectedImage(index)}
                   >
                     <img 
-                      src={image}
-                      alt={`${product.title} ${index + 1}`}
+                      src={style.preview}
+                      alt={style.name}
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-black/40 flex items-end">
+                      <div className="p-2 text-white">
+                        <div className="text-sm font-medium">{style.name}</div>
+                        <div className="text-xs opacity-80">оформление</div>
+                      </div>
+                    </div>
+                    {selectedImage === index && (
+                      <div className="absolute top-2 right-2">
+                        <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                          <Icon name="Check" size={14} className="text-primary-foreground" />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
