@@ -464,7 +464,7 @@ export default function ProductCard() {
                 <div className="flex gap-4">
                   <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-lg">
                     <Icon name="ShoppingCart" className="mr-2" size={20} />
-                    Заказать памятник
+                    В корзину
                   </Button>
                   <Button size="lg" variant="outline">
                     <Icon name="Heart" size={20} />
