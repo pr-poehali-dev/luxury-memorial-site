@@ -276,7 +276,7 @@ export default function ProductCard() {
 
                 <div>
                   <label className="text-sm font-medium text-muted-foreground mb-3 block">Комплектация памятника</label>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {Object.entries(monumentElements).map(([elementId, element]) => {
                       const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
                       const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
@@ -285,83 +285,72 @@ export default function ProductCard() {
                       return (
                         <div 
                           key={elementId} 
-                          className={`border rounded-lg p-4 transition-colors ${
+                          className={`border rounded-lg p-3 transition-colors ${
                             isEnabled 
                               ? 'border-primary bg-primary/5' 
                               : 'border-muted'
                           }`}
                         >
-                          <div className="space-y-3">
-                            {/* Header with checkbox */}
-                            <div className="flex items-center justify-between">
-                              <div 
-                                className="flex items-center gap-3 cursor-pointer flex-1"
-                                onClick={() => toggleElement(elementId)}
-                              >
-                                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
-                                  isEnabled
-                                    ? 'border-primary bg-primary'
-                                    : 'border-muted-foreground'
-                                } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}>
-                                  {isEnabled && (
-                                    <Icon name="Check" size={12} className="text-primary-foreground" />
-                                  )}
-                                </div>
-                                <div className="flex-1">
-                                  <div className="font-medium flex items-center gap-2">
-                                    {element.name}
-                                    {element.required && (
-                                      <Badge variant="secondary" className="text-xs">Обязательно</Badge>
-                                    )}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground">{element.description}</div>
-                                </div>
-                              </div>
-                              {isEnabled && currentSizeData && (
-                                <div className="text-right">
-                                  <div className="font-semibold text-primary">
-                                    {currentSizeData.price.toLocaleString()} ₽
-                                  </div>
-                                </div>
+                          <div className="flex items-center gap-3 mb-2">
+                            <div 
+                              className={`w-4 h-4 rounded border-2 flex items-center justify-center cursor-pointer ${
+                                isEnabled
+                                  ? 'border-primary bg-primary'
+                                  : 'border-muted-foreground'
+                              } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}
+                              onClick={() => !element.required && toggleElement(elementId)}
+                            >
+                              {isEnabled && (
+                                <Icon name="Check" size={10} className="text-primary-foreground" />
                               )}
                             </div>
-                            
-                            {/* Size selector */}
-                            {isEnabled && (
-                              <div className="ml-8">
-                                <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                                  Размер {element.name.toLowerCase()}
-                                </label>
-                                <Select 
-                                  value={currentSize} 
-                                  onValueChange={(value) => updateElementSize(elementId, value)}
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {element.sizes.map(size => (
-                                      <SelectItem key={size.id} value={size.id}>
-                                        <div className="flex justify-between items-center w-full pr-4">
-                                          <span>{size.name}</span>
-                                          <span className="text-primary font-medium ml-4">
-                                            {size.price.toLocaleString()} ₽
-                                          </span>
-                                        </div>
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
+                            <div className="flex-1">
+                              <div className="font-medium text-sm flex items-center gap-2">
+                                {element.name}
+                                {element.required && (
+                                  <Badge variant="secondary" className="text-xs px-1 py-0">Обязательно</Badge>
+                                )}
+                              </div>
+                            </div>
+                            {isEnabled && currentSizeData && (
+                              <div className="text-sm font-semibold text-primary">
+                                {currentSizeData.price.toLocaleString()} ₽
                               </div>
                             )}
                           </div>
+                          
+                          {isEnabled && (
+                            <div className="ml-7">
+                              <Select 
+                                value={currentSize} 
+                                onValueChange={(value) => updateElementSize(elementId, value)}
+                              >
+                                <SelectTrigger className="h-9 text-sm">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {element.sizes.map(size => (
+                                    <SelectItem key={size.id} value={size.id} className="text-sm">
+                                      <div className="flex justify-between items-center w-full min-w-[200px]">
+                                        <span>{size.name}</span>
+                                        <span className="text-primary font-medium ml-3">
+                                          {size.price.toLocaleString()} ₽
+                                        </span>
+                                      </div>
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          )}
                         </div>
                       );
                     })}
                   </div>
-                  <div className="mt-4 p-4 bg-muted/50 rounded-lg">
-                    <div className="text-sm text-muted-foreground mb-1">Итого за комплектацию:</div>
-                    <div className="font-semibold text-xl text-primary">
+                  <Separator className="my-4" />
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-muted-foreground">Итого за комплектацию:</span>
+                    <span className="font-bold text-lg text-primary">
                       {Object.entries(selectedElements)
                         .filter(([, config]) => config.enabled)
                         .reduce((total, [elementId, config]) => {
@@ -370,7 +359,7 @@ export default function ProductCard() {
                           return total + (size?.price || 0);
                         }, 0)
                         .toLocaleString()} ₽
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
