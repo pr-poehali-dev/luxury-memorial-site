@@ -12,7 +12,6 @@ import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import Comparison from "./pages/Comparison";
 import RecentlyViewed from "./pages/RecentlyViewed";
-import HowToOrder from "./pages/HowToOrder";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
@@ -36,7 +35,6 @@ const App = () => (
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/recently-viewed" element={<RecentlyViewed />} />
-            <Route path="/how-to-order" element={<HowToOrder />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/personal-data" element={<PersonalData />} />
             <Route path="/offer-agreement" element={<OfferAgreement />} />
