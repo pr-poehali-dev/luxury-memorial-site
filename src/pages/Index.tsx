@@ -459,11 +459,11 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            <div className="aspect-[4/3] bg-muted rounded-2xl overflow-hidden">
+            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-slate-100">
               <img 
-                src="/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg"
-                alt="О компании"
-                className="w-full h-full object-cover"
+                src="https://cdn.poehali.dev/files/1f6e9f37-646c-458a-ba44-aac1996ce96c.png"
+                alt="Мемориальный комплекс с ангелом и цветами"
+                className="w-full h-auto object-contain rounded-2xl"
               />
             </div>
           </div>
