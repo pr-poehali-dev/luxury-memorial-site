@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function About() {
   const stats = [
@@ -332,6 +333,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <Footer />
 
       <style jsx>{`
         @keyframes fade-in-up {
