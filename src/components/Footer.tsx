@@ -1,133 +1,150 @@
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const socialLinks = [
-    { name: 'WhatsApp', icon: 'MessageCircle', href: 'https://wa.me/78001234567', color: 'text-green-600' },
-    { name: 'Telegram', icon: 'Send', href: 'https://t.me/memorial_studio', color: 'text-blue-500' },
-    { name: 'VKontakte', icon: 'Users', href: 'https://vk.com/memorial_studio', color: 'text-blue-600' },
-    { name: 'Одноклассники', icon: 'Globe', href: 'https://ok.ru/memorial_studio', color: 'text-orange-500' },
+    { name: 'WhatsApp', icon: 'MessageCircle', href: 'https://wa.me/+74952013227', color: 'hover:text-green-400' },
+    { name: 'Telegram', icon: 'Send', href: 'https://t.me/memorial_studio', color: 'hover:text-blue-400' },
+    { name: 'VKontakte', icon: 'Users', href: 'https://vk.com/memorial_studio', color: 'hover:text-blue-500' },
+    { name: 'Одноклассники', icon: 'Globe', href: 'https://ok.ru/memorial_studio', color: 'hover:text-orange-400' },
   ];
 
   const catalogLinks = [
-    { title: 'Каталог памятников', href: '/catalog' },
-    { title: 'Памятники на могилу', href: '/catalog?category=monuments' },
-    { title: 'Ограды на могилу', href: '/catalog?category=fences' },
-    { title: 'Гранитная мастерская', href: '/workshop' },
-    { title: 'Установка', href: '/installation' },
-    { title: 'Купить памятник', href: '/catalog' },
+    { title: 'Памятники из гранита', href: '/catalog?category=monuments&type=granite' },
+    { title: 'Памятники из мрамора', href: '/catalog?category=monuments&type=marble' },
+    { title: 'Мемориальные комплексы', href: '/catalog?category=complexes' },
+    { title: 'Благоустройство могил', href: '/catalog?category=improvement' },
   ];
 
   const infoLinks = [
-    { title: 'О нас', href: '/about' },
-    { title: 'Как заказать памятник?', href: '/how-to-order' },
-    { title: 'Фотографии работ', href: '/gallery' },
-    { title: 'Изготовление', href: '/manufacturing' },
-    { title: 'Города', href: '/cities' },
-    { title: 'Кладбища', href: '/cemeteries' },
+    { title: 'О компании', href: '/about' },
+    { title: 'Портфолио работ', href: '/portfolio' },
+    { title: 'Как заказать', href: '/how-to-order' },
+    { title: 'Контакты', href: '/contacts' },
   ];
 
   const legalLinks = [
-    { title: 'Политика конфиденциальности', href: '/privacy-policy' },
-    { title: 'Обработка персональных данных', href: '/personal-data' },
     { title: 'Договор оферты', href: '/offer-agreement' },
     { title: 'Карта сайта', href: '/sitemap' },
   ];
 
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
           
           {/* Company Info & Contact */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-8">
+            {/* Logo & Description */}
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
-                  <Icon name="Mountain" size={20} className="text-primary-foreground" />
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                  <Icon name="Mountain" size={24} className="text-white" />
                 </div>
-                <span className="font-bold text-xl">Вечная Память</span>
+                <span className="font-bold text-2xl">Вечная Память</span>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Мемориальная мастерская полного цикла. Изготавливаем и устанавливаем 
-                памятники, ограды, надгробия из гранита и мрамора с 2010 года.
+              <p className="text-slate-300 text-lg leading-relaxed max-w-md">
+                Изготавливаем памятники из премиального гранита и мрамора в собственной мастерской с 2009 года
               </p>
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Icon name="Phone" size={18} className="text-primary flex-shrink-0" />
-                <div>
-                  <a href="tel:+78001234567" className="font-medium hover:text-primary transition-colors">
-                    +7 (800) 123-45-67
-                  </a>
-                  <p className="text-xs text-slate-400">Бесплатно по России</p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                    <Icon name="Phone" size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <a href="tel:+74952013227" className="font-semibold text-lg hover:text-primary transition-colors">
+                      +7 (495) 201-32-27
+                    </a>
+                    <p className="text-sm text-slate-400">Бесплатная консультация</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                    <Icon name="Mail" size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <a href="mailto:info@postament.ru" className="font-medium hover:text-primary transition-colors">
+                      info@postament.ru
+                    </a>
+                    <p className="text-sm text-slate-400">Ответим в течение часа</p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex items-center space-x-3">
-                <Icon name="Mail" size={18} className="text-primary flex-shrink-0" />
-                <a href="mailto:info@memorial.ru" className="hover:text-primary transition-colors">
-                  info@memorial.ru
-                </a>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <Icon name="MapPin" size={18} className="text-primary flex-shrink-0 mt-1" />
-                <div className="text-sm">
-                  <p>г. Москва, ул. Мемориальная, 15</p>
-                  <p className="text-slate-400 mt-1">
-                    Пн-Пт: 9:00-18:00<br />
-                    Сб-Вс: 10:00-16:00
-                  </p>
+
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                    <Icon name="MapPin" size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Москва, ул. Мастерская, 15</p>
+                    <p className="text-sm text-slate-400 mt-1">
+                      Пн-Вс: 9:00-18:00
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                    <Icon name="Clock" size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Работаем без выходных</p>
+                    <p className="text-sm text-slate-400">Срочные заказы — 24/7</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Call Manager Button */}
-            <Button className="w-full bg-primary hover:bg-primary/90">
-              <Icon name="Phone" size={16} className="mr-2" />
-              Вызвать менеджера
-            </Button>
-
-            {/* Social Networks */}
-            <div>
-              <h4 className="font-medium mb-3">Мы в социальных сетях</h4>
-              <div className="flex space-x-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors group"
-                    title={social.name}
-                  >
-                    <Icon 
-                      name={social.icon as any} 
-                      size={18} 
-                      className={`${social.color} group-hover:scale-110 transition-transform`} 
-                    />
-                  </a>
-                ))}
+            {/* CTA Button & Social */}
+            <div className="flex flex-col sm:flex-row items-start gap-6">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white font-medium px-8 rounded-xl shadow-lg">
+                <Icon name="Phone" size={20} className="mr-2" />
+                Заказать звонок
+              </Button>
+              
+              <div>
+                <p className="text-sm text-slate-400 mb-3">Мы в соцсетях:</p>
+                <div className="flex space-x-3">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-12 h-12 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 group ${social.color}`}
+                      title={social.name}
+                    >
+                      <Icon 
+                        name={social.icon as any} 
+                        size={20} 
+                        className="text-slate-300 group-hover:scale-110 transition-transform" 
+                      />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           {/* Catalog Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Каталог и услуги</h3>
-            <ul className="space-y-2">
+            <h3 className="font-bold text-lg mb-6 text-white">Каталог</h3>
+            <ul className="space-y-3">
               {catalogLinks.map((link) => (
                 <li key={link.href}>
                   <Link 
                     to={link.href} 
-                    className="text-slate-300 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-flex items-center group"
                   >
+                    <Icon name="ArrowRight" size={14} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.title}
                   </Link>
                 </li>
@@ -137,56 +154,29 @@ export default function Footer() {
 
           {/* Information Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Информация</h3>
-            <ul className="space-y-2">
+            <h3 className="font-bold text-lg mb-6 text-white">Информация</h3>
+            <ul className="space-y-3">
               {infoLinks.map((link) => (
                 <li key={link.href}>
                   <Link 
                     to={link.href} 
-                    className="text-slate-300 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-flex items-center group"
                   >
+                    <Icon name="ArrowRight" size={14} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.title}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Quick Actions & Legal */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Быстрые действия</h3>
-              <div className="space-y-2">
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/catalog">
-                    <Icon name="Search" size={16} className="mr-2" />
-                    Подобрать памятник
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/calculator">
-                    <Icon name="Calculator" size={16} className="mr-2" />
-                    Рассчитать стоимость
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/gallery">
-                    <Icon name="Image" size={16} className="mr-2" />
-                    Смотреть работы
-                  </Link>
-                </Button>
-              </div>
-            </div>
 
             {/* Legal Links */}
-            <div>
-              <h4 className="font-medium mb-3">Правовая информация</h4>
-              <ul className="space-y-1">
+            <div className="mt-8 pt-6 border-t border-slate-800">
+              <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
                     <Link 
                       to={link.href} 
-                      className="text-slate-400 hover:text-slate-300 text-xs transition-colors"
+                      className="text-slate-500 hover:text-slate-400 text-sm transition-colors"
                     >
                       {link.title}
                     </Link>
@@ -194,44 +184,27 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-
-            {/* Certificates */}
-            <div>
-              <h4 className="font-medium mb-3">Сертификаты</h4>
-              <div className="flex space-x-2">
-                <div className="w-12 h-8 bg-slate-800 rounded border border-slate-600 flex items-center justify-center">
-                  <span className="text-xs font-bold">ISO</span>
-                </div>
-                <div className="w-12 h-8 bg-slate-800 rounded border border-slate-600 flex items-center justify-center">
-                  <span className="text-xs font-bold">РСТ</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      <Separator className="bg-slate-700" />
-
       {/* Bottom Footer */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-slate-400">
-            <p>© 2024 Вечная Память. Все права защищены.</p>
-            <div className="flex items-center space-x-4">
-              <span>ИНН: 7701234567</span>
-              <span>ОГРН: 1037701234567</span>
+      <div className="border-t border-slate-800 bg-slate-950">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-slate-400 text-sm text-center md:text-left">
+              © 2024 Вечная Память. Изготовление памятников в Москве
             </div>
-          </div>
-          
-          <div className="flex items-center space-x-4 text-sm text-slate-400">
-            <div className="flex items-center space-x-2">
-              <Icon name="Shield" size={16} className="text-green-500" />
-              <span>Данные защищены SSL</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Icon name="Award" size={16} className="text-blue-500" />
-              <span>Лицензия № 12345</span>
+            
+            <div className="flex items-center space-x-6 text-sm text-slate-500">
+              <div className="flex items-center space-x-2">
+                <Icon name="Shield" size={16} className="text-green-400" />
+                <span>SSL защита</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Icon name="Award" size={16} className="text-blue-400" />
+                <span>Лицензия</span>
+              </div>
             </div>
           </div>
         </div>
