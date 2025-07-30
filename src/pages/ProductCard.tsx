@@ -18,6 +18,7 @@ export default function ProductCard() {
     tumba: { enabled: false, size: 'standard' },
     cvetnik: { enabled: false, size: 'standard' }
   });
+  const [selectedServices, setSelectedServices] = useState<string[]>(['gravir-epitafiya', 'gravir-cvety']);
   const [quantity, setQuantity] = useState(1);
 
   const product = {
@@ -121,8 +122,8 @@ export default function ProductCard() {
 
   const getCurrentPrice = () => {
     const materialPrice = materials.find(m => m.id === selectedMaterial)?.price || 0;
-    let elementsPrice = 0;
     
+    let elementsPrice = 0;
     Object.entries(selectedElements).forEach(([elementId, config]) => {
       if (config.enabled) {
         const element = monumentElements[elementId as keyof typeof monumentElements];
@@ -133,7 +134,27 @@ export default function ProductCard() {
       }
     });
     
-    return elementsPrice + materialPrice;
+    const servicesPrice = [
+      { id: 'portrait-gravir', price: 8000 },
+      { id: 'portrait-hand', price: 15000 },
+      { id: 'fio-gravir', price: 2000 },
+      { id: 'fio-skarpel', price: 4000 },
+      { id: 'fio-gold', price: 6000 },
+      { id: 'gravir-cross', price: 3000 },
+      { id: 'gravir-cvety', price: 0 },
+      { id: 'gravir-epitafiya', price: 0 },
+      { id: 'gravir-vinetka', price: 2500 },
+      { id: 'gravir-svechi', price: 1500 },
+      { id: 'gravir-ikona', price: 5000 },
+      { id: 'gravir-kartinka', price: 3500 },
+      { id: 'retush-photo', price: 1000 },
+      { id: 'protection', price: 4000 },
+      { id: 'storage', price: 500 }
+    ]
+      .filter(service => selectedServices.includes(service.id))
+      .reduce((total, service) => total + service.price, 0);
+    
+    return elementsPrice + materialPrice + servicesPrice;
   };
 
   const toggleElement = (elementId: string) => {
@@ -181,39 +202,96 @@ export default function ProductCard() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { id: 'classic', name: 'Классическое', preview: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
-                  { id: 'with-flowers', name: 'С цветами', preview: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
-                  { id: 'with-cross', name: 'С крестом', preview: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' }
-                ].map((style, index) => (
-                  <div 
-                    key={style.id}
-                    className={`aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer border-2 transition-colors relative ${
-                      selectedImage === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground'
-                    }`}
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <img 
-                      src={style.preview}
-                      alt={style.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40 flex items-end">
-                      <div className="p-2 text-white">
-                        <div className="text-sm font-medium">{style.name}</div>
-                        <div className="text-xs opacity-80">оформление</div>
-                      </div>
-                    </div>
-                    {selectedImage === index && (
-                      <div className="absolute top-2 right-2">
-                        <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                          <Icon name="Check" size={14} className="text-primary-foreground" />
+              <div>
+                <h3 className="font-medium text-sm mb-3 text-muted-foreground">Дополнительное оформление</h3>
+                <div className="grid grid-cols-1 gap-2 max-h-[300px] overflow-y-auto pr-2">
+                  {[
+                    { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
+                    { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
+                    { id: 'fio-gravir', name: 'ФИО гравировка', price: 2000, category: 'Текст' },
+                    { id: 'fio-skarpel', name: 'ФИО скарпель', price: 4000, category: 'Текст' },
+                    { id: 'fio-gold', name: 'ФИО сусальное золото', price: 6000, category: 'Текст' },
+                    { id: 'gravir-cross', name: 'Гравировка креста', price: 3000, category: 'Символы' },
+                    { id: 'gravir-cvety', name: 'Гравировка цветы', price: 0, category: 'Декор' },
+                    { id: 'gravir-epitafiya', name: 'Гравировка эпитафия', price: 0, category: 'Текст' },
+                    { id: 'gravir-vinetka', name: 'Гравировка виньетки', price: 2500, category: 'Декор' },
+                    { id: 'gravir-svechi', name: 'Гравировка свечи', price: 1500, category: 'Декор' },
+                    { id: 'gravir-ikona', name: 'Гравировка иконы', price: 5000, category: 'Символы' },
+                    { id: 'gravir-kartinka', name: 'Гравировка картинки', price: 3500, category: 'Декор' },
+                    { id: 'retush-photo', name: 'Ретушь фотографии', price: 1000, category: 'Обработка' },
+                    { id: 'protection', name: 'Защитное покрытие', price: 4000, category: 'Обработка' },
+                    { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
+                  ].map((service) => {
+                    const isSelected = selectedServices.includes(service.id);
+                    const isFree = service.price === 0;
+                    
+                    return (
+                      <div 
+                        key={service.id}
+                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/50 ${
+                          isSelected ? 'border-primary bg-primary/5' : 'border-muted'
+                        }`}
+                        onClick={() => {
+                          setSelectedServices(prev => 
+                            prev.includes(service.id) 
+                              ? prev.filter(id => id !== service.id)
+                              : [...prev, service.id]
+                          );
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                            isSelected
+                              ? 'border-primary bg-primary'
+                              : 'border-muted-foreground'
+                          }`}>
+                            {isSelected && (
+                              <Icon name="Check" size={10} className="text-primary-foreground" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium">{service.name}</div>
+                            <div className="text-xs text-muted-foreground">{service.category}</div>
+                          </div>
+                        </div>
+                        <div className="text-sm font-semibold">
+                          {isFree ? (
+                            <span className="text-green-500">Бесплатно</span>
+                          ) : (
+                            <span className="text-primary">{service.price.toLocaleString()} ₽</span>
+                          )}
                         </div>
                       </div>
-                    )}
+                    );
+                  })}
+                </div>
+                <div className="mt-3 p-2 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Итого за оформление:</span>
+                    <span className="font-semibold text-primary">
+                      {[
+                        { id: 'portrait-gravir', price: 8000 },
+                        { id: 'portrait-hand', price: 15000 },
+                        { id: 'fio-gravir', price: 2000 },
+                        { id: 'fio-skarpel', price: 4000 },
+                        { id: 'fio-gold', price: 6000 },
+                        { id: 'gravir-cross', price: 3000 },
+                        { id: 'gravir-cvety', price: 0 },
+                        { id: 'gravir-epitafiya', price: 0 },
+                        { id: 'gravir-vinetka', price: 2500 },
+                        { id: 'gravir-svechi', price: 1500 },
+                        { id: 'gravir-ikona', price: 5000 },
+                        { id: 'gravir-kartinka', price: 3500 },
+                        { id: 'retush-photo', price: 1000 },
+                        { id: 'protection', price: 4000 },
+                        { id: 'storage', price: 500 }
+                      ]
+                        .filter(service => selectedServices.includes(service.id))
+                        .reduce((total, service) => total + service.price, 0)
+                        .toLocaleString()} ₽
+                    </span>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
 
