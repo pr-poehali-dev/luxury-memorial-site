@@ -498,6 +498,147 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h3 className="font-heading text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              Отзывы о нас
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Что говорят наши клиенты о качестве работы и сервисе
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                name: "Анна Михайловна",
+                role: "Клиент",
+                rating: 5,
+                text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне, портрет получился очень похожим. Установили быстро и аккуратно. Рекомендую!",
+                avatar: "AM",
+                date: "2 недели назад"
+              },
+              {
+                name: "Дмитрий Петров",
+                role: "Клиент", 
+                rating: 5,
+                text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл все ожидания. Профессиональный подход, качественные материалы, разумные цены.",
+                avatar: "ДП",
+                date: "1 месяц назад"
+              },
+              {
+                name: "Елена Васильевна",
+                role: "Клиент",
+                rating: 5,
+                text: "Спасибо за терпение и понимание в такой трудный момент. Помогли выбрать достойный памятник, всё объяснили, сделали точно в срок. Очень благодарна!",
+                avatar: "ЕВ",
+                date: "3 недели назад"
+              },
+              {
+                name: "Александр К.",
+                role: "Клиент",
+                rating: 5,
+                text: "Отличное соотношение цена-качество. Гранитный памятник простоял уже 2 года, выглядит как новый. Гравировка чёткая, полировка держится отлично.",
+                avatar: "АК",
+                date: "1 неделю назад"
+              },
+              {
+                name: "Мария Сергеевна",
+                role: "Клиент",
+                rating: 5,
+                text: "Заказывала мраморный памятник с ручной гравировкой. Работа художника просто потрясающая! Портрет получился живым, будто фотография на камне.",
+                avatar: "МС",
+                date: "2 месяца назад"
+              },
+              {
+                name: "Игорь Николаевич",
+                role: "Клиент",
+                rating: 5,
+                text: "Профессиональная команда! От консультации до установки всё прошло гладко. Особенно ценю индивидуальный подход и внимание к деталям.",
+                avatar: "ИН",
+                date: "3 дня назад"
+              }
+            ].map((review, index) => (
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardHeader className="relative z-10 pb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      {review.avatar}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-slate-800">{review.name}</h4>
+                      <p className="text-sm text-muted-foreground">{review.role}</p>
+                    </div>
+                    <div className="flex gap-1">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="relative z-10 pt-0">
+                  <blockquote className="text-slate-700 leading-relaxed mb-4 italic">
+                    "{review.text}"
+                  </blockquote>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calendar" size={14} className="text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">{review.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Icon name="CheckCircle2" size={14} className="text-green-500" />
+                      <span className="text-xs text-green-600 font-medium">Подтверждён</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">4.9</div>
+              <div className="text-sm text-muted-foreground">Средняя оценка</div>
+              <div className="flex justify-center gap-1 mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
+                ))}
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">350+</div>
+              <div className="text-sm text-muted-foreground">Довольных клиентов</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">98%</div>
+              <div className="text-sm text-muted-foreground">Рекомендуют нас</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">5</div>
+              <div className="text-sm text-muted-foreground">Лет на рынке</div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+              <div>
+                <h4 className="font-heading text-xl font-semibold mb-2">Оставьте свой отзыв</h4>
+                <p className="text-muted-foreground text-sm">Поделитесь опытом сотрудничества с нами</p>
+              </div>
+              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap">
+                <Icon name="MessageSquare" size={16} className="mr-2" />
+                Написать отзыв
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contacts Section */}
       <section id="contacts" className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
