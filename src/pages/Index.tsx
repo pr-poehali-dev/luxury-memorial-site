@@ -31,7 +31,7 @@ export default function Index() {
             <div>
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
                 Изготовление памятников <br />
-                <span className="text-primary">на могилу в Москве и области</span>
+                <span className="text-primary">в Москве</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
