@@ -29,10 +29,57 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-                Изготовление памятников <br />
-                <span className="text-primary">в Москве</span>
-              </h2>
+              <div className="mb-8 relative">
+                {/* Декоративные элементы фона */}
+                <div className="absolute -top-8 -left-4 w-32 h-32 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute top-16 -right-8 w-24 h-24 bg-gradient-to-bl from-blue-500/10 to-primary/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                
+                <div className="relative z-10">
+                  <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+                    <span className="relative inline-block group">
+                      <span className="bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 bg-clip-text text-transparent 
+                                     drop-shadow-sm hover:from-primary hover:via-blue-600 hover:to-purple-600 
+                                     transition-all duration-700">
+                        Изготовление
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-blue-500/20 to-purple-500/20 
+                                    blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
+                    </span>
+                    <br />
+                    <span className="relative inline-block group">
+                      <span className="bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent 
+                                     font-extrabold">
+                        памятников
+                      </span>
+                      <div className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-transparent via-primary/60 to-transparent 
+                                    transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
+                    </span>
+                  </h2>
+                  
+                  {/* Красивый блок с локацией */}
+                  <div className="mt-6 inline-block">
+                    <div className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-primary/20 px-6 py-4 rounded-2xl shadow-lg">
+                        <div className="relative">
+                          <Icon name="MapPin" size={28} className="text-primary" />
+                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Работаем в</div>
+                          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                            Москве
+                          </div>
+                        </div>
+                        <div className="ml-4 flex items-center gap-2 bg-emerald-50 px-3 py-1 rounded-full">
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                          <span className="text-xs font-semibold text-emerald-700">Сейчас онлайн</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
