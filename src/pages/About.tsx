@@ -295,45 +295,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Доверьте нам сохранение памяти</h2>
-          <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
-            Свяжитесь с нами для консультации или посетите нашу мастерскую. 
-            Мы поможем создать достойный памятник вашему близкому человеку.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" variant="secondary" className="group">
-              <Icon name="Phone" size={20} className="mr-2 group-hover:scale-110 transition-transform" />
-              +7 (495) 201-32-27
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary group">
-              <Icon name="MessageCircle" size={20} className="mr-2 group-hover:scale-110 transition-transform" />
-              Написать в WhatsApp
-            </Button>
-          </div>
-          
-          <div className="mt-8 pt-8 border-t border-primary-foreground/20">
-            <div className="flex flex-wrap justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2">
-                <Icon name="MapPin" size={16} />
-                <span>Москва, ул. Мастерская, 15</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Clock" size={16} />
-                <span>Пн-Вс: 9:00 - 18:00</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Mail" size={16} />
-                <span>info@postament.ru</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
 
       <style jsx>{`
