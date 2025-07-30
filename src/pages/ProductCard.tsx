@@ -13,7 +13,11 @@ import Footer from '@/components/Footer';
 export default function ProductCard() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedMaterial, setSelectedMaterial] = useState('granite-black');
-  const [selectedElements, setSelectedElements] = useState(['stela']);
+  const [selectedElements, setSelectedElements] = useState({
+    stela: { enabled: true, size: 'standard' },
+    tumba: { enabled: false, size: 'standard' },
+    cvetnik: { enabled: false, size: 'standard' }
+  });
   const [quantity, setQuantity] = useState(1);
 
   const product = {
@@ -80,49 +84,78 @@ export default function ProductCard() {
     }
   ];
 
-  const monumentElements = [
-    { 
-      id: 'stela', 
-      name: 'Стела', 
-      size: '80×40×5 см',
-      price: 25000,
-      included: true,
-      description: 'Основная часть памятника с портретом и надписями'
+  const monumentElements = {
+    stela: {
+      name: 'Стела',
+      description: 'Основная часть памятника с портретом и надписями',
+      required: true,
+      sizes: [
+        { id: 'small', name: '70×35×4 см', price: 22000 },
+        { id: 'standard', name: '80×40×5 см', price: 25000 },
+        { id: 'large', name: '90×45×6 см', price: 28000 },
+        { id: 'xl', name: '100×50×8 см', price: 32000 }
+      ]
     },
-    { 
-      id: 'tumba', 
-      name: 'Тумба', 
-      size: '50×20×15 см',
-      price: 8000,
-      included: false,
-      description: 'Подставка под стелу для большей устойчивости'
+    tumba: {
+      name: 'Тумба',
+      description: 'Подставка под стелу для большей устойчивости',
+      required: false,
+      sizes: [
+        { id: 'compact', name: '40×15×12 см', price: 6000 },
+        { id: 'standard', name: '50×20×15 см', price: 8000 },
+        { id: 'wide', name: '60×25×18 см', price: 10000 }
+      ]
     },
-    { 
-      id: 'cvetnik', 
-      name: 'Цветник', 
-      size: '100×8×10×50 см',
-      price: 12000,
-      included: false,
-      description: 'Ограждение для цветов и декоративных элементов'
+    cvetnik: {
+      name: 'Цветник',
+      description: 'Ограждение для цветов и декоративных элементов',
+      required: false,
+      sizes: [
+        { id: 'small', name: '80×6×8×40 см', price: 9000 },
+        { id: 'standard', name: '100×8×10×50 см', price: 12000 },
+        { id: 'large', name: '120×10×12×60 см', price: 15000 },
+        { id: 'family', name: '150×12×15×70 см', price: 20000 }
+      ]
     }
-  ];
+  };
 
   const getCurrentPrice = () => {
     const materialPrice = materials.find(m => m.id === selectedMaterial)?.price || 0;
-    const elementsPrice = monumentElements
-      .filter(element => selectedElements.includes(element.id))
-      .reduce((total, element) => total + element.price, 0);
+    let elementsPrice = 0;
+    
+    Object.entries(selectedElements).forEach(([elementId, config]) => {
+      if (config.enabled) {
+        const element = monumentElements[elementId as keyof typeof monumentElements];
+        const size = element.sizes.find(s => s.id === config.size);
+        if (size) {
+          elementsPrice += size.price;
+        }
+      }
+    });
+    
     return elementsPrice + materialPrice;
   };
 
   const toggleElement = (elementId: string) => {
     if (elementId === 'stela') return; // Стела обязательна
     
-    setSelectedElements(prev => 
-      prev.includes(elementId) 
-        ? prev.filter(id => id !== elementId)
-        : [...prev, elementId]
-    );
+    setSelectedElements(prev => ({
+      ...prev,
+      [elementId]: {
+        ...prev[elementId as keyof typeof prev],
+        enabled: !prev[elementId as keyof typeof prev].enabled
+      }
+    }));
+  };
+
+  const updateElementSize = (elementId: string, sizeId: string) => {
+    setSelectedElements(prev => ({
+      ...prev,
+      [elementId]: {
+        ...prev[elementId as keyof typeof prev],
+        size: sizeId
+      }
+    }));
   };
 
   const relatedProducts = [
@@ -243,54 +276,99 @@ export default function ProductCard() {
 
                 <div>
                   <label className="text-sm font-medium text-muted-foreground mb-3 block">Комплектация памятника</label>
-                  <div className="space-y-3">
-                    {monumentElements.map(element => (
-                      <div 
-                        key={element.id} 
-                        className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-                          selectedElements.includes(element.id) 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-muted hover:border-muted-foreground'
-                        } ${element.id === 'stela' ? 'opacity-100' : ''}`}
-                        onClick={() => toggleElement(element.id)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
-                              selectedElements.includes(element.id)
-                                ? 'border-primary bg-primary'
-                                : 'border-muted-foreground'
-                            }`}>
-                              {selectedElements.includes(element.id) && (
-                                <Icon name="Check" size={12} className="text-primary-foreground" />
+                  <div className="space-y-4">
+                    {Object.entries(monumentElements).map(([elementId, element]) => {
+                      const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
+                      const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
+                      const currentSizeData = element.sizes.find(s => s.id === currentSize);
+                      
+                      return (
+                        <div 
+                          key={elementId} 
+                          className={`border rounded-lg p-4 transition-colors ${
+                            isEnabled 
+                              ? 'border-primary bg-primary/5' 
+                              : 'border-muted'
+                          }`}
+                        >
+                          <div className="space-y-3">
+                            {/* Header with checkbox */}
+                            <div className="flex items-center justify-between">
+                              <div 
+                                className="flex items-center gap-3 cursor-pointer flex-1"
+                                onClick={() => toggleElement(elementId)}
+                              >
+                                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                                  isEnabled
+                                    ? 'border-primary bg-primary'
+                                    : 'border-muted-foreground'
+                                } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                  {isEnabled && (
+                                    <Icon name="Check" size={12} className="text-primary-foreground" />
+                                  )}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    {element.name}
+                                    {element.required && (
+                                      <Badge variant="secondary" className="text-xs">Обязательно</Badge>
+                                    )}
+                                  </div>
+                                  <div className="text-sm text-muted-foreground">{element.description}</div>
+                                </div>
+                              </div>
+                              {isEnabled && currentSizeData && (
+                                <div className="text-right">
+                                  <div className="font-semibold text-primary">
+                                    {currentSizeData.price.toLocaleString()} ₽
+                                  </div>
+                                </div>
                               )}
                             </div>
-                            <div>
-                              <div className="font-medium flex items-center gap-2">
-                                {element.name}
-                                <span className="text-sm text-muted-foreground">({element.size})</span>
-                                {element.id === 'stela' && (
-                                  <Badge variant="secondary" className="text-xs">Обязательно</Badge>
-                                )}
+                            
+                            {/* Size selector */}
+                            {isEnabled && (
+                              <div className="ml-8">
+                                <label className="text-sm font-medium text-muted-foreground mb-2 block">
+                                  Размер {element.name.toLowerCase()}
+                                </label>
+                                <Select 
+                                  value={currentSize} 
+                                  onValueChange={(value) => updateElementSize(elementId, value)}
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {element.sizes.map(size => (
+                                      <SelectItem key={size.id} value={size.id}>
+                                        <div className="flex justify-between items-center w-full pr-4">
+                                          <span>{size.name}</span>
+                                          <span className="text-primary font-medium ml-4">
+                                            {size.price.toLocaleString()} ₽
+                                          </span>
+                                        </div>
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
                               </div>
-                              <div className="text-sm text-muted-foreground">{element.description}</div>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-semibold text-primary">
-                              {element.price.toLocaleString()} ₽
-                            </div>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
-                  <div className="mt-3 p-3 bg-muted/50 rounded-lg">
+                  <div className="mt-4 p-4 bg-muted/50 rounded-lg">
                     <div className="text-sm text-muted-foreground mb-1">Итого за комплектацию:</div>
-                    <div className="font-semibold text-lg text-primary">
-                      {monumentElements
-                        .filter(element => selectedElements.includes(element.id))
-                        .reduce((total, element) => total + element.price, 0)
+                    <div className="font-semibold text-xl text-primary">
+                      {Object.entries(selectedElements)
+                        .filter(([, config]) => config.enabled)
+                        .reduce((total, [elementId, config]) => {
+                          const element = monumentElements[elementId as keyof typeof monumentElements];
+                          const size = element.sizes.find(s => s.id === config.size);
+                          return total + (size?.price || 0);
+                        }, 0)
                         .toLocaleString()} ₽
                     </div>
                   </div>
