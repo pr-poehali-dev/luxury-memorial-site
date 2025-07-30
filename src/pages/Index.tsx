@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 export default function Index() {
 
   const monuments = [
-    { id: 1, title: 'Классический вертикальный', price: 'от 45 000 ₽', image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
+    { id: 1, title: 'Классический вертикальный', price: 'от 45 000 ₽', image: 'https://cdn.poehali.dev/files/db45f8c1-866c-4734-a7b4-b2b8944a0f35.png' },
     { id: 2, title: 'Горизонтальный элегант', price: 'от 38 000 ₽', image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
     { id: 3, title: 'Бронзовая мемориальная плита', price: 'от 25 000 ₽', image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' },
   ];
