@@ -120,6 +120,240 @@ export default function Catalog() {
       dimensions: '70×35×5 см',
       isPopular: false,
       isNew: false
+    },
+    {
+      id: 7,
+      title: 'Премиум вертикальный "Величие"',
+      subtitle: 'Индийский чёрный гранит',
+      price: '62 000 ₽',
+      originalPrice: null,
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'granite-black',
+      category: 'vertical',
+      dimensions: '120×60×10 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 8,
+      title: 'Мраморная элегия',
+      subtitle: 'Итальянский белый мрамор',
+      price: '55 000 ₽',
+      originalPrice: '62 000 ₽',
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'marble',
+      category: 'vertical',
+      dimensions: '95×45×8 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 9,
+      title: 'Горизонталь "Покой"',
+      subtitle: 'Серый гранит Дымовский',
+      price: '35 000 ₽',
+      originalPrice: null,
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-gray',
+      category: 'horizontal',
+      dimensions: '85×45×6 см',
+      isPopular: false,
+      isNew: false
+    },
+    {
+      id: 10,
+      title: 'Бронзовый барельеф "Память"',
+      subtitle: 'Художественная бронза премиум',
+      price: '42 000 ₽',
+      originalPrice: null,
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'bronze',
+      category: 'plaques',
+      dimensions: '70×50×4 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 11,
+      title: 'Семейный комплекс "Вечность"',
+      subtitle: 'Красный гранит Токовский',
+      price: '95 000 ₽',
+      originalPrice: '108 000 ₽',
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'granite-red',
+      category: 'complex',
+      dimensions: '180×90×15 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 12,
+      title: 'Классик мини',
+      subtitle: 'Чёрный гранит габбро',
+      price: '28 000 ₽',
+      originalPrice: null,
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-black',
+      category: 'vertical',
+      dimensions: '80×40×6 см',
+      isPopular: false,
+      isNew: false
+    },
+    {
+      id: 13,
+      title: 'Горизонтальный "Тишина"',
+      subtitle: 'Белый мрамор Тасос',
+      price: '44 000 ₽',
+      originalPrice: null,
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'marble',
+      category: 'horizontal',
+      dimensions: '90×50×7 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 14,
+      title: 'Мемориальная плита "Воспоминание"',
+      subtitle: 'Бронза с патиной',
+      price: '33 000 ₽',
+      originalPrice: null,
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'bronze',
+      category: 'plaques',
+      dimensions: '65×45×3 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 15,
+      title: 'Вертикальный "Достоинство"',
+      subtitle: 'Серый гранит Мансуровский',
+      price: '39 000 ₽',
+      originalPrice: '43 000 ₽',
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-gray',
+      category: 'vertical',
+      dimensions: '105×52×8 см',
+      isPopular: false,
+      isNew: false
+    },
+    {
+      id: 16,
+      title: 'Комплекс "Единение"',
+      subtitle: 'Чёрный гранит + бронза',
+      price: '78 000 ₽',
+      originalPrice: null,
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'granite-black',
+      category: 'complex',
+      dimensions: '160×75×12 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 17,
+      title: 'Мраморный ангел',
+      subtitle: 'Каррарский мрамор скульптурный',
+      price: '125 000 ₽',
+      originalPrice: null,
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'marble',
+      category: 'vertical',
+      dimensions: '140×70×20 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 18,
+      title: 'Горизонталь "Простота"',
+      subtitle: 'Красный гранит Лезники',
+      price: '36 000 ₽',
+      originalPrice: null,
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-red',
+      category: 'horizontal',
+      dimensions: '75×38×5 см',
+      isPopular: false,
+      isNew: false
+    },
+    {
+      id: 19,
+      title: 'Бронзовый портрет',
+      subtitle: 'Литьё по индивидуальному эскизу',
+      price: '68 000 ₽',
+      originalPrice: '75 000 ₽',
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'bronze',
+      category: 'plaques',
+      dimensions: '80×60×5 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 20,
+      title: 'Стандарт плюс',
+      subtitle: 'Чёрный гранит Габбро-диабаз',
+      price: '41 000 ₽',
+      originalPrice: null,
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'granite-black',
+      category: 'vertical',
+      dimensions: '115×55×9 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 21,
+      title: 'Семейный склеп "Родословная"',
+      subtitle: 'Комбинированный: гранит + мрамор',
+      price: '145 000 ₽',
+      originalPrice: '165 000 ₽',
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-gray',
+      category: 'complex',
+      dimensions: '200×100×18 см',
+      isPopular: false,
+      isNew: false
+    },
+    {
+      id: 22,
+      title: 'Мини горизонталь',
+      subtitle: 'Белый мрамор Коелга',
+      price: '29 000 ₽',
+      originalPrice: null,
+      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
+      material: 'marble',
+      category: 'horizontal',
+      dimensions: '65×35×4 см',
+      isPopular: true,
+      isNew: false
+    },
+    {
+      id: 23,
+      title: 'Художественная плита "Розы"',
+      subtitle: 'Бронза с гравировкой',
+      price: '52 000 ₽',
+      originalPrice: null,
+      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
+      material: 'bronze',
+      category: 'plaques',
+      dimensions: '90×65×4 см',
+      isPopular: false,
+      isNew: true
+    },
+    {
+      id: 24,
+      title: 'Элитный вертикальный "Престиж"',
+      subtitle: 'Серый гранит Возрождение элит',
+      price: '87 000 ₽',
+      originalPrice: '98 000 ₽',
+      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
+      material: 'granite-gray',
+      category: 'vertical',
+      dimensions: '130×65×12 см',
+      isPopular: true,
+      isNew: false
     }
   ];
 
@@ -295,7 +529,7 @@ export default function Catalog() {
               <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredMonuments.map(monument => (
                   <Card key={monument.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="relative aspect-square overflow-hidden">
                       <img 
                         src={monument.image}
                         alt={monument.title}
