@@ -61,8 +61,8 @@ export default function Index() {
                 {/* Large 3D Visualization Image */}
                 <div className="relative">
                   <img 
-                    src="/img/4252ac99-551d-421d-856a-a497eefb82c9.jpg"
-                    alt="3D макет памятника"
+                    src="https://cdn.poehali.dev/files/2f6194d4-96fc-4373-a105-199c5a4748d6.png"
+                    alt="3D макет памятника - мемориальный комплекс"
                     className="w-full h-96 sm:h-[500px] lg:h-[600px] rounded-2xl shadow-2xl object-cover"
                   />
                   <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium shadow-lg">
