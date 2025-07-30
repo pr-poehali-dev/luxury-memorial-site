@@ -579,15 +579,12 @@ export default function Catalog() {
                       <div className="flex gap-2 pt-2">
                         <Button 
                           className="flex-1 bg-primary hover:bg-primary/90"
-                          onClick={() => addToCart({
-                            ...monument,
-                            quantity: 1,
-                            selectedMaterial: 'granite',
-                            selectedSize: 'standard'
-                          })}
+                          asChild
                         >
-                          <Icon name="ShoppingCart" size={16} className="mr-2" />
-                          В корзину
+                          <Link to={`/product/${monument.id}`}>
+                            <Icon name="Eye" size={16} className="mr-2" />
+                            Подробнее
+                          </Link>
                         </Button>
                         <Button 
                           variant="outline" 
@@ -609,11 +606,7 @@ export default function Catalog() {
                         >
                           <Icon name="BarChart3" size={18} />
                         </Button>
-                        <Button variant="outline" size="icon" asChild>
-                          <Link to={`/product/${monument.id}`}>
-                            <Icon name="Eye" size={18} />
-                          </Link>
-                        </Button>
+
                       </div>
                     </CardContent>
                   </Card>
