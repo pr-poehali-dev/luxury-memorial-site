@@ -18,11 +18,11 @@ export default function Catalog() {
   const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
 
   const categories = [
-    { id: 'all', name: 'Все категории', count: 45 },
-    { id: 'vertical', name: 'Вертикальные', count: 18 },
-    { id: 'horizontal', name: 'Горизонтальные', count: 12 },
-    { id: 'complex', name: 'Комплексы', count: 8 },
-    { id: 'plaques', name: 'Мемориальные плиты', count: 7 }
+    { id: 'all', name: 'Все категории', count: 24 },
+    { id: 'vertical', name: 'Вертикальные', count: 10 },
+    { id: 'horizontal', name: 'Горизонтальные', count: 6 },
+    { id: 'complex', name: 'Комплексы', count: 4 },
+    { id: 'plaques', name: 'Мемориальные плиты', count: 4 }
   ];
 
   const materials = [
@@ -554,35 +554,27 @@ export default function Catalog() {
                       <CardTitle className="font-heading text-lg line-clamp-1">
                         {monument.title}
                       </CardTitle>
-                      <CardDescription className="text-sm">
-                        {monument.subtitle}
-                      </CardDescription>
                     </CardHeader>
                     
                     <CardContent className="space-y-3">
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span>Размеры:</span>
-                        <span className="font-medium">{monument.dimensions}</span>
-                      </div>
-                      
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="text-2xl font-bold text-primary">{monument.price}</span>
+                          <span className="text-xl font-bold text-primary">{monument.price}</span>
                           {monument.originalPrice && (
-                            <span className="text-lg line-through text-muted-foreground">
+                            <span className="text-sm line-through text-muted-foreground">
                               {monument.originalPrice}
                             </span>
                           )}
                         </div>
                       </div>
                       
-                      <div className="flex gap-2 pt-2">
+                      <div className="flex gap-2">
                         <Button 
+                          size="sm"
                           className="flex-1 bg-primary hover:bg-primary/90"
                           asChild
                         >
                           <Link to={`/product/${monument.id}`}>
-                            <Icon name="Eye" size={16} className="mr-2" />
                             Подробнее
                           </Link>
                         </Button>
