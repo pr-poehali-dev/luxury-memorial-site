@@ -29,10 +29,35 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-                Изготовление памятников <br />
-                <span className="text-primary">в Москве</span>
-              </h2>
+              <div className="mb-8">
+                <div className="relative">
+                  <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                    <span className="inline-block transform hover:scale-105 transition-transform duration-300">
+                      Изготовление
+                    </span>{' '}
+                    <span className="relative inline-block group">
+                      <span className="bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                        памятников
+                      </span>
+                      <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </span>
+                  </h2>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
+                      <Icon name="MapPin" size={20} className="text-primary" />
+                      <span className="text-lg font-semibold text-primary">в Москве</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full">
+                      <Icon name="Clock" size={16} className="text-green-600" />
+                      <span className="text-sm text-green-700 font-medium">24/7</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-orange-50 px-4 py-2 rounded-full">
+                      <Icon name="Star" size={16} className="text-orange-500 fill-current" />
+                      <span className="text-sm text-orange-600 font-medium">15 лет опыта</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
