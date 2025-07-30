@@ -16,6 +16,7 @@ import HowToOrder from "./pages/HowToOrder";
 import TroekurovskoyeCemetery from "./pages/TroekurovskoyeCemetery";
 import BalashihaMonuments from "./pages/BalashihaMonuments";
 import Portfolio from "./pages/Portfolio";
+import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/troekurovskoye-cemetery" element={<TroekurovskoyeCemetery />} />
             <Route path="/balashiha-monuments" element={<BalashihaMonuments />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/about" element={<About />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/personal-data" element={<PersonalData />} />
             <Route path="/offer-agreement" element={<OfferAgreement />} />
