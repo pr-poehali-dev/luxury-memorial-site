@@ -29,104 +29,32 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <div className="mb-10 relative overflow-hidden">
-                {/* Геометрический фон */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="absolute top-0 left-0 w-32 h-32 border border-primary rotate-45 transform -translate-x-16 -translate-y-16"></div>
-                  <div className="absolute top-20 right-0 w-24 h-24 border border-blue-500 rotate-12 transform translate-x-12 -translate-y-12"></div>
-                </div>
-                
-                <div className="relative z-10">
-                  {/* Компактная горизонтальная композиция */}
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-                    
-                    {/* Основной заголовок */}
-                    <div className="flex-1">
-                      <div className="relative inline-block">
-                        <h1 className="font-heading font-black leading-[0.85] tracking-tight">
-                          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
-                                         bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 
-                                         bg-clip-text text-transparent mb-2 
-                                         hover:from-primary hover:via-blue-600 hover:to-purple-600 
-                                         transition-all duration-700 cursor-default">
-                            Изготовление
-                          </span>
-                          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl
-                                         bg-gradient-to-r from-primary via-blue-600 to-purple-600 
-                                         bg-clip-text text-transparent font-extrabold
-                                         transform translate-x-4 sm:translate-x-8 md:translate-x-12">
-                            памятников
-                          </span>
-                        </h1>
-                        
-                        {/* Декоративная соединительная линия */}
-                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 hidden lg:block">
-                          <div className="w-16 h-px bg-gradient-to-r from-primary to-transparent"></div>
-                          <div className="w-3 h-3 bg-primary rounded-full ml-14 -mt-1.5 animate-pulse shadow-lg shadow-primary/40"></div>
-                        </div>
-                      </div>
+              <div className="mb-8">
+                <div className="relative">
+                  <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                    <span className="inline-block transform hover:scale-105 transition-transform duration-300">
+                      Изготовление
+                    </span>{' '}
+                    <span className="relative inline-block group">
+                      <span className="bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent animate-pulse">
+                        памятников
+                      </span>
+                      <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </span>
+                  </h2>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div className="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
+                      <Icon name="MapPin" size={20} className="text-primary" />
+                      <span className="text-lg font-semibold text-primary">в Москве</span>
                     </div>
-                    
-                    {/* Блок локации - вертикальная карточка */}
-                    <div className="lg:flex-shrink-0">
-                      <div className="relative group">
-                        {/* Анимированная рамка */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary via-blue-500 to-purple-500 rounded-3xl p-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-full h-full bg-white rounded-3xl"></div>
-                        </div>
-                        
-                        {/* Содержимое карточки */}
-                        <div className="relative bg-white rounded-3xl p-6 shadow-2xl transform group-hover:scale-105 transition-all duration-300">
-                          <div className="text-center space-y-3">
-                            {/* Иконка с кольцевой анимацией */}
-                            <div className="relative mx-auto w-16 h-16">
-                              <div className="absolute inset-0 border-4 border-primary/20 rounded-full animate-spin"></div>
-                              <div className="absolute inset-2 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center">
-                                <Icon name="MapPin" size={24} className="text-white" />
-                              </div>
-                              <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-bounce"></div>
-                            </div>
-                            
-                            {/* Заголовок локации */}
-                            <div>
-                              <div className="text-xs text-muted-foreground font-bold uppercase tracking-[0.2em] mb-1">
-                                Город работы
-                              </div>
-                              <h1 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                                МОСКВА
-                              </h1>
-                            </div>
-                            
-                            {/* Статус бар */}
-                            <div className="bg-gray-50 rounded-full px-4 py-2 flex items-center justify-center gap-2">
-                              <div className="flex gap-1">
-                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse delay-100"></div>
-                                <div className="w-2 h-2 bg-green-300 rounded-full animate-pulse delay-200"></div>
-                              </div>
-                              <span className="text-xs font-bold text-green-700 uppercase tracking-wider">
-                                Активны сейчас
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Декоративные элементы */}
-                        <div className="absolute -top-2 -left-2 w-4 h-4 bg-primary/20 rounded-full animate-ping"></div>
-                        <div className="absolute -bottom-2 -right-2 w-3 h-3 bg-blue-500/20 rounded-full animate-ping delay-300"></div>
-                      </div>
+                    <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full">
+                      <Icon name="Clock" size={16} className="text-green-600" />
+                      <span className="text-sm text-green-700 font-medium">24/7</span>
                     </div>
-                  </div>
-                  
-                  {/* Нижняя декоративная линия */}
-                  <div className="mt-8 flex items-center justify-center gap-4">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-                    <div className="flex gap-2">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-150"></div>
-                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-300"></div>
+                    <div className="flex items-center gap-2 bg-orange-50 px-4 py-2 rounded-full">
+                      <Icon name="Star" size={16} className="text-orange-500 fill-current" />
+                      <span className="text-sm text-orange-600 font-medium">15 лет опыта</span>
                     </div>
-                    <div className="flex-1 h-px bg-gradient-to-l from-transparent via-primary/30 to-transparent"></div>
                   </div>
                 </div>
               </div>
