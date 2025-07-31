@@ -86,31 +86,31 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden">
-      {/* White & Green Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-green-50">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute -top-40 -left-40 w-80 h-80 bg-green-200/40 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-green-300/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-green-100/50 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      {/* Dark & Green Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute -top-40 -left-40 w-80 h-80 bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-green-400/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-green-600/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
         
         {/* Gradient mesh overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-green-50/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-transparent to-slate-800/80"></div>
       </div>
 
-      <div className="relative z-10 text-gray-900">
+      <div className="relative z-10 text-white">
         {/* Newsletter Section */}
-        <div className="border-b border-green-200/60 bg-green-50/40 backdrop-blur-sm">
+        <div className="border-b border-green-500/20 bg-slate-800/40 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-8">
             <div className="text-center max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-green-500/15 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-green-500/25">
+              <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-green-500/30">
                 <Icon name="Mail" size={16} />
                 Подписка на новости
               </div>
-              <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-gray-800 to-green-800 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-green-400 bg-clip-text text-transparent">
                 Будьте в курсе новых памятников и акций
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Получайте эксклюзивные предложения и полезные советы по уходу за памятниками
               </p>
               
@@ -121,7 +121,7 @@ export default function Footer() {
                     placeholder="Ваш email адрес"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/80 border-green-300/60 text-gray-900 placeholder:text-gray-500 focus:border-green-500/80 focus:bg-white"
+                    className="bg-slate-700/60 border-green-500/30 text-white placeholder:text-gray-400 focus:border-green-400/80 focus:bg-slate-700/80"
                     required
                   />
                   <Icon name="Mail" size={16} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -164,13 +164,13 @@ export default function Footer() {
                     <Icon name="Mountain" size={24} className="text-white" />
                   </div>
                   <div>
-                    <span className="font-bold text-2xl bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+                    <span className="font-bold text-2xl bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
                       Вечная Память
                     </span>
-                    <p className="text-xs text-gray-500 mt-1">Мемориальная мастерская</p>
+                    <p className="text-xs text-gray-400 mt-1">Мемориальная мастерская</p>
                   </div>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-6">
+                <p className="text-gray-300 leading-relaxed mb-6">
                   Создаём памятники, которые хранят память поколений. Работаем с натуральным гранитом 
                   и мрамором, используя современные технологии гравировки и обработки камня.
                 </p>
@@ -181,7 +181,7 @@ export default function Footer() {
                 {achievements.map((achievement, index) => (
                   <div 
                     key={achievement.label}
-                    className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-green-200/60 hover:border-green-300/80 transition-all duration-300 group hover:shadow-lg"
+                    className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-green-500/30 hover:border-green-400/60 transition-all duration-300 group hover:shadow-lg hover:shadow-green-500/10"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div className="flex items-center gap-3">
@@ -189,8 +189,8 @@ export default function Footer() {
                         <Icon name={achievement.icon as any} size={16} className="text-green-600" />
                       </div>
                       <div>
-                        <div className="text-xl font-bold text-gray-900">{achievement.number}</div>
-                        <div className="text-xs text-gray-600">{achievement.label}</div>
+                        <div className="text-xl font-bold text-white">{achievement.number}</div>
+                        <div className="text-xs text-gray-400">{achievement.label}</div>
                       </div>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ export default function Footer() {
                     <Icon name="Phone" size={18} className="text-green-600" />
                   </div>
                   <div>
-                    <a href="tel:+78001234567" className="font-medium text-lg hover:text-green-600 transition-colors text-gray-900">
+                    <a href="tel:+78001234567" className="font-medium text-lg hover:text-green-400 transition-colors text-white">
                       +7 (800) 123-45-67
                     </a>
                     <p className="text-xs text-gray-500">Бесплатно по России • 24/7</p>
@@ -212,24 +212,24 @@ export default function Footer() {
                 </div>
                 
                 <div className="flex items-center space-x-3 group hover:bg-slate-800/30 rounded-lg p-3 -mx-3 transition-all">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                     <Icon name="Mail" size={18} className="text-green-600" />
                   </div>
                   <div>
-                    <a href="mailto:info@memorial.ru" className="hover:text-green-600 transition-colors text-gray-900">
+                    <a href="mailto:info@memorial.ru" className="hover:text-green-400 transition-colors text-white">
                       info@memorial.ru
                     </a>
-                    <p className="text-xs text-gray-500">Ответим в течение часа</p>
+                    <p className="text-xs text-gray-400">Ответим в течение часа</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3 group hover:bg-slate-800/30 rounded-lg p-3 -mx-3 transition-all">
-                  <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
+                <div className="flex items-start space-x-3 group hover:bg-slate-700/30 rounded-lg p-3 -mx-3 transition-all">
+                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
                     <Icon name="MapPin" size={18} className="text-green-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">г. Москва, ул. Мемориальная, 15</p>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="font-medium text-white">г. Москва, ул. Мемориальная, 15</p>
+                    <p className="text-sm text-gray-400 mt-1">
                       Пн-Пт: 9:00-18:00 • Сб-Вс: 10:00-16:00
                     </p>
                   </div>
@@ -238,7 +238,7 @@ export default function Footer() {
 
               {/* Social Networks */}
               <div>
-                <h4 className="font-semibold mb-4 flex items-center gap-2 text-gray-900">
+                <h4 className="font-semibold mb-4 flex items-center gap-2 text-white">
                   <Icon name="Users" size={18} className="text-green-600" />
                   Мы в социальных сетях
                 </h4>
@@ -283,10 +283,10 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link 
                       to={link.href} 
-                      className="group flex items-center gap-3 text-slate-300 hover:text-white transition-all duration-200 hover:translate-x-1"
+                      className="group flex items-center gap-3 text-gray-300 hover:text-green-400 transition-all duration-200 hover:translate-x-1"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-green-100/60 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-                        <Icon name={link.icon as any} size={14} className="text-gray-500 group-hover:text-green-600" />
+                      <div className="w-8 h-8 rounded-lg bg-slate-700/60 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+                        <Icon name={link.icon as any} size={14} className="text-gray-400 group-hover:text-green-400" />
                       </div>
                       <span className="text-sm">{link.title}</span>
                     </Link>
@@ -297,7 +297,7 @@ export default function Footer() {
 
             {/* Information Links */}
             <div>
-              <h3 className="font-semibold text-lg mb-6 flex items-center gap-2 text-gray-900">
+              <h3 className="font-semibold text-lg mb-6 flex items-center gap-2 text-white">
                 <Icon name="Info" size={18} className="text-green-600" />
                 Информация
               </h3>
@@ -306,7 +306,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link 
                       to={link.href} 
-                      className="group flex items-center gap-3 text-slate-300 hover:text-white transition-all duration-200 hover:translate-x-1"
+                      className="group flex items-center gap-3 text-gray-300 hover:text-green-400 transition-all duration-200 hover:translate-x-1"
                     >
                       <div className="w-8 h-8 rounded-lg bg-slate-800/50 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
                         <Icon name={link.icon as any} size={14} className="text-slate-400 group-hover:text-green-400" />
@@ -320,7 +320,7 @@ export default function Footer() {
 
             {/* Quick Actions */}
             <div>
-              <h3 className="font-semibold text-lg mb-6 flex items-center gap-2 text-gray-900">
+              <h3 className="font-semibold text-lg mb-6 flex items-center gap-2 text-white">
                 <Icon name="Zap" size={18} className="text-green-600" />
                 Быстрые действия
               </h3>
@@ -332,16 +332,16 @@ export default function Footer() {
                     className={`w-full justify-start h-auto p-3 ${
                       action.accent 
                         ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-lg hover:shadow-xl text-white' 
-                        : 'border-green-300/60 text-gray-700 hover:text-gray-900 hover:bg-green-50/50 hover:border-green-400/60'
+                        : 'border-green-500/30 text-gray-300 hover:text-white hover:bg-slate-700/50 hover:border-green-400/60'
                     }`} 
                     asChild
                   >
                     <Link to={action.href}>
                       <div className="flex items-center gap-3">
                         <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                          action.accent ? 'bg-white/20' : 'bg-green-100/60'
+                          action.accent ? 'bg-white/20' : 'bg-slate-700/60'
                         }`}>
-                          <Icon name={action.icon as any} size={16} className={action.accent ? 'text-white' : 'text-green-600'} />
+                          <Icon name={action.icon as any} size={16} className={action.accent ? 'text-white' : 'text-green-400'} />
                         </div>
                         <span className="font-medium">{action.title}</span>
                       </div>
@@ -352,27 +352,27 @@ export default function Footer() {
 
               {/* Certificates & Trust Badges */}
               <div className="mt-8">
-                <h4 className="font-medium mb-4 text-gray-800">Сертификаты и гарантии</h4>
+                <h4 className="font-medium mb-4 text-white">Сертификаты и гарантии</h4>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-slate-800/40 backdrop-blur-sm rounded-lg p-3 border border-slate-700/50 text-center group hover:border-slate-600/50 transition-all">
+                  <div className="bg-slate-800/60 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 text-center group hover:border-green-400/50 transition-all hover:shadow-lg hover:shadow-green-500/10">
                     <Icon name="Shield" size={20} className="text-green-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-bold text-gray-900 block">ISO 9001</span>
-                    <span className="text-xs text-gray-600">Качество</span>
+                    <span className="text-xs font-bold text-white block">ISO 9001</span>
+                    <span className="text-xs text-gray-400">Качество</span>
                   </div>
-                  <div className="bg-slate-800/40 backdrop-blur-sm rounded-lg p-3 border border-slate-700/50 text-center group hover:border-slate-600/50 transition-all">
+                  <div className="bg-slate-800/60 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 text-center group hover:border-green-400/50 transition-all hover:shadow-lg hover:shadow-green-500/10">
                     <Icon name="Award" size={20} className="text-green-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-bold text-gray-900 block">Лицензия</span>
-                    <span className="text-xs text-slate-400">№ 12345</span>
+                    <span className="text-xs font-bold text-white block">Лицензия</span>
+                    <span className="text-xs text-gray-400">№ 12345</span>
                   </div>
-                  <div className="bg-slate-800/40 backdrop-blur-sm rounded-lg p-3 border border-slate-700/50 text-center group hover:border-slate-600/50 transition-all">
+                  <div className="bg-slate-800/60 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 text-center group hover:border-green-400/50 transition-all hover:shadow-lg hover:shadow-green-500/10">
                     <Icon name="Clock" size={20} className="text-green-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-white block">Гарантия</span>
-                    <span className="text-xs text-slate-400">10 лет</span>
+                    <span className="text-xs text-gray-400">10 лет</span>
                   </div>
-                  <div className="bg-slate-800/40 backdrop-blur-sm rounded-lg p-3 border border-slate-700/50 text-center group hover:border-slate-600/50 transition-all">
+                  <div className="bg-slate-800/60 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 text-center group hover:border-green-400/50 transition-all hover:shadow-lg hover:shadow-green-500/10">
                     <Icon name="Truck" size={20} className="text-green-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-white block">Доставка</span>
-                    <span className="text-xs text-slate-400">Бесплатно</span>
+                    <span className="text-xs text-gray-400">Бесплатно</span>
                   </div>
                 </div>
               </div>
@@ -380,13 +380,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <Separator className="bg-gradient-to-r from-transparent via-green-300/40 to-transparent" />
+        <Separator className="bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
 
         {/* Bottom Footer */}
-        <div className="bg-green-50/50 backdrop-blur-sm">
+        <div className="bg-slate-900/60 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-              <div className="flex flex-col md:flex-row items-center gap-6 text-sm text-gray-600">
+              <div className="flex flex-col md:flex-row items-center gap-6 text-sm text-gray-300">
                 <p className="flex items-center gap-2">
                   <Icon name="Copyright" size={16} />
                   © 2024 Вечная Память. Все права защищены.
@@ -404,15 +404,15 @@ export default function Footer() {
               </div>
               
               <div className="flex items-center gap-6 text-sm">
-                <div className="flex items-center gap-2 text-green-600">
+                <div className="flex items-center gap-2 text-green-400">
                   <Icon name="Shield" size={16} />
                   <span>SSL защита</span>
                 </div>
-                <div className="flex items-center gap-2 text-green-600">
+                <div className="flex items-center gap-2 text-green-400">
                   <Icon name="Lock" size={16} />
                   <span>Безопасные платежи</span>
                 </div>
-                <div className="flex items-center gap-2 text-green-600">
+                <div className="flex items-center gap-2 text-green-400">
                   <Icon name="Headphones" size={16} />
                   <span>Поддержка 24/7</span>
                 </div>
@@ -420,18 +420,18 @@ export default function Footer() {
             </div>
 
             {/* Legal Links */}
-            <div className="mt-6 pt-6 border-t border-green-200/60">
-              <div className="flex flex-wrap justify-center gap-4 text-xs text-gray-500">
-                <Link to="/privacy-policy" className="hover:text-gray-700 transition-colors">
+            <div className="mt-6 pt-6 border-t border-green-500/30">
+              <div className="flex flex-wrap justify-center gap-4 text-xs text-gray-400">
+                <Link to="/privacy-policy" className="hover:text-green-400 transition-colors">
                   Политика конфиденциальности
                 </Link>
-                <Link to="/personal-data" className="hover:text-gray-700 transition-colors">
+                <Link to="/personal-data" className="hover:text-green-400 transition-colors">
                   Обработка персональных данных
                 </Link>
-                <Link to="/offer-agreement" className="hover:text-gray-700 transition-colors">
+                <Link to="/offer-agreement" className="hover:text-green-400 transition-colors">
                   Договор оферты
                 </Link>
-                <Link to="/sitemap" className="hover:text-gray-700 transition-colors">
+                <Link to="/sitemap" className="hover:text-green-400 transition-colors">
                   Карта сайта
                 </Link>
               </div>
