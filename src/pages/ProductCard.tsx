@@ -242,21 +242,45 @@ export default function ProductCard() {
       <Header />
 
       {/* Main Content */}
-      <section className="pt-4 pb-12 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
+      <section className="pt-6 pb-16 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-3 gap-8">
             {/* Product Images */}
-            <div className="space-y-3">
-              <div className="aspect-square bg-muted rounded-xl overflow-hidden">
-                <img 
-                  src={product.images[selectedImage]}
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                />
+            <div className="space-y-4">
+              {/* Main Image */}
+              <div className="relative group">
+                <div className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl overflow-hidden border shadow-lg">
+                  <img 
+                    src={product.images[selectedImage]}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Image Navigation */}
+                <div className="flex justify-center gap-2 mt-4">
+                  {product.images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`w-3 h-3 rounded-full transition-all ${
+                        selectedImage === index 
+                          ? 'bg-primary scale-125 shadow-lg' 
+                          : 'bg-muted hover:bg-muted-foreground/30'
+                      }`}
+                      onClick={() => setSelectedImage(index)}
+                    />
+                  ))}
+                </div>
               </div>
-              <div>
-                <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
-                <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
+
+              {/* Additional Services */}
+              <div className="bg-gradient-to-br from-slate-50 to-white border rounded-2xl p-5 shadow-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
+                    <Icon name="Palette" size={16} className="text-white" />
+                  </div>
+                  <h3 className="font-semibold text-base">Дополнительное оформление</h3>
+                </div>
+                <div className="space-y-2 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
                   {[
                     { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
                     { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
@@ -280,8 +304,10 @@ export default function ProductCard() {
                     return (
                       <div 
                         key={service.id}
-                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 ${
-                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
+                        className={`group flex items-center justify-between p-3 rounded-xl border cursor-pointer transition-all duration-200 hover:shadow-md ${
+                          isSelected 
+                            ? 'border-primary bg-gradient-to-r from-primary/5 to-blue-50 shadow-sm' 
+                            : 'border-slate-200 hover:border-primary/30 hover:bg-slate-50'
                         }`}
                         onClick={() => {
                           setSelectedServices(prev => 
@@ -291,36 +317,45 @@ export default function ProductCard() {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-2">
-                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
+                        <div className="flex items-center gap-3">
+                          <div className={`relative w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all ${
                             isSelected
-                              ? 'border-primary bg-primary'
-                              : 'border-muted-foreground'
+                              ? 'border-primary bg-primary shadow-lg scale-110'
+                              : 'border-slate-300 group-hover:border-primary/50'
                           }`}>
                             {isSelected && (
-                              <Icon name="Check" size={8} className="text-primary-foreground" />
+                              <Icon name="Check" size={12} className="text-white" />
                             )}
                           </div>
                           <div>
-                            <div className="text-xs font-medium">{service.name}</div>
-                            <div className="text-[10px] text-muted-foreground">{service.category}</div>
+                            <div className="text-sm font-medium text-slate-800">{service.name}</div>
+                            <div className="text-xs text-slate-500">{service.category}</div>
                           </div>
                         </div>
-                        <div className="text-xs font-semibold">
+                        <div className="text-right">
                           {isFree ? (
-                            <span className="text-green-500">Бесплатно</span>
+                            <div className="text-sm font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-lg">
+                              Бесплатно
+                            </div>
                           ) : (
-                            <span className="text-primary">{service.price.toLocaleString()} ₽</span>
+                            <div className={`text-sm font-bold transition-colors ${
+                              isSelected ? 'text-primary' : 'text-slate-700'
+                            }`}>
+                              {service.price.toLocaleString()} ₽
+                            </div>
                           )}
                         </div>
                       </div>
                     );
                   })}
                 </div>
-                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">Итого за оформление:</span>
-                    <span className="font-semibold text-primary">
+                <div className="mt-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calculator" size={16} className="text-slate-600" />
+                      <span className="text-sm font-medium text-slate-700">Итого за оформление:</span>
+                    </div>
+                    <div className="text-lg font-bold text-primary bg-white px-3 py-1 rounded-lg shadow-sm">
                       {[
                         { id: 'portrait-gravir', price: 8000 },
                         { id: 'portrait-hand', price: 15000 },
@@ -341,77 +376,174 @@ export default function ProductCard() {
                         .filter(service => selectedServices.includes(service.id))
                         .reduce((total, service) => total + service.price, 0)
                         .toLocaleString()} ₽
-                    </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Product Info */}
-            <div className="space-y-4">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  {product.isNew && <Badge className="bg-green-500">Новинка</Badge>}
-                  {product.isPopular && <Badge className="bg-orange-500">Популярный</Badge>}
+            <div className="space-y-6">
+              {/* Product Header */}
+              <div className="bg-gradient-to-br from-white to-slate-50 border rounded-2xl p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  {product.isNew && (
+                    <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 shadow-md">
+                      <Icon name="Sparkles" size={12} className="mr-1" />
+                      Новинка
+                    </Badge>
+                  )}
+                  {product.isPopular && (
+                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 shadow-md">
+                      <Icon name="TrendingUp" size={12} className="mr-1" />
+                      Популярный
+                    </Badge>
+                  )}
                 </div>
-                <h1 className="font-heading text-2xl lg:text-3xl font-bold mb-1">{product.title}</h1>
-                <p className="text-lg text-muted-foreground mb-3">{product.subtitle}</p>
                 
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    {[1,2,3,4,5].map((star) => (
-                      <Icon 
-                        key={star}
-                        name="Star" 
-                        size={20} 
-                        className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-muted-foreground"}
-                      />
-                    ))}
-                    <span className="text-sm text-muted-foreground ml-2">
+                <h1 className="font-heading text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                  {product.title}
+                </h1>
+                <p className="text-xl text-slate-600 mb-4 font-medium">{product.subtitle}</p>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      {[1,2,3,4,5].map((star) => (
+                        <Icon 
+                          key={star}
+                          name="Star" 
+                          size={18} 
+                          className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-slate-300"}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-slate-600 font-medium">
                       {product.rating} ({product.reviewsCount} отзывов)
                     </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500">
+                    <Icon name="Shield" size={16} className="text-green-500" />
+                    Гарантия 10 лет
                   </div>
                 </div>
               </div>
 
-              {/* Price */}
-              <div className="bg-muted/30 p-4 rounded-xl">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl font-bold text-primary">
-                    {getCurrentPrice().toLocaleString()} ₽
-                  </span>
-                  {product.originalPrice && (
-                    <span className="text-lg line-through text-muted-foreground">
-                      {product.originalPrice.toLocaleString()} ₽
-                    </span>
-                  )}
+              {/* Price Calculator */}
+              <div className="bg-gradient-to-br from-primary/5 to-blue-50 border border-primary/20 rounded-2xl p-6 shadow-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                    <Icon name="Calculator" size={20} className="text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800">Калькулятор стоимости</h3>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Цена включает изготовление, гравировку портрета и установку
-                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200">
+                    <div>
+                      <div className="text-sm text-slate-600">Итоговая стоимость</div>
+                      <div className="text-xs text-slate-500">включает изготовление, гравировку и установку</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold text-primary">
+                        {getCurrentPrice().toLocaleString()} ₽
+                      </div>
+                      {product.originalPrice && (
+                        <div className="text-lg line-through text-slate-400">
+                          {product.originalPrice.toLocaleString()} ₽
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Price Breakdown */}
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
+                      <span className="text-slate-600">Базовая стоимость</span>
+                      <span className="font-medium">{product.basePrice.toLocaleString()} ₽</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
+                      <span className="text-slate-600">Комплектация</span>
+                      <span className="font-medium text-primary">
+                        +{Object.entries(selectedElements)
+                          .filter(([, config]) => config.enabled)
+                          .reduce((total, [elementId, config]) => {
+                            const element = monumentElements[elementId as keyof typeof monumentElements];
+                            const size = element.sizes.find(s => s.id === config.size);
+                            return total + (size?.price || 0);
+                          }, 0)
+                          .toLocaleString()} ₽
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
+                      <span className="text-slate-600">Материал</span>
+                      <span className="font-medium text-primary">
+                        +{materials.find(m => m.id === selectedMaterial)?.price.toLocaleString() || 0} ₽
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
+                      <span className="text-slate-600">Доп. оформление</span>
+                      <span className="font-medium text-primary">
+                        +{[
+                          { id: 'portrait-gravir', price: 8000 },
+                          { id: 'portrait-hand', price: 15000 },
+                          { id: 'fio-gravir', price: 2000 },
+                          { id: 'fio-skarpel', price: 4000 },
+                          { id: 'fio-gold', price: 6000 },
+                          { id: 'gravir-cross', price: 3000 },
+                          { id: 'gravir-cvety', price: 0 },
+                          { id: 'gravir-epitafiya', price: 0 },
+                          { id: 'gravir-vinetka', price: 2500 },
+                          { id: 'gravir-svechi', price: 1500 },
+                          { id: 'gravir-ikona', price: 5000 },
+                          { id: 'gravir-kartinka', price: 3500 },
+                          { id: 'retush-photo', price: 1000 },
+                          { id: 'protection', price: 4000 },
+                          { id: 'storage', price: 500 }
+                        ]
+                          .filter(service => selectedServices.includes(service.id))
+                          .reduce((total, service) => total + service.price, 0)
+                          .toLocaleString()} ₽
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3 border-t border-primary/20">
+                    <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <Icon name="Info" size={16} className="text-blue-500" />
+                      <span>Цена может изменяться в зависимости от сложности работ</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Material Selection */}
-              <div className="space-y-3">
+              <div className="bg-white border rounded-2xl p-6 shadow-sm space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Материал</label>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Gem" size={18} className="text-slate-600" />
+                    <label className="text-sm font-semibold text-slate-800">Выбор материала</label>
+                  </div>
                   <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                    <SelectTrigger className="h-auto p-3">
+                    <SelectTrigger className="h-auto p-4 border-2 hover:border-primary/50 transition-colors">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="w-full">
                       {materials.map(material => (
-                        <SelectItem key={material.id} value={material.id} className="p-3">
-                          <div className="flex items-center gap-3">
-                            <div 
-                              className="w-6 h-6 rounded-full border-2 border-muted" 
-                              style={{ backgroundColor: material.color }}
-                            />
-                            <div>
-                              <div className="font-medium">{material.name}</div>
-                              <div className="text-sm text-muted-foreground">{material.description}</div>
+                        <SelectItem key={material.id} value={material.id} className="p-4">
+                          <div className="flex items-center gap-4">
+                            <div className="relative">
+                              <div 
+                                className="w-8 h-8 rounded-full border-2 border-white shadow-md" 
+                                style={{ backgroundColor: material.color }}
+                              />
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-slate-800">{material.name}</div>
+                              <div className="text-sm text-slate-600">{material.description}</div>
                               {material.price > 0 && (
-                                <div className="text-sm font-medium text-primary">+{material.price.toLocaleString()} ₽</div>
+                                <div className="text-sm font-bold text-primary">+{material.price.toLocaleString()} ₽</div>
                               )}
                             </div>
                           </div>
@@ -422,8 +554,11 @@ export default function ProductCard() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Комплектация памятника</label>
-                  <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Package" size={18} className="text-slate-600" />
+                    <label className="text-sm font-semibold text-slate-800">Комплектация памятника</label>
+                  </div>
+                  <div className="space-y-3">
                     {Object.entries(monumentElements).map(([elementId, element]) => {
                       const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
                       const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
@@ -432,57 +567,67 @@ export default function ProductCard() {
                       return (
                         <div 
                           key={elementId} 
-                          className={`border rounded-lg p-2.5 transition-colors ${
+                          className={`group border-2 rounded-xl p-4 transition-all duration-200 ${
                             isEnabled 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-border'
+                              ? 'border-primary bg-gradient-to-r from-primary/5 to-blue-50 shadow-md' 
+                              : 'border-slate-200 hover:border-primary/30 hover:shadow-sm'
                           }`}
                         >
-                          <div className="flex items-center gap-3 mb-1.5">
+                          <div className="flex items-center gap-4 mb-3">
                             <div 
-                              className={`w-3.5 h-3.5 rounded border flex items-center justify-center cursor-pointer ${
+                              className={`relative w-6 h-6 rounded-xl border-2 flex items-center justify-center cursor-pointer transition-all ${
                                 isEnabled
-                                  ? 'border-primary bg-primary'
-                                  : 'border-muted-foreground'
+                                  ? 'border-primary bg-primary shadow-lg scale-110'
+                                  : 'border-slate-300 group-hover:border-primary/50'
                               } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}
                               onClick={() => !element.required && toggleElement(elementId)}
                             >
                               {isEnabled && (
-                                <Icon name="Check" size={8} className="text-primary-foreground" />
+                                <Icon name="Check" size={14} className="text-white" />
                               )}
                             </div>
                             <div className="flex-1">
-                              <div className="font-medium text-xs flex items-center gap-2">
-                                {element.name}
+                              <div className="flex items-center gap-3">
+                                <span className="font-semibold text-sm text-slate-800">{element.name}</span>
                                 {element.required && (
-                                  <Badge variant="secondary" className="text-[10px] px-1 py-0">Обязательно</Badge>
+                                  <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
+                                    <Icon name="Star" size={10} className="mr-1" />
+                                    Обязательно
+                                  </Badge>
                                 )}
                               </div>
+                              <div className="text-xs text-slate-600 mt-1">{element.description}</div>
                             </div>
                             {isEnabled && currentSizeData && (
-                              <div className="text-xs font-semibold text-primary">
-                                {currentSizeData.price.toLocaleString()} ₽
+                              <div className="text-right">
+                                <div className="text-lg font-bold text-primary">
+                                  {currentSizeData.price.toLocaleString()} ₽
+                                </div>
+                                <div className="text-xs text-slate-500">{currentSizeData.name}</div>
                               </div>
                             )}
                           </div>
                           
                           {isEnabled && (
-                            <div className="ml-6">
+                            <div className="ml-10">
                               <Select 
                                 value={currentSize} 
                                 onValueChange={(value) => updateElementSize(elementId, value)}
                               >
-                                <SelectTrigger className="h-8 text-xs">
+                                <SelectTrigger className="h-12 border-2 hover:border-primary/50 transition-colors">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
                                   {element.sizes.map(size => (
-                                    <SelectItem key={size.id} value={size.id} className="text-xs">
-                                      <div className="flex justify-between items-center w-full min-w-[180px]">
-                                        <span>{size.name}</span>
-                                        <span className="text-primary font-medium ml-2">
+                                    <SelectItem key={size.id} value={size.id} className="p-3">
+                                      <div className="flex justify-between items-center w-full min-w-[220px]">
+                                        <div>
+                                          <div className="font-medium">{size.name}</div>
+                                          <div className="text-xs text-slate-500">размер</div>
+                                        </div>
+                                        <div className="text-primary font-bold text-lg">
                                           {size.price.toLocaleString()} ₽
-                                        </span>
+                                        </div>
                                       </div>
                                     </SelectItem>
                                   ))}
@@ -494,67 +639,142 @@ export default function ProductCard() {
                       );
                     })}
                   </div>
-                  <Separator className="my-4" />
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
-                    <span className="font-bold text-sm text-primary">
-                      {Object.entries(selectedElements)
-                        .filter(([, config]) => config.enabled)
-                        .reduce((total, [elementId, config]) => {
-                          const element = monumentElements[elementId as keyof typeof monumentElements];
-                          const size = element.sizes.find(s => s.id === config.size);
-                          return total + (size?.price || 0);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
+                  <div className="mt-6 pt-4 border-t border-slate-200">
+                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl">
+                      <div className="flex items-center gap-2">
+                        <Icon name="Package" size={16} className="text-slate-600" />
+                        <span className="text-sm font-semibold text-slate-700">Итого за комплектацию:</span>
+                      </div>
+                      <div className="text-xl font-bold text-primary bg-white px-3 py-1 rounded-lg shadow-sm">
+                        {Object.entries(selectedElements)
+                          .filter(([, config]) => config.enabled)
+                          .reduce((total, [elementId, config]) => {
+                            const element = monumentElements[elementId as keyof typeof monumentElements];
+                            const size = element.sizes.find(s => s.id === config.size);
+                            return total + (size?.price || 0);
+                          }, 0)
+                          .toLocaleString()} ₽
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="space-y-3">
-                <div className="flex gap-3">
+            </div>
+            
+            {/* Actions & Features Sidebar */}
+            <div className="space-y-6">
+              {/* Main Actions */}
+              <div className="bg-gradient-to-br from-white to-slate-50 border rounded-2xl p-6 shadow-sm">
+                <div className="space-y-4">
                   <Button 
                     onClick={handleAddToCart}
-                    className="flex-1 bg-primary hover:bg-primary/90"
+                    className="w-full h-14 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
                   >
-                    <Icon name="ShoppingCart" className="mr-2" size={18} />
-                    В корзину
+                    <Icon name="ShoppingCart" className="mr-2" size={20} />
+                    Добавить в корзину
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Icon name="Heart" size={18} />
-                  </Button>
+                  
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" className="h-12 border-2 hover:border-primary/50">
+                      <Icon name="Heart" className="mr-2" size={18} />
+                      В избранное
+                    </Button>
+                    <Button variant="outline" className="h-12 border-2 hover:border-primary/50">
+                      <Icon name="Share2" className="mr-2" size={18} />
+                      Поделиться
+                    </Button>
+                  </div>
                 </div>
+              </div>
                 
-                <div className="grid grid-cols-2 gap-3">
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Calculator" className="mr-1" size={16} />
-                    Калькулятор
+              {/* Additional Tools */}
+              <div className="bg-gradient-to-br from-slate-50 to-white border rounded-2xl p-5 shadow-sm">
+                <h3 className="font-semibold text-base mb-4 flex items-center gap-2">
+                  <Icon name="Wrench" size={18} className="text-slate-600" />
+                  Дополнительные инструменты
+                </h3>
+                <div className="space-y-3">
+                  <Button variant="outline" className="w-full h-12 justify-start border-2 hover:border-primary/50 hover:bg-primary/5">
+                    <Icon name="Phone" className="mr-3" size={18} />
+                    <div className="text-left">
+                      <div className="font-medium">Бесплатная консультация</div>
+                      <div className="text-xs text-slate-500">Звонок менеджера за 5 минут</div>
+                    </div>
                   </Button>
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Download" className="mr-1" size={16} />
-                    3D-модель
+                  <Button variant="outline" className="w-full h-12 justify-start border-2 hover:border-primary/50 hover:bg-primary/5">
+                    <Icon name="Download" className="mr-3" size={18} />
+                    <div className="text-left">
+                      <div className="font-medium">3D-модель памятника</div>
+                      <div className="text-xs text-slate-500">Посмотреть в объёме</div>
+                    </div>
+                  </Button>
+                  <Button variant="outline" className="w-full h-12 justify-start border-2 hover:border-primary/50 hover:bg-primary/5">
+                    <Icon name="MapPin" className="mr-3" size={18} />
+                    <div className="text-left">
+                      <div className="font-medium">Доставка и установка</div>
+                      <div className="text-xs text-slate-500">Расчёт по адресу</div>
+                    </div>
                   </Button>
                 </div>
               </div>
+              </div>
 
               {/* Features */}
-              <div className="bg-card border rounded-xl p-4">
-                <h3 className="font-heading text-sm font-semibold mb-3">Что входит в стоимость</h3>
-                <div className="grid grid-cols-1 gap-2">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-5 shadow-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                    <Icon name="CheckCircle" size={16} className="text-white" />
+                  </div>
+                  <h3 className="font-bold text-base text-slate-800">Что входит в стоимость</h3>
+                </div>
+                <div className="space-y-3">
                   {product.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <Icon name="Check" size={14} className="text-green-500" />
-                      <span className="text-xs">{feature}</span>
+                    <div key={index} className="flex items-center gap-3 p-2 bg-white/60 rounded-lg">
+                      <Icon name="Check" size={16} className="text-green-600" />
+                      <span className="text-sm font-medium text-slate-700">{feature}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+              
+              {/* Trust Indicators */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-5 shadow-sm">
+                <h3 className="font-bold text-base mb-4 flex items-center gap-2">
+                  <Icon name="Shield" size={18} className="text-blue-600" />
+                  Гарантии качества
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-2 bg-white/60 rounded-lg">
+                    <Icon name="Award" size={16} className="text-amber-500" />
+                    <div>
+                      <div className="text-sm font-medium text-slate-700">15+ лет опыта</div>
+                      <div className="text-xs text-slate-500">Более 2000 памятников</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 bg-white/60 rounded-lg">
+                    <Icon name="Shield" size={16} className="text-green-500" />
+                    <div>
+                      <div className="text-sm font-medium text-slate-700">Пожизненная гарантия</div>
+                      <div className="text-xs text-slate-500">На все виды работ</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 bg-white/60 rounded-lg">
+                    <Icon name="Truck" size={16} className="text-blue-500" />
+                    <div>
+                      <div className="text-sm font-medium text-slate-700">Бесплатная доставка</div>
+                      <div className="text-xs text-slate-500">По Москве и области</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Product Details */}
-          <div className="mt-12">
+        </div>
+        
+        {/* Product Details */}
+        <div className="mt-16">
             <Tabs defaultValue="description" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="description">Описание</TabsTrigger>
@@ -712,34 +932,41 @@ export default function ProductCard() {
             </Tabs>
           </div>
 
-          {/* Related Products */}
-          <div className="mt-12">
-            <h3 className="font-heading text-2xl font-bold mb-6 text-center">Похожие товары</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+        {/* Related Products */}
+        <div className="mt-16">
+          <div className="text-center mb-10">
+            <h3 className="font-heading text-3xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Похожие товары</h3>
+            <p className="text-lg text-slate-600">Другие памятники, которые могут вам понравиться</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
               {relatedProducts.map(product => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
-                      src={product.image}
-                      alt={product.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardHeader className="p-4">
-                    <CardTitle className="font-heading text-base">{product.title}</CardTitle>
-                    <CardDescription className="text-base font-semibold text-primary">
-                      {product.price}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <Button className="w-full text-sm">Подробнее</Button>
-                  </CardContent>
-                </Card>
+              <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/20 bg-gradient-to-br from-white to-slate-50">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <CardHeader className="p-6">
+                  <CardTitle className="font-heading text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">{product.title}</CardTitle>
+                  <CardDescription className="text-xl font-bold text-primary">
+                    {product.price}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6 pt-0">
+                  <Button className="w-full h-12 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 font-semibold shadow-lg group-hover:shadow-xl transition-all duration-200">
+                    <Icon name="Eye" className="mr-2" size={18} />
+                    Подробнее
+                  </Button>
+                </CardContent>
+              </Card>
               ))}
-            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       <Footer />
     </div>
