@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Slider } from '@/components/ui/slider';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -63,35 +63,47 @@ export default function ProductCard() {
   const materials = [
     { 
       id: 'granite-black', 
-      name: 'Гранит чёрный (габбро-диабаз)', 
+      name: 'Габбро-диабаз', 
+      fullName: 'Гранит чёрный (габбро-диабаз)',
       price: 0, 
-      pricePerM2: 12000,
-      color: '#2c2c2c',
-      description: 'Классический чёрный гранит высочайшего качества'
+      pricePerM2: 14500,
+      color: '#1a1a1a',
+      pattern: 'linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)',
+      description: 'Премиальный чёрный гранит',
+      origin: 'Карелия'
     },
     { 
       id: 'granite-red', 
-      name: 'Гранит красный (Лезники)', 
-      price: 3000,
-      pricePerM2: 15000, 
-      color: '#8b4513',
-      description: 'Благородный красный гранит с натуральным рисунком'
+      name: 'Лезники', 
+      fullName: 'Гранит красный (Лезники)',
+      price: 4500,
+      pricePerM2: 18200, 
+      color: '#8B4513',
+      pattern: 'linear-gradient(45deg, #8B4513 0%, #A0522D 50%, #CD853F 100%)',
+      description: 'Благородный красный гранит',
+      origin: 'Украина'
     },
     { 
       id: 'granite-gray', 
-      name: 'Гранит серый (Возрождение)', 
-      price: 2000,
-      pricePerM2: 13500, 
-      color: '#708090',
-      description: 'Элегантный серый гранит с равномерной текстурой'
+      name: 'Возрождение', 
+      fullName: 'Гранит серый (Возрождение)',
+      price: 3200,
+      pricePerM2: 16800, 
+      color: '#696969',
+      pattern: 'linear-gradient(45deg, #696969 0%, #808080 50%, #A9A9A9 100%)',
+      description: 'Элегантный серый гранит',
+      origin: 'Украина'
     },
     { 
       id: 'marble', 
-      name: 'Мрамор белый (Каррара)', 
-      price: 8000,
-      pricePerM2: 25000, 
-      color: '#f5f5f5',
-      description: 'Итальянский мрамор премиум-класса'
+      name: 'Каррара', 
+      fullName: 'Мрамор белый (Каррара)',
+      price: 12000,
+      pricePerM2: 28500, 
+      color: '#F8F8FF',
+      pattern: 'linear-gradient(45deg, #F8F8FF 0%, #F5F5F5 50%, #E6E6FA 100%)',
+      description: 'Итальянский мрамор люкс',
+      origin: 'Италия'
     }
   ];
 
@@ -148,27 +160,15 @@ export default function ProductCard() {
     { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
   ];
 
-  const calculateCustomPrice = () => {
+  const calculatePrice = () => {
     const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
-    const pricePerM2 = selectedMaterialData?.pricePerM2 || 12000;
+    const materialMultiplier = selectedMaterialData?.pricePerM2 || 14500;
     
-    // Площадь в м²
+    // Площадь стелы
     const area = (customSize.width * customSize.height) / 10000;
-    const materialCost = Math.round(area * pricePerM2);
+    const materialCost = Math.round(area * materialMultiplier);
     
-    // Базовая стоимость обработки
-    const processingCost = Math.round(area * 8000);
-    
-    return materialCost + processingCost;
-  };
-
-  const getCurrentPrice = () => {
-    if (showCalculator && customSize.width && customSize.height) {
-      return calculateCustomPrice() + getServicesPrice();
-    }
-
-    const materialPrice = materials.find(m => m.id === selectedMaterial)?.price || 0;
-    
+    // Элементы
     let elementsPrice = 0;
     Object.entries(selectedElements).forEach(([elementId, config]) => {
       if (config.enabled) {
@@ -180,13 +180,12 @@ export default function ProductCard() {
       }
     });
     
-    return elementsPrice + materialPrice + getServicesPrice();
-  };
-
-  const getServicesPrice = () => {
-    return services
+    // Услуги
+    const servicesPrice = services
       .filter(service => selectedServices.includes(service.id))
       .reduce((total, service) => total + service.price, 0);
+    
+    return materialCost + elementsPrice + servicesPrice;
   };
 
   const handleAddToCart = () => {
@@ -195,11 +194,11 @@ export default function ProductCard() {
     addToCart({
       id: product.id,
       title: product.title,
-      price: getCurrentPrice(),
+      price: calculatePrice(),
       image: product.images[0],
       category: 'vertical',
-      quantity: quantity,
-      selectedMaterial: selectedMaterialData?.name,
+      quantity: 1,
+      selectedMaterial: materials.find(m => m.id === selectedMaterial)?.name,
       selectedSize: 'custom'
     });
   };
@@ -233,43 +232,122 @@ export default function ProductCard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-6 pb-16 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Product Images */}
-            <div className="space-y-6">
+      {/* Hero Section */}
+      <section className="bg-slate-50 border-b">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
+            <Icon name="Home" size={16} />
+            <span>/</span>
+            <span>Каталог</span>
+            <span>/</span>
+            <span>Вертикальные</span>
+            <span>/</span>
+            <span className="text-slate-900 font-medium">{product.title}</span>
+          </div>
+          
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                {product.isNew && <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200">Новинка</Badge>}
+                {product.isPopular && <Badge className="bg-orange-100 text-orange-800 border-orange-200">Хит продаж</Badge>}
+              </div>
+              <h1 className="text-4xl font-light text-slate-900 mb-2">{product.title}</h1>
+              <p className="text-lg text-slate-600 mb-2">{product.subtitle}</p>
+              <p className="text-sm text-slate-500 font-mono">Артикул: МНТ-VT-001-2024</p>
+            </div>
+            
+            <div className="text-right">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="flex">
+                  {[1,2,3,4,5].map((star) => (
+                    <Icon 
+                      key={star}
+                      name="Star" 
+                      size={16} 
+                      className={star <= Math.floor(product.rating) ? "text-amber-400 fill-current" : "text-slate-300"}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-slate-600">{product.rating}</span>
+              </div>
+              <p className="text-xs text-slate-500">{product.reviewsCount} отзывов</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-12 gap-12">
+            {/* Images Column */}
+            <div className="lg:col-span-6">
+              <div className="sticky top-24">
               <div className="relative group">
-                <div className="aspect-square bg-gradient-to-br from-white to-slate-100 rounded-3xl overflow-hidden border-2 border-slate-200/50 shadow-2xl">
+                <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden border border-slate-200">
                   <img 
                     src={product.images[selectedImage]}
                     alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
-                {/* Image Navigation */}
-                <div className="flex justify-center gap-3 mt-6">
-                  {product.images.map((_, index) => (
+                {/* Image overlay info */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+                    <div className="text-xs text-slate-600 mb-1">Размер на фото</div>
+                    <div className="font-medium text-slate-900">100×50×8 см</div>
+                  </div>
+                </div>
+                
+                <div className="absolute top-4 right-4">
+                  <Button variant="outline" size="icon" className="bg-white/90 backdrop-blur-sm border-white/50">
+                    <Icon name="ZoomIn" size={18} />
+                  </Button>
+                </div>
+                
+                {/* Thumbnail Navigation */}
+                <div className="flex gap-3">
+                  {product.images.map((image, index) => (
                     <button
                       key={index}
-                      className={`w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                      className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                         selectedImage === index 
-                          ? 'border-primary shadow-lg scale-110' 
-                          : 'border-slate-200 hover:border-slate-300 hover:scale-105'
+                          ? 'border-slate-900 scale-105' 
+                          : 'border-slate-200 hover:border-slate-300'
                       }`}
                       onClick={() => setSelectedImage(index)}
                     >
                       <img 
-                        src={product.images[index]} 
+                        src={image} 
                         alt={`${product.title} ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
                     </button>
                   ))}
+                </div>
+                
+                {/* Material Preview */}
+                <div className="mt-6 p-4 bg-slate-50 rounded-xl">
+                  <div className="text-sm font-medium text-slate-900 mb-3">Материал: {materials.find(m => m.id === selectedMaterial)?.name}</div>
+                  <div className="flex gap-2">
+                    {materials.map(material => (
+                      <button
+                        key={material.id}
+                        className={`w-12 h-12 rounded-lg border-2 transition-all ${
+                          selectedMaterial === material.id 
+                            ? 'border-slate-900 scale-110' 
+                            : 'border-slate-300 hover:border-slate-400'
+                        }`}
+                        style={{ background: material.pattern || material.color }}
+                        onClick={() => setSelectedMaterial(material.id)}
+                        title={material.fullName}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -354,62 +432,122 @@ export default function ProductCard() {
               </Card>
             </div>
 
-            {/* Product Info */}
-            <div className="space-y-6">
-              {/* Header */}
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  {product.isNew && <Badge className="bg-gradient-to-r from-green-500 to-green-600 shadow-lg">Новинка</Badge>}
-                  {product.isPopular && <Badge className="bg-gradient-to-r from-orange-500 to-red-500 shadow-lg">Популярный</Badge>}
-                </div>
-                <h1 className="font-heading text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  {product.title}
-                </h1>
-                <p className="text-xl text-slate-600 mb-4">{product.subtitle}</p>
-                
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="flex items-center gap-1">
-                    {[1,2,3,4,5].map((star) => (
-                      <Icon 
-                        key={star}
-                        name="Star" 
-                        size={20} 
-                        className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-slate-300"}
-                      />
-                    ))}
-                    <span className="text-sm text-slate-600 ml-2">
-                      {product.rating} ({product.reviewsCount} отзывов)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Price Display */}
-              <Card className="bg-gradient-to-r from-primary/5 via-blue-50 to-primary/5 border-2 border-primary/20 shadow-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
+            {/* Configuration Column */}
+            <div className="lg:col-span-6">
+              <div className="space-y-8">
+                {/* Price Section */}
+                <div className="bg-slate-900 text-white rounded-2xl p-6">
+                  <div className="flex items-end justify-between mb-4">
                     <div>
-                      <div className="text-3xl font-bold text-primary mb-1">
-                        {getCurrentPrice().toLocaleString()} ₽
+                      <div className="text-3xl font-light mb-1">
+                        {calculatePrice().toLocaleString()} ₽
                       </div>
                       {product.originalPrice && (
-                        <div className="text-lg line-through text-slate-500">
+                        <div className="text-slate-400 line-through">
                           {product.originalPrice.toLocaleString()} ₽
                         </div>
                       )}
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-slate-600">Экономия</div>
-                      <div className="text-lg font-semibold text-green-600">
-                        {product.originalPrice ? (product.originalPrice - getCurrentPrice()).toLocaleString() : 0} ₽
+                      <div className="text-sm text-slate-400">Экономия</div>
+                      <div className="text-lg text-emerald-400">
+                        {product.originalPrice ? (product.originalPrice - calculatePrice()).toLocaleString() : 0} ₽
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600">
-                    ✓ Изготовление ✓ Гравировка портрета ✓ Установка ✓ Гарантия 10 лет
-                  </p>
-                </CardContent>
-              </Card>
+                  <div className="text-sm text-slate-300">
+                    Финальная стоимость • Без скрытых доплат
+                  </div>
+                </div>
+
+                {/* Size Calculator */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-slate-900">Размеры стелы</h3>
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <Label className="text-xs text-slate-600 mb-2 block">Ширина</Label>
+                      <div className="relative">
+                        <Input
+                          type="number"
+                          value={customSize.width}
+                          onChange={(e) => setCustomSize(prev => ({ ...prev, width: Number(e.target.value) }))}
+                          className="pr-8"
+                          min="30"
+                          max="150"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
+                      </div>
+                      <Slider
+                        value={[customSize.width]}
+                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, width: value }))}
+                        max={150}
+                        min={30}
+                        step={5}
+                        className="mt-2"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label className="text-xs text-slate-600 mb-2 block">Высота</Label>
+                      <div className="relative">
+                        <Input
+                          type="number"
+                          value={customSize.height}
+                          onChange={(e) => setCustomSize(prev => ({ ...prev, height: Number(e.target.value) }))}
+                          className="pr-8"
+                          min="60"
+                          max="200"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
+                      </div>
+                      <Slider
+                        value={[customSize.height]}
+                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, height: value }))}
+                        max={200}
+                        min={60}
+                        step={5}
+                        className="mt-2"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label className="text-xs text-slate-600 mb-2 block">Толщина</Label>
+                      <div className="relative">
+                        <Input
+                          type="number"
+                          value={customSize.thickness}
+                          onChange={(e) => setCustomSize(prev => ({ ...prev, thickness: Number(e.target.value) }))}
+                          className="pr-8"
+                          min="4"
+                          max="12"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
+                      </div>
+                      <Slider
+                        value={[customSize.thickness]}
+                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, thickness: value }))}
+                        max={12}
+                        min={4}
+                        step={1}
+                        className="mt-2"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-slate-50 rounded-lg p-3 text-sm">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-slate-600">Площадь:</span>
+                      <span className="font-medium">{((customSize.width * customSize.height) / 10000).toFixed(2)} м²</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-600">Стоимость материала:</span>
+                      <span className="font-medium text-slate-900">
+                        {Math.round(((customSize.width * customSize.height) / 10000) * (materials.find(m => m.id === selectedMaterial)?.pricePerM2 || 14500)).toLocaleString()} ₽
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
               {/* Material Selection */}
               <Card className="shadow-lg border-slate-200">
