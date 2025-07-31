@@ -770,11 +770,9 @@ export default function ProductCard() {
               </div>
             </div>
           </div>
-
-        </div>
-        
-        {/* Product Details */}
-        <div className="mt-16">
+          
+          {/* Product Details */}
+          <div className="mt-16 lg:col-span-3">
             <Tabs defaultValue="description" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="description">Описание</TabsTrigger>
@@ -932,41 +930,41 @@ export default function ProductCard() {
             </Tabs>
           </div>
 
-        {/* Related Products */}
-        <div className="mt-16">
-          <div className="text-center mb-10">
-            <h3 className="font-heading text-3xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Похожие товары</h3>
-            <p className="text-lg text-slate-600">Другие памятники, которые могут вам понравиться</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-              {relatedProducts.map(product => (
-              <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/20 bg-gradient-to-br from-white to-slate-50">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <CardHeader className="p-6">
-                  <CardTitle className="font-heading text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">{product.title}</CardTitle>
-                  <CardDescription className="text-xl font-bold text-primary">
-                    {product.price}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6 pt-0">
-                  <Button className="w-full h-12 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 font-semibold shadow-lg group-hover:shadow-xl transition-all duration-200">
-                    <Icon name="Eye" className="mr-2" size={18} />
-                    Подробнее
-                  </Button>
-                </CardContent>
-              </Card>
-              ))}
+          {/* Related Products */}
+          <div className="mt-16 lg:col-span-3">
+            <div className="text-center mb-10">
+              <h3 className="font-heading text-3xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Похожие товары</h3>
+              <p className="text-lg text-slate-600">Другие памятники, которые могут вам понравиться</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+                {relatedProducts.map(product => (
+                <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/20 bg-gradient-to-br from-white to-slate-50">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={product.image}
+                      alt={product.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <CardHeader className="p-6">
+                    <CardTitle className="font-heading text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">{product.title}</CardTitle>
+                    <CardDescription className="text-xl font-bold text-primary">
+                      {product.price}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-6 pt-0">
+                    <Button className="w-full h-12 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 font-semibold shadow-lg group-hover:shadow-xl transition-all duration-200">
+                      <Icon name="Eye" className="mr-2" size={18} />
+                      Подробнее
+                    </Button>
+                  </CardContent>
+                </Card>
+                ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       <Footer />
     </div>
