@@ -242,12 +242,12 @@ export default function ProductCard() {
       <Header />
 
       {/* Main Content */}
-      <section className="pt-4 pb-12 px-4">
+      <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Product Images */}
-            <div className="space-y-3">
-              <div className="aspect-square bg-muted rounded-xl overflow-hidden">
+            <div className="space-y-4">
+              <div className="aspect-square bg-muted rounded-2xl overflow-hidden">
                 <img 
                   src={product.images[selectedImage]}
                   alt={product.title}
@@ -255,8 +255,8 @@ export default function ProductCard() {
                 />
               </div>
               <div>
-                <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
-                <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
+                <h3 className="font-medium text-sm mb-3 text-muted-foreground">Дополнительное оформление</h3>
+                <div className="grid grid-cols-1 gap-2 max-h-[300px] overflow-y-auto pr-2">
                   {[
                     { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
                     { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
@@ -280,8 +280,8 @@ export default function ProductCard() {
                     return (
                       <div 
                         key={service.id}
-                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 ${
-                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
+                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/50 ${
+                          isSelected ? 'border-primary bg-primary/5' : 'border-muted'
                         }`}
                         onClick={() => {
                           setSelectedServices(prev => 
@@ -292,21 +292,21 @@ export default function ProductCard() {
                         }}
                       >
                         <div className="flex items-center gap-2">
-                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
+                          <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
                             isSelected
                               ? 'border-primary bg-primary'
                               : 'border-muted-foreground'
                           }`}>
                             {isSelected && (
-                              <Icon name="Check" size={8} className="text-primary-foreground" />
+                              <Icon name="Check" size={10} className="text-primary-foreground" />
                             )}
                           </div>
                           <div>
-                            <div className="text-xs font-medium">{service.name}</div>
-                            <div className="text-[10px] text-muted-foreground">{service.category}</div>
+                            <div className="text-sm font-medium">{service.name}</div>
+                            <div className="text-xs text-muted-foreground">{service.category}</div>
                           </div>
                         </div>
-                        <div className="text-xs font-semibold">
+                        <div className="text-sm font-semibold">
                           {isFree ? (
                             <span className="text-green-500">Бесплатно</span>
                           ) : (
@@ -317,8 +317,8 @@ export default function ProductCard() {
                     );
                   })}
                 </div>
-                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
-                  <div className="flex justify-between items-center text-xs">
+                <div className="mt-3 p-2 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-muted-foreground">Итого за оформление:</span>
                     <span className="font-semibold text-primary">
                       {[
@@ -348,16 +348,16 @@ export default function ProductCard() {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   {product.isNew && <Badge className="bg-green-500">Новинка</Badge>}
                   {product.isPopular && <Badge className="bg-orange-500">Популярный</Badge>}
                 </div>
-                <h1 className="font-heading text-2xl lg:text-3xl font-bold mb-1">{product.title}</h1>
-                <p className="text-lg text-muted-foreground mb-3">{product.subtitle}</p>
+                <h1 className="font-heading text-3xl lg:text-4xl font-bold mb-2">{product.title}</h1>
+                <p className="text-xl text-muted-foreground mb-4">{product.subtitle}</p>
                 
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center gap-1">
                     {[1,2,3,4,5].map((star) => (
                       <Icon 
@@ -375,28 +375,28 @@ export default function ProductCard() {
               </div>
 
               {/* Price */}
-              <div className="bg-muted/30 p-4 rounded-xl">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl font-bold text-primary">
+              <div className="bg-muted/50 p-6 rounded-xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-3xl font-bold text-primary">
                     {getCurrentPrice().toLocaleString()} ₽
                   </span>
                   {product.originalPrice && (
-                    <span className="text-lg line-through text-muted-foreground">
+                    <span className="text-xl line-through text-muted-foreground">
                       {product.originalPrice.toLocaleString()} ₽
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Цена включает изготовление, гравировку портрета и установку
                 </p>
               </div>
 
               {/* Material Selection */}
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Материал</label>
+                  <label className="text-sm font-medium text-muted-foreground mb-3 block">Материал</label>
                   <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                    <SelectTrigger className="h-auto p-3">
+                    <SelectTrigger className="h-auto p-4">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -422,8 +422,8 @@ export default function ProductCard() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Комплектация памятника</label>
-                  <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground mb-3 block">Комплектация памятника</label>
+                  <div className="space-y-3">
                     {Object.entries(monumentElements).map(([elementId, element]) => {
                       const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
                       const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
@@ -432,15 +432,15 @@ export default function ProductCard() {
                       return (
                         <div 
                           key={elementId} 
-                          className={`border rounded-lg p-2.5 transition-colors ${
+                          className={`border rounded-lg p-3 transition-colors ${
                             isEnabled 
                               ? 'border-primary bg-primary/5' 
-                              : 'border-border'
+                              : 'border-muted'
                           }`}
                         >
-                          <div className="flex items-center gap-3 mb-1.5">
+                          <div className="flex items-center gap-3 mb-2">
                             <div 
-                              className={`w-3.5 h-3.5 rounded border flex items-center justify-center cursor-pointer ${
+                              className={`w-4 h-4 rounded border-2 flex items-center justify-center cursor-pointer ${
                                 isEnabled
                                   ? 'border-primary bg-primary'
                                   : 'border-muted-foreground'
@@ -448,39 +448,39 @@ export default function ProductCard() {
                               onClick={() => !element.required && toggleElement(elementId)}
                             >
                               {isEnabled && (
-                                <Icon name="Check" size={8} className="text-primary-foreground" />
+                                <Icon name="Check" size={10} className="text-primary-foreground" />
                               )}
                             </div>
                             <div className="flex-1">
-                              <div className="font-medium text-xs flex items-center gap-2">
+                              <div className="font-medium text-sm flex items-center gap-2">
                                 {element.name}
                                 {element.required && (
-                                  <Badge variant="secondary" className="text-[10px] px-1 py-0">Обязательно</Badge>
+                                  <Badge variant="secondary" className="text-xs px-1 py-0">Обязательно</Badge>
                                 )}
                               </div>
                             </div>
                             {isEnabled && currentSizeData && (
-                              <div className="text-xs font-semibold text-primary">
+                              <div className="text-sm font-semibold text-primary">
                                 {currentSizeData.price.toLocaleString()} ₽
                               </div>
                             )}
                           </div>
                           
                           {isEnabled && (
-                            <div className="ml-6">
+                            <div className="ml-7">
                               <Select 
                                 value={currentSize} 
                                 onValueChange={(value) => updateElementSize(elementId, value)}
                               >
-                                <SelectTrigger className="h-8 text-xs">
+                                <SelectTrigger className="h-9 text-sm">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
                                   {element.sizes.map(size => (
-                                    <SelectItem key={size.id} value={size.id} className="text-xs">
-                                      <div className="flex justify-between items-center w-full min-w-[180px]">
+                                    <SelectItem key={size.id} value={size.id} className="text-sm">
+                                      <div className="flex justify-between items-center w-full min-w-[200px]">
                                         <span>{size.name}</span>
-                                        <span className="text-primary font-medium ml-2">
+                                        <span className="text-primary font-medium ml-3">
                                           {size.price.toLocaleString()} ₽
                                         </span>
                                       </div>
@@ -496,8 +496,8 @@ export default function ProductCard() {
                   </div>
                   <Separator className="my-4" />
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
-                    <span className="font-bold text-sm text-primary">
+                    <span className="text-sm font-medium text-muted-foreground">Итого за комплектацию:</span>
+                    <span className="font-bold text-lg text-primary">
                       {Object.entries(selectedElements)
                         .filter(([, config]) => config.enabled)
                         .reduce((total, [elementId, config]) => {
@@ -512,40 +512,41 @@ export default function ProductCard() {
               </div>
 
               {/* Actions */}
-              <div className="space-y-3">
-                <div className="flex gap-3">
+              <div className="space-y-4">
+                <div className="flex gap-4">
                   <Button 
                     onClick={handleAddToCart}
-                    className="flex-1 bg-primary hover:bg-primary/90"
+                    size="lg" 
+                    className="flex-1 bg-primary hover:bg-primary/90 text-lg"
                   >
-                    <Icon name="ShoppingCart" className="mr-2" size={18} />
+                    <Icon name="ShoppingCart" className="mr-2" size={20} />
                     В корзину
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Icon name="Heart" size={18} />
+                  <Button size="lg" variant="outline">
+                    <Icon name="Heart" size={20} />
                   </Button>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-3">
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Calculator" className="mr-1" size={16} />
-                    Калькулятор
+                <div className="grid grid-cols-2 gap-4">
+                  <Button variant="outline" className="w-full">
+                    <Icon name="Calculator" className="mr-2" size={18} />
+                    Калькулятор стоимости
                   </Button>
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Download" className="mr-1" size={16} />
+                  <Button variant="outline" className="w-full">
+                    <Icon name="Download" className="mr-2" size={18} />
                     3D-модель
                   </Button>
                 </div>
               </div>
 
               {/* Features */}
-              <div className="bg-card border rounded-xl p-4">
-                <h3 className="font-heading text-sm font-semibold mb-3">Что входит в стоимость</h3>
-                <div className="grid grid-cols-1 gap-2">
+              <div className="bg-card border rounded-xl p-6">
+                <h3 className="font-heading text-lg font-semibold mb-4">Что входит в стоимость</h3>
+                <div className="grid grid-cols-2 gap-3">
                   {product.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <Icon name="Check" size={14} className="text-green-500" />
-                      <span className="text-xs">{feature}</span>
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      <span className="text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -554,7 +555,7 @@ export default function ProductCard() {
           </div>
 
           {/* Product Details */}
-          <div className="mt-12">
+          <div className="mt-16">
             <Tabs defaultValue="description" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="description">Описание</TabsTrigger>
@@ -713,9 +714,9 @@ export default function ProductCard() {
           </div>
 
           {/* Related Products */}
-          <div className="mt-12">
-            <h3 className="font-heading text-2xl font-bold mb-6 text-center">Похожие товары</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="mt-16">
+            <h3 className="font-heading text-3xl font-bold mb-8 text-center">Похожие товары</h3>
+            <div className="grid md:grid-cols-3 gap-8">
               {relatedProducts.map(product => (
                 <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="aspect-[4/3] overflow-hidden">
@@ -725,14 +726,14 @@ export default function ProductCard() {
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <CardHeader className="p-4">
-                    <CardTitle className="font-heading text-base">{product.title}</CardTitle>
-                    <CardDescription className="text-base font-semibold text-primary">
+                  <CardHeader>
+                    <CardTitle className="font-heading text-lg">{product.title}</CardTitle>
+                    <CardDescription className="text-lg font-semibold text-primary">
                       {product.price}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <Button className="w-full text-sm">Подробнее</Button>
+                  <CardContent>
+                    <Button className="w-full">Подробнее</Button>
                   </CardContent>
                 </Card>
               ))}
