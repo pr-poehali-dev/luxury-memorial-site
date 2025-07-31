@@ -911,36 +911,54 @@ export default function ProductCard() {
 
           {/* Related Products */}
           <div className="mt-16">
-            <div className="text-center mb-12">
-              <h3 className="font-heading text-3xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Похожие товары
-              </h3>
-              <p className="text-lg text-slate-600">Другие памятники, которые могут вам понравиться</p>
-            </div>
+            <h3 className="text-2xl font-light text-slate-900 mb-8 text-center">Рекомендуем также</h3>
             <div className="grid md:grid-cols-3 gap-8">
               {relatedProducts.map(product => (
-                <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/20 bg-gradient-to-br from-white to-slate-50">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                <div key={product.id} className="group">
+                  <div className="relative aspect-[4/3] bg-slate-100 rounded-xl overflow-hidden mb-4">
                     <img 
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {product.isNew && (
+                      <Badge className="absolute top-3 left-3 bg-emerald-100 text-emerald-800 border-emerald-200">
+                        Новинка
+                      </Badge>
+                    )}
                   </div>
-                  <CardHeader className="p-6">
-                    <CardTitle className="font-heading text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">{product.title}</CardTitle>
-                    <CardDescription className="text-xl font-bold text-primary">
-                      {product.price}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-0">
-                    <Button className="w-full h-12 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 font-semibold shadow-lg group-hover:shadow-xl transition-all duration-300">
-                      <Icon name="Eye" className="mr-2" size={18} />
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-slate-900 group-hover:text-slate-700 transition-colors">
+                      {product.title}
+                    </h4>
+                    
+                    <div className="flex items-center gap-2">
+                      <div className="flex">
+                        {[1,2,3,4,5].map((star) => (
+                          <Icon 
+                            key={star}
+                            name="Star" 
+                            size={14} 
+                            className={star <= Math.floor(product.rating) ? "text-amber-400 fill-current" : "text-slate-300"}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-slate-600">{product.rating}</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-medium text-slate-900">{product.price.toLocaleString()} ₽</span>
+                      {product.originalPrice && (
+                        <span className="text-sm text-slate-500 line-through">{product.originalPrice.toLocaleString()} ₽</span>
+                      )}
+                    </div>
+                    
+                    <Button variant="outline" className="w-full mt-3 border-slate-300 hover:border-slate-900 hover:bg-slate-900 hover:text-white">
                       Подробнее
                     </Button>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
