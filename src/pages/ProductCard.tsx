@@ -5,14 +5,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Slider } from '@/components/ui/slider';
-import { Progress } from '@/components/ui/progress';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Monument3DBuilder from '@/components/Monument3DBuilder';
 import { useApp } from '@/contexts/AppContext';
 
 export default function ProductCard() {
@@ -24,151 +20,161 @@ export default function ProductCard() {
     tumba: { enabled: false, size: 'standard' },
     cvetnik: { enabled: false, size: 'standard' }
   });
-  const [selectedServices, setSelectedServices] = useState<string[]>(['portrait-gravir']);
-  const [customSize, setCustomSize] = useState({ width: 80, height: 100, thickness: 8 });
-  const [showPreview, setShowPreview] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>(['gravir-epitafiya', 'gravir-cvety']);
+  const [quantity, setQuantity] = useState(1);
+
+  const getTotalPrice = () => {
+    const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
+    const materialPrice = selectedMaterialData?.price || 0;
+    
+    const elementsPrice = Object.entries(selectedElements)
+      .filter(([, config]) => config.enabled)
+      .reduce((total, [elementId, config]) => {
+        const element = monumentElements[elementId as keyof typeof monumentElements];
+        const size = element.sizes.find(s => s.id === config.size);
+        return total + (size?.price || 0);
+      }, 0);
+    
+    const servicesPrice = [
+      { id: 'portrait-gravir', price: 8000 },
+      { id: 'portrait-hand', price: 15000 },
+      { id: 'fio-gravir', price: 2000 },
+      { id: 'fio-skarpel', price: 4000 },
+      { id: 'fio-gold', price: 6000 },
+      { id: 'gravir-cross', price: 3000 },
+      { id: 'gravir-cvety', price: 0 },
+      { id: 'gravir-epitafiya', price: 0 },
+      { id: 'gravir-vinetka', price: 2500 },
+      { id: 'gravir-svechi', price: 1500 },
+      { id: 'gravir-ikona', price: 5000 },
+      { id: 'gravir-kartinka', price: 3500 },
+      { id: 'retush-photo', price: 1000 },
+      { id: 'protection', price: 4000 },
+      { id: 'storage', price: 500 }
+    ]
+      .filter(service => selectedServices.includes(service.id))
+      .reduce((total, service) => total + service.price, 0);
+    
+    return product.basePrice + materialPrice + elementsPrice + servicesPrice;
+  };
+
+  const handleAddToCart = () => {
+    const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
+    
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: getTotalPrice(),
+      image: product.images[0],
+      category: 'vertical',
+      quantity: quantity,
+      selectedMaterial: selectedMaterialData?.name,
+      selectedSize: 'standard'
+    });
+  };
 
   const product = {
     id: 1,
     title: 'Классический вертикальный памятник',
-    subtitle: 'Традиция • Модель VT-001',
-    code: 'МНТ-VT-001-2024',
-    basePrice: 0,
+    subtitle: 'Модель "Традиция"',
+    basePrice: 45000,
     originalPrice: 52000,
-    isNew: true,
+    isNew: false,
     isPopular: true,
-    discount: 15,
-    rating: 4.9,
-    reviewsCount: 147,
+    rating: 4.8,
+    reviewsCount: 24,
     images: [
       'https://cdn.poehali.dev/files/f8c87ddf-cfee-41b9-a522-244254aebd83.png',
       '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
       '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg'
     ],
-    description: 'Элегантный классический памятник в современной интерпретации. Сочетает традиционные пропорции с инновационными технологиями обработки камня.',
-    tags: ['Классика', 'Вертикальный', 'Полировка', 'Гарантия 10 лет'],
+    description: 'Элегантный классический памятник, выполненный в традиционных пропорциях. Идеально подходит для установки на любом кладбище.',
     features: [
-      { icon: 'Sparkles', text: 'Зеркальная полировка' },
-      { icon: 'Image', text: 'Фотогравировка HD' },
-      { icon: 'Truck', text: 'Доставка + установка' },
-      { icon: 'Shield', text: 'Пожизненная гарантия' }
+      'Полированная поверхность',
+      'Гравировка портрета включена',
+      'Установка в стоимости',
+      'Гарантия 10 лет'
     ],
     specifications: {
-      'Размеры': '100×50×8 см',
+      'Высота': '100 см',
+      'Ширина': '50 см',
+      'Толщина': '8 см',
       'Вес': '120 кг',
       'Материал': 'Гранит габбро-диабаз',
-      'Происхождение': 'Карелия, Россия',
-      'Обработка': 'Полировка + термо',
-      'Плотность': '3.2 г/см³'
+      'Страна происхождения': 'Карелия, Россия',
+      'Способ обработки': 'Полировка + термообработка'
     }
   };
 
   const materials = [
     { 
       id: 'granite-black', 
-      name: 'Габбро-диабаз', 
-      fullName: 'Гранит чёрный (габбро-диабаз)',
+      name: 'Гранит чёрный (габбро-диабаз)', 
       price: 0, 
-      pricePerM2: 14500,
-      color: '#1a1a1a',
-      pattern: 'linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)',
-      description: 'Премиальный чёрный гранит',
-      origin: 'Карелия'
+      color: '#2c2c2c',
+      description: 'Классический чёрный гранит высочайшего качества'
     },
     { 
       id: 'granite-red', 
-      name: 'Лезники', 
-      fullName: 'Гранит красный (Лезники)',
-      price: 4500,
-      pricePerM2: 18200, 
-      color: '#8B4513',
-      pattern: 'linear-gradient(45deg, #8B4513 0%, #A0522D 50%, #CD853F 100%)',
-      description: 'Благородный красный гранит',
-      origin: 'Украина'
+      name: 'Гранит красный (Лезники)', 
+      price: 3000, 
+      color: '#8b4513',
+      description: 'Благородный красный гранит с натуральным рисунком'
     },
     { 
       id: 'granite-gray', 
-      name: 'Возрождение', 
-      fullName: 'Гранит серый (Возрождение)',
-      price: 3200,
-      pricePerM2: 16800, 
-      color: '#696969',
-      pattern: 'linear-gradient(45deg, #696969 0%, #808080 50%, #A9A9A9 100%)',
-      description: 'Элегантный серый гранит',
-      origin: 'Украина'
+      name: 'Гранит серый (Возрождение)', 
+      price: 2000, 
+      color: '#708090',
+      description: 'Элегантный серый гранит с равномерной текстурой'
     },
     { 
       id: 'marble', 
-      name: 'Каррара', 
-      fullName: 'Мрамор белый (Каррара)',
-      price: 12000,
-      pricePerM2: 28500, 
-      color: '#F8F8FF',
-      pattern: 'linear-gradient(45deg, #F8F8FF 0%, #F5F5F5 50%, #E6E6FA 100%)',
-      description: 'Итальянский мрамор люкс',
-      origin: 'Италия'
+      name: 'Мрамор белый (Каррара)', 
+      price: 8000, 
+      color: '#f5f5f5',
+      description: 'Итальянский мрамор премиум-класса'
     }
   ];
 
   const monumentElements = {
     stela: {
       name: 'Стела',
-      icon: 'Square',
-      description: 'Основная часть с портретом',
+      description: 'Основная часть памятника с портретом и надписями',
       required: true,
       sizes: [
-        { id: 'compact', name: '70×35×4', price: 18500, dimensions: '70×35×4 см' },
-        { id: 'standard', name: '80×40×5', price: 22000, dimensions: '80×40×5 см' },
-        { id: 'premium', name: '90×45×6', price: 26500, dimensions: '90×45×6 см' },
-        { id: 'luxury', name: '100×50×8', price: 32000, dimensions: '100×50×8 см' }
+        { id: 'small', name: '70×35×4 см', price: 22000 },
+        { id: 'standard', name: '80×40×5 см', price: 25000 },
+        { id: 'large', name: '90×45×6 см', price: 28000 },
+        { id: 'xl', name: '100×50×8 см', price: 32000 }
       ]
     },
     tumba: {
       name: 'Тумба',
-      icon: 'Rectangle',
-      description: 'Подставка для устойчивости',
+      description: 'Подставка под стелу для большей устойчивости',
       required: false,
       sizes: [
-        { id: 'mini', name: '40×15×12', price: 4800, dimensions: '40×15×12 см' },
-        { id: 'standard', name: '50×20×15', price: 6200, dimensions: '50×20×15 см' },
-        { id: 'wide', name: '60×25×18', price: 8500, dimensions: '60×25×18 см' }
+        { id: 'compact', name: '40×15×12 см', price: 6000 },
+        { id: 'standard', name: '50×20×15 см', price: 8000 },
+        { id: 'wide', name: '60×25×18 см', price: 10000 }
       ]
     },
     cvetnik: {
       name: 'Цветник',
-      icon: 'Flower',
-      description: 'Ограждение с декором',
+      description: 'Ограждение для цветов и декоративных элементов',
       required: false,
       sizes: [
-        { id: 'compact', name: '80×40', price: 7200, dimensions: '80×40 см' },
-        { id: 'standard', name: '100×50', price: 9800, dimensions: '100×50 см' },
-        { id: 'extended', name: '120×60', price: 12800, dimensions: '120×60 см' },
-        { id: 'family', name: '150×70', price: 16500, dimensions: '150×70 см' }
+        { id: 'small', name: '80×6×8×40 см', price: 9000 },
+        { id: 'standard', name: '100×8×10×50 см', price: 12000 },
+        { id: 'large', name: '120×10×12×60 см', price: 15000 },
+        { id: 'family', name: '150×12×15×70 см', price: 20000 }
       ]
     }
   };
 
-  const services = [
-    { id: 'portrait-gravir', name: 'Портрет гравировка', price: 6500, category: 'Портрет', icon: 'User' },
-    { id: 'portrait-hand', name: 'Портрет ручная работа', price: 14500, category: 'Портрет', icon: 'Palette' },
-    { id: 'fio-gravir', name: 'ФИО гравировка', price: 1800, category: 'Текст', icon: 'Type' },
-    { id: 'fio-gold', name: 'ФИО золочение', price: 5200, category: 'Текст', icon: 'Crown' },
-    { id: 'gravir-cross', name: 'Крест', price: 2800, category: 'Символы', icon: 'Plus' },
-    { id: 'gravir-flowers', name: 'Цветы', price: 0, category: 'Декор', icon: 'Flower2' },
-    { id: 'epitaph', name: 'Эпитафия', price: 0, category: 'Текст', icon: 'Quote' },
-    { id: 'ornament', name: 'Орнамент', price: 3200, category: 'Декор', icon: 'Sparkles' },
-    { id: 'protection', name: 'Защитное покрытие', price: 3800, category: 'Обработка', icon: 'Shield' }
-  ];
-
-  const calculatePrice = () => {
-    const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
-    const materialMultiplier = selectedMaterialData?.pricePerM2 || 14500;
+  const getCurrentPrice = () => {
+    const materialPrice = materials.find(m => m.id === selectedMaterial)?.price || 0;
     
-    // Площадь стелы
-    const area = (customSize.width * customSize.height) / 10000;
-    const materialCost = Math.round(area * materialMultiplier);
-    
-    // Элементы
     let elementsPrice = 0;
     Object.entries(selectedElements).forEach(([elementId, config]) => {
       if (config.enabled) {
@@ -180,29 +186,31 @@ export default function ProductCard() {
       }
     });
     
-    // Услуги
-    const servicesPrice = services
+    const servicesPrice = [
+      { id: 'portrait-gravir', price: 8000 },
+      { id: 'portrait-hand', price: 15000 },
+      { id: 'fio-gravir', price: 2000 },
+      { id: 'fio-skarpel', price: 4000 },
+      { id: 'fio-gold', price: 6000 },
+      { id: 'gravir-cross', price: 3000 },
+      { id: 'gravir-cvety', price: 0 },
+      { id: 'gravir-epitafiya', price: 0 },
+      { id: 'gravir-vinetka', price: 2500 },
+      { id: 'gravir-svechi', price: 1500 },
+      { id: 'gravir-ikona', price: 5000 },
+      { id: 'gravir-kartinka', price: 3500 },
+      { id: 'retush-photo', price: 1000 },
+      { id: 'protection', price: 4000 },
+      { id: 'storage', price: 500 }
+    ]
       .filter(service => selectedServices.includes(service.id))
       .reduce((total, service) => total + service.price, 0);
     
-    return materialCost + elementsPrice + servicesPrice;
-  };
-
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      title: product.title,
-      price: calculatePrice(),
-      image: product.images[0],
-      category: 'vertical',
-      quantity: 1,
-      selectedMaterial: materials.find(m => m.id === selectedMaterial)?.name,
-      selectedSize: 'custom'
-    });
+    return elementsPrice + materialPrice + servicesPrice;
   };
 
   const toggleElement = (elementId: string) => {
-    if (elementId === 'stela') return;
+    if (elementId === 'stela') return; // Стела обязательна
     
     setSelectedElements(prev => ({
       ...prev,
@@ -223,632 +231,511 @@ export default function ProductCard() {
     }));
   };
 
-  const getCompletionPercentage = () => {
-    const totalSteps = 4; // Материал, размеры, элементы, услуги
-    let completedSteps = 0;
-    
-    if (selectedMaterial) completedSteps++;
-    if (customSize.width && customSize.height) completedSteps++;
-    if (Object.values(selectedElements).some(el => el.enabled)) completedSteps++;
-    if (selectedServices.length > 0) completedSteps++;
-    
-    return (completedSteps / totalSteps) * 100;
-  };
-
   const relatedProducts = [
-    { 
-      id: 2, 
-      title: 'Горизонтальный комплекс', 
-      price: 42000, 
-      originalPrice: 48000,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      rating: 4.7,
-      isNew: false
-    },
-    { 
-      id: 3, 
-      title: 'Семейный мемориал', 
-      price: 89000, 
-      originalPrice: 105000,
-      image: 'https://cdn.poehali.dev/files/f8c87ddf-cfee-41b9-a522-244254aebd83.png',
-      rating: 4.9,
-      isNew: true
-    },
-    { 
-      id: 4, 
-      title: 'Мемориальная плита', 
-      price: 28000, 
-      originalPrice: 32000,
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      rating: 4.6,
-      isNew: false
-    }
+    { id: 2, title: 'Горизонтальный элегант', price: '38 000 ₽', image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
+    { id: 3, title: 'Семейный комплекс', price: '85 000 ₽', image: 'https://cdn.poehali.dev/files/f8c87ddf-cfee-41b9-a522-244254aebd83.png' },
+    { id: 4, title: 'Мемориальная плита', price: '25 000 ₽', image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg' }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
-      <section className="bg-slate-50 border-b">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
-            <Icon name="Home" size={16} />
-            <span>/</span>
-            <span>Каталог</span>
-            <span>/</span>
-            <span>Вертикальные</span>
-            <span>/</span>
-            <span className="text-slate-900 font-medium">{product.title}</span>
-          </div>
-          
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                {product.isNew && <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200">Новинка</Badge>}
-                {product.isPopular && <Badge className="bg-orange-100 text-orange-800 border-orange-200">Хит продаж</Badge>}
-                {product.discount && <Badge className="bg-red-100 text-red-800 border-red-200">-{product.discount}%</Badge>}
-              </div>
-              <h1 className="text-4xl font-light text-slate-900 mb-2">{product.title}</h1>
-              <p className="text-lg text-slate-600 mb-2">{product.subtitle}</p>
-              <p className="text-sm text-slate-500 font-mono">Артикул: {product.code}</p>
-            </div>
-            
-            <div className="text-right">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex">
-                  {[1,2,3,4,5].map((star) => (
-                    <Icon 
-                      key={star}
-                      name="Star" 
-                      size={16} 
-                      className={star <= Math.floor(product.rating) ? "text-amber-400 fill-current" : "text-slate-300"}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-600">{product.rating}</span>
-              </div>
-              <p className="text-xs text-slate-500">{product.reviewsCount} отзывов</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Main Content */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-12 gap-12">
-            
-            {/* Images Column */}
-            <div className="lg:col-span-6">
-              <div className="sticky top-24">
-                <div className="relative mb-6">
-                  <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden border border-slate-200">
-                    <img 
-                      src={product.images[selectedImage]}
-                      alt={product.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  {/* Image overlay info */}
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
-                      <div className="text-xs text-slate-600 mb-1">Размер на фото</div>
-                      <div className="font-medium text-slate-900">100×50×8 см</div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute top-4 right-4">
-                    <Button variant="outline" size="icon" className="bg-white/90 backdrop-blur-sm border-white/50">
-                      <Icon name="ZoomIn" size={18} />
-                    </Button>
-                  </div>
-                </div>
-                
-                {/* Thumbnail Navigation */}
-                <div className="flex gap-3">
-                  {product.images.map((image, index) => (
-                    <button
-                      key={index}
-                      className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === index 
-                          ? 'border-slate-900 scale-105' 
-                          : 'border-slate-200 hover:border-slate-300'
-                      }`}
-                      onClick={() => setSelectedImage(index)}
-                    >
-                      <img 
-                        src={image} 
-                        alt={`${product.title} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-                
-                {/* Material Preview */}
-                <div className="mt-6 p-4 bg-slate-50 rounded-xl">
-                  <div className="text-sm font-medium text-slate-900 mb-3">Материал: {materials.find(m => m.id === selectedMaterial)?.name}</div>
-                  <div className="flex gap-2">
-                    {materials.map(material => (
-                      <button
-                        key={material.id}
-                        className={`w-12 h-12 rounded-lg border-2 transition-all ${
-                          selectedMaterial === material.id 
-                            ? 'border-slate-900 scale-110' 
-                            : 'border-slate-300 hover:border-slate-400'
-                        }`}
-                        style={{ background: material.pattern }}
-                        onClick={() => setSelectedMaterial(material.id)}
-                        title={material.fullName}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Configuration Column */}
-            <div className="lg:col-span-6">
-              <div className="space-y-8">
-                
-                {/* Progress Indicator */}
-                <div className="bg-slate-50 rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-slate-900">Прогресс конфигурации</span>
-                    <span className="text-sm text-slate-600">{Math.round(getCompletionPercentage())}%</span>
-                  </div>
-                  <Progress value={getCompletionPercentage()} className="h-2" />
-                </div>
-                
-                {/* Price Section */}
-                <div className="bg-slate-900 text-white rounded-2xl p-6">
-                  <div className="flex items-end justify-between mb-4">
-                    <div>
-                      <div className="text-3xl font-light mb-1">
-                        {calculatePrice().toLocaleString()} ₽
-                      </div>
-                      {product.originalPrice && (
-                        <div className="text-slate-400 line-through">
-                          {product.originalPrice.toLocaleString()} ₽
-                        </div>
-                      )}
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm text-slate-400">Экономия</div>
-                      <div className="text-lg text-emerald-400">
-                        {product.originalPrice ? (product.originalPrice - calculatePrice()).toLocaleString() : 0} ₽
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    Финальная стоимость • Без скрытых доплат
-                  </div>
-                </div>
-
-                {/* Size Calculator */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium text-slate-900">Размеры стелы</h3>
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <Label className="text-xs text-slate-600 mb-2 block">Ширина</Label>
-                      <div className="relative">
-                        <Input
-                          type="number"
-                          value={customSize.width}
-                          onChange={(e) => setCustomSize(prev => ({ ...prev, width: Number(e.target.value) }))}
-                          className="pr-8"
-                          min="30"
-                          max="150"
-                        />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
-                      </div>
-                      <Slider
-                        value={[customSize.width]}
-                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, width: value }))}
-                        max={150}
-                        min={30}
-                        step={5}
-                        className="mt-2"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label className="text-xs text-slate-600 mb-2 block">Высота</Label>
-                      <div className="relative">
-                        <Input
-                          type="number"
-                          value={customSize.height}
-                          onChange={(e) => setCustomSize(prev => ({ ...prev, height: Number(e.target.value) }))}
-                          className="pr-8"
-                          min="60"
-                          max="200"
-                        />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
-                      </div>
-                      <Slider
-                        value={[customSize.height]}
-                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, height: value }))}
-                        max={200}
-                        min={60}
-                        step={5}
-                        className="mt-2"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label className="text-xs text-slate-600 mb-2 block">Толщина</Label>
-                      <div className="relative">
-                        <Input
-                          type="number"
-                          value={customSize.thickness}
-                          onChange={(e) => setCustomSize(prev => ({ ...prev, thickness: Number(e.target.value) }))}
-                          className="pr-8"
-                          min="4"
-                          max="12"
-                        />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">см</span>
-                      </div>
-                      <Slider
-                        value={[customSize.thickness]}
-                        onValueChange={([value]) => setCustomSize(prev => ({ ...prev, thickness: value }))}
-                        max={12}
-                        min={4}
-                        step={1}
-                        className="mt-2"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="bg-slate-50 rounded-lg p-3 text-sm">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-slate-600">Площадь:</span>
-                      <span className="font-medium">{((customSize.width * customSize.height) / 10000).toFixed(2)} м²</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Стоимость материала:</span>
-                      <span className="font-medium text-slate-900">
-                        {Math.round(((customSize.width * customSize.height) / 10000) * (materials.find(m => m.id === selectedMaterial)?.pricePerM2 || 14500)).toLocaleString()} ₽
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Material Selection */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium text-slate-900">Материал</h3>
-                  
-                  <div className="grid gap-3">
-                    {materials.map(material => (
-                      <label
-                        key={material.id}
-                        className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
-                          selectedMaterial === material.id 
-                            ? 'border-slate-900 bg-slate-50' 
-                            : 'border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="material"
-                          value={material.id}
-                          checked={selectedMaterial === material.id}
-                          onChange={() => setSelectedMaterial(material.id)}
-                          className="sr-only"
-                        />
-                        
-                        <div 
-                          className="w-12 h-12 rounded-lg border border-slate-300"
-                          style={{ background: material.pattern }}
-                        />
-                        
-                        <div className="flex-1">
-                          <div className="font-medium text-slate-900">{material.name}</div>
-                          <div className="text-sm text-slate-600">{material.description}</div>
-                          <div className="text-xs text-slate-500">{material.origin}</div>
-                        </div>
-                        
-                        <div className="text-right">
-                          <div className="font-medium text-slate-900">
-                            {material.price > 0 ? `+${material.price.toLocaleString()} ₽` : 'База'}
-                          </div>
-                          <div className="text-xs text-slate-500">
-                            {material.pricePerM2.toLocaleString()} ₽/м²
-                          </div>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Enhanced 3D Monument Constructor */}
-                <Monument3DBuilder
-                  selectedElements={selectedElements}
-                  selectedMaterial={selectedMaterial}
-                  selectedServices={selectedServices}
-                  customSize={customSize}
-                  materials={materials}
-                  monumentElements={monumentElements}
-                  toggleElement={toggleElement}
-                  updateElementSize={updateElementSize}
+      <section className="pt-4 pb-16 px-4">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Product Images */}
+            <div className="space-y-4">
+              <div className="aspect-square bg-muted rounded-2xl overflow-hidden">
+                <img 
+                  src={product.images[selectedImage]}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
                 />
-
-                {/* Services */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium text-slate-900">Услуги по оформлению</h3>
-                  
-                  <div className="grid gap-2">
-                    {services.map((service) => {
-                      const isSelected = selectedServices.includes(service.id);
-                      
-                      return (
-                        <label
-                          key={service.id}
-                          className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
-                            isSelected ? 'border-slate-900 bg-slate-50' : 'border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          <input
-                            type="checkbox"
-                            checked={isSelected}
-                            onChange={() => {
-                              setSelectedServices(prev => 
-                                prev.includes(service.id) 
-                                  ? prev.filter(id => id !== service.id)
-                                  : [...prev, service.id]
-                              );
-                            }}
-                            className="sr-only"
-                          />
-                          
+              </div>
+              <div>
+                <h3 className="font-medium text-sm mb-3 text-muted-foreground">Дополнительное оформление</h3>
+                <div className="grid grid-cols-1 gap-2 max-h-[300px] overflow-y-auto pr-2">
+                  {[
+                    { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
+                    { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
+                    { id: 'fio-gravir', name: 'ФИО гравировка', price: 2000, category: 'Текст' },
+                    { id: 'fio-skarpel', name: 'ФИО скарпель', price: 4000, category: 'Текст' },
+                    { id: 'fio-gold', name: 'ФИО сусальное золото', price: 6000, category: 'Текст' },
+                    { id: 'gravir-cross', name: 'Гравировка креста', price: 3000, category: 'Символы' },
+                    { id: 'gravir-cvety', name: 'Гравировка цветы', price: 0, category: 'Декор' },
+                    { id: 'gravir-epitafiya', name: 'Гравировка эпитафия', price: 0, category: 'Текст' },
+                    { id: 'gravir-vinetka', name: 'Гравировка виньетки', price: 2500, category: 'Декор' },
+                    { id: 'gravir-svechi', name: 'Гравировка свечи', price: 1500, category: 'Декор' },
+                    { id: 'gravir-ikona', name: 'Гравировка иконы', price: 5000, category: 'Символы' },
+                    { id: 'gravir-kartinka', name: 'Гравировка картинки', price: 3500, category: 'Декор' },
+                    { id: 'retush-photo', name: 'Ретушь фотографии', price: 1000, category: 'Обработка' },
+                    { id: 'protection', name: 'Защитное покрытие', price: 4000, category: 'Обработка' },
+                    { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
+                  ].map((service) => {
+                    const isSelected = selectedServices.includes(service.id);
+                    const isFree = service.price === 0;
+                    
+                    return (
+                      <div 
+                        key={service.id}
+                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/50 ${
+                          isSelected ? 'border-primary bg-primary/5' : 'border-muted'
+                        }`}
+                        onClick={() => {
+                          setSelectedServices(prev => 
+                            prev.includes(service.id) 
+                              ? prev.filter(id => id !== service.id)
+                              : [...prev, service.id]
+                          );
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
                           <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                            isSelected ? 'border-slate-900 bg-slate-900' : 'border-slate-300'
+                            isSelected
+                              ? 'border-primary bg-primary'
+                              : 'border-muted-foreground'
                           }`}>
-                            {isSelected && <Icon name="Check" size={10} className="text-white" />}
-                          </div>
-                          
-                          <Icon name={service.icon as any} size={16} className={isSelected ? 'text-slate-700' : 'text-slate-400'} />
-                          
-                          <div className="flex-1">
-                            <div className="font-medium text-slate-900">{service.name}</div>
-                            <div className="text-xs text-slate-500">{service.category}</div>
-                          </div>
-                          
-                          <div className="font-medium">
-                            {service.price === 0 ? (
-                              <span className="text-emerald-600">Бесплатно</span>
-                            ) : (
-                              <span className="text-slate-900">{service.price.toLocaleString()} ₽</span>
+                            {isSelected && (
+                              <Icon name="Check" size={10} className="text-primary-foreground" />
                             )}
                           </div>
-                        </label>
+                          <div>
+                            <div className="text-sm font-medium">{service.name}</div>
+                            <div className="text-xs text-muted-foreground">{service.category}</div>
+                          </div>
+                        </div>
+                        <div className="text-sm font-semibold">
+                          {isFree ? (
+                            <span className="text-green-500">Бесплатно</span>
+                          ) : (
+                            <span className="text-primary">{service.price.toLocaleString()} ₽</span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-3 p-2 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Итого за оформление:</span>
+                    <span className="font-semibold text-primary">
+                      {[
+                        { id: 'portrait-gravir', price: 8000 },
+                        { id: 'portrait-hand', price: 15000 },
+                        { id: 'fio-gravir', price: 2000 },
+                        { id: 'fio-skarpel', price: 4000 },
+                        { id: 'fio-gold', price: 6000 },
+                        { id: 'gravir-cross', price: 3000 },
+                        { id: 'gravir-cvety', price: 0 },
+                        { id: 'gravir-epitafiya', price: 0 },
+                        { id: 'gravir-vinetka', price: 2500 },
+                        { id: 'gravir-svechi', price: 1500 },
+                        { id: 'gravir-ikona', price: 5000 },
+                        { id: 'gravir-kartinka', price: 3500 },
+                        { id: 'retush-photo', price: 1000 },
+                        { id: 'protection', price: 4000 },
+                        { id: 'storage', price: 500 }
+                      ]
+                        .filter(service => selectedServices.includes(service.id))
+                        .reduce((total, service) => total + service.price, 0)
+                        .toLocaleString()} ₽
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  {product.isNew && <Badge className="bg-green-500">Новинка</Badge>}
+                  {product.isPopular && <Badge className="bg-orange-500">Популярный</Badge>}
+                </div>
+                <h1 className="font-heading text-3xl lg:text-4xl font-bold mb-2">{product.title}</h1>
+                <p className="text-xl text-muted-foreground mb-4">{product.subtitle}</p>
+                
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-1">
+                    {[1,2,3,4,5].map((star) => (
+                      <Icon 
+                        key={star}
+                        name="Star" 
+                        size={20} 
+                        className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-muted-foreground"}
+                      />
+                    ))}
+                    <span className="text-sm text-muted-foreground ml-2">
+                      {product.rating} ({product.reviewsCount} отзывов)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Price */}
+              <div className="bg-muted/50 p-6 rounded-xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-3xl font-bold text-primary">
+                    {getCurrentPrice().toLocaleString()} ₽
+                  </span>
+                  {product.originalPrice && (
+                    <span className="text-xl line-through text-muted-foreground">
+                      {product.originalPrice.toLocaleString()} ₽
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Цена включает изготовление, гравировку портрета и установку
+                </p>
+              </div>
+
+              {/* Material Selection */}
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-muted-foreground mb-3 block">Материал</label>
+                  <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
+                    <SelectTrigger className="h-auto p-4">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {materials.map(material => (
+                        <SelectItem key={material.id} value={material.id} className="p-3">
+                          <div className="flex items-center gap-3">
+                            <div 
+                              className="w-6 h-6 rounded-full border-2 border-muted" 
+                              style={{ backgroundColor: material.color }}
+                            />
+                            <div>
+                              <div className="font-medium">{material.name}</div>
+                              <div className="text-sm text-muted-foreground">{material.description}</div>
+                              {material.price > 0 && (
+                                <div className="text-sm font-medium text-primary">+{material.price.toLocaleString()} ₽</div>
+                              )}
+                            </div>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium text-muted-foreground mb-3 block">Комплектация памятника</label>
+                  <div className="space-y-3">
+                    {Object.entries(monumentElements).map(([elementId, element]) => {
+                      const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
+                      const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
+                      const currentSizeData = element.sizes.find(s => s.id === currentSize);
+                      
+                      return (
+                        <div 
+                          key={elementId} 
+                          className={`border rounded-lg p-3 transition-colors ${
+                            isEnabled 
+                              ? 'border-primary bg-primary/5' 
+                              : 'border-muted'
+                          }`}
+                        >
+                          <div className="flex items-center gap-3 mb-2">
+                            <div 
+                              className={`w-4 h-4 rounded border-2 flex items-center justify-center cursor-pointer ${
+                                isEnabled
+                                  ? 'border-primary bg-primary'
+                                  : 'border-muted-foreground'
+                              } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}
+                              onClick={() => !element.required && toggleElement(elementId)}
+                            >
+                              {isEnabled && (
+                                <Icon name="Check" size={10} className="text-primary-foreground" />
+                              )}
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium text-sm flex items-center gap-2">
+                                {element.name}
+                                {element.required && (
+                                  <Badge variant="secondary" className="text-xs px-1 py-0">Обязательно</Badge>
+                                )}
+                              </div>
+                            </div>
+                            {isEnabled && currentSizeData && (
+                              <div className="text-sm font-semibold text-primary">
+                                {currentSizeData.price.toLocaleString()} ₽
+                              </div>
+                            )}
+                          </div>
+                          
+                          {isEnabled && (
+                            <div className="ml-7">
+                              <Select 
+                                value={currentSize} 
+                                onValueChange={(value) => updateElementSize(elementId, value)}
+                              >
+                                <SelectTrigger className="h-9 text-sm">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {element.sizes.map(size => (
+                                    <SelectItem key={size.id} value={size.id} className="text-sm">
+                                      <div className="flex justify-between items-center w-full min-w-[200px]">
+                                        <span>{size.name}</span>
+                                        <span className="text-primary font-medium ml-3">
+                                          {size.price.toLocaleString()} ₽
+                                        </span>
+                                      </div>
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          )}
+                        </div>
                       );
                     })}
                   </div>
+                  <Separator className="my-4" />
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-muted-foreground">Итого за комплектацию:</span>
+                    <span className="font-bold text-lg text-primary">
+                      {Object.entries(selectedElements)
+                        .filter(([, config]) => config.enabled)
+                        .reduce((total, [elementId, config]) => {
+                          const element = monumentElements[elementId as keyof typeof monumentElements];
+                          const size = element.sizes.find(s => s.id === config.size);
+                          return total + (size?.price || 0);
+                        }, 0)
+                        .toLocaleString()} ₽
+                    </span>
+                  </div>
                 </div>
+              </div>
 
-                {/* Actions */}
-                <div className="space-y-4 pt-6 border-t">
+              {/* Actions */}
+              <div className="space-y-4">
+                <div className="flex gap-4">
                   <Button 
                     onClick={handleAddToCart}
-                    className="w-full h-14 bg-slate-900 hover:bg-slate-800 text-white text-lg font-medium"
+                    size="lg" 
+                    className="flex-1 bg-primary hover:bg-primary/90 text-lg"
                   >
-                    <Icon name="ShoppingCart" className="mr-3" size={20} />
-                    Добавить в корзину • {calculatePrice().toLocaleString()} ₽
+                    <Icon name="ShoppingCart" className="mr-2" size={20} />
+                    В корзину
                   </Button>
-                  
-                  <div className="grid grid-cols-3 gap-3">
-                    <Button variant="outline" className="border-slate-300">
-                      <Icon name="Heart" className="mr-2" size={16} />
-                      В избранное
-                    </Button>
-                    <Button variant="outline" className="border-slate-300">
-                      <Icon name="Phone" className="mr-2" size={16} />
-                      Звонок
-                    </Button>
-                    <Button variant="outline" className="border-slate-300">
-                      <Icon name="Share" className="mr-2" size={16} />
-                      Поделиться
-                    </Button>
-                  </div>
+                  <Button size="lg" variant="outline">
+                    <Icon name="Heart" size={20} />
+                  </Button>
                 </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <Button variant="outline" className="w-full">
+                    <Icon name="Calculator" className="mr-2" size={18} />
+                    Калькулятор стоимости
+                  </Button>
+                  <Button variant="outline" className="w-full">
+                    <Icon name="Download" className="mr-2" size={18} />
+                    3D-модель
+                  </Button>
+                </div>
+              </div>
 
-                {/* Features */}
-                <div className="bg-slate-50 rounded-xl p-6">
-                  <h4 className="font-medium text-slate-900 mb-4">Включено в стоимость</h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    {product.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <Icon name={feature.icon as any} size={16} className="text-slate-600" />
-                        <span className="text-sm text-slate-700">{feature.text}</span>
-                      </div>
-                    ))}
-                  </div>
+              {/* Features */}
+              <div className="bg-card border rounded-xl p-6">
+                <h3 className="font-heading text-lg font-semibold mb-4">Что входит в стоимость</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {product.features.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Detailed Tabs */}
+          {/* Product Details */}
           <div className="mt-16">
-            <Tabs defaultValue="specifications" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 bg-slate-100 h-12">
-                <TabsTrigger value="specifications" className="font-medium">Характеристики</TabsTrigger>
-                <TabsTrigger value="description" className="font-medium">Описание</TabsTrigger>
-                <TabsTrigger value="reviews" className="font-medium">Отзывы ({product.reviewsCount})</TabsTrigger>
-                <TabsTrigger value="delivery" className="font-medium">Доставка</TabsTrigger>
+            <Tabs defaultValue="description" className="w-full">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="description">Описание</TabsTrigger>
+                <TabsTrigger value="specifications">Характеристики</TabsTrigger>
+                <TabsTrigger value="reviews">Отзывы</TabsTrigger>
+                <TabsTrigger value="delivery">Доставка</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="specifications" className="mt-8">
-                <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                  {Object.entries(product.specifications).map(([key, value], index, array) => (
-                    <div 
-                      key={key} 
-                      className={`flex justify-between items-center px-6 py-4 ${
-                        index !== array.length - 1 ? 'border-b border-slate-100' : ''
-                      }`}
-                    >
-                      <span className="font-medium text-slate-900">{key}</span>
-                      <span className="text-slate-600">{value}</span>
-                    </div>
-                  ))}
-                </div>
+              <TabsContent value="description" className="mt-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-heading">Описание товара</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {product.description}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Памятник изготавливается из высококачественного карельского гранита, который отличается 
+                      исключительной прочностью и долговечностью. Поверхность обрабатывается до зеркального блеска, 
+                      что обеспечивает превосходный внешний вид на долгие годы.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      В стоимость включена художественная гравировка портрета, выполненная нашими мастерами 
+                      с многолетним опытом. Мы используем современное оборудование для создания 
+                      фотореалистичных изображений высочайшего качества.
+                    </p>
+                  </CardContent>
+                </Card>
               </TabsContent>
 
-              <TabsContent value="description" className="mt-8">
-                <div className="prose max-w-none">
-                  <p className="text-lg text-slate-700 leading-relaxed mb-6">{product.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {product.tags.map(tag => (
-                      <Badge key={tag} variant="outline" className="border-slate-300 text-slate-700">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  
-                  <p className="text-slate-600 leading-relaxed mb-4">
-                    Памятник изготавливается из высококачественного карельского гранита, который отличается 
-                    исключительной прочностью и долговечностью. Поверхность обрабатывается до зеркального 
-                    блеска современными технологиями полировки.
-                  </p>
-                  
-                  <p className="text-slate-600 leading-relaxed">
-                    В стоимость включена художественная гравировка портрета высокого разрешения, выполненная 
-                    на профессиональном оборудовании. Каждый памятник проходит тщательный контроль качества 
-                    перед отгрузкой.
-                  </p>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="reviews" className="mt-8">
-                <div className="grid lg:grid-cols-4 gap-8">
-                  <div className="bg-slate-50 rounded-xl p-6 text-center">
-                    <div className="text-4xl font-light text-slate-900 mb-2">{product.rating}</div>
-                    <div className="flex justify-center gap-1 mb-2">
-                      {[1,2,3,4,5].map((star) => (
-                        <Icon 
-                          key={star}
-                          name="Star" 
-                          size={18} 
-                          className={star <= Math.floor(product.rating) ? "text-amber-400 fill-current" : "text-slate-300"}
-                        />
+              <TabsContent value="specifications" className="mt-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-heading">Технические характеристики</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-4">
+                      {Object.entries(product.specifications).map(([key, value]) => (
+                        <div key={key} className="flex justify-between items-center py-2 border-b border-muted">
+                          <span className="font-medium">{key}</span>
+                          <span className="text-muted-foreground">{value}</span>
+                        </div>
                       ))}
                     </div>
-                    <p className="text-sm text-slate-600">{product.reviewsCount} отзывов</p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="reviews" className="mt-6">
+                <div className="grid lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-1">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="font-heading">Общая оценка</CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <div className="text-4xl font-bold text-primary mb-2">{product.rating}</div>
+                        <div className="flex justify-center gap-1 mb-2">
+                          {[1,2,3,4,5].map((star) => (
+                            <Icon 
+                              key={star}
+                              name="Star" 
+                              size={20} 
+                              className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-muted-foreground"}
+                            />
+                          ))}
+                        </div>
+                        <p className="text-sm text-muted-foreground">{product.reviewsCount} отзывов</p>
+                      </CardContent>
+                    </Card>
                   </div>
                   
-                  <div className="lg:col-span-3 space-y-6">
+                  <div className="lg:col-span-2 space-y-6">
                     {[1,2,3].map((review) => (
-                      <div key={review} className="border border-slate-200 rounded-xl p-6">
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-                              <Icon name="User" size={18} />
-                            </div>
-                            <div>
-                              <p className="font-medium text-slate-900">Мария Петрова</p>
-                              <div className="flex gap-1">
-                                {[1,2,3,4,5].map((star) => (
-                                  <Icon key={star} name="Star" size={14} className="text-amber-400 fill-current" />
-                                ))}
+                      <Card key={review}>
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
+                                <Icon name="User" size={20} />
+                              </div>
+                              <div>
+                                <p className="font-medium">Анна М.</p>
+                                <div className="flex gap-1">
+                                  {[1,2,3,4,5].map((star) => (
+                                    <Icon key={star} name="Star" size={14} className="text-yellow-400 fill-current" />
+                                  ))}
+                                </div>
                               </div>
                             </div>
+                            <span className="text-sm text-muted-foreground">2 недели назад</span>
                           </div>
-                          <span className="text-sm text-slate-500">15 дней назад</span>
-                        </div>
-                        <p className="text-slate-700 leading-relaxed">
-                          Отличное качество исполнения. Памятник установили точно в срок, мастера работали 
-                          очень аккуратно. Портрет получился очень похожим, семья довольна результатом.
-                        </p>
-                      </div>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground">
+                            Очень довольны качеством памятника. Мастера выполнили работу на высоком уровне, 
+                            портрет получился очень похожим. Установили быстро и аккуратно.
+                          </p>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
                 </div>
               </TabsContent>
 
-              <TabsContent value="delivery" className="mt-8">
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon name="Clock" size={24} className="text-slate-600" />
-                    </div>
-                    <h4 className="font-medium text-slate-900 mb-2">Изготовление</h4>
-                    <p className="text-slate-600 text-sm">15-20 рабочих дней</p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon name="Truck" size={24} className="text-slate-600" />
-                    </div>
-                    <h4 className="font-medium text-slate-900 mb-2">Доставка</h4>
-                    <p className="text-slate-600 text-sm">По Москве и МО</p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon name="Shield" size={24} className="text-slate-600" />
-                    </div>
-                    <h4 className="font-medium text-slate-900 mb-2">Гарантия</h4>
-                    <p className="text-slate-600 text-sm">Пожизненная</p>
-                  </div>
-                </div>
+              <TabsContent value="delivery" className="mt-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-heading">Доставка и установка</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="production">
+                        <AccordionTrigger>Сроки изготовления</AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-muted-foreground">
+                            Стандартный срок изготовления памятника составляет 14-21 рабочий день с момента 
+                            подтверждения заказа и получения предоплаты. В сезон высокой загруженности 
+                            (весна-лето) сроки могут увеличиваться до 30 дней.
+                          </p>
+                        </AccordionContent>
+                      </AccordionItem>
+                      
+                      <AccordionItem value="delivery">
+                        <AccordionTrigger>Доставка</AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-muted-foreground mb-3">
+                            Доставка осуществляется нашим транспортом по Москве и Московской области. 
+                            Стоимость доставки зависит от удаленности кладбища:
+                          </p>
+                          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                            <li>В пределах МКАД - бесплатно</li>
+                            <li>До 30 км от МКАД - 3 000 ₽</li>
+                            <li>До 50 км от МКАД - 5 000 ₽</li>
+                            <li>Свыше 50 км - по договоренности</li>
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                      
+                      <AccordionItem value="installation">
+                        <AccordionTrigger>Установка</AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-muted-foreground">
+                            Установка памятника включена в стоимость и выполняется нашими специалистами. 
+                            Мы подготавливаем фундамент, устанавливаем памятник и проводим финальную обработку. 
+                            На все работы предоставляется гарантия 10 лет.
+                          </p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </CardContent>
+                </Card>
               </TabsContent>
             </Tabs>
           </div>
 
           {/* Related Products */}
           <div className="mt-16">
-            <h3 className="text-2xl font-light text-slate-900 mb-8 text-center">Рекомендуем также</h3>
+            <h3 className="font-heading text-3xl font-bold mb-8 text-center">Похожие товары</h3>
             <div className="grid md:grid-cols-3 gap-8">
               {relatedProducts.map(product => (
-                <div key={product.id} className="group">
-                  <div className="relative aspect-[4/3] bg-slate-100 rounded-xl overflow-hidden mb-4">
+                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="aspect-[4/3] overflow-hidden">
                     <img 
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
-                    {product.isNew && (
-                      <Badge className="absolute top-3 left-3 bg-emerald-100 text-emerald-800 border-emerald-200">
-                        Новинка
-                      </Badge>
-                    )}
                   </div>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-slate-900 group-hover:text-slate-700 transition-colors">
-                      {product.title}
-                    </h4>
-                    
-                    <div className="flex items-center gap-2">
-                      <div className="flex">
-                        {[1,2,3,4,5].map((star) => (
-                          <Icon 
-                            key={star}
-                            name="Star" 
-                            size={14} 
-                            className={star <= Math.floor(product.rating) ? "text-amber-400 fill-current" : "text-slate-300"}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-sm text-slate-600">{product.rating}</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg font-medium text-slate-900">{product.price.toLocaleString()} ₽</span>
-                      {product.originalPrice && (
-                        <span className="text-sm text-slate-500 line-through">{product.originalPrice.toLocaleString()} ₽</span>
-                      )}
-                    </div>
-                    
-                    <Button variant="outline" className="w-full mt-3 border-slate-300 hover:border-slate-900 hover:bg-slate-900 hover:text-white">
-                      Подробнее
-                    </Button>
-                  </div>
-                </div>
+                  <CardHeader>
+                    <CardTitle className="font-heading text-lg">{product.title}</CardTitle>
+                    <CardDescription className="text-lg font-semibold text-primary">
+                      {product.price}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className="w-full">Подробнее</Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
