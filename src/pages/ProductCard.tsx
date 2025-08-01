@@ -535,16 +535,7 @@ export default function ProductCard() {
                   </Button>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-3">
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Calculator" className="mr-1" size={16} />
-                    Калькулятор
-                  </Button>
-                  <Button variant="outline" className="w-full text-xs">
-                    <Icon name="Download" className="mr-1" size={16} />
-                    3D-модель
-                  </Button>
-                </div>
+
               </div>
 
               {/* Features */}
