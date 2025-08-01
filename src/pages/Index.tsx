@@ -141,18 +141,18 @@ export default function Index() {
                         Заказать 3D макет бесплатно
                       </Button>
 
-                        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 border border-green-200">
-                          <div className="text-center">
-                            <div className="flex items-center justify-center gap-2 mb-2">
-                              <Icon name="Gift" size={16} className="text-green-600" />
-                              <span className="font-semibold text-green-800">Макет бесплатно</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground">
-                              При заказе памятника • Готовность: 2-3 дня
-                            </p>
+                      <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-3 border border-green-200">
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-2 mb-1">
+                            <Icon name="Gift" size={14} className="text-green-600" />
+                            <span className="font-semibold text-green-800 text-sm">Макет бесплатно</span>
                           </div>
+                          <p className="text-xs text-muted-foreground">
+                            При заказе памятника • Готовность: 2-3 дня
+                          </p>
                         </div>
-                      </form>
+                      </div>
+                    </form>
                     </div>
                   </div>
                 </div>
