@@ -120,22 +120,22 @@ export default function Header() {
           <div className="flex items-center justify-between h-14">
             {/* Left side - Communication */}
             <div className="flex items-center space-x-3">
-              {/* WhatsApp */}
+              {/* WhatsApp - скрыт на мобильных */}
               <a 
                 href="https://wa.me/74952013227" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
                 title="WhatsApp"
               >
                 <Icon name="MessageCircle" size={16} />
                 <span className="hidden sm:inline text-sm">WhatsApp</span>
               </a>
 
-              {/* Email */}
+              {/* Email - скрыт на мобильных */}
               <a 
                 href="mailto:info@postament.ru" 
-                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
                 title="Почта"
               >
                 <Icon name="Mail" size={16} />
@@ -159,8 +159,8 @@ export default function Header() {
                   </Link>
                 </Button>
 
-                {/* Comparison */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                {/* Comparison - скрыт на мобильных */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50 hidden sm:inline-flex" asChild>
                   <Link to="/comparison">
                     <Icon name="BarChart3" size={18} />
                     {state.comparison.length > 0 && (
@@ -174,8 +174,8 @@ export default function Header() {
                   </Link>
                 </Button>
 
-                {/* Favorites */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                {/* Favorites - скрыт на мобильных */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50 hidden sm:inline-flex" asChild>
                   <Link to="/favorites">
                     <Icon name="Heart" size={18} />
                     {state.favorites.length > 0 && (
@@ -193,9 +193,9 @@ export default function Header() {
 
             {/* Right side - Phone and call request */}
             <div className="flex items-center space-x-3">
-              {/* Call request button */}
+              {/* Call request button - скрыт на мобильных */}
               <button 
-                className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
                 title="Заказать звонок"
               >
                 <Icon name="PhoneCall" size={16} />
