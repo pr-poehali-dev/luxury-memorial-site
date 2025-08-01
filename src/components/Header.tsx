@@ -206,10 +206,9 @@ export default function Header() {
               {/* Phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="flex items-center space-x-2 text-gray-800 hover:text-gray-900 font-medium"
+                className="text-gray-800 hover:text-gray-900 font-medium"
               >
-                <Icon name="Phone" size={16} />
-                <span>+7 (495) 201-32-27</span>
+                +7 (495) 201-32-27
               </a>
             </div>
           </div>
