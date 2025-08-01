@@ -117,9 +117,9 @@ export default function Header() {
       {/* Top Contact Bar */}
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-12 md:h-14">
             {/* Left side - Communication */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 md:space-x-3">
               {/* WhatsApp */}
               <a 
                 href="https://wa.me/74952013227" 
@@ -128,30 +128,30 @@ export default function Header() {
                 className="flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
                 title="WhatsApp"
               >
-                <Icon name="MessageCircle" size={16} />
-                <span className="hidden sm:inline text-sm">WhatsApp</span>
+                <Icon name="MessageCircle" size={14} className="md:size-16" />
+                <span className="hidden sm:inline text-xs md:text-sm">WhatsApp</span>
               </a>
 
               {/* Email */}
               <a 
                 href="mailto:info@postament.ru" 
-                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
                 title="Почта"
               >
-                <Icon name="Mail" size={16} />
-                <span className="hidden md:inline text-sm">Почта</span>
+                <Icon name="Mail" size={14} className="md:size-16" />
+                <span className="hidden md:inline text-xs md:text-sm">Почта</span>
               </a>
 
               {/* User actions */}
-              <div className="flex items-center space-x-2 ml-4">
+              <div className="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-4">
                 {/* Cart */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                <Button variant="ghost" size="icon" className="relative h-8 w-8 md:h-9 md:w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                   <Link to="/cart">
-                    <Icon name="ShoppingCart" size={18} />
+                    <Icon name="ShoppingCart" size={16} className="md:size-18" />
                     {getCartCount() > 0 && (
                       <Badge 
                         variant="default" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white"
+                        className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white"
                       >
                         {getCartCount()}
                       </Badge>
@@ -160,13 +160,13 @@ export default function Header() {
                 </Button>
 
                 {/* Comparison */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                <Button variant="ghost" size="icon" className="relative h-8 w-8 md:h-9 md:w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                   <Link to="/comparison">
-                    <Icon name="BarChart3" size={18} />
+                    <Icon name="BarChart3" size={16} className="md:size-18" />
                     {state.comparison.length > 0 && (
                       <Badge 
                         variant="default" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-500 text-white"
+                        className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-500 text-white"
                       >
                         {state.comparison.length}
                       </Badge>
@@ -175,13 +175,13 @@ export default function Header() {
                 </Button>
 
                 {/* Favorites */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                <Button variant="ghost" size="icon" className="relative h-8 w-8 md:h-9 md:w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                   <Link to="/favorites">
-                    <Icon name="Heart" size={18} />
+                    <Icon name="Heart" size={16} className="md:size-18" />
                     {state.favorites.length > 0 && (
                       <Badge 
                         variant="default" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-pink-500 text-white"
+                        className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 rounded-full p-0 flex items-center justify-center text-xs bg-pink-500 text-white"
                       >
                         {state.favorites.length}
                       </Badge>
@@ -192,23 +192,23 @@ export default function Header() {
             </div>
 
             {/* Right side - Phone and call request */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 md:space-x-3">
               {/* Call request button */}
               <button 
-                className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
                 title="Заказать звонок"
               >
-                <Icon name="PhoneCall" size={16} />
-                <span className="hidden lg:inline text-sm">Заказать звонок</span>
+                <Icon name="PhoneCall" size={14} className="md:size-16" />
+                <span className="hidden lg:inline text-xs md:text-sm">Заказать звонок</span>
               </button>
 
               {/* Phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="flex items-center space-x-2 text-gray-800 hover:text-gray-900 font-medium"
+                className="flex items-center space-x-1 md:space-x-2 text-gray-800 hover:text-gray-900 font-medium"
               >
-                <Icon name="Phone" size={16} />
-                <span>+7 (495) 201-32-27</span>
+                <Icon name="Phone" size={14} className="md:size-16" />
+                <span className="text-sm md:text-base">+7 (495) 201-32-27</span>
               </a>
             </div>
           </div>
@@ -217,13 +217,13 @@ export default function Header() {
       
       {/* Main Header */}
       <div className="border-b">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container flex h-14 md:h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
-            <Icon name="Mountain" size={20} className="text-primary-foreground" />
+          <div className="h-7 w-7 md:h-8 md:w-8 rounded bg-primary flex items-center justify-center">
+            <Icon name="Mountain" size={16} className="md:size-20 text-primary-foreground" />
           </div>
-          <span className="font-bold text-xl">Вечная Память</span>
+          <span className="font-bold text-lg md:text-xl">Вечная Память</span>
         </Link>
 
         {/* Desktop Navigation */}

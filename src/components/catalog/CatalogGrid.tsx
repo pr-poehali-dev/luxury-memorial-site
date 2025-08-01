@@ -22,18 +22,18 @@ export default function CatalogGrid({
   isInComparison
 }: CatalogGridProps) {
   return (
-    <section className="pb-16 px-4">
+    <section className="pb-8 md:pb-16 px-4">
       <div className="container mx-auto">
         <div>
           {/* Results header */}
-          <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-            <div className="flex items-center space-x-4">
-              <h2 className="font-heading text-2xl font-semibold">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-3 md:gap-4">
+            <div className="flex items-center">
+              <h2 className="font-heading text-lg md:text-xl lg:text-2xl font-semibold">
                 Найдено: {monuments.length} памятников
               </h2>
             </div>
             <Select defaultValue="popular">
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-full sm:w-44 md:w-48 h-9 md:h-10 text-sm">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -46,7 +46,7 @@ export default function CatalogGrid({
           </div>
 
           {/* Products grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {monuments.map(monument => (
               <MonumentCard
                 key={monument.id}

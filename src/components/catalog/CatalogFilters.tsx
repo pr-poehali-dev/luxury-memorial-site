@@ -23,12 +23,12 @@ export default function CatalogFilters({
   onReset
 }: CatalogFiltersProps) {
   return (
-    <section className="pb-6 px-4">
+    <section className="pb-4 md:pb-6 px-4">
       <div className="container mx-auto">
-        <div className="bg-muted/30 rounded-lg p-4">
-          <div className="flex flex-wrap gap-3 items-end">
+        <div className="bg-muted/30 rounded-lg p-3 md:p-4">
+          <div className="flex flex-wrap gap-2 md:gap-3 items-end">
             {/* Categories dropdown */}
-            <div className="flex-1 min-w-[160px]">
+            <div className="flex-1 min-w-[120px] md:min-w-[160px]">
               <label className="text-xs font-medium text-muted-foreground mb-1 block">Категория</label>
               <Select value={selectedCategory} onValueChange={onCategoryChange}>
                 <SelectTrigger className="h-9">
@@ -45,7 +45,7 @@ export default function CatalogFilters({
             </div>
 
             {/* Material dropdown */}
-            <div className="flex-1 min-w-[160px]">
+            <div className="flex-1 min-w-[120px] md:min-w-[160px]">
               <label className="text-xs font-medium text-muted-foreground mb-1 block">Материал</label>
               <Select value={selectedMaterial} onValueChange={onMaterialChange}>
                 <SelectTrigger className="h-9">
@@ -62,7 +62,7 @@ export default function CatalogFilters({
             </div>
 
             {/* Price dropdown */}
-            <div className="flex-1 min-w-[160px]">
+            <div className="flex-1 min-w-[120px] md:min-w-[160px]">
               <label className="text-xs font-medium text-muted-foreground mb-1 block">Цена</label>
               <Select value={selectedPrice} onValueChange={onPriceChange}>
                 <SelectTrigger className="h-9">
@@ -84,10 +84,11 @@ export default function CatalogFilters({
                 variant="outline" 
                 size="sm"
                 onClick={onReset}
-                className="h-9"
+className="h-8 md:h-9 text-sm"
               >
-                <Icon name="RotateCcw" size={14} className="mr-1" />
-                Сбросить
+                <Icon name="RotateCcw" size={12} className="md:size-14 mr-1" />
+                <span className="hidden sm:inline">Сбросить</span>
+                <span className="sm:hidden">Сброс</span>
               </Button>
             </div>
           </div>

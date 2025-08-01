@@ -21,50 +21,50 @@ export default function MonumentCard({
   isInComparison
 }: MonumentCardProps) {
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-shadow group">
+    <Card className="overflow-hidden hover:shadow-lg md:hover:shadow-xl transition-shadow group">
       <div className="relative aspect-square overflow-hidden">
         <img 
           src={monument.image}
           alt={monument.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute top-3 left-3 flex gap-2">
+        <div className="absolute top-2 md:top-3 left-2 md:left-3 flex gap-1 md:gap-2">
           {monument.isNew && (
-            <Badge className="bg-green-500 hover:bg-green-600">Новинка</Badge>
+            <Badge className="bg-green-500 hover:bg-green-600 text-xs px-2 py-1">Новинка</Badge>
           )}
           {monument.isPopular && (
-            <Badge className="bg-orange-500 hover:bg-orange-600">Популярный</Badge>
+            <Badge className="bg-orange-500 hover:bg-orange-600 text-xs px-2 py-1">Популярный</Badge>
           )}
         </div>
         {monument.originalPrice && (
-          <div className="absolute top-3 right-3">
-            <Badge variant="destructive">Скидка</Badge>
+          <div className="absolute top-2 md:top-3 right-2 md:right-3">
+            <Badge variant="destructive" className="text-xs px-2 py-1">Скидка</Badge>
           </div>
         )}
       </div>
       
-      <CardHeader className="pb-2">
-        <CardTitle className="font-heading text-lg line-clamp-1">
+      <CardHeader className="pb-2 p-3 md:p-4">
+        <CardTitle className="font-heading text-base md:text-lg line-clamp-2">
           {monument.title}
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-2 md:space-y-3 p-3 md:p-4 pt-0">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary">{monument.price}</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <span className="text-lg md:text-xl font-bold text-primary">{monument.price}</span>
             {monument.originalPrice && (
-              <span className="text-sm line-through text-muted-foreground">
+              <span className="text-xs md:text-sm line-through text-muted-foreground">
                 {monument.originalPrice}
               </span>
             )}
           </div>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex gap-1 md:gap-2">
           <Button 
             size="sm"
-            className="flex-1 bg-primary hover:bg-primary/90"
+            className="flex-1 bg-primary hover:bg-primary/90 h-8 md:h-9 text-xs md:text-sm px-2 md:px-3"
             asChild
           >
             <Link to={`/product/${monument.id}`}>
@@ -75,21 +75,21 @@ export default function MonumentCard({
             variant="outline" 
             size="icon"
             onClick={() => onAddToFavorites(monument)}
-            className={isInFavorites(monument.id) ? "text-red-500" : ""}
+            className={`h-8 w-8 md:h-9 md:w-9 ${isInFavorites(monument.id) ? "text-red-500" : ""}`}
           >
             <Icon 
               name="Heart" 
-              size={18} 
-              className={isInFavorites(monument.id) ? "fill-current" : ""} 
+              size={16} 
+              className={`md:size-18 ${isInFavorites(monument.id) ? "fill-current" : ""}`} 
             />
           </Button>
           <Button 
             variant="outline" 
             size="icon"
             onClick={() => onAddToComparison(monument)}
-            className={isInComparison(monument.id) ? "text-blue-500" : ""}
+            className={`h-8 w-8 md:h-9 md:w-9 ${isInComparison(monument.id) ? "text-blue-500" : ""}`}
           >
-            <Icon name="BarChart3" size={18} />
+            <Icon name="BarChart3" size={16} className="md:size-18" />
           </Button>
         </div>
       </CardContent>
