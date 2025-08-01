@@ -21,6 +21,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
+import VerticalMonuments from "./pages/VerticalMonuments";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +50,7 @@ const App = () => (
             <Route path="/personal-data" element={<PersonalData />} />
             <Route path="/offer-agreement" element={<OfferAgreement />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/vertical-monuments" element={<VerticalMonuments />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

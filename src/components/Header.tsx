@@ -28,6 +28,7 @@ const menuItems = [
     title: 'Памятники',
     href: '/catalog?category=monuments',
     items: [
+      { title: 'Вертикальные памятники', href: '/vertical-monuments' },
       { title: 'Гранитные памятники', href: '/catalog?category=monuments&type=granite' },
       { title: 'Мраморные памятники', href: '/catalog?category=monuments&type=marble' },
       { title: 'Детские памятники', href: '/catalog?category=monuments&type=children' },
