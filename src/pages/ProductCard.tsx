@@ -266,6 +266,9 @@ export default function ProductCard() {
                   className="w-full h-full object-cover"
                 />
               </div>
+              
+
+              
               <div>
                 <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
                 <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
