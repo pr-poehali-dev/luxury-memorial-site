@@ -134,7 +134,6 @@ export default function Index() {
                       </div>
                     </div>
                   </form>
-                  </div>
                 </div>
               </div>
             </div>
