@@ -115,27 +115,21 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Top Contact Bar */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 -left-4 w-72 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-3xl"></div>
-          <div className="absolute top-0 right-0 w-48 h-16 bg-gradient-to-l from-blue-400 to-cyan-500 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      <div className="bg-white border-b border-gray-200 relative">
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14">
             {/* Left side - Services info */}
             <div className="flex items-center space-x-6">
-              <div className="hidden lg:flex items-center space-x-1 text-sm text-gray-300">
-                <Icon name="Clock" size={14} className="text-green-400" />
+              <div className="hidden lg:flex items-center space-x-1 text-sm text-gray-600">
+                <Icon name="Clock" size={14} className="text-green-600" />
                 <span>Пн-Пт: 9:00-18:00</span>
               </div>
-              <div className="hidden md:flex items-center space-x-1 text-sm text-gray-300">
-                <Icon name="MapPin" size={14} className="text-blue-400" />
+              <div className="hidden md:flex items-center space-x-1 text-sm text-gray-600">
+                <Icon name="MapPin" size={14} className="text-green-600" />
                 <span>Москва и МО</span>
               </div>
-              <div className="flex items-center space-x-1 text-sm text-gray-300">
-                <Icon name="Truck" size={14} className="text-purple-400" />
+              <div className="flex items-center space-x-1 text-sm text-gray-600">
+                <Icon name="Truck" size={14} className="text-green-600" />
                 <span className="hidden sm:inline">Бесплатная доставка</span>
                 <span className="sm:hidden">Доставка</span>
               </div>
@@ -148,7 +142,7 @@ export default function Header() {
                 href="https://wa.me/74952013227" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105"
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105 shadow-sm"
                 title="WhatsApp"
               >
                 <Icon name="MessageCircle" size={14} />
@@ -158,16 +152,16 @@ export default function Header() {
               {/* Email */}
               <a 
                 href="mailto:info@postament.ru" 
-                className="hidden md:flex items-center space-x-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-400/30 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105"
+                className="hidden md:flex items-center space-x-2 bg-green-50 hover:bg-green-100 border border-green-200 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105"
               >
-                <Icon name="Mail" size={14} className="text-blue-300" />
-                <span className="text-xs font-medium text-blue-200">info@postament.ru</span>
+                <Icon name="Mail" size={14} className="text-green-600" />
+                <span className="text-xs font-medium text-green-700">info@postament.ru</span>
               </a>
 
               {/* Quick call button */}
-              <button className="hidden sm:flex items-center space-x-2 bg-orange-600/20 hover:bg-orange-600/30 border border-orange-400/30 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105">
-                <Icon name="PhoneCall" size={14} className="text-orange-300" />
-                <span className="text-xs font-medium text-orange-200">Заказать звонок</span>
+              <button className="hidden sm:flex items-center space-x-2 bg-green-50 hover:bg-green-100 border border-green-200 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105">
+                <Icon name="PhoneCall" size={14} className="text-green-600" />
+                <span className="text-xs font-medium text-green-700">Заказать звонок</span>
               </button>
             </div>
 
@@ -176,11 +170,11 @@ export default function Header() {
               {/* Main phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-md"
               >
-                <Icon name="Phone" size={16} className="text-white animate-pulse" />
+                <Icon name="Phone" size={16} className="text-white" />
                 <div className="flex flex-col">
-                  <span className="font-bold text-sm text-white">+7 (495) 201-32-27</span>
+                  <span className="font-bold text-sm">+7 (495) 201-32-27</span>
                   <span className="text-xs text-green-100 -mt-0.5">Звонок бесплатный</span>
                 </div>
               </a>
@@ -188,13 +182,13 @@ export default function Header() {
               {/* User actions */}
               <div className="flex items-center space-x-2">
                 {/* Cart */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-white/10" asChild>
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-gray-100" asChild>
                   <Link to="/cart">
-                    <Icon name="ShoppingCart" size={16} className="text-gray-300" />
+                    <Icon name="ShoppingCart" size={16} className="text-gray-600" />
                     {getCartCount() > 0 && (
                       <Badge 
                         variant="default" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white border-2 border-slate-800"
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white border-2 border-white"
                       >
                         {getCartCount()}
                       </Badge>
@@ -203,13 +197,13 @@ export default function Header() {
                 </Button>
 
                 {/* Favorites - desktop only */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-white/10 hidden sm:flex" asChild>
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-gray-100 hidden sm:flex" asChild>
                   <Link to="/favorites">
-                    <Icon name="Heart" size={16} className="text-gray-300" />
+                    <Icon name="Heart" size={16} className="text-gray-600" />
                     {state.favorites.length > 0 && (
                       <Badge 
                         variant="destructive" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs border-2 border-slate-800"
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white border-2 border-white"
                       >
                         {state.favorites.length}
                       </Badge>
@@ -218,8 +212,8 @@ export default function Header() {
                 </Button>
 
                 {/* Search */}
-                <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-white/10 hidden sm:flex">
-                  <Icon name="Search" size={16} className="text-gray-300" />
+                <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-gray-100 hidden sm:flex">
+                  <Icon name="Search" size={16} className="text-gray-600" />
                 </Button>
               </div>
             </div>
