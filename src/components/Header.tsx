@@ -118,17 +118,8 @@ export default function Header() {
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14">
-            {/* Left side - Contact actions */}
+            {/* Left side - Communication */}
             <div className="flex items-center space-x-3">
-              {/* Phone number */}
-              <a 
-                href="tel:+74952013227" 
-                className="flex items-center space-x-2 text-gray-800 hover:text-gray-900 font-medium"
-              >
-                <Icon name="Phone" size={16} />
-                <span>+7 (495) 201-32-27</span>
-              </a>
-
               {/* WhatsApp */}
               <a 
                 href="https://wa.me/74952013227" 
@@ -151,6 +142,57 @@ export default function Header() {
                 <span className="hidden md:inline text-sm">Почта</span>
               </a>
 
+              {/* User actions */}
+              <div className="flex items-center space-x-2 ml-4">
+                {/* Cart */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                  <Link to="/cart">
+                    <Icon name="ShoppingCart" size={18} />
+                    {getCartCount() > 0 && (
+                      <Badge 
+                        variant="default" 
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white"
+                      >
+                        {getCartCount()}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
+                {/* Comparison */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                  <Link to="/comparison">
+                    <Icon name="BarChart3" size={18} />
+                    {state.comparison.length > 0 && (
+                      <Badge 
+                        variant="default" 
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-500 text-white"
+                      >
+                        {state.comparison.length}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
+                {/* Favorites */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
+                  <Link to="/favorites">
+                    <Icon name="Heart" size={18} />
+                    {state.favorites.length > 0 && (
+                      <Badge 
+                        variant="default" 
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-pink-500 text-white"
+                      >
+                        {state.favorites.length}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right side - Phone and call request */}
+            <div className="flex items-center space-x-3">
               {/* Call request button */}
               <button 
                 className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
@@ -159,54 +201,15 @@ export default function Header() {
                 <Icon name="PhoneCall" size={16} />
                 <span className="hidden lg:inline text-sm">Заказать звонок</span>
               </button>
-            </div>
 
-            {/* Right side - User actions */}
-            <div className="flex items-center space-x-2">
-              {/* Cart */}
-              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
-                <Link to="/cart">
-                  <Icon name="ShoppingCart" size={18} />
-                  {getCartCount() > 0 && (
-                    <Badge 
-                      variant="default" 
-                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white"
-                    >
-                      {getCartCount()}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
-
-              {/* Comparison */}
-              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
-                <Link to="/comparison">
-                  <Icon name="BarChart3" size={18} />
-                  {state.comparison.length > 0 && (
-                    <Badge 
-                      variant="default" 
-                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-500 text-white"
-                    >
-                      {state.comparison.length}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
-
-              {/* Favorites */}
-              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
-                <Link to="/favorites">
-                  <Icon name="Heart" size={18} />
-                  {state.favorites.length > 0 && (
-                    <Badge 
-                      variant="default" 
-                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-pink-500 text-white"
-                    >
-                      {state.favorites.length}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
+              {/* Phone number */}
+              <a 
+                href="tel:+74952013227" 
+                className="flex items-center space-x-2 text-gray-800 hover:text-gray-900 font-medium"
+              >
+                <Icon name="Phone" size={16} />
+                <span>+7 (495) 201-32-27</span>
+              </a>
             </div>
           </div>
         </div>
