@@ -427,7 +427,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1,2,3,4,5,6].map((item) => (
-              <div key={item} className="aspect-[4/3] bg-muted rounded-xl overflow-hidden group cursor-pointer">
+              <div key={item} className="aspect-square bg-muted rounded-xl overflow-hidden group cursor-pointer">
                 <img 
                   src={monuments[item % 3]?.image}
                   alt={`Галерея ${item}`}
