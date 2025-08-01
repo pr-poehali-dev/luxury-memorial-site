@@ -433,9 +433,17 @@ export default function ProductCard() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Цена включает изготовление, гравировку портрета и установку
-                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">
+                    Цена включает изготовление, гравировку портрета и установку
+                  </p>
+                  <Link 
+                    to="/installation" 
+                    className="text-xs text-primary hover:underline font-medium"
+                  >
+                    Подробнее об установке
+                  </Link>
+                </div>
               </div>
 
               {/* Material Selection */}

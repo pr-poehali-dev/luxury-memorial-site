@@ -20,6 +20,7 @@ import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
+import Installation from "./pages/Installation";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/personal-data" element={<PersonalData />} />
             <Route path="/offer-agreement" element={<OfferAgreement />} />
+            <Route path="/installation" element={<Installation />} />
             <Route path="/sitemap" element={<Sitemap />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
