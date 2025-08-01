@@ -115,36 +115,90 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Top Contact Bar */}
-      <div className="bg-white border-b">
+      <div className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-12">
-            {/* Left side - Essential info */}
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <span className="hidden sm:inline">Пн-Пт: 9:00-18:00</span>
-              <span className="hidden md:inline">Москва и МО</span>
-            </div>
-
-            {/* Right side - Phone and actions */}
-            <div className="flex items-center space-x-3">
+          <div className="flex items-center justify-between h-14">
+            {/* Left side - Contact info */}
+            <div className="flex items-center space-x-4">
               {/* Phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors"
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
               >
                 <Icon name="Phone" size={16} />
                 <span className="font-medium">+7 (495) 201-32-27</span>
               </a>
 
+              {/* WhatsApp */}
+              <a 
+                href="https://wa.me/74952013227" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors"
+                title="WhatsApp"
+              >
+                <Icon name="MessageCircle" size={16} />
+                <span className="hidden sm:inline">WhatsApp</span>
+              </a>
+
+              {/* Email */}
+              <a 
+                href="mailto:info@postament.ru" 
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors"
+              >
+                <Icon name="Mail" size={16} />
+                <span className="hidden md:inline">Почта</span>
+              </a>
+
+              {/* Call request button */}
+              <button className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors">
+                <Icon name="PhoneCall" size={16} />
+                <span className="hidden lg:inline">Заказать звонок</span>
+              </button>
+            </div>
+
+            {/* Right side - User actions */}
+            <div className="flex items-center space-x-3">
               {/* Cart */}
-              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+              <Button variant="ghost" size="icon" className="relative h-10 w-10 hover:bg-green-50" asChild>
                 <Link to="/cart">
-                  <Icon name="ShoppingCart" size={16} className="text-gray-600" />
+                  <Icon name="ShoppingCart" size={18} className="text-green-600" />
                   {getCartCount() > 0 && (
                     <Badge 
                       variant="default" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs bg-green-500"
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white"
                     >
                       {getCartCount()}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+
+              {/* Comparison */}
+              <Button variant="ghost" size="icon" className="relative h-10 w-10 hover:bg-green-50" asChild>
+                <Link to="/comparison">
+                  <Icon name="BarChart3" size={18} className="text-green-600" />
+                  {state.comparison.length > 0 && (
+                    <Badge 
+                      variant="default" 
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white"
+                    >
+                      {state.comparison.length}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
+
+              {/* Favorites */}
+              <Button variant="ghost" size="icon" className="relative h-10 w-10 hover:bg-green-50" asChild>
+                <Link to="/favorites">
+                  <Icon name="Heart" size={18} className="text-green-600" />
+                  {state.favorites.length > 0 && (
+                    <Badge 
+                      variant="default" 
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white"
+                    >
+                      {state.favorites.length}
                     </Badge>
                   )}
                 </Link>
