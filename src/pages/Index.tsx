@@ -593,12 +593,12 @@ export default function Index() {
 
           {/* CTA */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-              <div>
-                <h4 className="font-heading text-xl font-semibold mb-2">Оставьте свой отзыв</h4>
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg max-w-md sm:max-w-none mx-auto">
+              <div className="text-center sm:text-left">
+                <h4 className="font-heading text-lg sm:text-xl font-semibold mb-2">Оставьте свой отзыв</h4>
                 <p className="text-muted-foreground text-sm">Поделитесь опытом сотрудничества с нами</p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap">
+              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap shrink-0">
                 <Icon name="MessageSquare" size={16} className="mr-2" />
                 Написать отзыв
               </Button>
