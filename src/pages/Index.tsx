@@ -72,33 +72,7 @@ export default function Index() {
                   </div>
                 </div>
 
-                {/* Mobile Benefits - Compact Grid */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                  <div className="flex flex-col items-center text-center p-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center mb-1">
-                      <Icon name="Eye" size={14} className="sm:size-16 text-green-600" />
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium">Точная визуализация</div>
-                  </div>
-                  <div className="flex flex-col items-center text-center p-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-1">
-                      <Icon name="RotateCcw" size={14} className="sm:size-16 text-blue-600" />
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium">Правки</div>
-                  </div>
-                  <div className="flex flex-col items-center text-center p-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-1">
-                      <Icon name="Clock" size={14} className="sm:size-16 text-purple-600" />
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium">За 2-3 дня</div>
-                  </div>
-                  <div className="flex flex-col items-center text-center p-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-1">
-                      <Icon name="Gift" size={14} className="sm:size-16 text-orange-600" />
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium">Бесплатно</div>
-                  </div>
-                </div>
+
 
                 {/* Compact Form */}
                 <div className="bg-muted/30 rounded-lg p-3 sm:p-4">
