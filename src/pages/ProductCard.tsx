@@ -265,131 +265,8 @@ export default function ProductCard() {
                   alt={product.title}
                   className="w-full h-full object-cover"
                 />
-              </div>
-              <div>
-                <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
-                <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
-                  {[
-                    { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
-                    { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
-                    { id: 'fio-gravir', name: 'ФИО гравировка', price: 2000, category: 'Текст' },
-                    { id: 'fio-skarpel', name: 'ФИО скарпель', price: 4000, category: 'Текст' },
-                    { id: 'fio-gold', name: 'ФИО сусальное золото', price: 6000, category: 'Текст' },
-                    { id: 'gravir-cross', name: 'Гравировка креста', price: 3000, category: 'Символы' },
-                    { id: 'gravir-cvety', name: 'Гравировка цветы', price: 0, category: 'Декор' },
-                    { id: 'gravir-epitafiya', name: 'Гравировка эпитафия', price: 0, category: 'Текст' },
-                    { id: 'gravir-vinetka', name: 'Гравировка виньетки', price: 2500, category: 'Декор' },
-                    { id: 'gravir-svechi', name: 'Гравировка свечи', price: 1500, category: 'Декор' },
-                    { id: 'gravir-ikona', name: 'Гравировка иконы', price: 5000, category: 'Символы' },
-                    { id: 'gravir-kartinka', name: 'Гравировка картинки', price: 3500, category: 'Декор' },
-                    { id: 'retush-photo', name: 'Ретушь фотографии', price: 1000, category: 'Обработка' },
-                    { id: 'protection', name: 'Защитное покрытие', price: 4000, category: 'Обработка' },
-                    { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
-                  ].map((service) => {
-                    const isSelected = selectedServices.includes(service.id);
-                    const isFree = service.price === 0;
-                    
-                    return (
-                      <div 
-                        key={service.id}
-                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 ${
-                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
-                        }`}
-                        onClick={() => {
-                          setSelectedServices(prev => 
-                            prev.includes(service.id) 
-                              ? prev.filter(id => id !== service.id)
-                              : [...prev, service.id]
-                          );
-                        }}
-                      >
-                        <div className="flex items-center gap-2 flex-1">
-                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
-                            isSelected
-                              ? 'border-primary bg-primary'
-                              : 'border-muted-foreground'
-                          }`}>
-                            {isSelected && (
-                              <Icon name="Check" size={8} className="text-primary-foreground" />
-                            )}
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-xs font-medium">{service.name}</div>
-                            <div className="text-[10px] text-muted-foreground">{service.category}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {isSelected && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && (
-                            <Select 
-                              value={serviceQuantities[service.id]?.toString() || '1'} 
-                              onValueChange={(value) => {
-                                setServiceQuantities(prev => ({
-                                  ...prev,
-                                  [service.id]: parseInt(value)
-                                }));
-                              }}
-                            >
-                              <SelectTrigger className="w-12 h-6 text-xs p-1">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {[1, 2, 3, 4].map(num => (
-                                  <SelectItem key={num} value={num.toString()} className="text-xs">
-                                    {num}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          )}
-                          <div className="text-xs font-semibold">
-                            {isFree ? (
-                              <span className="text-green-500">Бесплатно</span>
-                            ) : (
-                              <span className="text-primary">
-                                {(['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && isSelected
-                                  ? (service.price * (serviceQuantities[service.id] || 1))
-                                  : service.price
-                                ).toLocaleString()} ₽
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">Итого за оформление:</span>
-                    <span className="font-semibold text-primary">
-                      {[
-                        { id: 'portrait-gravir', price: 8000 },
-                        { id: 'portrait-hand', price: 15000 },
-                        { id: 'fio-gravir', price: 2000 },
-                        { id: 'fio-skarpel', price: 4000 },
-                        { id: 'fio-gold', price: 6000 },
-                        { id: 'gravir-cross', price: 3000 },
-                        { id: 'gravir-cvety', price: 0 },
-                        { id: 'gravir-epitafiya', price: 0 },
-                        { id: 'gravir-vinetka', price: 2500 },
-                        { id: 'gravir-svechi', price: 1500 },
-                        { id: 'gravir-ikona', price: 5000 },
-                        { id: 'gravir-kartinka', price: 3500 },
-                        { id: 'retush-photo', price: 1000 },
-                        { id: 'protection', price: 4000 },
-                        { id: 'storage', price: 500 }
-                      ]
-                        .filter(service => selectedServices.includes(service.id))
-                        .reduce((total, service) => {
-                          const quantity = serviceQuantities[service.id] || 1;
-                          return total + (service.price * quantity);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
+          </div>
 
             {/* Product Info */}
             <div className="space-y-4">
@@ -466,94 +343,117 @@ export default function ProductCard() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Комплектация памятника</label>
-                  <div className="space-y-2">
-                    {Object.entries(monumentElements).map(([elementId, element]) => {
-                      const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
-                      const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
-                      const currentSizeData = element.sizes.find(s => s.id === currentSize);
-                      
+                  <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
+                  <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
+                    {[
+                      { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
+                      { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
+                      { id: 'fio-gravir', name: 'ФИО гравировка', price: 2000, category: 'Текст' },
+                      { id: 'fio-skarpel', name: 'ФИО скарпель', price: 4000, category: 'Текст' },
+                      { id: 'fio-gold', name: 'ФИО сусальное золото', price: 6000, category: 'Текст' },
+                      { id: 'gravir-cross', name: 'Гравировка креста', price: 3000, category: 'Символы' },
+                      { id: 'gravir-cvety', name: 'Гравировка цветы', price: 0, category: 'Декор' },
+                      { id: 'gravir-epitafiya', name: 'Гравировка эпитафия', price: 0, category: 'Текст' },
+                      { id: 'gravir-vinetka', name: 'Гравировка виньетки', price: 2500, category: 'Декор' },
+                      { id: 'gravir-svechi', name: 'Гравировка свечи', price: 1500, category: 'Декор' },
+                      { id: 'gravir-ikona', name: 'Гравировка иконы', price: 5000, category: 'Символы' },
+                      { id: 'gravir-kartinka', name: 'Гравировка картинки', price: 3500, category: 'Декор' },
+                      { id: 'retush-photo', name: 'Ретушь фотографии', price: 1000, category: 'Обработка' },
+                      { id: 'protection', name: 'Защитное покрытие', price: 4000, category: 'Обработка' },
+                      { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
+                    ].map((service) => {
+                      const isSelected = selectedServices.includes(service.id);
+                      const isFree = service.price === 0; 
                       return (
-                        <div 
-                          key={elementId} 
-                          className={`border rounded-lg p-4 transition-colors cursor-pointer hover:shadow-md ${
-                            isEnabled 
-                              ? 'border-primary bg-primary/5' 
+                        <div
+                          key={service.id}
+                          className={`group flex items-center justify-between p-2 border rounded-lg transition-all cursor-pointer hover:shadow-sm ${
+                            isSelected 
+                              ? 'bg-primary/5 border-primary' 
                               : 'border-border hover:border-primary/30'
                           }`}
-                          onClick={() => !element.required && toggleElement(elementId)}
+                          onClick={() => toggleService(service.id)}
                         >
-                          <div className="flex items-center gap-3 mb-2">
-                            <div 
-                              className={`w-4 h-4 rounded border flex items-center justify-center ${
-                                isEnabled
-                                  ? 'border-primary bg-primary'
-                                  : 'border-muted-foreground'
-                              } ${element.required ? 'opacity-50' : ''}`}
-                            >
-                              {isEnabled && (
-                                <Icon name="Check" size={10} className="text-primary-foreground" />
-                              )}
+                          <div className="flex items-center gap-3">
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                              isSelected ? 'bg-primary border-primary' : 'border-muted-foreground group-hover:border-primary'
+                            }`}>
+                              {isSelected && <Icon name="Check" size={12} className="text-white" />}
                             </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-sm flex items-center gap-2">
-                                {element.name}
-                                {element.required && (
-                                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5">Обязательно</Badge>
-                                )}
-                              </div>
-                              <div className="text-xs text-muted-foreground mt-0.5">
-                                {element.description}
-                              </div>
+                            <div>
+                              <span className="text-xs font-medium">{service.name}</span>
                             </div>
-                            {isEnabled && currentSizeData && (
-                              <div className="text-sm font-bold text-primary">
-                                {currentSizeData.price.toLocaleString()} ₽
-                              </div>
-                            )}
                           </div>
-                          
-                          {isEnabled && (
-                            <div className="ml-7 mt-2">
+                          <div className="flex items-center gap-2">
+                            {isSelected && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && (
                               <Select 
-                                value={currentSize} 
-                                onValueChange={(value) => updateElementSize(elementId, value)}
+                                value={serviceQuantities[service.id]?.toString() || '1'} 
+                                onValueChange={(value) => {
+                                  setServiceQuantities(prev => ({
+                                    ...prev,
+                                    [service.id]: parseInt(value)
+                                  }));
+                                }}
                               >
-                                <SelectTrigger className="h-9 text-sm">
+                                <SelectTrigger className="w-12 h-6 text-xs p-1">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {element.sizes.map(size => (
-                                    <SelectItem key={size.id} value={size.id} className="text-sm">
-                                      <div className="flex justify-between items-center w-full min-w-[200px]">
-                                        <span className="font-medium">{size.name}</span>
-                                        <span className="text-primary font-semibold ml-3">
-                                          {size.price.toLocaleString()} ₽
-                                        </span>
-                                      </div>
+                                  {[1, 2, 3, 4].map(num => (
+                                    <SelectItem key={num} value={num.toString()} className="text-xs">
+                                      {num}
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
                               </Select>
+                            )}
+                            <div className="text-xs font-semibold">
+                              {isFree ? (
+                                <span className="text-green-500">Бесплатно</span>
+                              ) : (
+                                <span className="text-primary">
+                                  {(['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && isSelected
+                                    ? (service.price * (serviceQuantities[service.id] || 1))
+                                    : service.price
+                                  ).toLocaleString()} ₽
+                                </span>
+                              )}
                             </div>
-                          )}
+                          </div>
                         </div>
                       );
                     })}
                   </div>
-                  <Separator className="my-4" />
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
-                    <span className="font-bold text-sm text-primary">
-                      {Object.entries(selectedElements)
-                        .filter(([, config]) => config.enabled)
-                        .reduce((total, [elementId, config]) => {
-                          const element = monumentElements[elementId as keyof typeof monumentElements];
-                          const size = element.sizes.find(s => s.id === config.size);
-                          return total + (size?.price || 0);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
+                  <div className="mt-2 p-2 bg-muted/20 rounded-lg">
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-muted-foreground">Итого за оформление:</span>
+                      <span className="font-semibold text-primary">
+                        {selectedServices.reduce((total, serviceId) => {
+                          const service = [
+                            { id: 'portrait-gravir', price: 8000 },
+                            { id: 'portrait-hand', price: 15000 },
+                            { id: 'fio-gravir', price: 2000 },
+                            { id: 'fio-skarpel', price: 4000 },
+                            { id: 'fio-gold', price: 6000 },
+                            { id: 'gravir-cross', price: 3000 },
+                            { id: 'gravir-cvety', price: 0 },
+                            { id: 'gravir-epitafiya', price: 0 },
+                            { id: 'gravir-vinetka', price: 2500 },
+                            { id: 'gravir-svechi', price: 1500 },
+                            { id: 'gravir-ikona', price: 5000 },
+                            { id: 'gravir-kartinka', price: 3500 },
+                            { id: 'retush-photo', price: 1000 },
+                            { id: 'protection', price: 4000 },
+                            { id: 'storage', price: 500 }
+                          ].find(s => s.id === serviceId);
+                          
+                          if (service && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(serviceId)) {
+                            return total + (service.price * (serviceQuantities[serviceId] || 1));
+                          }
+                          return total + (service?.price || 0);
+                        }, 0).toLocaleString()} ₽
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -592,6 +492,101 @@ export default function ProductCard() {
                       <span className="text-xs">{feature}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+              
+              {/* Monument Configuration - moved from right */}
+              <div>
+                <label className="text-xs font-medium text-muted-foreground mb-2 block">Комплектация памятника</label>
+                <div className="space-y-2">
+                  {Object.entries(monumentElements).map(([elementId, element]) => {
+                    const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
+                    const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
+                    const currentSizeData = element.sizes.find(s => s.id === currentSize);
+                    
+                    return (
+                      <div 
+                        key={elementId} 
+                        className={`border rounded-lg p-4 transition-colors cursor-pointer hover:shadow-md ${
+                          isEnabled 
+                            ? 'border-primary bg-primary/5' 
+                            : 'border-border hover:border-primary/30'
+                        }`}
+                        onClick={() => !element.required && toggleElement(elementId)}
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="flex items-center gap-2">
+                            <Icon name={element.icon as any} size={16} className="text-muted-foreground" />
+                            <span className="font-medium">{element.name}</span>
+                          </div>
+                          {element.required ? (
+                            <Badge variant="outline" className="text-xs">Обязательно</Badge>
+                          ) : (
+                            <label className="flex items-center">
+                              <input
+                                type="checkbox"
+                                checked={isEnabled}
+                                onChange={() => toggleElement(elementId)}
+                                className="sr-only"
+                              />
+                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                                isEnabled ? 'bg-primary border-primary' : 'border-muted-foreground'
+                              }`}>
+                                {isEnabled && <Icon name="Check" size={12} className="text-white" />}
+                              </div>
+                            </label>
+                          )}
+                          {isEnabled && currentSizeData && (
+                            <span className="font-semibold">
+                              {currentSizeData.price.toLocaleString()} ₽
+                            </span>
+                          )}
+                        </div>
+                        
+                        <p className="text-sm text-muted-foreground mb-3">{element.description}</p>
+                        
+                        {isEnabled && element.sizes.length > 1 && (
+                          <div className="space-y-2">
+                            <label className="text-xs font-medium text-muted-foreground">Размер:</label>
+                            <div className="grid grid-cols-1 gap-2">
+                              {element.sizes.map(size => (
+                                <label key={size.id} className="flex items-center justify-between p-2 border rounded cursor-pointer hover:bg-muted/30">
+                                  <div className="flex items-center gap-2">
+                                    <input
+                                      type="radio"
+                                      name={`${elementId}-size`}
+                                      value={size.id}
+                                      checked={currentSize === size.id}
+                                      onChange={() => updateElementSize(elementId, size.id)}
+                                      className="text-primary"
+                                    />
+                                    <div>
+                                      <div className="text-sm font-medium">{size.dimensions}</div>
+                                    </div>
+                                  </div>
+                                  <span className="text-sm font-semibold">{size.price.toLocaleString()} ₽</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <Separator className="my-4" />
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
+                  <span className="font-bold text-sm text-primary">
+                    {Object.entries(selectedElements)
+                      .filter(([, config]) => config.enabled)
+                      .reduce((total, [elementId, config]) => {
+                        const element = monumentElements[elementId as keyof typeof monumentElements];
+                        const size = element.sizes.find(s => s.id === config.size);
+                        return total + (size?.price || 0);
+                      }, 0)
+                      .toLocaleString()} ₽
+                  </span>
                 </div>
               </div>
             </div>

@@ -5,7 +5,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import MonumentQuiz from '@/components/MonumentQuiz';
 
 export default function Index() {
 
@@ -160,24 +159,172 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Monument Quiz Constructor */}
+      {/* Main Services CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h3 className="font-heading text-4xl font-bold mb-4">Конструктор памятников</h3>
+            <h3 className="font-heading text-4xl font-bold mb-4">Заказать услуги</h3>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Ответьте на несколько вопросов и получите точный расчёт стоимости вашего памятника
+              Выберите подходящую услугу и получите индивидуальное предложение с расчётом стоимости
             </p>
           </div>
 
-          <MonumentQuiz />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Заказать изготовление памятника */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-slate-900 to-slate-700 text-white overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <CardHeader className="relative z-10 pb-4">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-colors">
+                  <Icon name="Hammer" size={32} className="text-white" />
+                </div>
+                <CardTitle className="font-heading text-xl text-center mb-2">
+                  Заказать изготовление памятника
+                </CardTitle>
+                <CardDescription className="text-gray-300 text-center text-sm">
+                  Индивидуальное изготовление из премиальных материалов
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative z-10 pt-2">
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-green-400" />
+                    <span>Гранит, мрамор, бронза</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-green-400" />
+                    <span>Гравировка портрета</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-green-400" />
+                    <span>Гарантия 10 лет</span>
+                  </div>
+                </div>
+                <Button className="w-full bg-white text-slate-900 hover:bg-gray-100 font-medium">
+                  <Icon name="Calculator" size={16} className="mr-2" />
+                  Рассчитать стоимость
+                </Button>
+                <p className="text-center text-xs text-gray-400 mt-2">от 45 000 ₽</p>
+              </CardContent>
+            </Card>
+
+            {/* Мемориальные комплексы */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <CardHeader className="relative z-10 pb-4">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-colors">
+                  <Icon name="Building2" size={32} className="text-white" />
+                </div>
+                <CardTitle className="font-heading text-xl text-center mb-2">
+                  Мемориальные комплексы
+                </CardTitle>
+                <CardDescription className="text-emerald-100 text-center text-sm">
+                  Комплексное оформление семейных захоронений
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative z-10 pt-2">
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-emerald-300" />
+                    <span>Семейные памятники</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-emerald-300" />
+                    <span>Склепы и усыпальницы</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-emerald-300" />
+                    <span>Элитные комплексы</span>
+                  </div>
+                </div>
+                <Button className="w-full bg-white text-emerald-800 hover:bg-gray-100 font-medium">
+                  <Icon name="Users" size={16} className="mr-2" />
+                  Заказать проект
+                </Button>
+                <p className="text-center text-xs text-emerald-200 mt-2">от 150 000 ₽</p>
+              </CardContent>
+            </Card>
+
+            {/* Заказать благоустройство */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-amber-500 to-orange-600 text-white overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <CardHeader className="relative z-10 pb-4">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-colors">
+                  <Icon name="TreePine" size={32} className="text-white" />
+                </div>
+                <CardTitle className="font-heading text-xl text-center mb-2">
+                  Заказать благоустройство
+                </CardTitle>
+                <CardDescription className="text-orange-100 text-center text-sm">
+                  Комплексное обустройство мемориального участка
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative z-10 pt-2">
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-orange-200" />
+                    <span>Облицовка могил</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-orange-200" />
+                    <span>Цветники и вазы</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-orange-200" />
+                    <span>Дорожки и ступени</span>
+                  </div>
+                </div>
+                <Button className="w-full bg-white text-orange-700 hover:bg-gray-100 font-medium">
+                  <Icon name="Shovel" size={16} className="mr-2" />
+                  Получить смету
+                </Button>
+                <p className="text-center text-xs text-orange-200 mt-2">от 25 000 ₽</p>
+              </CardContent>
+            </Card>
+
+            {/* Заказать оформление памятника */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-purple-600 to-indigo-700 text-white overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <CardHeader className="relative z-10 pb-4">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-colors">
+                  <Icon name="PenTool" size={32} className="text-white" />
+                </div>
+                <CardTitle className="font-heading text-xl text-center mb-2">
+                  Заказать оформление памятника
+                </CardTitle>
+                <CardDescription className="text-purple-100 text-center text-sm">
+                  Художественная гравировка портретов и надписей
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative z-10 pt-2">
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-purple-200" />
+                    <span>Портреты на камне</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-purple-200" />
+                    <span>Художественная резьба</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-purple-200" />
+                    <span>Золочение букв</span>
+                  </div>
+                </div>
+                <Button className="w-full bg-white text-purple-700 hover:bg-gray-100 font-medium">
+                  <Icon name="Palette" size={16} className="mr-2" />
+                  Заказать эскиз
+                </Button>
+                <p className="text-center text-xs text-purple-200 mt-2">от 15 000 ₽</p>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Additional CTA */}
           <div className="text-center mt-12">
             <div className="flex flex-col sm:flex-row sm:inline-flex items-center gap-4 bg-white rounded-2xl sm:rounded-full px-6 sm:px-8 py-4 shadow-lg max-w-md sm:max-w-none mx-auto">
               <Icon name="Phone" size={20} className="text-primary flex-shrink-0" />
               <div className="text-center sm:text-left">
-                <p className="font-medium text-sm sm:text-base">Нужна помощь с выбором?</p>
+                <p className="font-medium text-sm sm:text-base">Не знаете, что выбрать?</p>
                 <p className="text-xs sm:text-sm text-muted-foreground">Получите бесплатную консультацию</p>
               </div>
               <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto">
