@@ -432,55 +432,58 @@ export default function ProductCard() {
                       return (
                         <div 
                           key={elementId} 
-                          className={`border rounded-lg p-2.5 transition-colors ${
+                          className={`border rounded-lg p-4 transition-colors cursor-pointer hover:shadow-md ${
                             isEnabled 
                               ? 'border-primary bg-primary/5' 
-                              : 'border-border'
+                              : 'border-border hover:border-primary/30'
                           }`}
+                          onClick={() => !element.required && toggleElement(elementId)}
                         >
-                          <div className="flex items-center gap-3 mb-1.5">
+                          <div className="flex items-center gap-3 mb-2">
                             <div 
-                              className={`w-3.5 h-3.5 rounded border flex items-center justify-center cursor-pointer ${
+                              className={`w-4 h-4 rounded border flex items-center justify-center ${
                                 isEnabled
                                   ? 'border-primary bg-primary'
                                   : 'border-muted-foreground'
-                              } ${element.required ? 'opacity-50 cursor-not-allowed' : ''}`}
-                              onClick={() => !element.required && toggleElement(elementId)}
+                              } ${element.required ? 'opacity-50' : ''}`}
                             >
                               {isEnabled && (
-                                <Icon name="Check" size={8} className="text-primary-foreground" />
+                                <Icon name="Check" size={10} className="text-primary-foreground" />
                               )}
                             </div>
                             <div className="flex-1">
-                              <div className="font-medium text-xs flex items-center gap-2">
+                              <div className="font-semibold text-sm flex items-center gap-2">
                                 {element.name}
                                 {element.required && (
-                                  <Badge variant="secondary" className="text-[10px] px-1 py-0">Обязательно</Badge>
+                                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5">Обязательно</Badge>
                                 )}
+                              </div>
+                              <div className="text-xs text-muted-foreground mt-0.5">
+                                {element.description}
                               </div>
                             </div>
                             {isEnabled && currentSizeData && (
-                              <div className="text-xs font-semibold text-primary">
+                              <div className="text-sm font-bold text-primary">
                                 {currentSizeData.price.toLocaleString()} ₽
                               </div>
                             )}
                           </div>
                           
                           {isEnabled && (
-                            <div className="ml-6">
+                            <div className="ml-7 mt-2">
                               <Select 
                                 value={currentSize} 
                                 onValueChange={(value) => updateElementSize(elementId, value)}
                               >
-                                <SelectTrigger className="h-8 text-xs">
+                                <SelectTrigger className="h-9 text-sm">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
                                   {element.sizes.map(size => (
-                                    <SelectItem key={size.id} value={size.id} className="text-xs">
-                                      <div className="flex justify-between items-center w-full min-w-[180px]">
-                                        <span>{size.name}</span>
-                                        <span className="text-primary font-medium ml-2">
+                                    <SelectItem key={size.id} value={size.id} className="text-sm">
+                                      <div className="flex justify-between items-center w-full min-w-[200px]">
+                                        <span className="font-medium">{size.name}</span>
+                                        <span className="text-primary font-semibold ml-3">
                                           {size.price.toLocaleString()} ₽
                                         </span>
                                       </div>
@@ -520,6 +523,12 @@ export default function ProductCard() {
                   >
                     <Icon name="ShoppingCart" className="mr-2" size={18} />
                     В корзину
+                  </Button>
+                  <Button 
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Icon name="Zap" className="mr-2" size={18} />
+                    Заказать в 1 клик
                   </Button>
                   <Button variant="outline" size="icon">
                     <Icon name="Heart" size={18} />
