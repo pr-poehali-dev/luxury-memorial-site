@@ -638,7 +638,6 @@ export default function Catalog() {
               </CardContent>
             </Card>
           </div>
-          </div>
         </div>
       </section>
 
