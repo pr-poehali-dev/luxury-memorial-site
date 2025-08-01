@@ -48,105 +48,92 @@ export default function Index() {
               </div>
             </div>
             
-            {/* 3D Model Request Form */}
-            <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-primary/10">
-              <div className="space-y-6">
+            {/* 3D Model Request Form - Mobile Optimized */}
+            <div className="order-1 lg:order-2 bg-card rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-primary/10 overflow-hidden">
+              <div className="space-y-3 sm:space-y-4">
                 {/* Header */}
                 <div className="text-center">
-                  <h3 className="font-heading text-2xl sm:text-3xl font-bold mb-3">3D макет памятника</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold mb-2">3D макет памятника</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground px-2">
                     Получите реалистичную визуализацию перед изготовлением
                   </p>
                 </div>
                 
-                {/* Large 3D Visualization Image */}
+                {/* Compact 3D Visualization Image */}
                 <div className="relative">
                   <img 
                     src="https://cdn.poehali.dev/files/2f6194d4-96fc-4373-a105-199c5a4748d6.png"
                     alt="3D макет памятника - мемориальный комплекс"
-                    className="w-full max-h-96 sm:max-h-[500px] lg:max-h-[600px] rounded-2xl shadow-2xl object-contain bg-gradient-to-br from-gray-50 to-gray-100"
+                    className="w-full max-h-48 sm:max-h-64 md:max-h-80 rounded-lg object-contain bg-gradient-to-br from-gray-50 to-gray-100"
                   />
-                  <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                    <Icon name="Cube" size={16} className="inline mr-2" />
-                    3D визуализация
-                  </div>
-                  <div className="absolute bottom-6 right-6 bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Реальный размер
+                  <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
+                    <Icon name="Cube" size={12} className="inline mr-1" />
+                    3D
                   </div>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Benefits */}
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-lg mb-4">Преимущества 3D макета:</h4>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Icon name="Eye" size={20} className="text-green-600" />
+                {/* Mobile Benefits - Compact Grid */}
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                  <div className="flex flex-col items-center text-center p-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center mb-1">
+                      <Icon name="Eye" size={14} className="sm:size-16 text-green-600" />
+                    </div>
+                    <div className="text-xs sm:text-sm font-medium">Точная визуализация</div>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-1">
+                      <Icon name="RotateCcw" size={14} className="sm:size-16 text-blue-600" />
+                    </div>
+                    <div className="text-xs sm:text-sm font-medium">Правки</div>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-1">
+                      <Icon name="Clock" size={14} className="sm:size-16 text-purple-600" />
+                    </div>
+                    <div className="text-xs sm:text-sm font-medium">За 2-3 дня</div>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-1">
+                      <Icon name="Gift" size={14} className="sm:size-16 text-orange-600" />
+                    </div>
+                    <div className="text-xs sm:text-sm font-medium">Бесплатно</div>
+                  </div>
+                </div>
+
+                {/* Compact Form */}
+                <div className="bg-muted/30 rounded-lg p-3 sm:p-4">
+                  <h4 className="font-semibold text-sm sm:text-base mb-3 text-center">Заказать 3D макет</h4>
+                  <form className="space-y-2 sm:space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Ваше имя"
+                      className="w-full px-3 py-2 text-sm border border-input rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary"
+                      required
+                    />
+                    <input
+                      type="tel"
+                      placeholder="+7 (999) 123-45-67"
+                      className="w-full px-3 py-2 text-sm border border-input rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary"
+                      required
+                    />
+
+                    <Button className="w-full bg-primary hover:bg-primary/90 h-9 sm:h-10 text-sm font-medium">
+                      <Icon name="Cube" size={14} className="mr-1" />
+                      Заказать бесплатно
+                    </Button>
+
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-2 border border-green-200">
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <Icon name="Gift" size={12} className="text-green-600" />
+                          <span className="font-semibold text-green-800 text-xs">Бесплатный макет</span>
                         </div>
-                        <div>
-                          <div className="font-medium">Точная визуализация</div>
-                          <div className="text-sm text-muted-foreground">Увидите результат до изготовления</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Icon name="RotateCcw" size={20} className="text-blue-600" />
-                        </div>
-                        <div>
-                          <div className="font-medium">Внесение изменений</div>
-                          <div className="text-sm text-muted-foreground">Корректировки на этапе проекта</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Icon name="Clock" size={20} className="text-purple-600" />
-                        </div>
-                        <div>
-                          <div className="font-medium">Быстрая готовность</div>
-                          <div className="text-sm text-muted-foreground">Готовность за 2-3 рабочих дня</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Icon name="Gift" size={20} className="text-orange-600" />
-                        </div>
-                        <div>
-                          <div className="font-medium">Бесплатно</div>
-                          <div className="text-sm text-muted-foreground">При заказе памятника</div>
-                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          При заказе памятника
+                        </p>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Simplified Form */}
-                  <div className="space-y-6">
-                    <div className="bg-muted/30 rounded-xl p-6">
-                      <h4 className="font-semibold text-lg mb-4 text-center">Заказать 3D макет</h4>
-                      <form className="space-y-4">
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
-                          <input
-                            type="text"
-                            placeholder="Введите ваше имя"
-                            className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">Телефон *</label>
-                          <input
-                            type="tel"
-                            placeholder="+7 (999) 123-45-67"
-                            className="w-full px-4 py-3 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                            required
-                          />
-                        </div>
-
-                        <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-base font-medium">
-                          <Icon name="Cube" size={18} className="mr-2" />
-                          Заказать 3D макет бесплатно
-                        </Button>
+                  </form>
 
                         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 border border-green-200">
                           <div className="text-center">
