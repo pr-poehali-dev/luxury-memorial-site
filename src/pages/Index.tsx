@@ -26,35 +26,35 @@ export default function Index() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-4 pb-8 md:pb-16 px-4">
+      <section className="pt-4 pb-16 px-4">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start">
-            <div className="order-2 lg:order-1 pt-4 lg:pt-8">
-              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground leading-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
                 Изготовление памятников <br />
                 <span className="text-primary">в Москве</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-base md:text-lg px-6 md:px-8 h-12 md:h-14">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
                   Создать памятник
                 </Button>
-                <Button size="lg" variant="outline" className="text-base md:text-lg px-6 md:px-8 h-12 md:h-14">
-                  <Icon name="Play" className="mr-2" size={18} />
+                <Button size="lg" variant="outline" className="text-lg px-8">
+                  <Icon name="Play" className="mr-2" size={20} />
                   Смотреть процесс
                 </Button>
               </div>
             </div>
             
             {/* 3D Model Request Form */}
-            <div className="order-1 lg:order-2 bg-card rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-lg md:shadow-xl border border-primary/10">
-              <div className="space-y-4 md:space-y-6">
+            <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl border border-primary/10">
+              <div className="space-y-6">
                 {/* Header */}
                 <div className="text-center">
-                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">3D макет памятника</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
+                  <h3 className="font-heading text-2xl sm:text-3xl font-bold mb-3">3D макет памятника</h3>
+                  <p className="text-muted-foreground">
                     Получите реалистичную визуализацию перед изготовлением
                   </p>
                 </div>

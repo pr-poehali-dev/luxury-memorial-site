@@ -388,13 +388,13 @@ export default function Catalog() {
       <Header />
 
       {/* Header */}
-      <section className="pt-4 pb-6 md:pb-12 px-4">
+      <section className="pt-4 pb-12 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-6 md:mb-8">
-            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-foreground">
+          <div className="text-center mb-8">
+            <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-4 text-foreground">
               Каталог памятников
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Более 45 готовых моделей памятников из премиальных материалов. 
               Возможность индивидуального изготовления по вашему проекту.
             </p>
