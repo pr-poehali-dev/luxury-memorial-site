@@ -633,7 +633,7 @@ export default function Catalog() {
                     <p className="text-sm text-muted-foreground">Выполним заказ в течение 14-21 дня</p>
                   </div>
                 </div>
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
+                <Button size="default" className="bg-primary hover:bg-primary/90 text-sm px-4 py-2">
                   Заказать индивидуальный памятник
                 </Button>
               </CardContent>
