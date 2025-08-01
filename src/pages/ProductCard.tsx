@@ -21,6 +21,12 @@ export default function ProductCard() {
     cvetnik: { enabled: false, size: 'standard' }
   });
   const [selectedServices, setSelectedServices] = useState<string[]>(['gravir-epitafiya', 'gravir-cvety']);
+  const [serviceQuantities, setServiceQuantities] = useState<Record<string, number>>({
+    'portrait-gravir': 1,
+    'portrait-hand': 1,
+    'fio-gravir': 1,
+    'fio-skarpel': 1
+  });
   const [quantity, setQuantity] = useState(1);
 
   const getTotalPrice = () => {
@@ -53,7 +59,10 @@ export default function ProductCard() {
       { id: 'storage', price: 500 }
     ]
       .filter(service => selectedServices.includes(service.id))
-      .reduce((total, service) => total + service.price, 0);
+      .reduce((total, service) => {
+        const quantity = serviceQuantities[service.id] || 1;
+        return total + (service.price * quantity);
+      }, 0);
     
     return product.basePrice + materialPrice + elementsPrice + servicesPrice;
   };
@@ -204,7 +213,10 @@ export default function ProductCard() {
       { id: 'storage', price: 500 }
     ]
       .filter(service => selectedServices.includes(service.id))
-      .reduce((total, service) => total + service.price, 0);
+      .reduce((total, service) => {
+        const quantity = serviceQuantities[service.id] || 1;
+        return total + (service.price * quantity);
+      }, 0);
     
     return elementsPrice + materialPrice + servicesPrice;
   };
@@ -291,7 +303,7 @@ export default function ProductCard() {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-1">
                           <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
                             isSelected
                               ? 'border-primary bg-primary'
@@ -301,17 +313,46 @@ export default function ProductCard() {
                               <Icon name="Check" size={8} className="text-primary-foreground" />
                             )}
                           </div>
-                          <div>
+                          <div className="flex-1">
                             <div className="text-xs font-medium">{service.name}</div>
                             <div className="text-[10px] text-muted-foreground">{service.category}</div>
                           </div>
                         </div>
-                        <div className="text-xs font-semibold">
-                          {isFree ? (
-                            <span className="text-green-500">Бесплатно</span>
-                          ) : (
-                            <span className="text-primary">{service.price.toLocaleString()} ₽</span>
+                        <div className="flex items-center gap-2">
+                          {isSelected && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && (
+                            <Select 
+                              value={serviceQuantities[service.id]?.toString() || '1'} 
+                              onValueChange={(value) => {
+                                setServiceQuantities(prev => ({
+                                  ...prev,
+                                  [service.id]: parseInt(value)
+                                }));
+                              }}
+                            >
+                              <SelectTrigger className="w-12 h-6 text-xs p-1">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {[1, 2, 3, 4].map(num => (
+                                  <SelectItem key={num} value={num.toString()} className="text-xs">
+                                    {num}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                           )}
+                          <div className="text-xs font-semibold">
+                            {isFree ? (
+                              <span className="text-green-500">Бесплатно</span>
+                            ) : (
+                              <span className="text-primary">
+                                {(['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && isSelected
+                                  ? (service.price * (serviceQuantities[service.id] || 1))
+                                  : service.price
+                                ).toLocaleString()} ₽
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
@@ -339,7 +380,10 @@ export default function ProductCard() {
                         { id: 'storage', price: 500 }
                       ]
                         .filter(service => selectedServices.includes(service.id))
-                        .reduce((total, service) => total + service.price, 0)
+                        .reduce((total, service) => {
+                          const quantity = serviceQuantities[service.id] || 1;
+                          return total + (service.price * quantity);
+                        }, 0)
                         .toLocaleString()} ₽
                     </span>
                   </div>
