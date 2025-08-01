@@ -405,75 +405,60 @@ export default function Catalog() {
       {/* Top Filters */}
       <section className="pb-6 px-4">
         <div className="container mx-auto">
-          <div className="bg-muted/30 rounded-lg p-4">
-            <div className="flex flex-wrap gap-3 items-end">
-              {/* Categories dropdown */}
-              <div className="flex-1 min-w-[160px]">
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Категория</label>
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="h-9">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map(category => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.name} ({category.count})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+          <div className="flex flex-wrap gap-3">
+            {/* Форма dropdown */}
+            <div className="relative">
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
+                  <Icon name="Shapes" size={16} className="mr-2" />
+                  <SelectValue placeholder="Форма" />
+                  <Icon name="ChevronDown" size={16} className="ml-2" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Любая форма</SelectItem>
+                  <SelectItem value="vertical">Вертикальная</SelectItem>
+                  <SelectItem value="horizontal">Горизонтальная</SelectItem>
+                  <SelectItem value="cross">Крест</SelectItem>
+                  <SelectItem value="angel">Ангел</SelectItem>
+                  <SelectItem value="book">Книга</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-              {/* Material dropdown */}
-              <div className="flex-1 min-w-[160px]">
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Материал</label>
-                <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                  <SelectTrigger className="h-9">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {materials.map(material => (
-                      <SelectItem key={material.id} value={material.id}>
-                        {material.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+            {/* Кому dropdown */}
+            <div className="relative">
+              <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
+                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
+                  <Icon name="Users" size={16} className="mr-2" />
+                  <SelectValue placeholder="Кому" />
+                  <Icon name="ChevronDown" size={16} className="ml-2" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Любому</SelectItem>
+                  <SelectItem value="man">Мужчине</SelectItem>
+                  <SelectItem value="woman">Женщине</SelectItem>
+                  <SelectItem value="child">Ребёнку</SelectItem>
+                  <SelectItem value="couple">Паре</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-              {/* Price dropdown */}
-              <div className="flex-1 min-w-[160px]">
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Цена</label>
-                <Select value={selectedPrice} onValueChange={setSelectedPrice}>
-                  <SelectTrigger className="h-9">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {priceRanges.map(range => (
-                      <SelectItem key={range.id} value={range.id}>
-                        {range.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Reset button */}
-              <div className="flex-shrink-0">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setSelectedMaterial('all');
-                    setSelectedPrice('all');
-                  }}
-                  className="h-9"
-                >
-                  <Icon name="RotateCcw" size={14} className="mr-1" />
-                  Сбросить
-                </Button>
-              </div>
+            {/* Цена dropdown */}
+            <div className="relative">
+              <Select value={selectedPrice} onValueChange={setSelectedPrice}>
+                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
+                  <Icon name="Banknote" size={16} className="mr-2" />
+                  <SelectValue placeholder="Цена" />
+                  <Icon name="ChevronDown" size={16} className="ml-2" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Любая цена</SelectItem>
+                  <SelectItem value="budget">До 50 000 ₽</SelectItem>
+                  <SelectItem value="medium">50 000 - 100 000 ₽</SelectItem>
+                  <SelectItem value="premium">100 000 - 200 000 ₽</SelectItem>
+                  <SelectItem value="luxury">От 200 000 ₽</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
