@@ -189,7 +189,7 @@ export default function Index() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {monuments.map(monument => (
                   <Card key={monument.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-[4/3] overflow-hidden">
+                    <div className="aspect-square overflow-hidden">
                       <img 
                         src={monument.image}
                         alt={monument.title}
