@@ -115,60 +115,101 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Top Contact Bar */}
-      <div className="border-b border-border/40 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-10 text-sm">
-            {/* Left side - Always visible functional buttons */}
-            <div className="flex items-center space-x-2">
-              {/* WhatsApp - always visible */}
+      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 -left-4 w-72 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-48 h-16 bg-gradient-to-l from-blue-400 to-cyan-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex items-center justify-between h-14">
+            {/* Left side - Services info */}
+            <div className="flex items-center space-x-6">
+              <div className="hidden lg:flex items-center space-x-1 text-sm text-gray-300">
+                <Icon name="Clock" size={14} className="text-green-400" />
+                <span>Пн-Пт: 9:00-18:00</span>
+              </div>
+              <div className="hidden md:flex items-center space-x-1 text-sm text-gray-300">
+                <Icon name="MapPin" size={14} className="text-blue-400" />
+                <span>Москва и МО</span>
+              </div>
+              <div className="flex items-center space-x-1 text-sm text-gray-300">
+                <Icon name="Truck" size={14} className="text-purple-400" />
+                <span className="hidden sm:inline">Бесплатная доставка</span>
+                <span className="sm:hidden">Доставка</span>
+              </div>
+            </div>
+
+            {/* Center - Quick actions */}
+            <div className="flex items-center space-x-3">
+              {/* WhatsApp */}
               <a 
                 href="https://wa.me/74952013227" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-green-600 hover:text-green-700 transition-colors"
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105"
                 title="WhatsApp"
               >
                 <Icon name="MessageCircle" size={14} />
+                <span className="hidden sm:inline text-xs font-medium">WhatsApp</span>
               </a>
 
-              {/* Cart - always visible */}
-              <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                <Link to="/cart">
-                  <Icon name="ShoppingCart" size={14} />
-                  {getCartCount() > 0 && (
-                    <Badge 
-                      variant="default" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                    >
-                      {getCartCount()}
-                    </Badge>
-                  )}
-                </Link>
-              </Button>
+              {/* Email */}
+              <a 
+                href="mailto:info@postament.ru" 
+                className="hidden md:flex items-center space-x-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-400/30 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <Icon name="Mail" size={14} className="text-blue-300" />
+                <span className="text-xs font-medium text-blue-200">info@postament.ru</span>
+              </a>
 
-              {/* Search - visible on sm+ */}
-              <Button variant="ghost" size="icon" className="h-8 w-8 hidden sm:flex">
-                <Icon name="Search" size={14} />
-              </Button>
+              {/* Quick call button */}
+              <button className="hidden sm:flex items-center space-x-2 bg-orange-600/20 hover:bg-orange-600/30 border border-orange-400/30 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105">
+                <Icon name="PhoneCall" size={14} className="text-orange-300" />
+                <span className="text-xs font-medium text-orange-200">Заказать звонок</span>
+              </button>
+            </div>
 
-              {/* Desktop only buttons */}
-              <div className="hidden md:flex items-center space-x-2">
-                <a 
-                  href="mailto:info@postament.ru" 
-                  className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Icon name="Mail" size={14} />
-                  <span>info@postament.ru</span>
-                </a>
+            {/* Right side - Phone and user actions */}
+            <div className="flex items-center space-x-4">
+              {/* Main phone number */}
+              <a 
+                href="tel:+74952013227" 
+                className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                <Icon name="Phone" size={16} className="text-white animate-pulse" />
+                <div className="flex flex-col">
+                  <span className="font-bold text-sm text-white">+7 (495) 201-32-27</span>
+                  <span className="text-xs text-green-100 -mt-0.5">Звонок бесплатный</span>
+                </div>
+              </a>
 
-                {/* Favorites */}
-                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
+              {/* User actions */}
+              <div className="flex items-center space-x-2">
+                {/* Cart */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-white/10" asChild>
+                  <Link to="/cart">
+                    <Icon name="ShoppingCart" size={16} className="text-gray-300" />
+                    {getCartCount() > 0 && (
+                      <Badge 
+                        variant="default" 
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white border-2 border-slate-800"
+                      >
+                        {getCartCount()}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
+                {/* Favorites - desktop only */}
+                <Button variant="ghost" size="icon" className="relative h-9 w-9 hover:bg-white/10 hidden sm:flex" asChild>
                   <Link to="/favorites">
-                    <Icon name="Heart" size={14} />
+                    <Icon name="Heart" size={16} className="text-gray-300" />
                     {state.favorites.length > 0 && (
                       <Badge 
                         variant="destructive" 
-                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
+                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs border-2 border-slate-800"
                       >
                         {state.favorites.length}
                       </Badge>
@@ -176,47 +217,11 @@ export default function Header() {
                   </Link>
                 </Button>
 
-                {/* Comparison */}
-                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                  <Link to="/comparison">
-                    <Icon name="BarChart3" size={14} />
-                    {state.comparison.length > 0 && (
-                      <Badge 
-                        variant="secondary" 
-                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                      >
-                        {state.comparison.length}
-                      </Badge>
-                    )}
-                  </Link>
-                </Button>
-
-                {/* Recently Viewed */}
-                <Button variant="ghost" size="icon" className="relative h-8 w-8" asChild>
-                  <Link to="/recently-viewed">
-                    <Icon name="Eye" size={14} />
-                    {state.recentlyViewed.length > 0 && (
-                      <Badge 
-                        variant="outline" 
-                        className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs"
-                      >
-                        {state.recentlyViewed.length}
-                      </Badge>
-                    )}
-                  </Link>
+                {/* Search */}
+                <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-white/10 hidden sm:flex">
+                  <Icon name="Search" size={16} className="text-gray-300" />
                 </Button>
               </div>
-            </div>
-
-            {/* Right side - Contact info */}
-            <div className="flex items-center space-x-3">
-              <button className="hidden sm:block text-muted-foreground hover:text-primary transition-colors text-xs">
-                Заказать звонок
-              </button>
-              <a href="tel:+74952013227" className="flex items-center space-x-1 hover:text-primary transition-colors">
-                <Icon name="Phone" size={14} />
-                <span className="font-medium text-xs sm:text-sm">+7 (495) 201-32-27</span>
-              </a>
             </div>
           </div>
         </div>
