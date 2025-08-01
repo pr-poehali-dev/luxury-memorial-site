@@ -147,7 +147,7 @@ export default function Header() {
                 {/* Cart */}
                 <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
                   <Link to="/cart" className="flex items-center space-x-2">
-                    <Icon name="ShoppingBag" size={18} />
+                    <Icon name="ShoppingBasket" size={18} />
                     <span className="text-sm font-medium">Корзина</span>
                     {getCartCount() > 0 && (
                       <Badge 
