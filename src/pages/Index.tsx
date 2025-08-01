@@ -134,21 +134,6 @@ export default function Index() {
                       </div>
                     </div>
                   </form>
-
-                        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 border border-green-200">
-                          <div className="text-center">
-                            <div className="flex items-center justify-center gap-2 mb-2">
-                              <Icon name="Gift" size={16} className="text-green-600" />
-                              <span className="font-semibold text-green-800">Макет бесплатно</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground">
-                              При заказе памятника • Готовность: 2-3 дня
-                            </p>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
