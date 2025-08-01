@@ -145,13 +145,14 @@ export default function Header() {
               {/* User actions */}
               <div className="flex items-center space-x-2 ml-4">
                 {/* Cart */}
-                <Button variant="ghost" size="icon" className="relative h-9 w-9 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
-                  <Link to="/cart">
+                <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
+                  <Link to="/cart" className="flex items-center space-x-2">
                     <Icon name="ShoppingBag" size={18} />
+                    <span className="text-sm font-medium">Корзина</span>
                     {getCartCount() > 0 && (
                       <Badge 
                         variant="default" 
-                        className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white animate-pulse"
+                        className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white animate-pulse"
                       >
                         {getCartCount()}
                       </Badge>
