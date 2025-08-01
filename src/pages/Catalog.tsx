@@ -403,15 +403,15 @@ export default function Catalog() {
       </section>
 
       {/* Top Filters */}
-      <section className="pb-8 px-4">
+      <section className="pb-6 px-4">
         <div className="container mx-auto">
-          <Card className="p-6">
-            <div className="flex flex-wrap gap-6 items-center">
+          <div className="bg-muted/30 rounded-lg p-4">
+            <div className="flex flex-wrap gap-3 items-end">
               {/* Categories dropdown */}
-              <div className="flex-1 min-w-[200px]">
-                <label className="text-sm font-medium text-muted-foreground mb-2 block">Категория</label>
+              <div className="flex-1 min-w-[160px]">
+                <label className="text-xs font-medium text-muted-foreground mb-1 block">Категория</label>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-9">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -425,10 +425,10 @@ export default function Catalog() {
               </div>
 
               {/* Material dropdown */}
-              <div className="flex-1 min-w-[200px]">
-                <label className="text-sm font-medium text-muted-foreground mb-2 block">Материал</label>
+              <div className="flex-1 min-w-[160px]">
+                <label className="text-xs font-medium text-muted-foreground mb-1 block">Материал</label>
                 <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-9">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -442,10 +442,10 @@ export default function Catalog() {
               </div>
 
               {/* Price dropdown */}
-              <div className="flex-1 min-w-[200px]">
-                <label className="text-sm font-medium text-muted-foreground mb-2 block">Цена</label>
+              <div className="flex-1 min-w-[160px]">
+                <label className="text-xs font-medium text-muted-foreground mb-1 block">Цена</label>
                 <Select value={selectedPrice} onValueChange={setSelectedPrice}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-9">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -462,19 +462,20 @@ export default function Catalog() {
               <div className="flex-shrink-0">
                 <Button 
                   variant="outline" 
+                  size="sm"
                   onClick={() => {
                     setSelectedCategory('all');
                     setSelectedMaterial('all');
                     setSelectedPrice('all');
                   }}
-                  className="mt-6"
+                  className="h-9"
                 >
-                  <Icon name="RotateCcw" size={16} className="mr-2" />
+                  <Icon name="RotateCcw" size={14} className="mr-1" />
                   Сбросить
                 </Button>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
       </section>
 
