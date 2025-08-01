@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -654,6 +655,288 @@ export default function Index() {
               <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap">
                 <Icon name="MessageSquare" size={16} className="mr-2" />
                 Написать отзыв
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h3 className="font-heading text-4xl font-bold mb-4">Часто задаваемые вопросы</h3>
+            <p className="text-xl text-muted-foreground">Ответы на популярные вопросы об изготовлении памятников</p>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="materials" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Mountain" size={20} className="text-primary" />
+                  Какие материалы используются для изготовления памятников?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Мы используем только премиальные материалы высочайшего качества:</p>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li><strong>Гранит габбро-диабаз</strong> — самый прочный и долговечный материал, устойчив к любым погодным условиям</li>
+                  <li><strong>Красный гранит (Лезники)</strong> — благородный материал с натуральным рисунком</li>
+                  <li><strong>Серый гранит (Возрождение)</strong> — элегантный материал с равномерной текстурой</li>
+                  <li><strong>Итальянский мрамор Каррара</strong> — премиум материал для эксклюзивных проектов</li>
+                  <li><strong>Бронзовые элементы</strong> — для декоративных деталей и надписей</li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="production-time" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Clock" size={20} className="text-primary" />
+                  Сколько времени занимает изготовление памятника?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Сроки изготовления зависят от сложности проекта:</p>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="bg-muted/30 rounded-lg p-4">
+                    <h4 className="font-semibold text-foreground mb-2">Стандартные памятники</h4>
+                    <p className="text-sm">14-21 рабочий день</p>
+                  </div>
+                  <div className="bg-muted/30 rounded-lg p-4">
+                    <h4 className="font-semibold text-foreground mb-2">Сложные проекты</h4>
+                    <p className="text-sm">25-40 рабочих дней</p>
+                  </div>
+                </div>
+                <p>В сезон высокой загруженности (весна-лето) сроки могут увеличиваться до 30-45 дней. Точные сроки сообщаем при заказе.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="portrait-engraving" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Camera" size={20} className="text-primary" />
+                  Как происходит гравировка портрета на памятнике?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Мы предлагаем два способа гравировки портретов:</p>
+                <div className="space-y-4">
+                  <div className="border border-border rounded-lg p-4">
+                    <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+                      <Icon name="Zap" size={16} className="text-blue-500" />
+                      Лазерная гравировка
+                    </h4>
+                    <p className="text-sm mb-2">Современная технология с высокой детализацией</p>
+                    <ul className="text-sm space-y-1 list-disc list-inside">
+                      <li>Точная передача деталей и полутонов</li>
+                      <li>Долговечность изображения</li>
+                      <li>Быстрое выполнение (2-3 дня)</li>
+                    </ul>
+                  </div>
+                  <div className="border border-border rounded-lg p-4">
+                    <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+                      <Icon name="Paintbrush" size={16} className="text-purple-500" />
+                      Ручная гравировка
+                    </h4>
+                    <p className="text-sm mb-2">Художественная работа мастера-гравёра</p>
+                    <ul className="text-sm space-y-1 list-disc list-inside">
+                      <li>Уникальность каждого портрета</li>
+                      <li>Живая, объёмная передача черт</li>
+                      <li>Эксклюзивность исполнения</li>
+                    </ul>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="installation" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Wrench" size={20} className="text-primary" />
+                  Включена ли установка памятника в стоимость?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Да, установка включена в стоимость памятника и включает:</p>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Подготовка фундамента
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Доставка на кладбище
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Монтаж всех элементов
+                    </li>
+                  </ul>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Финальная обработка
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Уборка территории
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Icon name="Check" size={16} className="text-green-500" />
+                      Гарантия 10 лет
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-green-800 text-sm font-medium">
+                    <Icon name="Shield" size={16} className="inline mr-2" />
+                    Установка выполняется только нашими сертифицированными мастерами с опытом работы более 5 лет
+                  </p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="price-factors" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Calculator" size={20} className="text-primary" />
+                  От чего зависит стоимость памятника?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Цена памятника формируется из нескольких факторов:</p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                    <Icon name="Box" size={20} className="text-blue-500 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-foreground">Размер и форма</h4>
+                      <p className="text-sm">Высота, ширина, толщина стелы и дополнительных элементов</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                    <Icon name="Gem" size={20} className="text-purple-500 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-foreground">Материал</h4>
+                      <p className="text-sm">Тип гранита, мрамора или бронзовые элементы</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                    <Icon name="Palette" size={20} className="text-green-500 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-foreground">Оформление</h4>
+                      <p className="text-sm">Портреты, надписи, художественные элементы, золочение</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                    <Icon name="Package" size={20} className="text-orange-500 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-foreground">Комплектация</h4>
+                      <p className="text-sm">Тумба, цветник, дополнительные элементы</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-800 text-sm">
+                    <Icon name="Info" size={16} className="inline mr-2" />
+                    Точную стоимость рассчитаем после консультации и выбора всех параметров
+                  </p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="warranty" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="Shield" size={20} className="text-primary" />
+                  Какая гарантия предоставляется на памятники?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Мы предоставляем комплексную гарантию на все виды работ:</p>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="border border-green-200 bg-green-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">10 лет гарантии</h4>
+                    <ul className="text-sm text-green-700 space-y-1">
+                      <li>• Качество материалов</li>
+                      <li>• Прочность установки</li>
+                      <li>• Стойкость гравировки</li>
+                    </ul>
+                  </div>
+                  <div className="border border-blue-200 bg-blue-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 mb-2">Пожизненное обслуживание</h4>
+                    <ul className="text-sm text-blue-700 space-y-1">
+                      <li>• Бесплатные консультации</li>
+                      <li>• Помощь в уходе</li>
+                      <li>• Мелкий ремонт</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-foreground mb-2">Что не входит в гарантию:</h4>
+                  <ul className="text-sm space-y-1 list-disc list-inside">
+                    <li>Механические повреждения (вандализм, удары)</li>
+                    <li>Естественное загрязнение от внешних факторов</li>
+                    <li>Изменения, внесённые третьими лицами</li>
+                  </ul>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="payment" className="border border-border rounded-xl px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                <div className="flex items-center gap-3">
+                  <Icon name="CreditCard" size={20} className="text-primary" />
+                  Как происходит оплата заказа?
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-6">
+                <p className="mb-4">Мы предлагаем удобную схему оплаты в два этапа:</p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 p-4 bg-muted/30 rounded-lg">
+                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Предоплата 50%</h4>
+                      <p className="text-sm mb-2">После утверждения проекта и подписания договора</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Наличными</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Банковской картой</span>
+                        <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Безналичный расчёт</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-4 bg-muted/30 rounded-lg">
+                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Доплата 50%</h4>
+                      <p className="text-sm mb-2">При получении готового памятника перед установкой</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Наличными</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Банковской картой</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                  <p className="text-amber-800 text-sm">
+                    <Icon name="FileText" size={16} className="inline mr-2" />
+                    Все платежи оформляются документально с предоставлением чеков и договора
+                  </p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="text-center mt-12">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-primary/5 rounded-2xl p-6">
+              <div className="text-center sm:text-left">
+                <h4 className="font-heading text-xl font-semibold mb-2">Остались вопросы?</h4>
+                <p className="text-muted-foreground">Получите персональную консультацию нашего специалиста</p>
+              </div>
+              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap">
+                <Icon name="Phone" size={16} className="mr-2" />
+                Задать вопрос
               </Button>
             </div>
           </div>
