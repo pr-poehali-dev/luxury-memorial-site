@@ -115,17 +115,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Top Contact Bar */}
-      <div className="bg-white border-b">
+      <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex items-center justify-between h-14">
             {/* Left side - Contact actions */}
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-3">
               {/* Phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-sm font-medium transition-colors"
+                className="flex items-center space-x-2 text-gray-800 hover:text-gray-900 font-medium"
               >
-                +7 (495) 201-32-27
+                <Icon name="Phone" size={16} />
+                <span>+7 (495) 201-32-27</span>
               </a>
 
               {/* WhatsApp */}
@@ -133,40 +134,43 @@ export default function Header() {
                 href="https://wa.me/74952013227" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white p-1.5 rounded transition-colors"
+                className="flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
                 title="WhatsApp"
               >
                 <Icon name="MessageCircle" size={16} />
+                <span className="hidden sm:inline text-sm">WhatsApp</span>
               </a>
 
               {/* Email */}
               <a 
                 href="mailto:info@postament.ru" 
-                className="bg-green-600 hover:bg-green-700 text-white p-1.5 rounded transition-colors"
+                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
                 title="Почта"
               >
                 <Icon name="Mail" size={16} />
+                <span className="hidden md:inline text-sm">Почта</span>
               </a>
 
               {/* Call request button */}
               <button 
-                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-sm transition-colors hidden sm:block"
+                className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
                 title="Заказать звонок"
               >
-                Заказать звонок
+                <Icon name="PhoneCall" size={16} />
+                <span className="hidden lg:inline text-sm">Заказать звонок</span>
               </button>
             </div>
 
             {/* Right side - User actions */}
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-2">
               {/* Cart */}
-              <Button variant="ghost" size="sm" className="relative text-green-600 hover:text-green-700 hover:bg-green-50 p-1.5" asChild>
+              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                 <Link to="/cart">
-                  <Icon name="ShoppingCart" size={16} />
+                  <Icon name="ShoppingCart" size={18} />
                   {getCartCount() > 0 && (
                     <Badge 
                       variant="default" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs bg-green-600"
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-red-500 text-white"
                     >
                       {getCartCount()}
                     </Badge>
@@ -175,13 +179,13 @@ export default function Header() {
               </Button>
 
               {/* Comparison */}
-              <Button variant="ghost" size="sm" className="relative text-green-600 hover:text-green-700 hover:bg-green-50 p-1.5" asChild>
+              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                 <Link to="/comparison">
-                  <Icon name="BarChart3" size={16} />
+                  <Icon name="BarChart3" size={18} />
                   {state.comparison.length > 0 && (
                     <Badge 
                       variant="default" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs bg-green-600"
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-blue-500 text-white"
                     >
                       {state.comparison.length}
                     </Badge>
@@ -190,13 +194,13 @@ export default function Header() {
               </Button>
 
               {/* Favorites */}
-              <Button variant="ghost" size="sm" className="relative text-green-600 hover:text-green-700 hover:bg-green-50 p-1.5" asChild>
+              <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50" asChild>
                 <Link to="/favorites">
-                  <Icon name="Heart" size={16} />
+                  <Icon name="Heart" size={18} />
                   {state.favorites.length > 0 && (
                     <Badge 
                       variant="default" 
-                      className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-xs bg-green-600"
+                      className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-pink-500 text-white"
                     >
                       {state.favorites.length}
                     </Badge>
