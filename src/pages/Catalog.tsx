@@ -402,131 +402,108 @@ export default function Catalog() {
         </div>
       </section>
 
-      {/* Filters and Content */}
-      <section className="pb-16 px-4">
+      {/* Top Filters */}
+      <section className="pb-8 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-4 gap-8">
-            {/* Sidebar with filters */}
-            <div className="lg:col-span-1 space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="font-heading text-xl">Категории</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {categories.map(category => (
-                    <div
-                      key={category.id}
-                      className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
-                        selectedCategory === category.id
-                          ? 'bg-primary text-primary-foreground'
-                          : 'hover:bg-muted'
-                      }`}
-                      onClick={() => setSelectedCategory(category.id)}
-                    >
-                      <span className="font-medium">{category.name}</span>
-                      <Badge variant={selectedCategory === category.id ? "secondary" : "outline"}>
-                        {category.count}
-                      </Badge>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="font-heading text-xl">Фильтры</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground mb-2 block">Материал</label>
-                    <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {materials.map(material => (
-                          <SelectItem key={material.id} value={material.id}>
-                            {material.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground mb-2 block">Цена</label>
-                    <Select value={selectedPrice} onValueChange={setSelectedPrice}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {priceRanges.map(range => (
-                          <SelectItem key={range.id} value={range.id}>
-                            {range.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => {
-                      setSelectedCategory('all');
-                      setSelectedMaterial('all');
-                      setSelectedPrice('all');
-                    }}
-                  >
-                    Сбросить фильтры
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Help Card */}
-              <Card className="bg-primary/5 border-primary/20">
-                <CardHeader>
-                  <CardTitle className="font-heading text-xl flex items-center gap-2">
-                    <Icon name="HelpCircle" size={24} className="text-primary" />
-                    Нужна помощь?
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Наши специалисты помогут подобрать подходящий памятник и рассчитают стоимость
-                  </p>
-                  <Button className="w-full bg-primary hover:bg-primary/90">
-                    <Icon name="Phone" size={16} className="mr-2" />
-                    Получить консультацию
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Main content */}
-            <div className="lg:col-span-3">
-              {/* Results header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
-                  <h2 className="font-heading text-2xl font-semibold">
-                    Найдено: {filteredMonuments.length} памятников
-                  </h2>
-                </div>
-                <Select defaultValue="popular">
-                  <SelectTrigger className="w-48">
+          <Card className="p-6">
+            <div className="flex flex-wrap gap-6 items-center">
+              {/* Categories dropdown */}
+              <div className="flex-1 min-w-[200px]">
+                <label className="text-sm font-medium text-muted-foreground mb-2 block">Категория</label>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="popular">По популярности</SelectItem>
-                    <SelectItem value="price-asc">Цена: по возрастанию</SelectItem>
-                    <SelectItem value="price-desc">Цена: по убыванию</SelectItem>
-                    <SelectItem value="newest">Сначала новые</SelectItem>
+                    {categories.map(category => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name} ({category.count})
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Products grid */}
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {/* Material dropdown */}
+              <div className="flex-1 min-w-[200px]">
+                <label className="text-sm font-medium text-muted-foreground mb-2 block">Материал</label>
+                <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {materials.map(material => (
+                      <SelectItem key={material.id} value={material.id}>
+                        {material.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Price dropdown */}
+              <div className="flex-1 min-w-[200px]">
+                <label className="text-sm font-medium text-muted-foreground mb-2 block">Цена</label>
+                <Select value={selectedPrice} onValueChange={setSelectedPrice}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {priceRanges.map(range => (
+                      <SelectItem key={range.id} value={range.id}>
+                        {range.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Reset button */}
+              <div className="flex-shrink-0">
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSelectedMaterial('all');
+                    setSelectedPrice('all');
+                  }}
+                  className="mt-6"
+                >
+                  <Icon name="RotateCcw" size={16} className="mr-2" />
+                  Сбросить
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section className="pb-16 px-4">
+        <div className="container mx-auto">
+          <div>
+            {/* Results header */}
+            <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
+              <div className="flex items-center space-x-4">
+                <h2 className="font-heading text-2xl font-semibold">
+                  Найдено: {filteredMonuments.length} памятников
+                </h2>
+              </div>
+              <Select defaultValue="popular">
+                <SelectTrigger className="w-48">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="popular">По популярности</SelectItem>
+                  <SelectItem value="price-asc">Цена: по возрастанию</SelectItem>
+                  <SelectItem value="price-desc">Цена: по убыванию</SelectItem>
+                  <SelectItem value="newest">Сначала новые</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Products grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredMonuments.map(monument => (
                   <Card key={monument.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
                     <div className="relative aspect-square overflow-hidden">
@@ -605,62 +582,62 @@ export default function Catalog() {
                 ))}
               </div>
 
-              {/* No results */}
-              {filteredMonuments.length === 0 && (
-                <div className="text-center py-12">
-                  <Icon name="Search" size={48} className="text-muted-foreground mx-auto mb-4" />
-                  <h3 className="font-heading text-2xl font-semibold mb-2">
-                    Не найдено памятников по выбранным фильтрам
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    Попробуйте изменить параметры поиска или сбросить фильтры
-                  </p>
-                  <Button 
-                    onClick={() => {
-                      setSelectedCategory('all');
-                      setSelectedMaterial('all');
-                      setSelectedPrice('all');
-                    }}
-                  >
-                    Сбросить фильтры
-                  </Button>
-                </div>
-              )}
+            {/* No results */}
+            {filteredMonuments.length === 0 && (
+              <div className="text-center py-12">
+                <Icon name="Search" size={48} className="text-muted-foreground mx-auto mb-4" />
+                <h3 className="font-heading text-2xl font-semibold mb-2">
+                  Не найдено памятников по выбранным фильтрам
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Попробуйте изменить параметры поиска или сбросить фильтры
+                </p>
+                <Button 
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSelectedMaterial('all');
+                    setSelectedPrice('all');
+                  }}
+                >
+                  Сбросить фильтры
+                </Button>
+              </div>
+            )}
 
-              {/* Custom order banner */}
-              <Card className="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
-                <CardHeader className="text-center">
-                  <CardTitle className="font-heading text-2xl">
-                    Не нашли подходящий памятник?
-                  </CardTitle>
-                  <CardDescription className="text-lg">
-                    Мы изготовим памятник по вашему индивидуальному проекту
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <div className="grid md:grid-cols-3 gap-6 mb-8">
-                    <div className="flex flex-col items-center">
-                      <Icon name="PenTool" size={32} className="text-primary mb-3" />
-                      <h4 className="font-semibold mb-2">Индивидуальный дизайн</h4>
-                      <p className="text-sm text-muted-foreground">Создадим уникальный проект специально для вас</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <Icon name="Gem" size={32} className="text-primary mb-3" />
-                      <h4 className="font-semibold mb-2">Премиальные материалы</h4>
-                      <p className="text-sm text-muted-foreground">Используем только лучшие сорта гранита и мрамора</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <Icon name="Clock" size={32} className="text-primary mb-3" />
-                      <h4 className="font-semibold mb-2">Быстрое изготовление</h4>
-                      <p className="text-sm text-muted-foreground">Выполним заказ в течение 14-21 дня</p>
-                    </div>
+            {/* Custom order banner */}
+            <Card className="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
+              <CardHeader className="text-center">
+                <CardTitle className="font-heading text-2xl">
+                  Не нашли подходящий памятник?
+                </CardTitle>
+                <CardDescription className="text-lg">
+                  Мы изготовим памятник по вашему индивидуальному проекту
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  <div className="flex flex-col items-center">
+                    <Icon name="PenTool" size={32} className="text-primary mb-3" />
+                    <h4 className="font-semibold mb-2">Индивидуальный дизайн</h4>
+                    <p className="text-sm text-muted-foreground">Создадим уникальный проект специально для вас</p>
                   </div>
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
-                    Заказать индивидуальный памятник
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+                  <div className="flex flex-col items-center">
+                    <Icon name="Gem" size={32} className="text-primary mb-3" />
+                    <h4 className="font-semibold mb-2">Премиальные материалы</h4>
+                    <p className="text-sm text-muted-foreground">Используем только лучшие сорта гранита и мрамора</p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Icon name="Clock" size={32} className="text-primary mb-3" />
+                    <h4 className="font-semibold mb-2">Быстрое изготовление</h4>
+                    <p className="text-sm text-muted-foreground">Выполним заказ в течение 14-21 дня</p>
+                  </div>
+                </div>
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
+                  Заказать индивидуальный памятник
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
           </div>
         </div>
       </section>
