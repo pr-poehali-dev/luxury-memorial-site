@@ -354,12 +354,7 @@ export default function HeaderBottomMenu() {
                             className="w-full justify-between p-4 h-auto text-left border rounded-lg hover:bg-slate-50"
                             onClick={() => toggleMobileSection(section.id)}
                           >
-                            <div>
-                              <div className="font-semibold text-slate-900">{section.title}</div>
-                              <div className="text-sm text-slate-500 mt-1">
-                                {section.categories.length} категории
-                              </div>
-                            </div>
+                            <div className="font-semibold text-slate-900">{section.title}</div>
                             <Icon 
                               name={mobileExpandedSections.includes(section.id) ? "ChevronUp" : "ChevronDown"} 
                               size={16} 
