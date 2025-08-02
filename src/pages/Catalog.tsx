@@ -616,8 +616,8 @@ export default function Catalog() {
             {/* Pagination */}
             <div className="mb-8">
               <div className="flex justify-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground mr-2">Страница:</span>
+                <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center">
+                  <span className="text-xs sm:text-sm text-muted-foreground mr-1 sm:mr-2 w-full sm:w-auto text-center sm:text-left mb-2 sm:mb-0">Страница:</span>
                   {[...Array(10)].map((_, i) => {
                     const pageNum = i + 1;
                     return (
@@ -625,7 +625,7 @@ export default function Catalog() {
                         key={pageNum}
                         variant={currentPage === pageNum ? "default" : "outline"}
                         size="sm"
-                        className={`w-10 h-10 ${
+                        className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm ${
                           currentPage === pageNum 
                             ? "bg-primary text-white" 
                             : "hover:bg-muted"
