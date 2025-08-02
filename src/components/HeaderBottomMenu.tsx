@@ -27,6 +27,7 @@ interface MainSection {
   title: string;
   href: string;
   categories: MenuSection[];
+  previewImage?: string;
 }
 
 // Данные для всех разделов
@@ -35,6 +36,7 @@ const mainSections: MainSection[] = [
     id: 'monuments',
     title: 'Памятники',
     href: '/catalog?category=monuments',
+    previewImage: '/img/059d1a18-d96e-4d91-b532-10c19982dfb5.jpg',
     categories: [
       {
         title: 'Форма',
@@ -132,6 +134,7 @@ const mainSections: MainSection[] = [
     id: 'complexes',
     title: 'Комплексы',
     href: '/catalog?category=complexes',
+    previewImage: '/img/5964ad83-e43f-4005-a721-8f16011459d7.jpg',
     categories: [
       {
         title: 'Типы комплексов',
@@ -162,6 +165,7 @@ const mainSections: MainSection[] = [
     id: 'improvement',
     title: 'Благоустройство',
     href: '/catalog?category=improvement',
+    previewImage: '/img/57fe978f-1872-48be-a19d-a644801ee280.jpg',
     categories: [
       {
         title: 'Облицовка',
@@ -197,6 +201,7 @@ const mainSections: MainSection[] = [
     id: 'decoration',
     title: 'Оформление',
     href: '/catalog?category=decoration',
+    previewImage: '/img/9eb6e1bb-9f90-48ad-ae6f-c2aa33ffae1e.jpg',
     categories: [
       {
         title: 'Портреты',
@@ -269,6 +274,7 @@ export default function HeaderBottomMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedSections, setMobileExpandedSections] = useState<string[]>([]);
   const [mobileExpandedCategories, setMobileExpandedCategories] = useState<string[]>([]);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const { state, getCartCount } = useApp();
 
   const toggleCategory = (categoryTitle: string) => {
@@ -569,63 +575,96 @@ export default function HeaderBottomMenu() {
 
                 return (
                   <div className="p-4">
-                    {/* Сетка категорий */}
-                    <div className={cn(
-                      "grid gap-4",
-                      section.categories.length <= 2 ? "grid-cols-2" :
-                      section.categories.length === 3 ? "grid-cols-3" :
-                      "grid-cols-4"
-                    )}>
-                      {section.categories.map((category) => (
-                        <div key={category.title} className="space-y-2">
-                          {/* Заголовок категории */}
-                          <div className="border-b border-slate-200 pb-1">
-                            <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">
-                              {category.title}
-                            </h4>
-                          </div>
-
-                          {/* Список элементов категории */}
-                          <div className="space-y-1">
-                            {getVisibleItems(category).map((item) => (
-                              <Link
-                                key={item.title}
-                                to={item.href}
-                                className="block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50"
-                              >
-                                <span>{item.title}</span>
-                                {item.description && (
-                                  <p className="text-xs text-slate-500 mt-0.5">
-                                    {item.description}
-                                  </p>
-                                )}
-                              </Link>
-                            ))}
-                          </div>
-
-                          {/* Кнопка "Развернуть" */}
-                          {hasMoreItems(category) && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => toggleCategory(category.title)}
-                              className="w-full justify-between text-xs text-slate-500 hover:text-slate-700"
+                    {/* Основная сетка с изображением справа */}
+                    <div className="grid grid-cols-4 gap-6">
+                      {/* Первые 3 столбца для категорий */}
+                      <div className="col-span-3">
+                        <div className={cn(
+                          "grid gap-4",
+                          section.categories.length <= 2 ? "grid-cols-2" :
+                          section.categories.length === 3 ? "grid-cols-3" :
+                          "grid-cols-3"
+                        )}>
+                          {section.categories.map((category) => (
+                            <div 
+                              key={category.title} 
+                              className="space-y-2"
+                              onMouseEnter={() => setHoveredCategory(category.title)}
+                              onMouseLeave={() => setHoveredCategory(null)}
                             >
-                              <span>
-                                {expandedCategories.includes(category.title) 
-                                  ? 'Свернуть' 
-                                  : `Показать ещё ${category.items.length - 6}`
-                                }
-                              </span>
-                              {expandedCategories.includes(category.title) ? (
-                                <ChevronDown className="h-3 w-3" />
-                              ) : (
-                                <ChevronRight className="h-3 w-3" />
+                              {/* Заголовок категории */}
+                              <div className="border-b border-slate-200 pb-1">
+                                <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">
+                                  {category.title}
+                                </h4>
+                              </div>
+
+                              {/* Список элементов категории */}
+                              <div className="space-y-1">
+                                {getVisibleItems(category).map((item) => (
+                                  <Link
+                                    key={item.title}
+                                    to={item.href}
+                                    className="block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50"
+                                  >
+                                    <span>{item.title}</span>
+                                    {item.description && (
+                                      <p className="text-xs text-slate-500 mt-0.5">
+                                        {item.description}
+                                      </p>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+
+                              {/* Кнопка "Развернуть" */}
+                              {hasMoreItems(category) && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => toggleCategory(category.title)}
+                                  className="w-full justify-between text-xs text-slate-500 hover:text-slate-700"
+                                >
+                                  <span>
+                                    {expandedCategories.includes(category.title) 
+                                      ? 'Свернуть' 
+                                      : `Показать ещё ${category.items.length - 6}`
+                                    }
+                                  </span>
+                                  {expandedCategories.includes(category.title) ? (
+                                    <ChevronDown className="h-3 w-3" />
+                                  ) : (
+                                    <ChevronRight className="h-3 w-3" />
+                                  )}
+                                </Button>
                               )}
-                            </Button>
-                          )}
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
+
+                      {/* 4-й столбец для изображения предпросмотра */}
+                      <div className="col-span-1">
+                        {section.previewImage && (
+                          <div className="sticky top-4">
+                            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
+                              <div className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">
+                                Предпросмотр
+                              </div>
+                              <div className="aspect-square overflow-hidden rounded-lg bg-white">
+                                <img 
+                                  src={section.previewImage} 
+                                  alt={`Предпросмотр ${section.title}`}
+                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                />
+                              </div>
+                              <div className="mt-2 text-xs text-slate-600 text-center">
+                                {section.title}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
 
 
