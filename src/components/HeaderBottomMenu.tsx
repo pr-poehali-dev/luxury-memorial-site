@@ -413,7 +413,7 @@ export default function HeaderBottomMenu() {
                                     className="w-full justify-between p-2 h-auto text-left text-sm"
                                     onClick={() => toggleMobileCategory(category.title)}
                                   >
-                                    <span className="font-medium">{category.title}</span>
+                                    <span className="font-medium text-primary">{category.title}</span>
                                     <Icon 
                                       name={mobileExpandedCategories.includes(category.title) ? "ChevronUp" : "ChevronDown"} 
                                       size={14} 
@@ -580,7 +580,7 @@ export default function HeaderBottomMenu() {
                         <div key={category.title} className="space-y-2">
                           {/* Заголовок категории */}
                           <div className="border-b border-slate-200 pb-1">
-                            <h4 className="font-semibold text-sm text-slate-900 uppercase tracking-wide">
+                            <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">
                               {category.title}
                             </h4>
                           </div>
