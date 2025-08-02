@@ -36,7 +36,7 @@ const mainSections: MainSection[] = [
     id: 'monuments',
     title: 'Памятники',
     href: '/catalog?category=monuments',
-    previewImage: '/img/059d1a18-d96e-4d91-b532-10c19982dfb5.jpg',
+    previewImage: 'https://cdn.poehali.dev/files/5433cf05-89d5-4a4d-af20-60160b7eb60e.png',
     categories: [
       {
         title: 'Форма',
