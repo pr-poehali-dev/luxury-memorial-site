@@ -178,7 +178,7 @@ export default function Index() {
           </div>
 
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8">
               <TabsTrigger 
                 value="all"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
