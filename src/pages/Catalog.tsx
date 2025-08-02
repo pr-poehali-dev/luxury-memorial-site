@@ -569,32 +569,29 @@ export default function Catalog() {
                         </div>
                       </div>
                       
-                      {/* Селектор размеров */}
+                      {/* Кнопки выбора размеров */}
                       <div className="space-y-2">
                         <div className="text-sm font-medium text-muted-foreground">Размер:</div>
-                        <Select 
-                          value={getSelectedSize(monument.id)} 
-                          onValueChange={(value: MonumentSize) => handleSizeChange(monument.id, value)}
-                        >
-                          <SelectTrigger className="h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {sizeOptions.map(option => (
-                              <SelectItem key={option.value} value={option.value}>
-                                <div className="flex items-center justify-between w-full">
-                                  <span>{option.label}</span>
-                                  <span className="text-xs text-muted-foreground ml-2">
-                                    {option.priceModifier === 1.0 ? 'базовая цена' : 
-                                     option.priceModifier < 1.0 ? 
-                                       `-${Math.round((1 - option.priceModifier) * 100)}%` : 
-                                       `+${Math.round((option.priceModifier - 1) * 100)}%`}
-                                  </span>
-                                </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <div className="flex gap-1">
+                          {sizeOptions.map(option => {
+                            const isSelected = getSelectedSize(monument.id) === option.value;
+                            return (
+                              <Button
+                                key={option.value}
+                                variant={isSelected ? "default" : "outline"}
+                                size="sm"
+                                className={`flex-1 h-8 text-xs ${
+                                  isSelected 
+                                    ? "bg-primary text-primary-foreground" 
+                                    : "hover:bg-muted"
+                                }`}
+                                onClick={() => handleSizeChange(monument.id, option.value)}
+                              >
+                                {option.label}
+                              </Button>
+                            );
+                          })}
+                        </div>
                       </div>
                       
                       <div className="flex gap-2">
