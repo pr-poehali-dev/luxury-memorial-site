@@ -647,20 +647,12 @@ export default function HeaderBottomMenu() {
                       <div className="col-span-1">
                         {section.previewImage && (
                           <div className="sticky top-4">
-                            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
-                              <div className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">
-                                Предпросмотр
-                              </div>
-                              <div className="aspect-square overflow-hidden rounded-lg bg-white">
-                                <img 
-                                  src={section.previewImage} 
-                                  alt={`Предпросмотр ${section.title}`}
-                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                                />
-                              </div>
-                              <div className="mt-2 text-xs text-slate-600 text-center">
-                                {section.title}
-                              </div>
+                            <div className="aspect-square overflow-hidden rounded-lg bg-white border border-slate-200">
+                              <img 
+                                src={section.previewImage} 
+                                alt={`Предпросмотр ${section.title}`}
+                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                              />
                             </div>
                           </div>
                         )}
