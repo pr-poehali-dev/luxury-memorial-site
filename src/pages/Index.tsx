@@ -96,8 +96,8 @@ export default function Index() {
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
               <div className="flex justify-center sm:justify-start">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
-                  Создать памятник
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-12 py-6 h-auto">
+                  Заказать изготовление памятника
                 </Button>
               </div>
             </div>
