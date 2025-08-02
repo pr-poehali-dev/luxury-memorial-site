@@ -520,14 +520,55 @@ export default function Catalog() {
                     </CardHeader>
                     
                     <CardContent className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-primary">{monument.price}</span>
-                          {monument.originalPrice && (
-                            <span className="text-sm line-through text-muted-foreground">
-                              {monument.originalPrice}
-                            </span>
-                          )}
+                      {/* Поля выбора размеров с ценами */}
+                      <div className="space-y-2">
+                        <div className="text-sm font-medium text-muted-foreground">Выберите размер:</div>
+                        <div className="space-y-2">
+                          {sizeOptions.map(option => {
+                            const isSelected = getSelectedSize(monument.id) === option.value;
+                            const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
+                            const price = Math.round(basePrice * option.priceModifier);
+                            const originalPrice = monument.originalPrice ? 
+                              Math.round(parseInt(monument.originalPrice.replace(/[^\d]/g, '')) * option.priceModifier) : 
+                              null;
+                            
+                            return (
+                              <div
+                                key={option.value}
+                                className={`p-3 border rounded-lg cursor-pointer transition-all ${
+                                  isSelected 
+                                    ? "border-primary bg-primary/5" 
+                                    : "border-gray-200 hover:border-primary/50"
+                                }`}
+                                onClick={() => handleSizeChange(monument.id, option.value)}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-2">
+                                    <div className={`w-4 h-4 rounded-full border-2 ${
+                                      isSelected 
+                                        ? "border-primary bg-primary" 
+                                        : "border-gray-300"
+                                    }`}>
+                                      {isSelected && (
+                                        <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                                      )}
+                                    </div>
+                                    <span className="font-medium">{option.label}</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-bold text-primary">
+                                      {price.toLocaleString()} ₽
+                                    </span>
+                                    {originalPrice && (
+                                      <span className="text-sm line-through text-muted-foreground">
+                                        {originalPrice.toLocaleString()} ₽
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                       
@@ -561,7 +602,6 @@ export default function Catalog() {
                         >
                           <Icon name="BarChart3" size={18} />
                         </Button>
-
                       </div>
                     </CardContent>
                   </Card>
