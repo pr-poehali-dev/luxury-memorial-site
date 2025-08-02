@@ -266,6 +266,9 @@ export default function ProductCard() {
                   className="w-full h-full object-cover"
                 />
               </div>
+              
+
+
               <div>
                 <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
                 <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
@@ -430,9 +433,17 @@ export default function ProductCard() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Цена включает изготовление, гравировку портрета и установку
-                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">
+                    Цена включает изготовление, гравировку портрета и установку
+                  </p>
+                  <Link 
+                    to="/installation" 
+                    className="text-xs text-primary hover:underline font-medium"
+                  >
+                    Подробнее об установке
+                  </Link>
+                </div>
               </div>
 
               {/* Material Selection */}
@@ -535,131 +546,6 @@ export default function ProductCard() {
                                   ))}
                                 </SelectContent>
                               </Select>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <Separator className="my-4" />
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
-                    <span className="font-bold text-sm text-primary">
-                      {Object.entries(selectedElements)
-                        .filter(([, config]) => config.enabled)
-                        .reduce((total, [elementId, config]) => {
-                          const element = monumentElements[elementId as keyof typeof monumentElements];
-                          const size = element.sizes.find(s => s.id === config.size);
-                          return total + (size?.price || 0);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Material Selection */}
-              <div className="space-y-3">
-                <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Материал</label>
-                  <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                    <SelectTrigger className="h-auto p-3">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {materials.map(material => (
-                        <SelectItem key={material.id} value={material.id} className="p-3">
-                          <div className="flex items-center gap-3">
-                            <div 
-                              className="w-6 h-6 rounded-full border-2 border-muted" 
-                              style={{ backgroundColor: material.color }}
-                            />
-                            <div>
-                              <div className="font-medium">{material.name}</div>
-                              <div className="text-sm text-muted-foreground">{material.description}</div>
-                              {material.price > 0 && (
-                                <div className="text-sm font-medium text-primary">+{material.price.toLocaleString()} ₽</div>
-                              )}
-                            </div>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Комплектация памятника</label>
-                  <div className="space-y-2">
-                    {Object.entries(monumentElements).map(([elementId, element]) => {
-                      const isEnabled = selectedElements[elementId as keyof typeof selectedElements].enabled;
-                      const currentSize = selectedElements[elementId as keyof typeof selectedElements].size;
-                      const currentSizeData = element.sizes.find(s => s.id === currentSize);
-                      
-                      return (
-                        <div 
-                          key={elementId} 
-                          className={`border rounded-lg p-4 transition-colors cursor-pointer hover:shadow-md ${
-                            isEnabled 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-border hover:border-primary/30'
-                          }`}
-                          onClick={() => !element.required && toggleElement(elementId)}
-                        >
-                          <div className="flex items-center gap-3 mb-2">
-                            <div className="flex items-center gap-2">
-                              <Icon name={element.icon as any} size={16} className="text-muted-foreground" />
-                              <span className="font-medium">{element.name}</span>
-                            </div>
-                            {element.required ? (
-                              <Badge variant="outline" className="text-xs">Обязательно</Badge>
-                            ) : (
-                              <label className="flex items-center">
-                                <input
-                                  type="checkbox"
-                                  checked={isEnabled}
-                                  onChange={() => toggleElement(elementId)}
-                                  className="sr-only"
-                                />
-                                <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                                  isEnabled ? 'bg-primary border-primary' : 'border-muted-foreground'
-                                }`}>
-                                  {isEnabled && <Icon name="Check" size={12} className="text-white" />}
-                                </div>
-                              </label>
-                            )}
-                            {isEnabled && currentSizeData && (
-                              <span className="font-semibold">
-                                {currentSizeData.price.toLocaleString()} ₽
-                              </span>
-                            )}
-                          </div>
-                          
-                          <p className="text-sm text-muted-foreground mb-3">{element.description}</p>
-                          
-                          {isEnabled && element.sizes.length > 1 && (
-                            <div className="space-y-2">
-                              <label className="text-xs font-medium text-muted-foreground">Размер:</label>
-                              <div className="grid grid-cols-1 gap-2">
-                                {element.sizes.map(size => (
-                                  <label key={size.id} className="flex items-center justify-between p-2 border rounded cursor-pointer hover:bg-muted/30">
-                                    <div className="flex items-center gap-2">
-                                      <input
-                                        type="radio"
-                                        name={`${elementId}-size`}
-                                        value={size.id}
-                                        checked={currentSize === size.id}
-                                        onChange={() => updateElementSize(elementId, size.id)}
-                                        className="text-primary"
-                                      />
-                                      <div>
-                                        <div className="text-sm font-medium">{size.dimensions}</div>
-                                      </div>
-                                    </div>
-                                    <span className="text-sm font-semibold">{size.price.toLocaleString()} ₽</span>
-                                  </label>
-                                ))}
-                              </div>
                             </div>
                           )}
                         </div>
