@@ -196,7 +196,6 @@ export default function Header() {
       
       {/* Нижнее меню навигации */}
       <HeaderBottomMenu />
-      </div>
     </header>
   );
 }
