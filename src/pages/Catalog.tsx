@@ -590,8 +590,19 @@ export default function Catalog() {
               </div>
             )}
 
+            {/* About text */}
+            <div className="mt-12 mb-8 text-center">
+              <div className="max-w-3xl mx-auto">
+                <p className="text-muted-foreground leading-relaxed">
+                  В нашем каталоге представлены памятники различных форм, размеров и ценовых категорий. 
+                  Мы работаем с лучшими сортами гранита и мрамора, обеспечивая высокое качество и долговечность каждого изделия. 
+                  Все памятники изготавливаются с соблюдением традиций и современных технологий.
+                </p>
+              </div>
+            </div>
+
             {/* Custom order banner */}
-            <Card className="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
+            <Card className="mt-8 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
               <CardHeader className="text-center">
                 <CardTitle className="font-heading text-2xl">
                   Не нашли подходящий памятник?
