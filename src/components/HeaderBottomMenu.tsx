@@ -567,7 +567,7 @@ export default function HeaderBottomMenu() {
                         <div key={category.title} className="space-y-2">
                           {/* Заголовок категории */}
                           <div className="border-b border-slate-200 pb-1">
-                            <h4 className="font-semibold text-xs text-slate-900 uppercase tracking-wide">
+                            <h4 className="font-semibold text-sm text-slate-900 uppercase tracking-wide">
                               {category.title}
                             </h4>
                           </div>
@@ -579,7 +579,7 @@ export default function HeaderBottomMenu() {
                                 key={item.title}
                                 to={item.href}
                                 className={cn(
-                                  "block text-xs text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50",
+                                  "block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50",
                                   item.isPopular && "text-primary font-medium"
                                 )}
                               >
@@ -627,7 +627,7 @@ export default function HeaderBottomMenu() {
 
                     {/* Быстрые ссылки внизу */}
                     <div className="mt-4 pt-3 border-t border-slate-200">
-                      <div className="flex items-center justify-center space-x-4 text-xs">
+                      <div className="flex items-center justify-center space-x-4 text-sm">
                         <Link 
                           to={section.href} 
                           className="text-primary hover:text-primary/80 font-medium transition-colors"
