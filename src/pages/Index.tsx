@@ -1,13 +1,71 @@
+import { lazy, Suspense, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
+// Lazy loading для компонентов
+const Footer = lazy(() => import('@/components/Footer'));
+const Accordion = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.Accordion
+})));
+const AccordionContent = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionContent
+})));
+const AccordionItem = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionItem
+})));
+const AccordionTrigger = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionTrigger
+})));
+
+// Мемоизированные компоненты для оптимизации
+const MonumentCard = memo(({ monument }: { monument: any }) => (
+  <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="aspect-square overflow-hidden">
+      <img 
+        src={monument.image}
+        alt={monument.title}
+        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <CardHeader>
+      <CardTitle className="font-heading">{monument.title}</CardTitle>
+      <CardDescription className="text-lg font-semibold text-primary">
+        {monument.price}
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <Button className="w-full">Подробнее</Button>
+    </CardContent>
+  </Card>
+));
+
+const ServiceCard = memo(({ service }: { service: any }) => (
+  <Card className="text-center hover:shadow-lg transition-shadow">
+    <CardHeader>
+      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+        <Icon name={service.icon as any} size={32} className="text-primary" />
+      </div>
+      <CardTitle className="font-heading text-xl">{service.title}</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <CardDescription className="text-base">
+        {service.description}
+      </CardDescription>
+    </CardContent>
+  </Card>
+));
+
+MonumentCard.displayName = 'MonumentCard';
+ServiceCard.displayName = 'ServiceCard';
 
 export default function Index() {
 
+  // Оптимизированные данные
   const monuments = [
     { id: 1, title: 'Классический вертикальный', price: 'от 45 000 ₽', image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg' },
     { id: 2, title: 'Горизонтальный элегант', price: 'от 38 000 ₽', image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg' },
@@ -133,24 +191,7 @@ export default function Index() {
             <TabsContent value="all">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {monuments.map(monument => (
-                  <Card key={monument.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-square overflow-hidden">
-                      <img 
-                        src={monument.image}
-                        alt={monument.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="font-heading">{monument.title}</CardTitle>
-                      <CardDescription className="text-lg font-semibold text-primary">
-                        {monument.price}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button className="w-full">Подробнее</Button>
-                    </CardContent>
-                  </Card>
+                  <MonumentCard key={monument.id} monument={monument} />
                 ))}
               </div>
             </TabsContent>
@@ -186,19 +227,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name={service.icon as any} size={32} className="text-primary" />
-                  </div>
-                  <CardTitle className="font-heading text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <ServiceCard key={`service-${index}`} service={service} />
             ))}
           </div>
         </div>
@@ -213,12 +242,14 @@ export default function Index() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1,2,3,4,5,6].map((item) => (
-              <div key={item} className="aspect-square bg-muted rounded-xl overflow-hidden group cursor-pointer">
+            {monuments.map((monument, index) => (
+              <div key={monument.id} className="aspect-square bg-muted rounded-xl overflow-hidden">
                 <img 
-                  src={monuments[item % 3]?.image}
-                  alt={`Галерея ${item}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  src={monument.image}
+                  alt={monument.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -270,105 +301,17 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Masonry-style Reviews Grid */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-12">
+          {/* Простые отзывы для ускорения загрузки */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
-              {
-                name: "Анна Михайловна",
-                role: "Москва • Семейный памятник",
-                rating: 5,
-                text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне, портрет получился очень похожим. Установили быстро и аккуратно. Рекомендую!",
-                avatar: "AM",
-                date: "2 недели назад",
-                color: "from-rose-500 to-pink-600",
-                bgPattern: "bg-gradient-to-br from-rose-50 to-pink-50",
-                service: "Портрет + гравировка"
-              },
-              {
-                name: "Дмитрий Петров",
-                role: "СПб • Красный гранит", 
-                rating: 5,
-                text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл все ожидания. Профессиональный подход, качественные материалы, разумные цены. Очень довольны сотрудничеством!",
-                avatar: "ДП",
-                date: "1 месяц назад",
-                color: "from-blue-500 to-indigo-600",
-                bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-50",
-                service: "Семейный комплекс"
-              },
-              {
-                name: "Елена Васильевна",
-                role: "Казань • Мраморный памятник",
-                rating: 5,
-                text: "Спасибо за терпение и понимание в такой трудный момент. СПаціалісты очень деликатно всё объяснили.",
-                avatar: "ЕВ",
-                date: "3 недели назад",
-                color: "from-emerald-500 to-teal-600",
-                bgPattern: "bg-gradient-to-br from-emerald-50 to-teal-50",
-                service: "Консультация + установка"
-              },
-              {
-                name: "Александр К.",
-                role: "Екатеринбург • Вертикальный",
-                rating: 5,
-                text: "Отличное соотношение цена-качество. Гранитный памятник простоял уже 2 года, выглядит как новый. Гравировка чёткая, полировка держится отлично. Спасибо за качественную работу и честные цены!",
-                avatar: "АК",
-                date: "1 неделю назад",
-                color: "from-amber-500 to-orange-600",
-                bgPattern: "bg-gradient-to-br from-amber-50 to-orange-50",
-                service: "Гранит + полировка"
-              },
-              {
-                name: "Мария Сергеевна",
-                role: "Нижний Новгород • Ручная работа",
-                rating: 5,
-                text: "Заказывала мраморный памятник с ручной гравировкой. Работа художника просто потрясающая! Портрет получился живым, будто фотография на камне.",
-                avatar: "МС",
-                date: "2 месяца назад",
-                color: "from-purple-500 to-violet-600",
-                bgPattern: "bg-gradient-to-br from-purple-50 to-violet-50",
-                service: "Ручная гравировка"
-              },
-              {
-                name: "Игорь Николаевич",
-                role: "Самара • Бронзовые элементы",
-                rating: 5,
-                text: "Профессиональная команда! От консультации до установки всё прошло гладко. Особенно ценю индивидуальный подход и внимание к деталям. Результат превосходный.",
-                avatar: "ИН",
-                date: "3 дня назад",
-                color: "from-cyan-500 to-blue-600",
-                bgPattern: "bg-gradient-to-br from-cyan-50 to-blue-50",
-                service: "Индивидуальный проект"
-              }
-            ].map((review, index) => {
-              const isLarge = index === 1 || index === 3;
-              return (
-                <div 
-                  key={index} 
-                  className={`break-inside-avoid mb-8 group cursor-pointer ${isLarge ? 'transform hover:scale-105' : 'hover:scale-102'} transition-all duration-700`}
-                >
-                  <div className={`relative ${review.bgPattern} rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-white/60`}>
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
-                      <div className={`w-full h-full bg-gradient-to-br ${review.color} rounded-full blur-3xl`}></div>
-                    </div>
-                    <div className="absolute -bottom-8 -left-8 w-24 h-24 opacity-5">
-                      <Icon name="Quote" size={96} className="text-current" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="relative z-10">
-                      {/* Header */}
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className={`w-14 h-14 bg-gradient-to-br ${review.color} rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg transform group-hover:rotate-6 transition-transform duration-500`}>
-                          {review.avatar}
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-bold text-slate-800 text-lg">{review.name}</h4>
-                          <p className="text-sm text-slate-600 mb-2">{review.role}</p>
-                          <div className="flex items-center gap-2">
-                            <div className="flex gap-1">
-                              {[...Array(review.rating)].map((_, i) => (
-                                <Icon key={i} name="Star" size={14} className="text-yellow-400 fill-current" />
+              { name: "Анна М.", text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне." },
+              { name: "Дмитрий П.", text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл ожидания." },
+              { name: "Елена В.", text: "Спасибо за терпение в такой трудный момент. Специалисты очень деликатно всё объяснили." }
+            ].map((review, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md border">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={14} className="text-yellow-400" />
                               ))}
                             </div>
                             <span className="text-xs text-slate-500">•</span>
@@ -585,39 +528,19 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="price-factors" className="border border-border rounded-xl px-6">
-              <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                <div className="flex items-center gap-3">
-                  <Icon name="Calculator" size={20} className="text-primary" />
-                  От чего зависит стоимость памятника?
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-6">
-                <p className="mb-4">Цена памятника формируется из нескольких факторов:</p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                    <Icon name="Box" size={20} className="text-blue-500 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-foreground">Размер и форма</h4>
-                      <p className="text-sm">Высота, ширина, толщина стелы и дополнительных элементов</p>
-                    </div>
+              <AccordionItem value="price-factors" className="border border-border rounded-xl px-6">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Calculator" size={20} className="text-primary" />
+                    От чего зависит стоимость памятника?
                   </div>
-                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                    <Icon name="Gem" size={20} className="text-purple-500 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-foreground">Материал</h4>
-                      <p className="text-sm">Тип гранита, мрамора или бронзовые элементы</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                    <Icon name="Palette" size={20} className="text-green-500 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-foreground">Оформление</h4>
-                      <p className="text-sm">Портреты, надписи, художественные элементы, золочение</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
-                    <Icon name="Package" size={20} className="text-orange-500 mt-0.5" />
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-6">
+                  <p>Цена зависит от размера, материала (гранит, мрамор, бронза), сложности оформления и дополнительных услуг.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </Suspense>
                     <div>
                       <h4 className="font-semibold text-foreground">Комплектация</h4>
                       <p className="text-sm">Тумба, цветник, дополнительные элементы</p>
@@ -778,7 +701,9 @@ export default function Index() {
         </div>
       </section>
 
-      <Footer />
+      <Suspense fallback={<div className="min-h-32 bg-slate-900" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
