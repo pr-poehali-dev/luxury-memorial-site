@@ -193,10 +193,9 @@ export default function Header() {
         </div>
       </div>
       
-      {/* Main Header */}
+      {/* Mobile Menu Container */}
       <div className="border-b">
         <div className="container flex h-16 items-center justify-end">
-        {/* Header Actions */}
         <div className="flex items-center space-x-2">
 
           {/* Mobile Menu */}
