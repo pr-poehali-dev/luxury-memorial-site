@@ -594,11 +594,11 @@ export default function Catalog() {
 
             {/* Load more button */}
             {showLoadMore && (
-              <div className="mt-12 mb-6 text-center">
+              <div className="mt-12 mb-6">
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="flex items-center gap-2"
+                  className="w-full flex items-center justify-center gap-2"
                   onClick={() => {
                     // Логика загрузки дополнительных товаров
                     console.log('Loading more items...');
