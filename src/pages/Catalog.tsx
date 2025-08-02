@@ -595,47 +595,29 @@ export default function Catalog() {
               <div className="max-w-6xl mx-auto">
                 <h2 className="font-heading text-3xl font-bold text-center mb-8">О нашем каталоге памятников</h2>
                 
-                <div className="grid lg:grid-cols-3 gap-8 mb-12">
-                  <div className="text-center">
-                    <div className="mb-4 overflow-hidden rounded-xl">
-                      <img 
-                        src="/img/3fcea721-d774-4c1d-bc1b-eeb3215e8455.jpg" 
-                        alt="Каталог памятников различных форм и размеров"
-                        className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Широкий выбор</h3>
-                    <p className="text-muted-foreground text-sm">
-                      Памятники различных форм, размеров и ценовых категорий для любых потребностей
-                    </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12 justify-items-center">
+                  <div className="overflow-hidden rounded-xl aspect-square">
+                    <img 
+                      src="/img/3fcea721-d774-4c1d-bc1b-eeb3215e8455.jpg" 
+                      alt=""
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
 
-                  <div className="text-center">
-                    <div className="mb-4 overflow-hidden rounded-xl">
-                      <img 
-                        src="/img/afe03e9e-1f12-40c1-8503-9f8d4014d1d4.jpg" 
-                        alt="Лучшие сорта гранита и мрамора"
-                        className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Премиум материалы</h3>
-                    <p className="text-muted-foreground text-sm">
-                      Работаем только с лучшими сортами гранита и мрамора, гарантируя долговечность
-                    </p>
+                  <div className="overflow-hidden rounded-xl aspect-square">
+                    <img 
+                      src="/img/afe03e9e-1f12-40c1-8503-9f8d4014d1d4.jpg" 
+                      alt=""
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
 
-                  <div className="text-center">
-                    <div className="mb-4 overflow-hidden rounded-xl">
-                      <img 
-                        src="/img/c0de4c7e-7659-454c-b186-7125f9313d41.jpg" 
-                        alt="Современные технологии изготовления памятников"
-                        className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Современные технологии</h3>
-                    <p className="text-muted-foreground text-sm">
-                      Сочетаем традиционное мастерство с современными технологиями изготовления
-                    </p>
+                  <div className="overflow-hidden rounded-xl aspect-square">
+                    <img 
+                      src="/img/c0de4c7e-7659-454c-b186-7125f9313d41.jpg" 
+                      alt=""
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
                 </div>
 
