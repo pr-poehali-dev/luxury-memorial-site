@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 import { cn } from '@/lib/utils';
 
 interface MenuSection {
   title: string;
   items: MenuItem[];
   expandable?: boolean;
-  showMore?: boolean;
 }
 
 interface MenuItem {
@@ -18,112 +18,241 @@ interface MenuItem {
   description?: string;
 }
 
-const catalogSections: MenuSection[] = [
+interface MainSection {
+  id: string;
+  title: string;
+  href: string;
+  categories: MenuSection[];
+}
+
+// Данные для всех разделов
+const mainSections: MainSection[] = [
   {
-    title: 'По форме',
-    expandable: true,
-    items: [
-      { title: 'Прямые', href: '/catalog?form=straight', isPopular: true },
-      { title: 'Вертикальные', href: '/catalog?form=vertical', isPopular: true },
-      { title: 'Горизонтальные', href: '/catalog?form=horizontal', isPopular: true },
-      { title: 'Резные', href: '/catalog?form=carved' },
-      { title: 'Фигурные', href: '/catalog?form=figured' },
-      { title: 'Двойные', href: '/catalog?form=double' },
-      { title: 'Эксклюзивные', href: '/catalog?form=exclusive' },
-      { title: 'Сердце', href: '/catalog?form=heart' },
-      { title: 'С Крестом', href: '/catalog?form=cross' },
-      { title: 'Кресты из гранита', href: '/catalog?form=granite-cross' },
-      { title: 'Цветы', href: '/catalog?form=flowers' },
-      { title: 'Деревья (Берёза)', href: '/catalog?form=trees' },
-      { title: 'Ангел', href: '/catalog?form=angel' },
-      { title: 'Птицы (Лебеди, голуби)', href: '/catalog?form=birds' },
-      { title: 'Скорбящая', href: '/catalog?form=mourning' },
-      { title: 'Свеча', href: '/catalog?form=candle' },
-      { title: 'Арка', href: '/catalog?form=arch' },
-      { title: 'Составные', href: '/catalog?form=composite' },
+    id: 'monuments',
+    title: 'Памятники',
+    href: '/catalog?category=monuments',
+    categories: [
+      {
+        title: 'По форме',
+        expandable: true,
+        items: [
+          { title: 'Прямые', href: '/catalog?form=straight', isPopular: true },
+          { title: 'Вертикальные', href: '/catalog?form=vertical', isPopular: true },
+          { title: 'Горизонтальные', href: '/catalog?form=horizontal', isPopular: true },
+          { title: 'Резные', href: '/catalog?form=carved' },
+          { title: 'Фигурные', href: '/catalog?form=figured' },
+          { title: 'Двойные', href: '/catalog?form=double' },
+          { title: 'Эксклюзивные', href: '/catalog?form=exclusive' },
+          { title: 'Сердце', href: '/catalog?form=heart' },
+          { title: 'С Крестом', href: '/catalog?form=cross' },
+          { title: 'Кресты из гранита', href: '/catalog?form=granite-cross' },
+          { title: 'Цветы', href: '/catalog?form=flowers' },
+          { title: 'Деревья (Берёза)', href: '/catalog?form=trees' },
+          { title: 'Ангел', href: '/catalog?form=angel' },
+          { title: 'Птицы (Лебеди, голуби)', href: '/catalog?form=birds' },
+          { title: 'Скорбящая', href: '/catalog?form=mourning' },
+          { title: 'Свеча', href: '/catalog?form=candle' },
+          { title: 'Арка', href: '/catalog?form=arch' },
+          { title: 'Составные', href: '/catalog?form=composite' },
+        ]
+      },
+      {
+        title: 'По материалу',
+        expandable: true,
+        items: [
+          { title: 'Гранит чёрный', href: '/catalog?material=black-granite', isPopular: true },
+          { title: 'Гранит красный', href: '/catalog?material=red-granite' },
+          { title: 'Гранит серый', href: '/catalog?material=gray-granite' },
+          { title: 'Гранит зелёный', href: '/catalog?material=green-granite' },
+          { title: 'Мрамор белый', href: '/catalog?material=white-marble' },
+          { title: 'Мрамор чёрный', href: '/catalog?material=black-marble' },
+          { title: 'Лабрадорит', href: '/catalog?material=labradorite' },
+          { title: 'Габбро-диабаз', href: '/catalog?material=gabbro' },
+          { title: 'Базальт', href: '/catalog?material=basalt' },
+          { title: 'Кварцит', href: '/catalog?material=quartzite' },
+        ]
+      },
+      {
+        title: 'Для кого',
+        items: [
+          { title: 'Мужские', href: '/catalog?for=men', isPopular: true },
+          { title: 'Женские', href: '/catalog?for=women', isPopular: true },
+          { title: 'Детские', href: '/catalog?for=children' },
+          { title: 'Семейные', href: '/catalog?for=family' },
+          { title: 'Военные', href: '/catalog?for=military' },
+          { title: 'Религиозные', href: '/catalog?for=religious' },
+        ]
+      },
+      {
+        title: 'По стоимости',
+        items: [
+          { title: 'До 30 000 ₽', href: '/catalog?price=0-30000' },
+          { title: '30 000 - 50 000 ₽', href: '/catalog?price=30000-50000', isPopular: true },
+          { title: '50 000 - 100 000 ₽', href: '/catalog?price=50000-100000', isPopular: true },
+          { title: '100 000 - 200 000 ₽', href: '/catalog?price=100000-200000' },
+          { title: 'От 200 000 ₽', href: '/catalog?price=200000+' },
+        ]
+      }
     ]
   },
   {
-    title: 'С элементами',
-    items: [
-      { title: 'С портретом', href: '/catalog?elements=portrait', isPopular: true, description: 'Памятники с качественными портретами' },
-      { title: 'С гравировкой', href: '/catalog?elements=engraving', description: 'Художественная гравировка текста' },
-      { title: 'С фотокерамикой', href: '/catalog?elements=photo-ceramic', description: 'Долговечные фотопортреты' },
-      { title: 'С бронзовыми элементами', href: '/catalog?elements=bronze', description: 'Элементы из качественной бронзы' },
-      { title: 'С позолотой', href: '/catalog?elements=gilding', description: 'Золочение букв и элементов' },
-      { title: 'С цветным портретом', href: '/catalog?elements=color-portrait', description: 'Цветные художественные портреты' },
-      { title: 'С эпитафией', href: '/catalog?elements=epitaph', description: 'Памятные надписи и цитаты' },
-      { title: 'С датами жизни', href: '/catalog?elements=dates', description: 'Красивое оформление дат' },
+    id: 'complexes',
+    title: 'Комплексы',
+    href: '/catalog?category=complexes',
+    categories: [
+      {
+        title: 'Типы комплексов',
+        items: [
+          { title: 'Мемориальные комплексы', href: '/catalog?type=memorial', isPopular: true },
+          { title: 'Семейные захоронения', href: '/catalog?type=family' },
+          { title: 'Элитные комплексы', href: '/catalog?type=elite' },
+          { title: 'Склепы и усыпальницы', href: '/catalog?type=crypts' },
+          { title: 'С оградой', href: '/catalog?type=with-fence' },
+          { title: 'Со стеклом', href: '/catalog?type=with-glass' },
+          { title: 'С лавочкой', href: '/catalog?type=with-bench' },
+        ]
+      },
+      {
+        title: 'По размеру',
+        items: [
+          { title: 'На одного человека', href: '/catalog?size=single' },
+          { title: 'На двоих', href: '/catalog?size=double', isPopular: true },
+          { title: 'Семейные (3+ места)', href: '/catalog?size=family' },
+          { title: 'Угловые', href: '/catalog?size=corner' },
+        ]
+      }
     ]
   },
   {
-    title: 'Для кого',
-    items: [
-      { title: 'Мужские', href: '/catalog?for=men', isPopular: true, description: 'Памятники для мужчин' },
-      { title: 'Женские', href: '/catalog?for=women', isPopular: true, description: 'Памятники для женщин' },
-      { title: 'Детские', href: '/catalog?for=children', description: 'Особые памятники для детей' },
-      { title: 'Семейные', href: '/catalog?for=family', description: 'Памятники для супругов и семей' },
-      { title: 'Военные', href: '/catalog?for=military', description: 'Памятники для военнослужащих' },
-      { title: 'Религиозные', href: '/catalog?for=religious', description: 'С религиозной символикой' },
-      { title: 'Двойные памятники', href: '/catalog?for=double', description: 'Для двух человек' },
+    id: 'improvement',
+    title: 'Благоустройство',
+    href: '/catalog?category=improvement',
+    categories: [
+      {
+        title: 'Облицовка',
+        items: [
+          { title: 'Гранитная плитка', href: '/catalog?type=granite-tiles', isPopular: true },
+          { title: 'Тротуарная плитка', href: '/catalog?type=paving-stones' },
+          { title: 'Брусчатка', href: '/catalog?type=cobblestone' },
+          { title: 'Мозаика', href: '/catalog?type=mosaic' },
+          { title: 'Надгробные плиты', href: '/catalog?type=grave-slabs' },
+        ]
+      },
+      {
+        title: 'Ограждения',
+        items: [
+          { title: 'Кованые ограды', href: '/catalog?type=wrought-fences', isPopular: true },
+          { title: 'Гранитные ограды', href: '/catalog?type=granite-fences' },
+          { title: 'Бетонные ограды', href: '/catalog?type=concrete-fences' },
+          { title: 'Металлические ограды', href: '/catalog?type=metal-fences' },
+        ]
+      },
+      {
+        title: 'Мебель и декор',
+        items: [
+          { title: 'Столики и лавочки', href: '/catalog?type=furniture' },
+          { title: 'Цветники и вазы', href: '/catalog?type=planters' },
+          { title: 'Вазы и лампады', href: '/catalog?type=vases' },
+          { title: 'Шары и балясины', href: '/catalog?type=spheres' },
+        ]
+      }
     ]
   },
   {
-    title: 'По материалу',
-    expandable: true,
-    items: [
-      { title: 'Гранит чёрный', href: '/catalog?material=black-granite', isPopular: true, description: 'Классический чёрный гранит' },
-      { title: 'Гранит красный', href: '/catalog?material=red-granite', description: 'Элегантный красный гранит' },
-      { title: 'Гранит серый', href: '/catalog?material=gray-granite', description: 'Универсальный серый гранит' },
-      { title: 'Гранит зелёный', href: '/catalog?material=green-granite', description: 'Изысканный зелёный гранит' },
-      { title: 'Мрамор белый', href: '/catalog?material=white-marble', description: 'Благородный белый мрамор' },
-      { title: 'Мрамор чёрный', href: '/catalog?material=black-marble', description: 'Роскошный чёрный мрамор' },
-      { title: 'Лабрадорит', href: '/catalog?material=labradorite', description: 'Уникальный блестящий камень' },
-      { title: 'Габбро-диабаз', href: '/catalog?material=gabbro', description: 'Прочный тёмный камень' },
-      { title: 'Базальт', href: '/catalog?material=basalt', description: 'Вулканический камень' },
-      { title: 'Кварцит', href: '/catalog?material=quartzite', description: 'Долговечный натуральный камень' },
+    id: 'decoration',
+    title: 'Оформление',
+    href: '/catalog?category=decoration',
+    categories: [
+      {
+        title: 'Портреты',
+        items: [
+          { title: 'Портреты на камне', href: '/catalog?type=stone-portraits', isPopular: true },
+          { title: 'Фотокерамика', href: '/catalog?type=photo-ceramics', isPopular: true },
+          { title: 'Цветные портреты', href: '/catalog?type=color-portraits' },
+          { title: 'Чёрно-белые портреты', href: '/catalog?type=bw-portraits' },
+        ]
+      },
+      {
+        title: 'Гравировка',
+        items: [
+          { title: 'Гравировка текста', href: '/catalog?type=text-engraving' },
+          { title: 'Художественная резьба', href: '/catalog?type=artistic-carving' },
+          { title: 'Эпитафии', href: '/catalog?type=epitaphs' },
+          { title: 'Даты жизни', href: '/catalog?type=life-dates' },
+        ]
+      },
+      {
+        title: 'Декоративные элементы',
+        items: [
+          { title: 'Золочение букв', href: '/catalog?type=letter-gilding' },
+          { title: 'Бронзовые элементы', href: '/catalog?type=bronze-elements' },
+          { title: 'Цветы и растения', href: '/catalog?type=floral-elements' },
+          { title: 'Религиозные символы', href: '/catalog?type=religious-symbols' },
+        ]
+      }
     ]
   },
   {
-    title: 'По стоимости',
-    items: [
-      { title: 'До 30 000 ₽', href: '/catalog?price=0-30000', description: 'Доступные памятники' },
-      { title: '30 000 - 50 000 ₽', href: '/catalog?price=30000-50000', isPopular: true, description: 'Оптимальное соотношение цена-качество' },
-      { title: '50 000 - 100 000 ₽', href: '/catalog?price=50000-100000', isPopular: true, description: 'Качественные памятники' },
-      { title: '100 000 - 200 000 ₽', href: '/catalog?price=100000-200000', description: 'Премиальные памятники' },
-      { title: 'От 200 000 ₽', href: '/catalog?price=200000+', description: 'Эксклюзивные памятники' },
-      { title: 'Эконом класс', href: '/catalog?class=economy', description: 'Простые качественные памятники' },
-      { title: 'Премиум класс', href: '/catalog?class=premium', description: 'Памятники повышенного качества' },
-      { title: 'Элит класс', href: '/catalog?class=elite', description: 'Роскошные эксклюзивные памятники' },
+    id: 'information',
+    title: 'Информация',
+    href: '/info',
+    categories: [
+      {
+        title: 'Услуги',
+        items: [
+          { title: 'Как заказать памятник', href: '/how-to-order' },
+          { title: 'Доставка и установка', href: '/delivery' },
+          { title: 'Гарантии', href: '/warranty' },
+          { title: 'Фото наших работ', href: '/portfolio' },
+        ]
+      },
+      {
+        title: 'О компании',
+        items: [
+          { title: 'О нас', href: '/about' },
+          { title: 'Наши мастера', href: '/masters' },
+          { title: 'Сертификаты', href: '/certificates' },
+          { title: 'Отзывы клиентов', href: '/reviews' },
+        ]
+      },
+      {
+        title: 'Полезная информация',
+        items: [
+          { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
+          { title: 'Памятники в Балашихе', href: '/balashiha-monuments' },
+          { title: 'Часто задаваемые вопросы', href: '/faq' },
+          { title: 'Уход за памятниками', href: '/care-guide' },
+        ]
+      }
     ]
   }
 ];
 
 export default function HeaderBottomMenu() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [expandedSections, setExpandedSections] = useState<string[]>([]);
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
-  const toggleSection = (title: string) => {
-    setExpandedSections(prev => 
-      prev.includes(title) 
-        ? prev.filter(t => t !== title)
-        : [...prev, title]
+  const toggleCategory = (categoryTitle: string) => {
+    setExpandedCategories(prev => 
+      prev.includes(categoryTitle) 
+        ? prev.filter(t => t !== categoryTitle)
+        : [...prev, categoryTitle]
     );
   };
 
-  const getVisibleItems = (section: MenuSection) => {
-    if (!section.expandable) return section.items;
+  const getVisibleItems = (category: MenuSection) => {
+    if (!category.expandable) return category.items;
     
-    const isExpanded = expandedSections.includes(section.title);
-    return isExpanded ? section.items : section.items.slice(0, 6);
+    const isExpanded = expandedCategories.includes(category.title);
+    return isExpanded ? category.items : category.items.slice(0, 6);
   };
 
-  const hasMoreItems = (section: MenuSection) => {
-    return section.expandable && section.items.length > 6;
+  const hasMoreItems = (category: MenuSection) => {
+    return category.expandable && category.items.length > 6;
   };
 
-  const handleMouseEnter = (sectionTitle: string) => {
-    setActiveSection(sectionTitle);
+  const handleMouseEnter = (sectionId: string) => {
+    setActiveSection(sectionId);
   };
 
   const handleMouseLeave = () => {
@@ -131,29 +260,52 @@ export default function HeaderBottomMenu() {
   };
 
   return (
-    <div className="bg-slate-50 border-t border-slate-200">
+    <div className="bg-slate-50 border-t border-slate-200 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="relative">
-          {/* Основные кнопки меню */}
+          {/* Основная навигация */}
           <div 
-            className="flex items-center justify-center py-3 space-x-6"
+            className="flex items-center justify-between py-3"
             onMouseLeave={handleMouseLeave}
           >
-            {catalogSections.map((section) => (
-              <div key={section.title} className="relative">
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    "text-slate-700 hover:text-slate-900 hover:bg-white px-4 py-2 text-sm font-medium transition-all duration-200 flex items-center space-x-1",
-                    activeSection === section.title && "bg-white text-slate-900 shadow-sm"
-                  )}
-                  onMouseEnter={() => handleMouseEnter(section.title)}
-                >
-                  <span>{section.title}</span>
-                  <ChevronDown className="h-3 w-3" />
-                </Button>
+            {/* Логотип слева */}
+            <Link to="/" className="flex items-center space-x-2 mr-8">
+              <div className="h-7 w-7 rounded bg-primary flex items-center justify-center">
+                <Icon name="Mountain" size={16} className="text-primary-foreground" />
               </div>
-            ))}
+              <span className="font-bold text-lg text-slate-900">Вечная Память</span>
+            </Link>
+
+            {/* Навигационные разделы */}
+            <div className="flex items-center space-x-6">
+              {mainSections.map((section) => (
+                <div key={section.id} className="relative">
+                  <Button
+                    variant="ghost"
+                    className={cn(
+                      "text-slate-700 hover:text-slate-900 hover:bg-white px-4 py-2 text-sm font-medium transition-all duration-200 flex items-center space-x-1",
+                      activeSection === section.id && "bg-white text-slate-900 shadow-sm"
+                    )}
+                    onMouseEnter={() => handleMouseEnter(section.id)}
+                    asChild
+                  >
+                    <Link to={section.href}>
+                      <span>{section.title}</span>
+                      {section.categories.length > 0 && <ChevronDown className="h-3 w-3" />}
+                    </Link>
+                  </Button>
+                </div>
+              ))}
+
+              {/* Контакты без выпадающего меню */}
+              <Button
+                variant="ghost"
+                className="text-slate-700 hover:text-slate-900 hover:bg-white px-4 py-2 text-sm font-medium transition-all duration-200"
+                asChild
+              >
+                <Link to="/contacts">Контакты</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Выпадающее меню */}
@@ -164,14 +316,14 @@ export default function HeaderBottomMenu() {
               onMouseLeave={handleMouseLeave}
             >
               {(() => {
-                const section = catalogSections.find(s => s.title === activeSection);
-                if (!section) return null;
+                const section = mainSections.find(s => s.id === activeSection);
+                if (!section || section.categories.length === 0) return null;
 
                 return (
                   <div className="p-6">
                     {/* Заголовок секции */}
                     <div className="mb-6 text-center">
-                      <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      <h3 className="text-xl font-semibold text-slate-900 mb-2">
                         {section.title}
                       </h3>
                       <p className="text-sm text-slate-600">
@@ -179,76 +331,83 @@ export default function HeaderBottomMenu() {
                       </p>
                     </div>
 
-                    {/* Сетка элементов */}
+                    {/* Сетка категорий */}
                     <div className={cn(
-                      "grid gap-3",
-                      section.title === 'По форме' ? "grid-cols-6" : "grid-cols-4"
+                      "grid gap-8",
+                      section.categories.length <= 2 ? "grid-cols-2" :
+                      section.categories.length === 3 ? "grid-cols-3" :
+                      "grid-cols-4"
                     )}>
-                      {getVisibleItems(section).map((item) => (
-                        <Link
-                          key={item.title}
-                          to={item.href}
-                          className={cn(
-                            "group block p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200 border border-transparent hover:border-slate-200",
-                            item.isPopular && "bg-primary/5 border-primary/20"
-                          )}
-                        >
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className={cn(
-                                "text-sm font-medium group-hover:text-primary transition-colors",
-                                item.isPopular ? "text-primary" : "text-slate-700"
-                              )}>
-                                {item.title}
-                              </div>
-                              {item.description && (
-                                <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-                                  {item.description}
-                                </p>
-                              )}
-                            </div>
-                            {item.isPopular && (
-                              <span className="ml-2 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
-                                ТОП
-                              </span>
-                            )}
+                      {section.categories.map((category) => (
+                        <div key={category.title} className="space-y-3">
+                          {/* Заголовок категории */}
+                          <div className="border-b border-slate-200 pb-2">
+                            <h4 className="font-semibold text-sm text-slate-900 uppercase tracking-wide">
+                              {category.title}
+                            </h4>
                           </div>
-                        </Link>
+
+                          {/* Список элементов категории */}
+                          <div className="space-y-2">
+                            {getVisibleItems(category).map((item) => (
+                              <Link
+                                key={item.title}
+                                to={item.href}
+                                className={cn(
+                                  "block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-1 px-2 rounded hover:bg-slate-50",
+                                  item.isPopular && "text-primary font-medium"
+                                )}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span>{item.title}</span>
+                                  {item.isPopular && (
+                                    <span className="text-xs bg-primary/10 text-primary px-1 py-0.5 rounded">
+                                      ТОП
+                                    </span>
+                                  )}
+                                </div>
+                                {item.description && (
+                                  <p className="text-xs text-slate-500 mt-1">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Кнопка "Развернуть" */}
+                          {hasMoreItems(category) && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => toggleCategory(category.title)}
+                              className="w-full justify-between text-xs text-slate-500 hover:text-slate-700"
+                            >
+                              <span>
+                                {expandedCategories.includes(category.title) 
+                                  ? 'Свернуть' 
+                                  : `Показать ещё ${category.items.length - 6}`
+                                }
+                              </span>
+                              {expandedCategories.includes(category.title) ? (
+                                <ChevronDown className="h-3 w-3" />
+                              ) : (
+                                <ChevronRight className="h-3 w-3" />
+                              )}
+                            </Button>
+                          )}
+                        </div>
                       ))}
                     </div>
 
-                    {/* Кнопка "Развернуть" */}
-                    {hasMoreItems(section) && (
-                      <div className="mt-6 text-center">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => toggleSection(section.title)}
-                          className="text-slate-600 hover:text-slate-900"
-                        >
-                          <span>
-                            {expandedSections.includes(section.title) 
-                              ? 'Свернуть' 
-                              : `Показать ещё ${section.items.length - 6} товаров`
-                            }
-                          </span>
-                          {expandedSections.includes(section.title) ? (
-                            <ChevronDown className="ml-2 h-3 w-3" />
-                          ) : (
-                            <ChevronRight className="ml-2 h-3 w-3" />
-                          )}
-                        </Button>
-                      </div>
-                    )}
-
                     {/* Быстрые ссылки внизу */}
-                    <div className="mt-6 pt-4 border-t border-slate-200">
+                    <div className="mt-8 pt-6 border-t border-slate-200">
                       <div className="flex items-center justify-center space-x-6 text-sm">
                         <Link 
-                          to="/catalog" 
+                          to={section.href} 
                           className="text-primary hover:text-primary/80 font-medium transition-colors"
                         >
-                          Весь каталог
+                          Весь раздел "{section.title}"
                         </Link>
                         <span className="text-slate-400">•</span>
                         <Link 
@@ -266,10 +425,10 @@ export default function HeaderBottomMenu() {
                         </Link>
                         <span className="text-slate-400">•</span>
                         <Link 
-                          to="/sale" 
+                          to="/consultation" 
                           className="text-slate-600 hover:text-slate-900 transition-colors"
                         >
-                          Скидки
+                          Консультация
                         </Link>
                       </div>
                     </div>

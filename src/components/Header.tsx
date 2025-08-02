@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import HeaderBottomMenu from '@/components/HeaderBottomMenu';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -394,6 +395,9 @@ export default function Header() {
         </div>
       </div>
       </div>
+      
+      {/* Нижнее меню навигации */}
+      <HeaderBottomMenu />
     </header>
   );
 }
