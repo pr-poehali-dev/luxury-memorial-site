@@ -181,6 +181,7 @@ const mainSections: MainSection[] = [
           { title: 'Кованые ограды', href: '/catalog?type=wrought-fences', isPopular: true },
           { title: 'Цоколь из гранита', href: '/catalog?type=granite-fences' },
           { title: 'Цоколь из бетона', href: '/catalog?type=concrete-base' },
+          { title: 'Бордюр', href: '/catalog?type=border' },
         ]
       },
       {
