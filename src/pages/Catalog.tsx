@@ -9,41 +9,14 @@ import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
-// Типы для размеров памятников
-type MonumentSize = 'стела' | 'тумба' | 'цветник';
-
-interface SizeOption {
-  value: MonumentSize;
-  label: string;
-  priceModifier: number; // множитель к базовой цене
-  dimensions: string; // размеры
-}
-
-const sizeOptions: SizeOption[] = [
-  { value: 'стела', label: 'Стела', priceModifier: 1.0, dimensions: '100x50x8 см' },
-  { value: 'тумба', label: 'Тумба', priceModifier: 0.7, dimensions: '80x40x6 см' },
-  { value: 'цветник', label: 'Цветник', priceModifier: 0.4, dimensions: '60x30x4 см' }
-];
-
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
-  // Состояние для выбранных размеров каждого товара
-  const [selectedSizes, setSelectedSizes] = useState<Record<string, MonumentSize>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [showLoadMore, setShowLoadMore] = useState(true);
   
   const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
-
-  // Функции для работы с размерами
-  const handleSizeChange = (monumentId: string, size: MonumentSize) => {
-    setSelectedSizes(prev => ({ ...prev, [monumentId]: size }));
-  };
-
-  const getSelectedSize = (monumentId: string): MonumentSize => {
-    return selectedSizes[monumentId] || 'стела';
-  };
 
   const categories = [
     { id: 'all', name: 'Все категории', count: 24 },
@@ -547,58 +520,12 @@ export default function Catalog() {
                     </CardHeader>
                     
                     <CardContent className="space-y-3">
-                      {/* Кнопки выбора размеров */}
-                      <div className="space-y-2">
-                        <div className="text-sm font-medium text-muted-foreground">Выберите размер:</div>
-                        <div className="grid grid-cols-3 gap-1">
-                          {sizeOptions.map(option => {
-                            const isSelected = getSelectedSize(monument.id) === option.value;
-                            const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
-                            const price = Math.round(basePrice * option.priceModifier);
-                            const originalPrice = monument.originalPrice ? 
-                              Math.round(parseInt(monument.originalPrice.replace(/[^\d]/g, '')) * option.priceModifier) : 
-                              null;
-                            
-                            return (
-                              <Button
-                                key={option.value}
-                                variant={isSelected ? "default" : "outline"}
-                                size="sm"
-                                className={`h-auto p-2 flex flex-col items-center gap-1 ${
-                                  isSelected 
-                                    ? "bg-primary text-primary-foreground border-primary" 
-                                    : "hover:bg-muted border-gray-200"
-                                }`}
-                                onClick={() => handleSizeChange(monument.id, option.value)}
-                              >
-                                <span className="font-medium text-xs">{option.label}</span>
-                                <span className="text-xs opacity-70">{option.dimensions}</span>
-                                <span className="font-bold text-xs">
-                                  {price.toLocaleString()} ₽
-                                </span>
-                              </Button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                      
-                      {/* Цена выбранного размера */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-primary">
-                            {(() => {
-                              const selectedOption = sizeOptions.find(opt => opt.value === getSelectedSize(monument.id));
-                              const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
-                              return Math.round(basePrice * (selectedOption?.priceModifier || 1)).toLocaleString();
-                            })()} ₽
-                          </span>
+                          <span className="text-xl font-bold text-primary">{monument.price}</span>
                           {monument.originalPrice && (
                             <span className="text-sm line-through text-muted-foreground">
-                              {(() => {
-                                const selectedOption = sizeOptions.find(opt => opt.value === getSelectedSize(monument.id));
-                                const basePrice = parseInt(monument.originalPrice.replace(/[^\d]/g, ''));
-                                return Math.round(basePrice * (selectedOption?.priceModifier || 1)).toLocaleString();
-                              })()} ₽
+                              {monument.originalPrice}
                             </span>
                           )}
                         </div>
