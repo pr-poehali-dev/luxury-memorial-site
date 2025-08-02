@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const socialLinks = [
-    { name: 'WhatsApp', icon: 'MessageCircle', href: 'https://wa.me/78001234567', color: 'text-green-600' },
+    { name: 'WhatsApp', icon: 'MessageCircle', href: 'https://wa.me/71234567890', color: 'text-green-600' },
     { name: 'Telegram', icon: 'Send', href: 'https://t.me/memorial_studio', color: 'text-blue-500' },
     { name: 'VKontakte', icon: 'Users', href: 'https://vk.com/memorial_studio', color: 'text-blue-600' },
     { name: 'Одноклассники', icon: 'Globe', href: 'https://ok.ru/memorial_studio', color: 'text-orange-500' },
@@ -62,8 +62,8 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Icon name="Phone" size={18} className="text-primary flex-shrink-0" />
                 <div>
-                  <a href="tel:+78001234567" className="font-medium hover:text-primary transition-colors">
-                    +7 (800) 123-45-67
+                  <a href="tel:+71234567890" className="font-medium hover:text-primary transition-colors">
+                    +7 (123) 456-78-90
                   </a>
                   <p className="text-xs text-slate-400">Бесплатно по России</p>
                 </div>
