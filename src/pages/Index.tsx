@@ -183,9 +183,24 @@ export default function Index() {
 
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="all">Памятники на могилу</TabsTrigger>
-              <TabsTrigger value="granite">Благоустройство захоронения</TabsTrigger>
-              <TabsTrigger value="marble">Оформление памятника</TabsTrigger>
+              <TabsTrigger 
+                value="all"
+                className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
+              >
+                Памятники на могилу
+              </TabsTrigger>
+              <TabsTrigger 
+                value="granite"
+                className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
+              >
+                Благоустройство захоронения
+              </TabsTrigger>
+              <TabsTrigger 
+                value="marble"
+                className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
+              >
+                Оформление памятника
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="all">
