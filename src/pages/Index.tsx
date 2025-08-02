@@ -95,13 +95,9 @@ export default function Index() {
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex justify-center sm:justify-start">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
                   Создать памятник
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8">
-                  <Icon name="Play" className="mr-2" size={20} />
-                  Смотреть процесс
                 </Button>
               </div>
             </div>
