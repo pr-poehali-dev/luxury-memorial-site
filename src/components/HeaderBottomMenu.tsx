@@ -184,7 +184,7 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'Мебель и декор',
+        title: 'Декор',
         items: [
           { title: 'Столики и лавочки', href: '/catalog?type=furniture' },
           { title: 'Цветники', href: '/catalog?type=planters' },
