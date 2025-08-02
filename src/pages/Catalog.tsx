@@ -9,50 +9,14 @@ import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
-// Типы для размеров памятников
-type MonumentSize = 'стела' | 'тумба' | 'цветник';
-
-interface SizeOption {
-  value: MonumentSize;
-  label: string;
-  priceModifier: number; // множитель к базовой цене
-}
-
-const sizeOptions: SizeOption[] = [
-  { value: 'стела', label: 'Стела', priceModifier: 1.0 },
-  { value: 'тумба', label: 'Тумба', priceModifier: 0.7 },
-  { value: 'цветник', label: 'Цветник', priceModifier: 0.4 }
-];
-
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
-  // Состояние для выбранных размеров каждого товара
-  const [selectedSizes, setSelectedSizes] = useState<Record<string, MonumentSize>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [showLoadMore, setShowLoadMore] = useState(true);
   
   const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
-
-  // Функции для работы с размерами
-  const handleSizeChange = (monumentId: string, size: MonumentSize) => {
-    setSelectedSizes(prev => ({ ...prev, [monumentId]: size }));
-  };
-
-  const getSelectedSize = (monumentId: string): MonumentSize => {
-    return selectedSizes[monumentId] || 'стела';
-  };
-
-  const calculatePrice = (basePrice: string, monumentId: string): string => {
-    const selectedSize = getSelectedSize(monumentId);
-    const sizeOption = sizeOptions.find(option => option.value === selectedSize);
-    if (!sizeOption) return basePrice;
-    
-    const numericPrice = parseInt(basePrice.replace(/[^\d]/g, ''));
-    const adjustedPrice = Math.round(numericPrice * sizeOption.priceModifier);
-    return `${adjustedPrice.toLocaleString()} ₽`;
-  };
 
   const categories = [
     { id: 'all', name: 'Все категории', count: 24 },
@@ -558,43 +522,13 @@ export default function Catalog() {
                     <CardContent className="space-y-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-primary">
-                            {calculatePrice(monument.price, monument.id)}
-                          </span>
+                          <span className="text-xl font-bold text-primary">{monument.price}</span>
                           {monument.originalPrice && (
                             <span className="text-sm line-through text-muted-foreground">
-                              {calculatePrice(monument.originalPrice, monument.id)}
+                              {monument.originalPrice}
                             </span>
                           )}
                         </div>
-                      </div>
-                      
-                      {/* Селектор размеров */}
-                      <div className="space-y-2">
-                        <div className="text-sm font-medium text-muted-foreground">Размер:</div>
-                        <Select 
-                          value={getSelectedSize(monument.id)} 
-                          onValueChange={(value: MonumentSize) => handleSizeChange(monument.id, value)}
-                        >
-                          <SelectTrigger className="h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {sizeOptions.map(option => (
-                              <SelectItem key={option.value} value={option.value}>
-                                <div className="flex items-center justify-between w-full">
-                                  <span>{option.label}</span>
-                                  <span className="text-xs text-muted-foreground ml-2">
-                                    {option.priceModifier === 1.0 ? 'базовая цена' : 
-                                     option.priceModifier < 1.0 ? 
-                                       `-${Math.round((1 - option.priceModifier) * 100)}%` : 
-                                       `+${Math.round((option.priceModifier - 1) * 100)}%`}
-                                  </span>
-                                </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
                       </div>
                       
                       <div className="flex gap-2">
