@@ -172,7 +172,6 @@ const mainSections: MainSection[] = [
           { title: 'Гранитная плитка', href: '/catalog?type=granite-tiles', isPopular: true },
           { title: 'Тротуарная плитка', href: '/catalog?type=paving-stones' },
           { title: 'Брусчатка', href: '/catalog?type=cobblestone' },
-          { title: 'Мозаика', href: '/catalog?type=mosaic' },
           { title: 'Надгробные плиты', href: '/catalog?type=grave-slabs' },
         ]
       },
@@ -182,14 +181,13 @@ const mainSections: MainSection[] = [
           { title: 'Кованые ограды', href: '/catalog?type=wrought-fences', isPopular: true },
           { title: 'Гранитные ограды', href: '/catalog?type=granite-fences' },
           { title: 'Бетонные ограды', href: '/catalog?type=concrete-fences' },
-          { title: 'Металлические ограды', href: '/catalog?type=metal-fences' },
         ]
       },
       {
         title: 'Мебель и декор',
         items: [
           { title: 'Столики и лавочки', href: '/catalog?type=furniture' },
-          { title: 'Цветники и вазы', href: '/catalog?type=planters' },
+          { title: 'Цветники', href: '/catalog?type=planters' },
           { title: 'Вазы и лампады', href: '/catalog?type=vases' },
           { title: 'Шары и балясины', href: '/catalog?type=spheres' },
         ]
