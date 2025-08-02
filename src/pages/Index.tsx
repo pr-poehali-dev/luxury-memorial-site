@@ -124,11 +124,10 @@ export default function Index() {
           </div>
 
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="all">Все</TabsTrigger>
-              <TabsTrigger value="granite">Гранит</TabsTrigger>
-              <TabsTrigger value="marble">Мрамор</TabsTrigger>
-              <TabsTrigger value="bronze">Бронза</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="all">Памятники на могилу</TabsTrigger>
+              <TabsTrigger value="granite">Благоустройство захоронения</TabsTrigger>
+              <TabsTrigger value="marble">Оформление памятника</TabsTrigger>
             </TabsList>
 
             <TabsContent value="all">
