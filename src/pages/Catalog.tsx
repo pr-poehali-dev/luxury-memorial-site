@@ -597,7 +597,7 @@ export default function Catalog() {
               <div className="mt-12 mb-6">
                 <Button 
                   size="lg"
-                  className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white"
+                  className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
                   onClick={() => {
                     // Логика загрузки дополнительных товаров
                     console.log('Loading more items...');
