@@ -9,14 +9,99 @@ import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
+// Типы для размеров памятников
+type MonumentSize = 'стела' | 'тумба' | 'цветник';
+
+interface SizeVariant {
+  id: string;
+  dimensions: string;
+  priceModifier: number;
+}
+
+interface SizeOption {
+  value: MonumentSize;
+  label: string;
+  variants: SizeVariant[];
+}
+
+const sizeOptions: SizeOption[] = [
+  { 
+    value: 'стела', 
+    label: 'Стела', 
+    variants: [
+      { id: 'стела-стандарт', dimensions: '100x50x8 см', priceModifier: 1.0 },
+      { id: 'стела-большая', dimensions: '120x60x10 см', priceModifier: 1.3 },
+      { id: 'стела-элит', dimensions: '150x80x12 см', priceModifier: 1.8 }
+    ]
+  },
+  { 
+    value: 'тумба', 
+    label: 'Тумба', 
+    variants: [
+      { id: 'тумба-малая', dimensions: '60x40x5 см', priceModifier: 0.5 },
+      { id: 'тумба-стандарт', dimensions: '80x50x6 см', priceModifier: 0.7 },
+      { id: 'тумба-большая', dimensions: '100x60x8 см', priceModifier: 0.9 }
+    ]
+  },
+  { 
+    value: 'цветник', 
+    label: 'Цветник', 
+    variants: [
+      { id: 'цветник-малый', dimensions: '40x30x3 см', priceModifier: 0.25 },
+      { id: 'цветник-средний', dimensions: '60x40x4 см', priceModifier: 0.4 },
+      { id: 'цветник-большой', dimensions: '80x50x5 см', priceModifier: 0.6 }
+    ]
+  }
+];
+
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
+  // Состояние для выбранных размеров и вариантов каждого товара
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, MonumentSize>>({});
+  const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [showLoadMore, setShowLoadMore] = useState(true);
   
   const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
+
+  // Функции для работы с размерами
+  const handleSizeChange = (monumentId: string, size: MonumentSize) => {
+    setSelectedSizes(prev => ({ ...prev, [monumentId]: size }));
+    // Сбрасываем выбранный вариант при смене типа
+    const sizeOption = sizeOptions.find(opt => opt.value === size);
+    if (sizeOption) {
+      setSelectedVariants(prev => ({ ...prev, [monumentId]: sizeOption.variants[0].id }));
+    }
+  };
+
+  const handleVariantChange = (monumentId: string, variantId: string) => {
+    setSelectedVariants(prev => ({ ...prev, [monumentId]: variantId }));
+  };
+
+  const getSelectedSize = (monumentId: string): MonumentSize => {
+    return selectedSizes[monumentId] || 'стела';
+  };
+
+  const getSelectedVariant = (monumentId: string): string => {
+    const selectedSize = getSelectedSize(monumentId);
+    const sizeOption = sizeOptions.find(opt => opt.value === selectedSize);
+    return selectedVariants[monumentId] || sizeOption?.variants[0].id || '';
+  };
+
+  const getCurrentPrice = (monument: any, monumentId: string): number => {
+    const variantId = getSelectedVariant(monumentId);
+    const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
+    
+    for (const sizeOption of sizeOptions) {
+      const variant = sizeOption.variants.find(v => v.id === variantId);
+      if (variant) {
+        return Math.round(basePrice * variant.priceModifier);
+      }
+    }
+    return basePrice;
+  };
 
   const categories = [
     { id: 'all', name: 'Все категории', count: 24 },
@@ -520,12 +605,83 @@ export default function Catalog() {
                     </CardHeader>
                     
                     <CardContent className="space-y-3">
+                      {/* Кнопки выбора типа размера */}
+                      <div className="space-y-2">
+                        <div className="text-sm font-medium text-muted-foreground">Тип:</div>
+                        <div className="grid grid-cols-3 gap-1">
+                          {sizeOptions.map(option => {
+                            const isSelected = getSelectedSize(monument.id) === option.value;
+                            return (
+                              <Button
+                                key={option.value}
+                                variant={isSelected ? "default" : "outline"}
+                                size="sm"
+                                className={`text-xs ${
+                                  isSelected 
+                                    ? "bg-primary text-primary-foreground" 
+                                    : "hover:bg-muted"
+                                }`}
+                                onClick={() => handleSizeChange(monument.id, option.value)}
+                              >
+                                {option.label}
+                              </Button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Выпадающий список размеров */}
+                      <div className="space-y-2">
+                        <div className="text-sm font-medium text-muted-foreground">Размер:</div>
+                        <Select 
+                          value={getSelectedVariant(monument.id)} 
+                          onValueChange={(value) => handleVariantChange(monument.id, value)}
+                        >
+                          <SelectTrigger className="h-9">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(() => {
+                              const selectedSizeOption = sizeOptions.find(opt => opt.value === getSelectedSize(monument.id));
+                              return selectedSizeOption?.variants.map(variant => {
+                                const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
+                                const price = Math.round(basePrice * variant.priceModifier);
+                                return (
+                                  <SelectItem key={variant.id} value={variant.id}>
+                                    <div className="flex items-center justify-between w-full">
+                                      <span>{variant.dimensions}</span>
+                                      <span className="text-xs text-muted-foreground ml-2">
+                                        {price.toLocaleString()} ₽
+                                      </span>
+                                    </div>
+                                  </SelectItem>
+                                );
+                              });
+                            })()}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      {/* Цена выбранного размера */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-primary">{monument.price}</span>
+                          <span className="text-xl font-bold text-primary">
+                            {getCurrentPrice(monument, monument.id).toLocaleString()} ₽
+                          </span>
                           {monument.originalPrice && (
                             <span className="text-sm line-through text-muted-foreground">
-                              {monument.originalPrice}
+                              {(() => {
+                                const variantId = getSelectedVariant(monument.id);
+                                const basePrice = parseInt(monument.originalPrice.replace(/[^\d]/g, ''));
+                                
+                                for (const sizeOption of sizeOptions) {
+                                  const variant = sizeOption.variants.find(v => v.id === variantId);
+                                  if (variant) {
+                                    return Math.round(basePrice * variant.priceModifier).toLocaleString();
+                                  }
+                                }
+                                return basePrice.toLocaleString();
+                              })()} ₽
                             </span>
                           )}
                         </div>
