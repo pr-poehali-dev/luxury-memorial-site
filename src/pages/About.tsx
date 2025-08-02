@@ -2,8 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function About() {
   const stats = [
@@ -92,8 +91,8 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
@@ -295,8 +294,6 @@ export default function About() {
         </div>
       </section>
 
-      <Footer />
-
       <style jsx>{`
         @keyframes fade-in-up {
           from {
@@ -314,6 +311,7 @@ export default function About() {
           opacity: 0;
         }
       `}</style>
-    </div>
+      </div>
+    </Layout>
   );
 }

@@ -3,10 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 
 // Lazy loading для компонентов
-const Footer = lazy(() => import('@/components/Footer'));
 const Accordion = lazy(() => import('@/components/ui/accordion').then(module => ({
   default: module.Accordion
 })));
@@ -80,8 +79,8 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
 
       {/* Hero Section */}
       <section className="pt-4 pb-16 px-4">
@@ -574,9 +573,7 @@ export default function Index() {
         </div>
       </section>
 
-      <Suspense fallback={<div className="min-h-32 bg-slate-900" />}>
-        <Footer />
-      </Suspense>
-    </div>
+      </div>
+    </Layout>
   );
 }

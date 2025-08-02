@@ -6,8 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function HowToOrder() {
   const [formData, setFormData] = useState({
@@ -135,8 +134,8 @@ export default function HowToOrder() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -397,7 +396,7 @@ export default function HowToOrder() {
         </section>
       </main>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

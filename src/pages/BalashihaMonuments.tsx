@@ -7,8 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 import { Link } from 'react-router-dom';
 
 export default function BalashihaMonuments() {
@@ -245,8 +244,8 @@ export default function BalashihaMonuments() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -703,7 +702,7 @@ export default function BalashihaMonuments() {
         </section>
       </main>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

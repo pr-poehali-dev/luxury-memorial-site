@@ -4,8 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function Portfolio() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -169,8 +168,8 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -359,8 +358,6 @@ export default function Portfolio() {
         </section>
       </main>
 
-      <Footer />
-
       {/* Modal */}
       {selectedImage && (
         <div 
@@ -403,6 +400,7 @@ export default function Portfolio() {
           }
         }
       `}</style>
-    </div>
+      </div>
+    </Layout>
   );
 }

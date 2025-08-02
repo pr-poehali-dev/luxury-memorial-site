@@ -3,8 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function Installation() {
   const [formData, setFormData] = useState({
@@ -104,8 +103,8 @@ export default function Installation() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
 
       {/* Hero Section */}
       <section className="pt-8 pb-12 px-4 bg-gradient-to-b from-muted/30 to-background">
@@ -402,7 +401,7 @@ export default function Installation() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

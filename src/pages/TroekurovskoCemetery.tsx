@@ -7,8 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 
 export default function TroekurovskoCemetery() {
@@ -177,8 +176,8 @@ export default function TroekurovskoCemetery() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -626,7 +625,7 @@ export default function TroekurovskoCemetery() {
         </section>
       </main>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

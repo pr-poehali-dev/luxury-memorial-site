@@ -5,8 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function Contacts() {
   const [formData, setFormData] = useState({
@@ -30,8 +29,8 @@ export default function Contacts() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 bg-muted/30">
@@ -287,7 +286,7 @@ export default function Contacts() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

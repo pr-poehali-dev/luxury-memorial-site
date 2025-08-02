@@ -5,8 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
@@ -386,10 +385,9 @@ export default function Catalog() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-
-      {/* Header */}
+    <Layout>
+      <div className="bg-background">
+        {/* Header */}
       <section className="pt-4 pb-12 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-8">
@@ -717,8 +715,7 @@ export default function Catalog() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

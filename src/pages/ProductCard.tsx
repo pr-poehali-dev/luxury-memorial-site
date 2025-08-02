@@ -7,8 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 
 export default function ProductCard() {
@@ -250,8 +249,8 @@ export default function ProductCard() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
 
       {/* Main Content */}
       <section className="pt-4 pb-12 px-4">
@@ -788,7 +787,7 @@ export default function ProductCard() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

@@ -1,10 +1,9 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Layout from '@/components/Layout';
 
 export default function OfferAgreement() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <section className="pt-8 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
@@ -190,7 +189,7 @@ export default function OfferAgreement() {
         </div>
       </section>
       
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 }

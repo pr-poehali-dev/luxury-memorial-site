@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,8 @@ export default function Comparison() {
 
   if (state.comparison.length === 0) {
     return (
-      <div className="min-h-screen bg-background">
+      <Layout>
+        <div className="bg-background">
         <Header />
         
         <section className="pt-8 pb-16 px-4">
@@ -31,7 +32,8 @@ export default function Comparison() {
             </div>
           </div>
         </section>
-      </div>
+        </div>
+      </Layout>
     );
   }
 
@@ -43,7 +45,8 @@ export default function Comparison() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <Layout>
+      <div className="bg-background">
       <Header />
       
       <section className="pt-8 pb-16 px-4">
@@ -236,6 +239,7 @@ export default function Comparison() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </Layout>
   );
 }

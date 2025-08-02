@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import { useApp } from '@/contexts/AppContext';
 import { Link } from 'react-router-dom';
 
@@ -12,8 +12,8 @@ export default function Cart() {
 
   if (state.cart.length === 0) {
     return (
-      <div className="min-h-screen bg-background">
-        <Header />
+      <Layout>
+        <div className="bg-background">
         
         <section className="pt-8 pb-16 px-4">
           <div className="container mx-auto max-w-4xl">
@@ -31,13 +31,14 @@ export default function Cart() {
             </div>
           </div>
         </section>
-      </div>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <div className="bg-background">
       
       <section className="pt-8 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -202,6 +203,7 @@ export default function Cart() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </Layout>
   );
 }
