@@ -224,6 +224,17 @@ const mainSections: MainSection[] = [
         ]
       },
       {
+        title: 'Надписи',
+        items: [
+          { title: 'Бронзовые буквы', href: '/catalog?type=bronze-letters' },
+          { title: 'Скарпель (Рубленные буквы)', href: '/catalog?type=scarpel-letters' },
+          { title: 'Сусальное золото', href: '/catalog?type=gold-leaf' },
+          { title: 'Пескоструй', href: '/catalog?type=sandblasting' },
+          { title: 'Эпитафии', href: '/catalog?type=epitaphs-text' },
+          { title: 'Шрифты', href: '/catalog?type=fonts' },
+        ]
+      },
+      {
         title: 'Декоративные элементы',
         items: [
           { title: 'Золочение букв', href: '/catalog?type=letter-gilding' },
