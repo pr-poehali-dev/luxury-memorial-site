@@ -536,7 +536,7 @@ export default function HeaderBottomMenu() {
           {/* Выпадающее меню */}
           {activeSection && (
             <div 
-              className="absolute top-full left-0 right-0 bg-white border border-slate-200 shadow-lg z-50 animate-in fade-in-0 slide-in-from-top-2 duration-300"
+              className="absolute top-full left-0 right-0 bg-white border border-slate-200 shadow-lg z-50 animate-in fade-in-0 slide-in-from-top-2 duration-300 max-h-[80vh] overflow-y-auto"
               onMouseEnter={() => setActiveSection(activeSection)}
               onMouseLeave={handleMouseLeave}
             >
@@ -545,41 +545,41 @@ export default function HeaderBottomMenu() {
                 if (!section || section.categories.length === 0) return null;
 
                 return (
-                  <div className="p-6">
+                  <div className="p-4">
                     {/* Заголовок секции */}
-                    <div className="mb-6 text-center">
-                      <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                    <div className="mb-4 text-center">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-1">
                         {section.title}
                       </h3>
-                      <p className="text-sm text-slate-600">
+                      <p className="text-xs text-slate-600">
                         Выберите подходящий вариант из нашего каталога
                       </p>
                     </div>
 
                     {/* Сетка категорий */}
                     <div className={cn(
-                      "grid gap-8",
+                      "grid gap-4",
                       section.categories.length <= 2 ? "grid-cols-2" :
                       section.categories.length === 3 ? "grid-cols-3" :
                       "grid-cols-4"
                     )}>
                       {section.categories.map((category) => (
-                        <div key={category.title} className="space-y-3">
+                        <div key={category.title} className="space-y-2">
                           {/* Заголовок категории */}
-                          <div className="border-b border-slate-200 pb-2">
-                            <h4 className="font-semibold text-sm text-slate-900 uppercase tracking-wide">
+                          <div className="border-b border-slate-200 pb-1">
+                            <h4 className="font-semibold text-xs text-slate-900 uppercase tracking-wide">
                               {category.title}
                             </h4>
                           </div>
 
                           {/* Список элементов категории */}
-                          <div className="space-y-2">
+                          <div className="space-y-1">
                             {getVisibleItems(category).map((item) => (
                               <Link
                                 key={item.title}
                                 to={item.href}
                                 className={cn(
-                                  "block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-1 px-2 rounded hover:bg-slate-50",
+                                  "block text-xs text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50",
                                   item.isPopular && "text-primary font-medium"
                                 )}
                               >
@@ -592,7 +592,7 @@ export default function HeaderBottomMenu() {
                                   )}
                                 </div>
                                 {item.description && (
-                                  <p className="text-xs text-slate-500 mt-1">
+                                  <p className="text-xs text-slate-500 mt-0.5">
                                     {item.description}
                                   </p>
                                 )}
@@ -626,8 +626,8 @@ export default function HeaderBottomMenu() {
                     </div>
 
                     {/* Быстрые ссылки внизу */}
-                    <div className="mt-8 pt-6 border-t border-slate-200">
-                      <div className="flex items-center justify-center space-x-6 text-sm">
+                    <div className="mt-4 pt-3 border-t border-slate-200">
+                      <div className="flex items-center justify-center space-x-4 text-xs">
                         <Link 
                           to={section.href} 
                           className="text-primary hover:text-primary/80 font-medium transition-colors"
