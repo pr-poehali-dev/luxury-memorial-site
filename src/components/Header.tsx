@@ -173,7 +173,7 @@ export default function Header() {
             <div className="flex items-center space-x-3">
               {/* Call request button - скрыт на мобильных */}
               <button 
-                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors"
+                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
                 title="Заказать звонок"
               >
                 <Icon name="PhoneCall" size={16} />
@@ -183,7 +183,7 @@ export default function Header() {
               {/* Phone number */}
               <a 
                 href="tel:+74952013227" 
-                className="text-gray-800 hover:text-gray-900 font-medium"
+                className="text-gray-800 hover:text-green-600 font-medium transition-colors"
               >
                 +7 (495) 201-32-27
               </a>
