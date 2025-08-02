@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import Icon from '@/components/ui/icon';
 import { cn } from '@/lib/utils';
-import { useAppContext } from '@/context/AppContext';
+import { useApp } from '@/contexts/AppContext';
 
 interface MenuSection {
   title: string;
@@ -238,7 +238,7 @@ export default function HeaderBottomMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedSections, setMobileExpandedSections] = useState<string[]>([]);
   const [mobileExpandedCategories, setMobileExpandedCategories] = useState<string[]>([]);
-  const { state, getCartCount } = useAppContext();
+  const { state, getCartCount } = useApp();
 
   const toggleCategory = (categoryTitle: string) => {
     setExpandedCategories(prev => 
