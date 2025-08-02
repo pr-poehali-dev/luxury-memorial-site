@@ -37,7 +37,7 @@ const mainSections: MainSection[] = [
     href: '/catalog?category=monuments',
     categories: [
       {
-        title: 'По форме',
+        title: 'Форма',
         expandable: true,
         items: [
           { title: 'Прямые', href: '/catalog?form=straight', isPopular: true },
@@ -61,7 +61,7 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'По материалу',
+        title: 'Материал',
         expandable: true,
         items: [
           { title: 'Памятники из гранита', href: '/catalog?material=granite', isPopular: true },
@@ -85,7 +85,7 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'Для кого',
+        title: 'Кому',
         expandable: true,
         items: [
           { title: 'Военный (СВО)', href: '/catalog?for=military-svo', isPopular: true },
@@ -106,7 +106,23 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'По стоимости',
+        title: 'Цвет',
+        expandable: true,
+        items: [
+          { title: 'Чёрный', href: '/catalog?color=black', isPopular: true },
+          { title: 'Серый', href: '/catalog?color=gray', isPopular: true },
+          { title: 'Красный', href: '/catalog?color=red' },
+          { title: 'Зелёный', href: '/catalog?color=green' },
+          { title: 'Белый', href: '/catalog?color=white' },
+          { title: 'Розовый', href: '/catalog?color=pink' },
+          { title: 'Синий', href: '/catalog?color=blue' },
+          { title: 'Коричневый', href: '/catalog?color=brown' },
+          { title: 'Жёлтый', href: '/catalog?color=yellow' },
+          { title: 'Многоцветный', href: '/catalog?color=multicolor' },
+        ]
+      },
+      {
+        title: 'Цена',
         items: [
           { title: 'До 30 000 ₽', href: '/catalog?price=0-30000' },
           { title: '30 000 - 50 000 ₽', href: '/catalog?price=30000-50000', isPopular: true },
