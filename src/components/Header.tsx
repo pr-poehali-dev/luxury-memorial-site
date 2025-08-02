@@ -195,17 +195,7 @@ export default function Header() {
       
       {/* Main Header */}
       <div className="border-b">
-        <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
-            <Icon name="Mountain" size={20} className="text-primary-foreground" />
-          </div>
-          <span className="font-bold text-xl">Вечная Память</span>
-        </Link>
-
-
-
+        <div className="container flex h-16 items-center justify-end">
         {/* Header Actions */}
         <div className="flex items-center space-x-2">
 
