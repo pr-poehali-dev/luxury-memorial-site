@@ -211,6 +211,7 @@ const mainSections: MainSection[] = [
           { title: 'Фотокерамика', href: '/catalog?type=photo-ceramics', isPopular: true },
           { title: 'Цветные портреты', href: '/catalog?type=color-portraits' },
           { title: 'Чёрно-белые портреты', href: '/catalog?type=bw-portraits' },
+          { title: 'Портрет на стекле', href: '/catalog?type=glass-portraits' },
         ]
       },
       {
