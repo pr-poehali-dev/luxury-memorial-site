@@ -425,18 +425,10 @@ export default function HeaderBottomMenu() {
                                       <Link
                                         key={item.title}
                                         to={item.href}
-                                        className={cn(
-                                          "block p-2 text-xs rounded hover:bg-slate-50 transition-colors",
-                                          item.isPopular ? "text-primary font-medium" : "text-slate-600"
-                                        )}
+                                        className="block p-2 text-xs rounded hover:bg-slate-50 transition-colors text-slate-600"
                                         onClick={() => setMobileMenuOpen(false)}
                                       >
-                                        <div className="flex items-center justify-between">
-                                          <span>{item.title}</span>
-                                          {item.isPopular && (
-                                            <Badge variant="secondary" className="text-xs px-1 py-0">ТОП</Badge>
-                                          )}
-                                        </div>
+                                        <span>{item.title}</span>
                                       </Link>
                                     ))}
                                   </CollapsibleContent>
@@ -607,19 +599,9 @@ export default function HeaderBottomMenu() {
                               <Link
                                 key={item.title}
                                 to={item.href}
-                                className={cn(
-                                  "block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50",
-                                  item.isPopular && "text-primary font-medium"
-                                )}
+                                className="block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50"
                               >
-                                <div className="flex items-center justify-between">
-                                  <span>{item.title}</span>
-                                  {item.isPopular && (
-                                    <span className="text-xs bg-primary/10 text-primary px-1 py-0.5 rounded">
-                                      ТОП
-                                    </span>
-                                  )}
-                                </div>
+                                <span>{item.title}</span>
                                 {item.description && (
                                   <p className="text-xs text-slate-500 mt-0.5">
                                     {item.description}
