@@ -152,7 +152,7 @@ const mainSections: MainSection[] = [
         items: [
           { title: 'На одного человека', href: '/catalog?size=single' },
           { title: 'На двоих', href: '/catalog?size=double', isPopular: true },
-          { title: 'Семейные (3+ места)', href: '/catalog?size=family' },
+          { title: 'Семейные', href: '/catalog?size=family' },
           { title: 'Угловые', href: '/catalog?size=corner' },
         ]
       }
