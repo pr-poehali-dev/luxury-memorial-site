@@ -1,3 +1,48 @@
+// Типы для размеров памятников
+export type MonumentSize = 'стела' | 'тумба' | 'цветник';
+
+export interface SizeVariant {
+  id: string;
+  dimensions: string;
+  priceModifier: number;
+}
+
+export interface SizeOption {
+  value: MonumentSize;
+  label: string;
+  variants: SizeVariant[];
+}
+
+export const sizeOptions: SizeOption[] = [
+  { 
+    value: 'стела', 
+    label: 'Стела', 
+    variants: [
+      { id: 'стела-стандарт', dimensions: '100x50x8 см', priceModifier: 1.0 },
+      { id: 'стела-большая', dimensions: '120x60x10 см', priceModifier: 1.3 },
+      { id: 'стела-элит', dimensions: '150x80x12 см', priceModifier: 1.8 }
+    ]
+  },
+  { 
+    value: 'тумба', 
+    label: 'Тумба', 
+    variants: [
+      { id: 'тумба-малая', dimensions: '60x40x5 см', priceModifier: 0.5 },
+      { id: 'тумба-стандарт', dimensions: '80x50x6 см', priceModifier: 0.7 },
+      { id: 'тумба-большая', dimensions: '100x60x8 см', priceModifier: 0.9 }
+    ]
+  },
+  { 
+    value: 'цветник', 
+    label: 'Цветник', 
+    variants: [
+      { id: 'цветник-малый', dimensions: '40x30x3 см', priceModifier: 0.25 },
+      { id: 'цветник-средний', dimensions: '60x40x4 см', priceModifier: 0.4 },
+      { id: 'цветник-большой', dimensions: '80x50x5 см', priceModifier: 0.6 }
+    ]
+  }
+];
+
 export const categories = [
   { id: 'all', name: 'Все категории', count: 24 },
   { id: 'vertical', name: 'Вертикальные', count: 10 },

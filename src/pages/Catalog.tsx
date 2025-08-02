@@ -1,58 +1,12 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import Icon from '@/components/ui/icon';
 import Layout from '@/components/Layout';
-import { useApp } from '@/contexts/AppContext';
-import { Link } from 'react-router-dom';
-
-// Типы для размеров памятников
-type MonumentSize = 'стела' | 'тумба' | 'цветник';
-
-interface SizeVariant {
-  id: string;
-  dimensions: string;
-  priceModifier: number;
-}
-
-interface SizeOption {
-  value: MonumentSize;
-  label: string;
-  variants: SizeVariant[];
-}
-
-const sizeOptions: SizeOption[] = [
-  { 
-    value: 'стела', 
-    label: 'Стела', 
-    variants: [
-      { id: 'стела-стандарт', dimensions: '100x50x8 см', priceModifier: 1.0 },
-      { id: 'стела-большая', dimensions: '120x60x10 см', priceModifier: 1.3 },
-      { id: 'стела-элит', dimensions: '150x80x12 см', priceModifier: 1.8 }
-    ]
-  },
-  { 
-    value: 'тумба', 
-    label: 'Тумба', 
-    variants: [
-      { id: 'тумба-малая', dimensions: '60x40x5 см', priceModifier: 0.5 },
-      { id: 'тумба-стандарт', dimensions: '80x50x6 см', priceModifier: 0.7 },
-      { id: 'тумба-большая', dimensions: '100x60x8 см', priceModifier: 0.9 }
-    ]
-  },
-  { 
-    value: 'цветник', 
-    label: 'Цветник', 
-    variants: [
-      { id: 'цветник-малый', dimensions: '40x30x3 см', priceModifier: 0.25 },
-      { id: 'цветник-средний', dimensions: '60x40x4 см', priceModifier: 0.4 },
-      { id: 'цветник-большой', dimensions: '80x50x5 см', priceModifier: 0.6 }
-    ]
-  }
-];
+import CatalogHeader from '@/components/catalog/CatalogHeader';
+import CatalogFilters from '@/components/catalog/CatalogFilters';
+import ProductGrid from '@/components/catalog/ProductGrid';
+import CatalogPagination from '@/components/catalog/CatalogPagination';
+import CatalogAbout from '@/components/catalog/CatalogAbout';
+import CustomOrderBanner from '@/components/catalog/CustomOrderBanner';
+import { monuments, sizeOptions, type MonumentSize, type Monument } from '@/components/catalog/CatalogData';
 
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -63,8 +17,6 @@ export default function Catalog() {
   const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [showLoadMore, setShowLoadMore] = useState(true);
-  
-  const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
 
   // Функции для работы с размерами
   const handleSizeChange = (monumentId: string, size: MonumentSize) => {
@@ -90,7 +42,7 @@ export default function Catalog() {
     return selectedVariants[monumentId] || sizeOption?.variants[0].id || '';
   };
 
-  const getCurrentPrice = (monument: any, monumentId: string): number => {
+  const getCurrentPrice = (monument: Monument, monumentId: string): number => {
     const variantId = getSelectedVariant(monumentId);
     const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
     
@@ -102,346 +54,6 @@ export default function Catalog() {
     }
     return basePrice;
   };
-
-  const categories = [
-    { id: 'all', name: 'Все категории', count: 24 },
-    { id: 'vertical', name: 'Вертикальные', count: 10 },
-    { id: 'horizontal', name: 'Горизонтальные', count: 6 },
-    { id: 'complex', name: 'Комплексы', count: 4 },
-    { id: 'plaques', name: 'Мемориальные плиты', count: 4 }
-  ];
-
-  const materials = [
-    { id: 'all', name: 'Все материалы' },
-    { id: 'granite-black', name: 'Гранит чёрный' },
-    { id: 'granite-red', name: 'Гранит красный' },
-    { id: 'granite-gray', name: 'Гранит серый' },
-    { id: 'marble', name: 'Мрамор' },
-    { id: 'bronze', name: 'Бронза' }
-  ];
-
-  const priceRanges = [
-    { id: 'all', name: 'Любая цена' },
-    { id: 'budget', name: 'До 30 000 ₽' },
-    { id: 'medium', name: '30 000 - 60 000 ₽' },
-    { id: 'premium', name: '60 000 - 100 000 ₽' },
-    { id: 'luxury', name: 'Свыше 100 000 ₽' }
-  ];
-
-  const monuments = [
-    {
-      id: 1,
-      title: 'Классический вертикальный №1',
-      subtitle: 'Гранит габбро-диабаз',
-      price: '45 000 ₽',
-      originalPrice: '52 000 ₽',
-      image: 'https://cdn.poehali.dev/files/9ea16e16-350f-4074-a7e0-e0d0a3132ecc.png',
-      material: 'granite-black',
-      category: 'vertical',
-      dimensions: '100×50×8 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 2,
-      title: 'Элегант горизонтальный',
-      subtitle: 'Белый мрамор Каррара',
-      price: '38 000 ₽',
-      originalPrice: null,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'marble',
-      category: 'horizontal',
-      dimensions: '80×40×6 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 3,
-      title: 'Мемориальная бронзовая плита',
-      subtitle: 'Художественная бронза',
-      price: '25 000 ₽',
-      originalPrice: null,
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'bronze',
-      category: 'plaques',
-      dimensions: '60×40×3 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 4,
-      title: 'Классический вертикальный №2',
-      subtitle: 'Красный гранит Лезники',
-      price: '48 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'granite-red',
-      category: 'vertical',
-      dimensions: '110×55×10 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 5,
-      title: 'Семейный комплекс "Единство"',
-      subtitle: 'Серый гранит Возрождение',
-      price: '85 000 ₽',
-      originalPrice: '95 000 ₽',
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'granite-gray',
-      category: 'complex',
-      dimensions: '150×80×12 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 6,
-      title: 'Стандартный горизонтальный',
-      subtitle: 'Гранит габбро-диабаз',
-      price: '32 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'granite-black',
-      category: 'horizontal',
-      dimensions: '70×35×5 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 7,
-      title: 'Премиум вертикальный "Величие"',
-      subtitle: 'Индийский чёрный гранит',
-      price: '62 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'granite-black',
-      category: 'vertical',
-      dimensions: '120×60×10 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 8,
-      title: 'Мраморная элегия',
-      subtitle: 'Итальянский белый мрамор',
-      price: '55 000 ₽',
-      originalPrice: '62 000 ₽',
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'marble',
-      category: 'vertical',
-      dimensions: '95×45×8 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 9,
-      title: 'Горизонталь "Покой"',
-      subtitle: 'Серый гранит Дымовский',
-      price: '35 000 ₽',
-      originalPrice: null,
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-gray',
-      category: 'horizontal',
-      dimensions: '85×45×6 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 10,
-      title: 'Бронзовый барельеф "Память"',
-      subtitle: 'Художественная бронза премиум',
-      price: '42 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'bronze',
-      category: 'plaques',
-      dimensions: '70×50×4 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 11,
-      title: 'Семейный комплекс "Вечность"',
-      subtitle: 'Красный гранит Токовский',
-      price: '95 000 ₽',
-      originalPrice: '108 000 ₽',
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'granite-red',
-      category: 'complex',
-      dimensions: '180×90×15 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 12,
-      title: 'Классик мини',
-      subtitle: 'Чёрный гранит габбро',
-      price: '28 000 ₽',
-      originalPrice: null,
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-black',
-      category: 'vertical',
-      dimensions: '80×40×6 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 13,
-      title: 'Горизонтальный "Тишина"',
-      subtitle: 'Белый мрамор Тасос',
-      price: '44 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'marble',
-      category: 'horizontal',
-      dimensions: '90×50×7 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 14,
-      title: 'Мемориальная плита "Воспоминание"',
-      subtitle: 'Бронза с патиной',
-      price: '33 000 ₽',
-      originalPrice: null,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'bronze',
-      category: 'plaques',
-      dimensions: '65×45×3 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 15,
-      title: 'Вертикальный "Достоинство"',
-      subtitle: 'Серый гранит Мансуровский',
-      price: '39 000 ₽',
-      originalPrice: '43 000 ₽',
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-gray',
-      category: 'vertical',
-      dimensions: '105×52×8 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 16,
-      title: 'Комплекс "Единение"',
-      subtitle: 'Чёрный гранит + бронза',
-      price: '78 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'granite-black',
-      category: 'complex',
-      dimensions: '160×75×12 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 17,
-      title: 'Мраморный ангел',
-      subtitle: 'Каррарский мрамор скульптурный',
-      price: '125 000 ₽',
-      originalPrice: null,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'marble',
-      category: 'vertical',
-      dimensions: '140×70×20 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 18,
-      title: 'Горизонталь "Простота"',
-      subtitle: 'Красный гранит Лезники',
-      price: '36 000 ₽',
-      originalPrice: null,
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-red',
-      category: 'horizontal',
-      dimensions: '75×38×5 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 19,
-      title: 'Бронзовый портрет',
-      subtitle: 'Литьё по индивидуальному эскизу',
-      price: '68 000 ₽',
-      originalPrice: '75 000 ₽',
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'bronze',
-      category: 'plaques',
-      dimensions: '80×60×5 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 20,
-      title: 'Стандарт плюс',
-      subtitle: 'Чёрный гранит Габбро-диабаз',
-      price: '41 000 ₽',
-      originalPrice: null,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'granite-black',
-      category: 'vertical',
-      dimensions: '115×55×9 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 21,
-      title: 'Семейный склеп "Родословная"',
-      subtitle: 'Комбинированный: гранит + мрамор',
-      price: '145 000 ₽',
-      originalPrice: '165 000 ₽',
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-gray',
-      category: 'complex',
-      dimensions: '200×100×18 см',
-      isPopular: false,
-      isNew: false
-    },
-    {
-      id: 22,
-      title: 'Мини горизонталь',
-      subtitle: 'Белый мрамор Коелга',
-      price: '29 000 ₽',
-      originalPrice: null,
-      image: '/img/2f39360b-4fa5-4b2a-8359-d7b41b051bb0.jpg',
-      material: 'marble',
-      category: 'horizontal',
-      dimensions: '65×35×4 см',
-      isPopular: true,
-      isNew: false
-    },
-    {
-      id: 23,
-      title: 'Художественная плита "Розы"',
-      subtitle: 'Бронза с гравировкой',
-      price: '52 000 ₽',
-      originalPrice: null,
-      image: '/img/bd3b35cb-7942-470f-96ca-243f4defe519.jpg',
-      material: 'bronze',
-      category: 'plaques',
-      dimensions: '90×65×4 см',
-      isPopular: false,
-      isNew: true
-    },
-    {
-      id: 24,
-      title: 'Элитный вертикальный "Престиж"',
-      subtitle: 'Серый гранит Возрождение элит',
-      price: '87 000 ₽',
-      originalPrice: '98 000 ₽',
-      image: '/img/2eee8912-7f02-4a25-ae89-caf7d0d5e3ee.jpg',
-      material: 'granite-gray',
-      category: 'vertical',
-      dimensions: '130×65×12 см',
-      isPopular: true,
-      isNew: false
-    }
-  ];
 
   const filteredMonuments = monuments.filter(monument => {
     const categoryMatch = selectedCategory === 'all' || monument.category === selectedCategory;
@@ -469,408 +81,57 @@ export default function Catalog() {
     return categoryMatch && materialMatch && priceMatch;
   });
 
+  const handleResetFilters = () => {
+    setSelectedCategory('all');
+    setSelectedMaterial('all');
+    setSelectedPrice('all');
+  };
+
+  const handleLoadMore = () => {
+    console.log('Loading more items...');
+    if (currentPage >= 8) {
+      setShowLoadMore(false);
+    }
+  };
+
   return (
     <Layout>
       <div className="bg-background">
-        {/* Header */}
-      <section className="pt-4 pb-12 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              Каталог памятников
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Более 45 готовых моделей памятников из премиальных материалов. 
-              Возможность индивидуального изготовления по вашему проекту.
-            </p>
-          </div>
-        </div>
-      </section>
+        <CatalogHeader />
+        
+        <CatalogFilters
+          selectedCategory={selectedCategory}
+          selectedMaterial={selectedMaterial}
+          selectedPrice={selectedPrice}
+          onCategoryChange={setSelectedCategory}
+          onMaterialChange={setSelectedMaterial}
+          onPriceChange={setSelectedPrice}
+          onReset={handleResetFilters}
+        />
 
-      {/* Top Filters */}
-      <section className="pb-6 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-wrap gap-3">
-            {/* Форма dropdown */}
-            <div className="relative">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
-                  <Icon name="Shapes" size={16} className="mr-2" />
-                  <SelectValue placeholder="Форма" />
-                  <Icon name="ChevronDown" size={16} className="ml-2" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Любая форма</SelectItem>
-                  <SelectItem value="vertical">Вертикальная</SelectItem>
-                  <SelectItem value="horizontal">Горизонтальная</SelectItem>
-                  <SelectItem value="cross">Крест</SelectItem>
-                  <SelectItem value="angel">Ангел</SelectItem>
-                  <SelectItem value="book">Книга</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <ProductGrid
+          monuments={filteredMonuments}
+          sizeOptions={sizeOptions}
+          selectedSizes={selectedSizes}
+          selectedVariants={selectedVariants}
+          onSizeChange={handleSizeChange}
+          onVariantChange={handleVariantChange}
+          getCurrentPrice={getCurrentPrice}
+          getSelectedSize={getSelectedSize}
+          getSelectedVariant={getSelectedVariant}
+          onResetFilters={handleResetFilters}
+        />
 
-            {/* Кому dropdown */}
-            <div className="relative">
-              <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
-                  <Icon name="Users" size={16} className="mr-2" />
-                  <SelectValue placeholder="Кому" />
-                  <Icon name="ChevronDown" size={16} className="ml-2" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Любому</SelectItem>
-                  <SelectItem value="man">Мужчине</SelectItem>
-                  <SelectItem value="woman">Женщине</SelectItem>
-                  <SelectItem value="child">Ребёнку</SelectItem>
-                  <SelectItem value="couple">Паре</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <CatalogPagination
+          currentPage={currentPage}
+          showLoadMore={showLoadMore}
+          onPageChange={setCurrentPage}
+          onLoadMore={handleLoadMore}
+        />
 
-            {/* Цена dropdown */}
-            <div className="relative">
-              <Select value={selectedPrice} onValueChange={setSelectedPrice}>
-                <SelectTrigger className="h-10 px-4 bg-white border border-gray-200 rounded-full hover:border-primary transition-colors">
-                  <Icon name="Banknote" size={16} className="mr-2" />
-                  <SelectValue placeholder="Цена" />
-                  <Icon name="ChevronDown" size={16} className="ml-2" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Любая цена</SelectItem>
-                  <SelectItem value="budget">До 50 000 ₽</SelectItem>
-                  <SelectItem value="medium">50 000 - 100 000 ₽</SelectItem>
-                  <SelectItem value="premium">100 000 - 200 000 ₽</SelectItem>
-                  <SelectItem value="luxury">От 200 000 ₽</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="pb-16 px-4">
-        <div className="container mx-auto">
-          <div>
-            {/* Results header */}
-            <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-              <div className="flex items-center space-x-4">
-                <h2 className="font-heading text-2xl font-semibold">
-                  Найдено: {filteredMonuments.length} памятников
-                </h2>
-              </div>
-              <Select defaultValue="popular">
-                <SelectTrigger className="w-48">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="popular">По популярности</SelectItem>
-                  <SelectItem value="price-asc">Цена: по возрастанию</SelectItem>
-                  <SelectItem value="price-desc">Цена: по убыванию</SelectItem>
-                  <SelectItem value="newest">Сначала новые</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Products grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredMonuments.map(monument => (
-                  <Card key={monument.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
-                    <div className="relative aspect-square overflow-hidden">
-                      <img 
-                        src={monument.image}
-                        alt={monument.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        {monument.isNew && (
-                          <Badge className="bg-green-500 hover:bg-green-600">Новинка</Badge>
-                        )}
-                        {monument.isPopular && (
-                          <Badge className="bg-orange-500 hover:bg-orange-600">Популярный</Badge>
-                        )}
-                      </div>
-                      {monument.originalPrice && (
-                        <div className="absolute top-3 right-3">
-                          <Badge variant="destructive">Скидка</Badge>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <CardHeader className="pb-2">
-                      <CardTitle className="font-heading text-lg line-clamp-1">
-                        {monument.title}
-                      </CardTitle>
-                    </CardHeader>
-                    
-                    <CardContent className="space-y-3">
-                      {/* Кнопки выбора типа размера */}
-                      <div className="space-y-2">
-                        <div className="text-sm font-medium text-muted-foreground">Тип:</div>
-                        <div className="grid grid-cols-3 gap-1">
-                          {sizeOptions.map(option => {
-                            const isSelected = getSelectedSize(monument.id) === option.value;
-                            return (
-                              <Button
-                                key={option.value}
-                                variant={isSelected ? "default" : "outline"}
-                                size="sm"
-                                className={`text-xs ${
-                                  isSelected 
-                                    ? "bg-primary text-primary-foreground" 
-                                    : "hover:bg-muted"
-                                }`}
-                                onClick={() => handleSizeChange(monument.id, option.value)}
-                              >
-                                {option.label}
-                              </Button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Выпадающий список размеров */}
-                      <div className="space-y-2">
-                        <div className="text-sm font-medium text-muted-foreground">Размер:</div>
-                        <Select 
-                          value={getSelectedVariant(monument.id)} 
-                          onValueChange={(value) => handleVariantChange(monument.id, value)}
-                        >
-                          <SelectTrigger className="h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {(() => {
-                              const selectedSizeOption = sizeOptions.find(opt => opt.value === getSelectedSize(monument.id));
-                              return selectedSizeOption?.variants.map(variant => {
-                                const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
-                                const price = Math.round(basePrice * variant.priceModifier);
-                                return (
-                                  <SelectItem key={variant.id} value={variant.id}>
-                                    <div className="flex items-center justify-between w-full">
-                                      <span>{variant.dimensions}</span>
-                                      <span className="text-xs text-muted-foreground ml-2">
-                                        {price.toLocaleString()} ₽
-                                      </span>
-                                    </div>
-                                  </SelectItem>
-                                );
-                              });
-                            })()}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      
-                      {/* Цена выбранного размера */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl font-bold text-primary">
-                            {getCurrentPrice(monument, monument.id).toLocaleString()} ₽
-                          </span>
-                          {monument.originalPrice && (
-                            <span className="text-sm line-through text-muted-foreground">
-                              {(() => {
-                                const variantId = getSelectedVariant(monument.id);
-                                const basePrice = parseInt(monument.originalPrice.replace(/[^\d]/g, ''));
-                                
-                                for (const sizeOption of sizeOptions) {
-                                  const variant = sizeOption.variants.find(v => v.id === variantId);
-                                  if (variant) {
-                                    return Math.round(basePrice * variant.priceModifier).toLocaleString();
-                                  }
-                                }
-                                return basePrice.toLocaleString();
-                              })()} ₽
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-2">
-                        <Button 
-                          size="sm"
-                          className="flex-1 bg-primary hover:bg-primary/90"
-                          asChild
-                        >
-                          <Link to={`/product/${monument.id}`}>
-                            Подробнее
-                          </Link>
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="icon"
-                          onClick={() => addToFavorites(monument)}
-                          className={isInFavorites(monument.id) ? "text-red-500" : ""}
-                        >
-                          <Icon 
-                            name="Heart" 
-                            size={18} 
-                            className={isInFavorites(monument.id) ? "fill-current" : ""} 
-                          />
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="icon"
-                          onClick={() => addToComparison(monument)}
-                          className={isInComparison(monument.id) ? "text-blue-500" : ""}
-                        >
-                          <Icon name="BarChart3" size={18} />
-                        </Button>
-
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-            {/* No results */}
-            {filteredMonuments.length === 0 && (
-              <div className="text-center py-12">
-                <Icon name="Search" size={48} className="text-muted-foreground mx-auto mb-4" />
-                <h3 className="font-heading text-2xl font-semibold mb-2">
-                  Не найдено памятников по выбранным фильтрам
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Попробуйте изменить параметры поиска или сбросить фильтры
-                </p>
-                <Button 
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setSelectedMaterial('all');
-                    setSelectedPrice('all');
-                  }}
-                >
-                  Сбросить фильтры
-                </Button>
-              </div>
-            )}
-
-            {/* Load more button */}
-            {showLoadMore && (
-              <div className="mt-12 mb-6">
-                <Button 
-                  size="lg"
-                  className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
-                  onClick={() => {
-                    // Логика загрузки дополнительных товаров
-                    console.log('Loading more items...');
-                    // Например, можно скрыть кнопку после нескольких нажатий
-                    if (currentPage >= 8) {
-                      setShowLoadMore(false);
-                    }
-                  }}
-                >
-                  <Icon name="Plus" size={16} />
-                  Показать ещё
-                </Button>
-              </div>
-            )}
-
-            {/* Pagination */}
-            <div className="mb-8">
-              <div className="flex justify-center">
-                <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center">
-                  <span className="text-xs sm:text-sm text-muted-foreground mr-1 sm:mr-2 w-full sm:w-auto text-center sm:text-left mb-2 sm:mb-0">Страница:</span>
-                  {[...Array(10)].map((_, i) => {
-                    const pageNum = i + 1;
-                    return (
-                      <Button
-                        key={pageNum}
-                        variant={currentPage === pageNum ? "default" : "outline"}
-                        size="sm"
-                        className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm ${
-                          currentPage === pageNum 
-                            ? "bg-primary text-white" 
-                            : "hover:bg-muted"
-                        }`}
-                        onClick={() => setCurrentPage(pageNum)}
-                      >
-                        {pageNum}
-                      </Button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* About section with images */}
-            <div className="mt-8 mb-8">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="font-heading text-3xl font-bold text-center mb-8">О нашем каталоге памятников</h2>
-                
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12 justify-items-center">
-                  <div className="overflow-hidden rounded-xl aspect-square">
-                    <img 
-                      src="/img/3fcea721-d774-4c1d-bc1b-eeb3215e8455.jpg" 
-                      alt=""
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="overflow-hidden rounded-xl aspect-square">
-                    <img 
-                      src="/img/afe03e9e-1f12-40c1-8503-9f8d4014d1d4.jpg" 
-                      alt=""
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="overflow-hidden rounded-xl aspect-square">
-                    <img 
-                      src="/img/c0de4c7e-7659-454c-b186-7125f9313d41.jpg" 
-                      alt=""
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-
-                <div className="text-center bg-muted/30 rounded-xl p-8">
-                  <p className="text-muted-foreground leading-relaxed text-lg max-w-4xl mx-auto">
-                    Каждый памятник в нашем каталоге создается с особым вниманием к деталям и качеству исполнения. 
-                    Мы понимаем важность этого выбора и предлагаем только проверенные временем решения, 
-                    которые станут достойной данью памяти вашим близким.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Custom order banner */}
-            <Card className="mt-8 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
-              <CardHeader className="text-center">
-                <CardTitle className="font-heading text-2xl">
-                  Не нашли подходящий памятник?
-                </CardTitle>
-                <CardDescription className="text-lg">
-                  Мы изготовим памятник по вашему индивидуальному проекту
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div className="flex flex-col items-center">
-                    <Icon name="PenTool" size={32} className="text-primary mb-3" />
-                    <h4 className="font-semibold mb-2">Индивидуальный дизайн</h4>
-                    <p className="text-sm text-muted-foreground">Создадим уникальный проект специально для вас</p>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <Icon name="Gem" size={32} className="text-primary mb-3" />
-                    <h4 className="font-semibold mb-2">Премиальные материалы</h4>
-                    <p className="text-sm text-muted-foreground">Используем только лучшие сорта гранита и мрамора</p>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <Icon name="Clock" size={32} className="text-primary mb-3" />
-                    <h4 className="font-semibold mb-2">Быстрое изготовление</h4>
-                    <p className="text-sm text-muted-foreground">Выполним заказ в течение 14-21 дня</p>
-                  </div>
-                </div>
-                <Button size="sm" className="bg-primary hover:bg-primary/90 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2">
-                  Заказать индивидуальный памятник
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        <CatalogAbout />
+        
+        <CustomOrderBanner />
       </div>
     </Layout>
   );
