@@ -312,42 +312,12 @@ export default function Index() {
                 <div className="flex gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Icon key={i} name="Star" size={14} className="text-yellow-400" />
-                              ))}
-                            </div>
-                            <span className="text-xs text-slate-500">•</span>
-                            <span className="text-xs text-slate-500">{review.date}</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Service Badge */}
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${review.color} text-white text-xs font-medium mb-4 shadow-sm`}>
-                        <Icon name="Award" size={12} />
-                        {review.service}
-                      </div>
-                      
-                      {/* Review Text */}
-                      <blockquote className={`text-slate-700 leading-relaxed mb-6 ${isLarge ? 'text-lg' : 'text-base'} relative`}>
-                        <Icon name="Quote" size={20} className="text-slate-300 absolute -top-2 -left-1" />
-                        <span className="pl-6">{review.text}</span>
-                      </blockquote>
-                      
-                      {/* Footer */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Icon name="CheckCircle2" size={16} className="text-green-500" />
-                          <span className="text-xs text-green-600 font-medium">Подтверждённый отзыв</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-slate-400">
-                          <Icon name="ThumbsUp" size={14} />
-                          <span className="text-xs">{Math.floor(Math.random() * 20) + 5}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              );
-            })}
+                <h4 className="font-bold text-lg mb-2">{review.name}</h4>
+                <p className="text-slate-600 mb-4">{review.text}</p>
+              </div>
+            ))}
           </div>
 
           {/* Stats Section */}
