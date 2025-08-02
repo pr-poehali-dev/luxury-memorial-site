@@ -567,16 +567,6 @@ export default function HeaderBottomMenu() {
 
                 return (
                   <div className="p-4">
-                    {/* Заголовок секции */}
-                    <div className="mb-4 text-center">
-                      <h3 className="text-lg font-semibold text-slate-900 mb-1">
-                        {section.title}
-                      </h3>
-                      <p className="text-xs text-slate-600">
-                        Выберите подходящий вариант из нашего каталога
-                      </p>
-                    </div>
-
                     {/* Сетка категорий */}
                     <div className={cn(
                       "grid gap-4",
@@ -636,38 +626,7 @@ export default function HeaderBottomMenu() {
                       ))}
                     </div>
 
-                    {/* Быстрые ссылки внизу */}
-                    <div className="mt-4 pt-3 border-t border-slate-200">
-                      <div className="flex items-center justify-center space-x-4 text-sm">
-                        <Link 
-                          to={section.href} 
-                          className="text-primary hover:text-primary/80 font-medium transition-colors"
-                        >
-                          Весь раздел "{section.title}"
-                        </Link>
-                        <span className="text-slate-400">•</span>
-                        <Link 
-                          to="/new" 
-                          className="text-slate-600 hover:text-slate-900 transition-colors"
-                        >
-                          Новинки
-                        </Link>
-                        <span className="text-slate-400">•</span>
-                        <Link 
-                          to="/popular" 
-                          className="text-slate-600 hover:text-slate-900 transition-colors"
-                        >
-                          Популярные
-                        </Link>
-                        <span className="text-slate-400">•</span>
-                        <Link 
-                          to="/consultation" 
-                          className="text-slate-600 hover:text-slate-900 transition-colors"
-                        >
-                          Консультация
-                        </Link>
-                      </div>
-                    </div>
+
                   </div>
                 );
               })()}
