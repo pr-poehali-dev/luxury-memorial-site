@@ -123,12 +123,7 @@ const mainSections: MainSection[] = [
         title: 'Цена',
         items: [
           { title: 'Недорогие', href: '/catalog?price=budget', isPopular: true },
-          { title: 'До 30 000 ₽', href: '/catalog?price=0-30000' },
-          { title: '30 000 - 50 000 ₽', href: '/catalog?price=30000-50000', isPopular: true },
-          { title: '50 000 - 100 000 ₽', href: '/catalog?price=50000-100000' },
-          { title: '100 000 - 200 000 ₽', href: '/catalog?price=100000-200000' },
-          { title: 'От 200 000 ₽', href: '/catalog?price=200000+' },
-          { title: 'Элитные', href: '/catalog?price=elite' },
+          { title: 'Элитные', href: '/catalog?price=elite', isPopular: true },
         ]
       }
     ]
