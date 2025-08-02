@@ -2,23 +2,12 @@ import { lazy, Suspense, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 
 // Lazy loading для компонентов
 const Footer = lazy(() => import('@/components/Footer'));
-const Accordion = lazy(() => import('@/components/ui/accordion').then(module => ({
-  default: module.Accordion
-})));
-const AccordionContent = lazy(() => import('@/components/ui/accordion').then(module => ({
-  default: module.AccordionContent
-})));
-const AccordionItem = lazy(() => import('@/components/ui/accordion').then(module => ({
-  default: module.AccordionItem
-})));
-const AccordionTrigger = lazy(() => import('@/components/ui/accordion').then(module => ({
-  default: module.AccordionTrigger
-})));
 
 // Мемоизированные компоненты для оптимизации
 const MonumentCard = memo(({ monument }: { monument: any }) => (
@@ -85,27 +74,19 @@ export default function Index() {
 
       {/* Hero Section */}
       <section className="pt-4 pb-16 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-                Изготовление памятников <br />
-                <span className="text-primary">в Москве</span>
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
-                  Создать памятник
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8">
-                  <Icon name="Play" className="mr-2" size={20} />
-                  Смотреть процесс
-                </Button>
-              </div>
-            </div>
-
+        <div className="container mx-auto text-center">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+            Изготовление памятников <br />
+            <span className="text-primary">в Москве</span>
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+            Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
+          </p>
+          <div className="flex justify-center">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
+              Создать памятник
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -463,8 +444,6 @@ export default function Index() {
             </Accordion>
         </div>
       </section>
-
-
 
       {/* Contacts Section */}
       <section id="contacts" className="py-16 px-4 bg-muted/30">
