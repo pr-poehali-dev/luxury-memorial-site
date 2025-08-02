@@ -118,31 +118,8 @@ export default function Header() {
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14">
-            {/* Left side - Communication */}
+            {/* Left side - User actions */}
             <div className="flex items-center space-x-3">
-              {/* WhatsApp - скрыт на мобильных */}
-              <a 
-                href="https://wa.me/74952013227" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-green-600 transition-colors"
-                title="WhatsApp"
-              >
-                <Icon name="MessageCircle" size={16} />
-                <span className="hidden sm:inline text-sm">WhatsApp</span>
-              </a>
-
-              {/* Email - скрыт на мобильных */}
-              <a 
-                href="mailto:info@postament.ru" 
-                className="hidden sm:flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
-                title="Почта"
-              >
-                <Icon name="Mail" size={16} />
-                <span className="hidden md:inline text-sm">Почта</span>
-              </a>
-
-              {/* User actions */}
               <div className="flex items-center space-x-2 ml-4">
                 {/* Cart */}
                 <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
