@@ -592,10 +592,31 @@ export default function Catalog() {
               </div>
             )}
 
+            {/* Load more button */}
+            {showLoadMore && (
+              <div className="mt-12 mb-6 text-center">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="flex items-center gap-2"
+                  onClick={() => {
+                    // Логика загрузки дополнительных товаров
+                    console.log('Loading more items...');
+                    // Например, можно скрыть кнопку после нескольких нажатий
+                    if (currentPage >= 8) {
+                      setShowLoadMore(false);
+                    }
+                  }}
+                >
+                  <Icon name="Plus" size={16} />
+                  Показать ещё
+                </Button>
+              </div>
+            )}
+
             {/* Pagination */}
-            <div className="mt-12 mb-8">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                {/* Page numbers */}
+            <div className="mb-8">
+              <div className="flex justify-center">
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground mr-2">Страница:</span>
                   {[...Array(10)].map((_, i) => {
@@ -617,26 +638,6 @@ export default function Catalog() {
                     );
                   })}
                 </div>
-
-                {/* Load more button */}
-                {showLoadMore && (
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="flex items-center gap-2"
-                    onClick={() => {
-                      // Логика загрузки дополнительных товаров
-                      console.log('Loading more items...');
-                      // Например, можно скрыть кнопку после нескольких нажатий
-                      if (currentPage >= 8) {
-                        setShowLoadMore(false);
-                      }
-                    }}
-                  >
-                    <Icon name="Plus" size={16} />
-                    Показать ещё
-                  </Button>
-                )}
               </div>
             </div>
 
