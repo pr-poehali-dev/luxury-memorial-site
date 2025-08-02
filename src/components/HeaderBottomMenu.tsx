@@ -206,6 +206,7 @@ const mainSections: MainSection[] = [
     categories: [
       {
         title: 'Портреты',
+        expandable: true,
         items: [
           { title: 'Портреты на камне', href: '/catalog?type=stone-portraits', isPopular: true },
           { title: 'Фотокерамика', href: '/catalog?type=photo-ceramics', isPopular: true },
@@ -216,6 +217,7 @@ const mainSections: MainSection[] = [
       },
       {
         title: 'Гравировка',
+        expandable: true,
         items: [
           { title: 'Гравировка текста', href: '/catalog?type=text-engraving' },
           { title: 'Художественная резьба', href: '/catalog?type=artistic-carving' },
@@ -240,6 +242,7 @@ const mainSections: MainSection[] = [
       },
       {
         title: 'Надписи',
+        expandable: true,
         items: [
           { title: 'Бронзовые буквы', href: '/catalog?type=bronze-letters' },
           { title: 'Скарпель (Рубленные буквы)', href: '/catalog?type=scarpel-letters' },
@@ -251,6 +254,7 @@ const mainSections: MainSection[] = [
       },
       {
         title: 'Декоративные элементы',
+        expandable: true,
         items: [
           { title: 'Золочение букв', href: '/catalog?type=letter-gilding' },
           { title: 'Бронзовые элементы', href: '/catalog?type=bronze-elements' },
