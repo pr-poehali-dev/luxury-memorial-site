@@ -339,10 +339,10 @@ export default function Header() {
           </Sheet>
         </div>
       </div>
-      </div>
       
       {/* Нижнее меню навигации */}
       <HeaderBottomMenu />
+      </div>
     </header>
   );
 }
