@@ -14,6 +14,8 @@ export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showLoadMore, setShowLoadMore] = useState(true);
   
   const { addToCart, addToFavorites, addToComparison, isInFavorites, isInComparison } = useApp();
 
@@ -590,8 +592,56 @@ export default function Catalog() {
               </div>
             )}
 
-            {/* About section with images */}
+            {/* Pagination */}
             <div className="mt-12 mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                {/* Page numbers */}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground mr-2">Страница:</span>
+                  {[...Array(10)].map((_, i) => {
+                    const pageNum = i + 1;
+                    return (
+                      <Button
+                        key={pageNum}
+                        variant={currentPage === pageNum ? "default" : "outline"}
+                        size="sm"
+                        className={`w-10 h-10 ${
+                          currentPage === pageNum 
+                            ? "bg-primary text-white" 
+                            : "hover:bg-muted"
+                        }`}
+                        onClick={() => setCurrentPage(pageNum)}
+                      >
+                        {pageNum}
+                      </Button>
+                    );
+                  })}
+                </div>
+
+                {/* Load more button */}
+                {showLoadMore && (
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="flex items-center gap-2"
+                    onClick={() => {
+                      // Логика загрузки дополнительных товаров
+                      console.log('Loading more items...');
+                      // Например, можно скрыть кнопку после нескольких нажатий
+                      if (currentPage >= 8) {
+                        setShowLoadMore(false);
+                      }
+                    }}
+                  >
+                    <Icon name="Plus" size={16} />
+                    Показать ещё
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* About section with images */}
+            <div className="mt-8 mb-8">
               <div className="max-w-6xl mx-auto">
                 <h2 className="font-heading text-3xl font-bold text-center mb-8">О нашем каталоге памятников</h2>
                 
