@@ -91,7 +91,7 @@ const ListItem = ({ className, title, children, href, ...props }: any) => {
         <Link
           to={href}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-green-500 hover:text-white focus:bg-green-500 focus:text-white',
             className
           )}
           {...props}
@@ -217,7 +217,7 @@ export default function Header() {
                       <NavigationMenuLink asChild>
                         <Link
                           to={item.href}
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:bg-green-500 hover:text-white transition-colors"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium">
                             {item.title}
