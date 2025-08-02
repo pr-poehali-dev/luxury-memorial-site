@@ -2,12 +2,23 @@ import { lazy, Suspense, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 
 // Lazy loading для компонентов
 const Footer = lazy(() => import('@/components/Footer'));
+const Accordion = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.Accordion
+})));
+const AccordionContent = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionContent
+})));
+const AccordionItem = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionItem
+})));
+const AccordionTrigger = lazy(() => import('@/components/ui/accordion').then(module => ({
+  default: module.AccordionTrigger
+})));
 
 // Мемоизированные компоненты для оптимизации
 const MonumentCard = memo(({ monument }: { monument: any }) => (
@@ -74,18 +85,90 @@ export default function Index() {
 
       {/* Hero Section */}
       <section className="pt-4 pb-16 px-4">
-        <div className="container mx-auto text-center">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-            Изготовление памятников <br />
-            <span className="text-primary">в Москве</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-            Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
-          </p>
-          <div className="flex justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
-              Создать памятник
-            </Button>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+                Изготовление памятников <br />
+                <span className="text-primary">в Москве</span>
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
+                  Создать памятник
+                </Button>
+                <Button size="lg" variant="outline" className="text-lg px-8">
+                  <Icon name="Play" className="mr-2" size={20} />
+                  Смотреть процесс
+                </Button>
+              </div>
+            </div>
+            
+            {/* 3D Model Request Form - Mobile Optimized */}
+            <div className="order-1 lg:order-2 bg-card rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-primary/10 overflow-hidden">
+              <div className="space-y-3 sm:space-y-4">
+                {/* Header */}
+                <div className="text-center">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold mb-2">3D макет памятника</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground px-2">
+                    Получите реалистичную визуализацию перед изготовлением
+                  </p>
+                </div>
+                
+                {/* Compact 3D Visualization Image */}
+                <div className="relative">
+                  <img 
+                    src="https://cdn.poehali.dev/files/2f6194d4-96fc-4373-a105-199c5a4748d6.png"
+                    alt="3D макет памятника - мемориальный комплекс"
+                    className="w-full max-h-48 sm:max-h-64 md:max-h-80 rounded-lg object-contain bg-gradient-to-br from-gray-50 to-gray-100"
+                  />
+                  <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
+                    <Icon name="Cube" size={12} className="inline mr-1" />
+                    3D
+                  </div>
+                </div>
+
+
+
+                {/* Compact Form */}
+                <div className="bg-muted/30 rounded-lg p-3 sm:p-4">
+                  <h4 className="font-semibold text-sm sm:text-base mb-3 text-center">Заказать 3D макет</h4>
+                  <form className="space-y-2 sm:space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Ваше имя"
+                      className="w-full px-3 py-2 text-sm border border-input rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary"
+                      required
+                    />
+                    <input
+                      type="tel"
+                      placeholder="+7 (999) 123-45-67"
+                      className="w-full px-3 py-2 text-sm border border-input rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary"
+                      required
+                    />
+
+                    <Button className="w-full bg-primary hover:bg-primary/90 h-9 sm:h-10 text-sm font-medium">
+                      <Icon name="Cube" size={14} className="mr-1" />
+                      Заказать бесплатно
+                    </Button>
+
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-2 border border-green-200">
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <Icon name="Gift" size={12} className="text-green-600" />
+                          <span className="font-semibold text-green-800 text-xs">Бесплатный макет</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          При заказе памятника
+                        </p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -444,6 +527,8 @@ export default function Index() {
             </Accordion>
         </div>
       </section>
+
+
 
       {/* Contacts Section */}
       <section id="contacts" className="py-16 px-4 bg-muted/30">
