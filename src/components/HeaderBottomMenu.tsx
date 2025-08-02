@@ -191,6 +191,9 @@ const mainSections: MainSection[] = [
           { title: 'Цветники', href: '/catalog?type=planters' },
           { title: 'Вазы и лампады', href: '/catalog?type=vases' },
           { title: 'Шары и балясины', href: '/catalog?type=spheres' },
+          { title: 'Щебень декоративный', href: '/catalog?type=decorative-gravel' },
+          { title: 'Газон', href: '/catalog?type=lawn' },
+          { title: 'Мемориальные доски', href: '/catalog?type=memorial-plaques' },
         ]
       }
     ]
