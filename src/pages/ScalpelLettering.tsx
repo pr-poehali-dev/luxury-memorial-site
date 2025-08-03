@@ -62,7 +62,7 @@ export default function ScalpelLettering() {
                 <Badge variant="secondary" className="mb-4">
                   Традиционная гравировка
                 </Badge>
-                <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-6 text-primary">
+                <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-6 text-slate-900">
                   Скарпель рубленые буквы на памятник
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
