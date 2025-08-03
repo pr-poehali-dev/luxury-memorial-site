@@ -64,6 +64,7 @@ const menuItems = [
       { title: 'Портреты на камне', href: '/catalog?category=decoration&type=portraits' },
       { title: 'Гравировка текста', href: '/catalog?category=decoration&type=engraving' },
       { title: 'Художественная резьба', href: '/catalog?category=decoration&type=carving' },
+      { title: 'Сусальное золото', href: '/gold-leaf' },
       { title: 'Золочение букв', href: '/catalog?category=decoration&type=gilding' },
       { title: 'Фотокерамика', href: '/catalog?category=decoration&type=photo-ceramics' },
     ],
