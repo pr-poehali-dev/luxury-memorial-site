@@ -23,6 +23,7 @@ import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
 import GoldLeaf from "./pages/GoldLeaf";
+import ScalpelLettering from "./pages/ScalpelLettering";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/offer-agreement" element={<OfferAgreement />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/gold-leaf" element={<GoldLeaf />} />
+            <Route path="/scalpel-lettering" element={<ScalpelLettering />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
