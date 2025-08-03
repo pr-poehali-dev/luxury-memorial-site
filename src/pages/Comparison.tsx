@@ -14,7 +14,6 @@ export default function Comparison() {
     return (
       <Layout>
         <div className="bg-background">
-        <Header />
         
         <section className="pt-8 pb-16 px-4">
           <div className="container mx-auto max-w-4xl">
@@ -47,7 +46,6 @@ export default function Comparison() {
   return (
     <Layout>
       <div className="bg-background">
-      <Header />
       
       <section className="pt-8 pb-16 px-4">
         <div className="container mx-auto max-w-7xl">
