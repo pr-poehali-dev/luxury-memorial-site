@@ -59,8 +59,8 @@ export default function ScalpelLettering() {
           <div className="container mx-auto max-w-7xl px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <Badge variant="secondary" className="mb-4">
-                  Традиционная гравировка
+                <Badge className="mb-6 bg-[rgb(46,184,46)]/10 text-[rgb(46,184,46)] border-[rgb(46,184,46)]/20">
+                  Премиум оформление
                 </Badge>
                 <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-6 text-slate-900">
                   Скарпель рубленые буквы на памятник
