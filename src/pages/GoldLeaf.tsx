@@ -132,7 +132,7 @@ export default function GoldLeaf() {
                 <Badge className="mb-6 bg-[rgb(46,184,46)]/10 text-[rgb(46,184,46)] border-[rgb(46,184,46)]/20">
                   Премиум оформление
                 </Badge>
-                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-[rgb(46,184,46)] to-[rgb(46,184,46)] bg-clip-text text-transparent">
+                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6  bg-clip-text text-transparent">
                   Сусальное золото на памятник
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
