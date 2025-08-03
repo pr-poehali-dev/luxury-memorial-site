@@ -62,7 +62,7 @@ export default function ScalpelLettering() {
                 <Badge variant="secondary" className="mb-4">
                   Традиционная гравировка
                 </Badge>
-                <h1 className="font-heading text-4xl lg:text-5xl font-bold mb-6 text-primary">
+                <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
                   Скарпель рубленые буквы на памятник
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
@@ -93,7 +93,7 @@ export default function ScalpelLettering() {
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold mb-4 text-primary">Преимущества рубленых букв</h2>
+              <h2 className="text-3xl font-bold mb-4 text-primary">Преимущества рубленых букв</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Традиционная техника скарпель обеспечивает максимальную долговечность и эстетичность
               </p>
@@ -163,7 +163,7 @@ export default function ScalpelLettering() {
         <section id="services" className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold mb-4 text-primary">Виды услуг и цены</h2>
+              <h2 className="text-3xl font-bold mb-4 text-primary">Виды услуг и цены</h2>
               <p className="text-muted-foreground">
                 Различные варианты оформления рубленых букв для любых требований
               </p>
@@ -201,7 +201,7 @@ export default function ScalpelLettering() {
           <div className="container mx-auto max-w-7xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-heading text-3xl font-bold mb-6 text-primary">Процесс изготовления</h2>
+                <h2 className="text-3xl font-bold mb-6 text-primary">Процесс изготовления</h2>
                 <p className="text-muted-foreground mb-8">
                   Каждый этап выполняется опытными мастерами с соблюдением 
                   традиционных технологий гравировки
@@ -237,7 +237,7 @@ export default function ScalpelLettering() {
         <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold mb-4 text-primary">Примеры работ</h2>
+              <h2 className="text-3xl font-bold mb-4 text-primary">Примеры работ</h2>
               <p className="text-muted-foreground">
                 Различные стили шрифтов и варианты оформления
               </p>
@@ -290,7 +290,7 @@ export default function ScalpelLettering() {
         {/* CTA Section */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-primary">Заказать рубленые буквы</h2>
+            <h2 className="text-3xl font-bold mb-6 text-primary">Заказать рубленые буквы</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Обратитесь к нам для консультации и расчета стоимости. 
               Наши мастера помогут выбрать оптимальный вариант оформления
