@@ -125,14 +125,14 @@ export default function GoldLeaf() {
       <div className="bg-background">
         
         {/* Hero Section */}
-        <section className="relative py-24 px-4 bg-gradient-to-br from-green-50 via-background to-emerald-50">
+        <section className="relative py-24 px-4 bg-gradient-to-br from-[rgb(46,184,46)]/10 via-background to-[rgb(46,184,46)]/5">
           <div className="container mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <Badge className="mb-6 bg-green-100 text-green-800 border-green-200">
+                <Badge className="mb-6 bg-[rgb(46,184,46)]/10 text-[rgb(46,184,46)] border-[rgb(46,184,46)]/20">
                   Премиум оформление
                 </Badge>
-                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black">
                   Сусальное золото на памятник
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
@@ -140,7 +140,7 @@ export default function GoldLeaf() {
                   Золотые надписи создают эффект дорогого оформления и подчеркивают значимость памяти.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white">
+                  <Button size="lg" className="bg-gradient-to-r from-[rgb(46,184,46)] to-[rgb(46,184,46)] hover:from-[rgb(46,184,46)]/80 hover:to-[rgb(46,184,46)]/80 text-white">
                     <Icon name="Sparkles" size={18} className="mr-2" />
                     Заказать золочение
                   </Button>
@@ -176,10 +176,10 @@ export default function GoldLeaf() {
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green-100">
+                <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-[rgb(46,184,46)]/20">
                   <CardHeader>
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center mx-auto mb-4">
-                      <Icon name={benefit.icon as any} size={28} className="text-green-600" />
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[rgb(46,184,46)]/10 to-[rgb(46,184,46)]/15 flex items-center justify-center mx-auto mb-4">
+                      <Icon name={benefit.icon as any} size={28} className="text-[rgb(46,184,46)]" />
                     </div>
                     <CardTitle className="text-lg">{benefit.title}</CardTitle>
                   </CardHeader>
@@ -216,7 +216,7 @@ export default function GoldLeaf() {
                 {process.map((step, index) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 text-white font-bold flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[rgb(46,184,46)] to-[rgb(46,184,46)] text-white font-bold flex items-center justify-center">
                         {step.step}
                       </div>
                     </div>
@@ -267,15 +267,15 @@ export default function GoldLeaf() {
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Шрифты любого размера и стиля</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Цифры и специальные символы</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Гарантия на 25 лет</span>
                       </div>
                     </div>
@@ -300,15 +300,15 @@ export default function GoldLeaf() {
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Поэтические тексты</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Религиозные надписи</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Личные послания</span>
                       </div>
                     </div>
@@ -333,15 +333,15 @@ export default function GoldLeaf() {
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Православные кресты</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Растительные орнаменты</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Геометрические узоры</span>
                       </div>
                     </div>
@@ -366,14 +366,14 @@ export default function GoldLeaf() {
             
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {materials.map((material, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-green-100">
+                <Card key={index} className="hover:shadow-lg transition-shadow border-[rgb(46,184,46)]/20">
                   <CardHeader className="text-center">
                     <CardTitle className="text-xl">{material.type}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
                     <p className="text-muted-foreground mb-4">{material.description}</p>
-                    <div className="text-2xl font-bold text-green-600 mb-4">{material.price}</div>
-                    <Button variant="outline" className="w-full border-green-200 hover:bg-green-50">
+                    <div className="text-2xl font-bold text-[rgb(46,184,46)] mb-4">{material.price}</div>
+                    <Button variant="outline" className="w-full border-[rgb(46,184,46)]/30 hover:bg-[rgb(46,184,46)]/5">
                       Подробнее
                     </Button>
                   </CardContent>
@@ -381,7 +381,7 @@ export default function GoldLeaf() {
               ))}
             </div>
 
-            <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
+            <Card className="bg-gradient-to-r from-[rgb(46,184,46)]/5 to-[rgb(46,184,46)]/10 border-[rgb(46,184,46)]/30">
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div>
@@ -397,7 +397,7 @@ export default function GoldLeaf() {
                         'Срочность выполнения заказа'
                       ].map((factor, index) => (
                         <div key={index} className="flex items-center gap-3">
-                          <Icon name="ArrowRight" size={16} className="text-green-600" />
+                          <Icon name="ArrowRight" size={16} className="text-[rgb(46,184,46)]" />
                           <span>{factor}</span>
                         </div>
                       ))}
@@ -405,12 +405,12 @@ export default function GoldLeaf() {
                   </div>
                   <div className="text-center">
                     <div className="bg-white rounded-xl p-6 shadow-lg">
-                      <Icon name="Calculator" size={48} className="text-green-600 mx-auto mb-4" />
+                      <Icon name="Calculator" size={48} className="text-[rgb(46,184,46)] mx-auto mb-4" />
                       <h4 className="font-semibold text-lg mb-2">Точный расчет</h4>
                       <p className="text-muted-foreground text-sm mb-4">
                         Получите точную стоимость золочения для вашего памятника
                       </p>
-                      <Button className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
+                      <Button className="bg-gradient-to-r from-[rgb(46,184,46)] to-[rgb(46,184,46)] hover:from-[rgb(46,184,46)]/80 hover:to-[rgb(46,184,46)]/80">
                         Рассчитать стоимость
                       </Button>
                     </div>
@@ -538,7 +538,7 @@ export default function GoldLeaf() {
                         />
                       </div>
 
-                      <Button type="submit" size="lg" className="w-full h-12 text-base bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
+                      <Button type="submit" size="lg" className="w-full h-12 text-base bg-gradient-to-r from-[rgb(46,184,46)] to-[rgb(46,184,46)] hover:from-[rgb(46,184,46)]/80 hover:to-[rgb(46,184,46)]/80">
                         <Icon name="Sparkles" size={18} className="mr-2" />
                         Заказать золочение
                       </Button>
@@ -553,10 +553,10 @@ export default function GoldLeaf() {
 
               {/* Info */}
               <div className="space-y-8">
-                <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+                <Card className="bg-gradient-to-br from-[rgb(46,184,46)]/5 to-[rgb(46,184,46)]/10 border-[rgb(46,184,46)]/30">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Icon name="Clock" size={20} className="text-green-600" />
+                      <Icon name="Clock" size={20} className="text-[rgb(46,184,46)]" />
                       Сроки выполнения
                     </CardTitle>
                   </CardHeader>
@@ -564,17 +564,17 @@ export default function GoldLeaf() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <span>Стандартные работы</span>
-                        <Badge variant="outline" className="border-green-200 text-green-700">3-5 дней</Badge>
+                        <Badge variant="outline" className="border-[rgb(46,184,46)]/30 text-[rgb(46,184,46)]">3-5 дней</Badge>
                       </div>
                       <Separator />
                       <div className="flex justify-between items-center">
                         <span>Сложные проекты</span>
-                        <Badge variant="outline" className="border-green-200 text-green-700">7-10 дней</Badge>
+                        <Badge variant="outline" className="border-[rgb(46,184,46)]/30 text-[rgb(46,184,46)]">7-10 дней</Badge>
                       </div>
                       <Separator />
                       <div className="flex justify-between items-center">
                         <span>Срочное выполнение</span>
-                        <Badge variant="outline" className="border-green-200 text-green-700">1-2 дня</Badge>
+                        <Badge variant="outline" className="border-[rgb(46,184,46)]/30 text-[rgb(46,184,46)]">1-2 дня</Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -590,19 +590,19 @@ export default function GoldLeaf() {
                   <CardContent>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Гарантия на золочение 25 лет</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Настоящее сусальное золото</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Профессиональные мастера</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Icon name="Check" size={16} className="text-green-600" />
+                        <Icon name="Check" size={16} className="text-[rgb(46,184,46)]" />
                         <span>Бесплатные исправления</span>
                       </div>
                     </div>
