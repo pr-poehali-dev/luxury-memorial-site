@@ -22,6 +22,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PersonalData from "./pages/PersonalData";
 import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
+import GoldLeaf from "./pages/GoldLeaf";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/personal-data" element={<PersonalData />} />
             <Route path="/offer-agreement" element={<OfferAgreement />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/gold-leaf" element={<GoldLeaf />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
