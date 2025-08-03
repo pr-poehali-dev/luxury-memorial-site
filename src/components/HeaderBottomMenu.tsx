@@ -245,7 +245,7 @@ const mainSections: MainSection[] = [
         expandable: true,
         items: [
           { title: 'Бронзовые буквы', href: '/catalog?type=bronze-letters' },
-          { title: 'Скарпель (Рубленные буквы)', href: '/catalog?type=scarpel-letters' },
+          { title: 'Скарпель (Рубленные буквы)', href: '/scalpel-lettering' },
           { title: 'Сусальное золото', href: '/gold-leaf' },
           { title: 'Пескоструй', href: '/catalog?type=sandblasting' },
           { title: 'Эпитафии', href: '/catalog?type=epitaphs-text' },
