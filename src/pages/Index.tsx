@@ -94,11 +94,7 @@ export default function Index() {
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Создаём вечные памятники из лучших материалов с индивидуальным подходом к каждому заказу
               </p>
-              <div className="flex justify-center sm:justify-start">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-base px-6 py-3 h-auto">
-                  Заказать изготовление памятника
-                </Button>
-              </div>
+
             </div>
             
             {/* 3D Model Request Form - Mobile Optimized */}
