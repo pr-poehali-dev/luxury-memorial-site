@@ -273,7 +273,10 @@ const mainSections: MainSection[] = [
         title: 'Услуги',
         items: [
           { title: 'Как заказать памятник', href: '/how-to-order' },
+          { title: 'Вызов менеджера', href: '/manager-call' },
+          { title: 'Дизайн памятников', href: '/monument-design' },
           { title: 'Доставка и установка', href: '/delivery' },
+          { title: 'Оплата', href: '/payment' },
           { title: 'Гарантии', href: '/warranty' },
           { title: 'Фото наших работ', href: '/portfolio' },
         ]
