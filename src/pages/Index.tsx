@@ -296,112 +296,73 @@ export default function Index() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-16 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="container mx-auto">
-          <div className="mb-12">
-            <h3 className="font-heading text-3xl font-bold mb-2">Отзывы клиентов</h3>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-2 bg-white rounded-lg px-4 py-2 shadow-sm">
-                <div className="text-2xl font-bold">4.8</div>
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Icon key={i} name="Star" size={16} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                  ))}
-                </div>
-                <div className="text-sm text-gray-600 ml-2">247 отзывов</div>
-              </div>
-              <Button variant="outline" size="sm">
-                <Icon name="Plus" size={16} className="mr-2" />
-                Оставить отзыв
-              </Button>
-            </div>
+          <div className="text-center mb-16">
+            <h3 className="font-heading text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              Отзывы о нас
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Что говорят наши клиенты о качестве работы и сервисе
+            </p>
           </div>
 
-          <div className="space-y-6">
+          {/* Простые отзывы для ускорения загрузки */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
-              {
-                name: "Анна Михайловна",
-                avatar: "А",
-                rating: 5,
-                date: "15 ноября 2024",
-                text: "Заказывали памятник из черного гранита для папы. Очень довольны качеством работы. Мастера подошли к делу с пониманием и профессионализмом. Памятник получился красивый, качественная гравировка. Установили в срок. Рекомендую!",
-                helpful: 12,
-                photos: 2
-              },
-              {
-                name: "Дмитрий Петрович",
-                avatar: "Д",
-                rating: 5,
-                date: "8 ноября 2024",
-                text: "Отличная компания! Делали семейный памятник из красного гранита. Результат превзошёл все ожидания. Особенно понравился индивидуальный подход и внимание к деталям. Цена соответствует качеству.",
-                helpful: 8,
-                photos: 0
-              },
-              {
-                name: "Елена Владимировна",
-                avatar: "Е",
-                rating: 5,
-                date: "28 октября 2024",
-                text: "Спасибо большое за терпение и понимание в такой трудный для нас момент. Менеджер очень деликатно всё объяснил, помог с выбором. Памятник сделали точно в срок, качество на высоте. Очень благодарны!",
-                helpful: 15,
-                photos: 1
-              },
-              {
-                name: "Сергей Александрович",
-                avatar: "С",
-                rating: 4,
-                date: "20 октября 2024", 
-                text: "Заказывал памятник для мамы. В целом доволен работой. Небольшая задержка с доставкой, но предупредили заранее. Качество гравировки хорошее, установили аккуратно.",
-                helpful: 6,
-                photos: 0
-              }
+              { name: "Анна М.", text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне." },
+              { name: "Дмитрий П.", text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл ожидания." },
+              { name: "Елена В.", text: "Спасибо за терпение в такой трудный момент. Специалисты очень деликатно всё объяснили." }
             ].map((review, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm border">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
-                    {review.avatar}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h4 className="font-semibold text-gray-900">{review.name}</h4>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Icon key={i} name="Star" size={14} className={`${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                        ))}
-                      </div>
-                    </div>
-                    <div className="text-sm text-gray-500 mb-3">{review.date}</div>
-                    <p className="text-gray-800 leading-relaxed mb-4">{review.text}</p>
-                    
-                    {review.photos > 0 && (
-                      <div className="flex items-center gap-2 mb-4">
-                        <Icon name="Image" size={16} className="text-gray-400" />
-                        <span className="text-sm text-gray-500">{review.photos} фото</span>
-                      </div>
-                    )}
-                    
-                    <div className="flex items-center gap-4 text-sm">
-                      <button className="flex items-center gap-1 text-gray-600 hover:text-gray-800">
-                        <Icon name="ThumbsUp" size={14} />
-                        Полезно ({review.helpful})
-                      </button>
-                      <button className="text-gray-600 hover:text-gray-800">
-                        Ответить
-                      </button>
-                      <button className="text-gray-600 hover:text-gray-800">
-                        <Icon name="Share2" size={14} />
-                      </button>
-                    </div>
-                  </div>
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md border">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Icon key={i} name="Star" size={14} className="text-yellow-400" />
+                  ))}
                 </div>
+                <h4 className="font-bold text-lg mb-2">{review.name}</h4>
+                <p className="text-slate-600 mb-4">{review.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <Button variant="outline">
-              Показать все отзывы
-            </Button>
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">4.9</div>
+              <div className="text-sm text-muted-foreground">Средняя оценка</div>
+              <div className="flex justify-center gap-1 mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
+                ))}
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">350+</div>
+              <div className="text-sm text-muted-foreground">Довольных клиентов</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">98%</div>
+              <div className="text-sm text-muted-foreground">Рекомендуют нас</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">5</div>
+              <div className="text-sm text-muted-foreground">Лет на рынке</div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg max-w-md sm:max-w-none mx-auto">
+              <div className="text-center sm:text-left">
+                <h4 className="font-heading text-lg sm:text-xl font-semibold mb-2">Оставьте свой отзыв</h4>
+                <p className="text-muted-foreground text-sm">Поделитесь опытом сотрудничества с нами</p>
+              </div>
+              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap shrink-0">
+                <Icon name="MessageSquare" size={16} className="mr-2" />
+                Написать отзыв
+              </Button>
+            </div>
           </div>
         </div>
       </section>
