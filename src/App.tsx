@@ -24,7 +24,6 @@ import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
 import GoldLeaf from "./pages/GoldLeaf";
 import ScalpelLettering from "./pages/ScalpelLettering";
-import MonumentDesignPage from "./pages/MonumentDesignPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -56,7 +55,6 @@ const App = () => (
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/gold-leaf" element={<GoldLeaf />} />
             <Route path="/scalpel-lettering" element={<ScalpelLettering />} />
-            <Route path="/monument-design" element={<MonumentDesignPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
