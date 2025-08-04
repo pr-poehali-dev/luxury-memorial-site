@@ -125,37 +125,7 @@ export default function ProductCard({
           </div>
         </div>
 
-        {/* Выпадающий список размеров */}
-        <div className="space-y-2">
-          <div className="text-sm font-medium text-muted-foreground">Размер:</div>
-          <Select 
-            value={selectedVariant} 
-            onValueChange={onVariantChange}
-          >
-            <SelectTrigger className="h-9">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {(() => {
-                const selectedSizeOption = sizeOptions.find(opt => opt.value === selectedSize);
-                return selectedSizeOption?.variants.map(variant => {
-                  const basePrice = parseInt(monument.price.replace(/[^\d]/g, ''));
-                  const price = Math.round(basePrice * variant.priceModifier);
-                  return (
-                    <SelectItem key={variant.id} value={variant.id}>
-                      <div className="flex items-center justify-between w-full">
-                        <span>{variant.dimensions}</span>
-                        <span className="text-xs text-muted-foreground ml-2">
-                          {price.toLocaleString()} ₽
-                        </span>
-                      </div>
-                    </SelectItem>
-                  );
-                });
-              })()}
-            </SelectContent>
-          </Select>
-        </div>
+
         
         {/* Цена выбранного размера */}
         <div className="flex items-center justify-between">
