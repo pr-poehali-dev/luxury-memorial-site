@@ -100,30 +100,7 @@ export default function ProductCard({
       </CardHeader>
       
       <CardContent className="space-y-3">
-        {/* Кнопки выбора типа размера */}
-        <div className="space-y-2">
-          <div className="text-sm font-medium text-muted-foreground">Тип:</div>
-          <div className="grid grid-cols-3 gap-1">
-            {sizeOptions.map(option => {
-              const isSelected = selectedSize === option.value;
-              return (
-                <Button
-                  key={option.value}
-                  variant={isSelected ? "default" : "outline"}
-                  size="sm"
-                  className={`text-xs ${
-                    isSelected 
-                      ? "bg-primary text-primary-foreground" 
-                      : "hover:bg-muted"
-                  }`}
-                  onClick={() => onSizeChange(option.value)}
-                >
-                  {option.label}
-                </Button>
-              );
-            })}
-          </div>
-        </div>
+
 
 
         
