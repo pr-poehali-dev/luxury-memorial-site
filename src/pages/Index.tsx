@@ -296,139 +296,71 @@ export default function Index() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-        {/* Background decorations */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-purple-400/5"></div>
-        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-xl"></div>
-        
-        <div className="container mx-auto relative">
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h3 className="font-heading text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Отзывы наших клиентов
+            <h3 className="font-heading text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              Отзывы о нас
             </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Более 500 семей доверили нам сохранить память о своих близких
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Что говорят наши клиенты о качестве работы и сервисе
             </p>
-            
-            {/* Rating Summary */}
-            <div className="inline-flex items-center gap-6 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-4 shadow-lg border border-white/20">
-              <div className="flex items-center gap-3">
-                <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
-                  4.9
-                </div>
-                <div className="flex gap-1">
+          </div>
+
+          {/* Простые отзывы для ускорения загрузки */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              { name: "Анна М.", text: "Очень довольна качеством памятника. Мастера выполнили работу на высоком уровне." },
+              { name: "Дмитрий П.", text: "Заказывали семейный комплекс из красного гранита. Результат превзошёл ожидания." },
+              { name: "Елена В.", text: "Спасибо за терпение в такой трудный момент. Специалисты очень деликатно всё объяснили." }
+            ].map((review, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md border">
+                <div className="flex gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
-                    <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-current drop-shadow-sm" />
+                    <Icon key={i} name="Star" size={14} className="text-yellow-400" />
                   ))}
                 </div>
+                <h4 className="font-bold text-lg mb-2">{review.name}</h4>
+                <p className="text-slate-600 mb-4">{review.text}</p>
               </div>
-              <div className="h-8 w-px bg-gray-300"></div>
-              <div className="text-gray-600">
-                <span className="font-semibold text-gray-800">247</span> отзывов
+            ))}
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">4.9</div>
+              <div className="text-sm text-muted-foreground">Средняя оценка</div>
+              <div className="flex justify-center gap-1 mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
+                ))}
               </div>
             </div>
-          </div>
-
-          {/* Reviews Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                name: "Анна Михайловна К.",
-                role: "Дочь",
-                avatar: "А",
-                rating: 5,
-                date: "2 недели назад",
-                text: "Заказывали памятник из черного гранита. Мастера подошли к работе с большим пониманием и профессионализмом. Результат превзошёл наши ожидания.",
-                gradient: "from-pink-500 to-rose-500"
-              },
-              {
-                name: "Дмитрий Петрович В.",
-                role: "Сын",
-                avatar: "Д",
-                rating: 5,
-                date: "1 месяц назад",
-                text: "Делали семейный памятник из красного гранита. Особенно понравился индивидуальный подход и внимание к каждой детали. Рекомендую!",
-                gradient: "from-blue-500 to-cyan-500"
-              },
-              {
-                name: "Елена Владимировна С.",
-                role: "Вдова",
-                avatar: "Е",
-                rating: 5,
-                date: "3 недели назад",
-                text: "Спасибо за терпение и деликатность в такой трудный момент. Менеджер всё объяснил, помог с выбором. Качество на высшем уровне.",
-                gradient: "from-purple-500 to-indigo-500"
-              }
-            ].map((review, index) => (
-              <div key={index} className="group relative">
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  {/* Card decoration */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-xl opacity-50"></div>
-                  
-                  <div className="relative">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${review.gradient} text-white flex items-center justify-center font-bold text-lg shadow-lg`}>
-                        {review.avatar}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900 text-lg">{review.name}</h4>
-                        <p className="text-sm text-gray-500">{review.role} • {review.date}</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    
-                    <p className="text-gray-700 leading-relaxed mb-4 relative">
-                      <Icon name="Quote" size={20} className="absolute -top-2 -left-1 text-gray-300" />
-                      <span className="ml-6">{review.text}</span>
-                    </p>
-                    
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                        <Icon name="Heart" size={14} />
-                        Полезно
-                      </button>
-                      <button className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                        Ответить
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            {[
-              { number: "500+", text: "Счастливых семей", icon: "Users" },
-              { number: "15", text: "Лет опыта", icon: "Award" },
-              { number: "98%", text: "Довольных клиентов", icon: "Heart" },
-              { number: "24/7", text: "Поддержка", icon: "Phone" }
-            ].map((stat, index) => (
-              <div key={index} className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <Icon name={stat.icon as any} size={24} className="mx-auto mb-3 text-blue-600" />
-                <div className="text-2xl font-bold text-gray-800 mb-2">{stat.number}</div>
-                <div className="text-sm text-gray-600">{stat.text}</div>
-              </div>
-            ))}
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">350+</div>
+              <div className="text-sm text-muted-foreground">Довольных клиентов</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">98%</div>
+              <div className="text-sm text-muted-foreground">Рекомендуют нас</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">5</div>
+              <div className="text-sm text-muted-foreground">Лет на рынке</div>
+            </div>
           </div>
 
           {/* CTA */}
           <div className="text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white shadow-2xl">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg max-w-md sm:max-w-none mx-auto">
               <div className="text-center sm:text-left">
-                <h4 className="text-xl font-bold mb-2">Поделитесь своим опытом</h4>
-                <p className="text-blue-100">Ваш отзыв поможет другим семьям</p>
+                <h4 className="font-heading text-lg sm:text-xl font-semibold mb-2">Оставьте свой отзыв</h4>
+                <p className="text-muted-foreground text-sm">Поделитесь опытом сотрудничества с нами</p>
               </div>
-              <Button className="bg-white text-blue-600 hover:bg-gray-50 font-semibold px-6">
+              <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap shrink-0">
                 <Icon name="MessageSquare" size={16} className="mr-2" />
-                Оставить отзыв
+                Написать отзыв
               </Button>
             </div>
           </div>
