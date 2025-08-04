@@ -282,9 +282,9 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'О компании',
+        title: 'О нас',
         items: [
-          { title: 'О нас', href: '/about' },
+          { title: 'О компании', href: '/about' },
           { title: 'Наши мастера', href: '/masters' },
           { title: 'Сертификаты', href: '/certificates' },
           { title: 'Отзывы клиентов', href: '/reviews' },
