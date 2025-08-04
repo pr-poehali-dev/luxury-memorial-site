@@ -277,7 +277,6 @@ const mainSections: MainSection[] = [
           { title: 'Дизайн памятников', href: '/monument-design' },
           { title: 'Доставка и установка', href: '/delivery' },
           { title: 'Оплата', href: '/payment' },
-          { title: 'Гарантии', href: '/warranty' },
           { title: 'Фото наших работ', href: '/portfolio' },
         ]
       },
@@ -286,7 +285,9 @@ const mainSections: MainSection[] = [
         items: [
           { title: 'О компании', href: '/about' },
           { title: 'Наши мастера', href: '/masters' },
+          { title: 'Гранитная мастерская', href: '/granite-workshop' },
           { title: 'Сертификаты', href: '/certificates' },
+          { title: 'Гарантии', href: '/warranty' },
           { title: 'Отзывы клиентов', href: '/reviews' },
         ]
       },
