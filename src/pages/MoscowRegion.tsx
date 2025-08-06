@@ -108,7 +108,7 @@ export default function MoscowRegion() {
         </div>
       </section>
 
-      {/* Cities Grid */}
+      {/* Cities */}
       <section className="py-16 px-4 bg-slate-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
@@ -118,20 +118,32 @@ export default function MoscowRegion() {
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {moscowRegionCities.map((city) => (
               <Link
                 key={city.slug}
                 to={`/regions/moscow-region/${city.slug}`}
-                className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-all duration-300 group text-center"
+                className="bg-white p-8 rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group"
               >
-                <h3 className="font-semibold group-hover:text-primary transition-colors mb-3">
-                  {city.name}
-                </h3>
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors mb-2">
+                      {city.name}
+                    </h3>
+                    <p className="text-sm text-slate-500">
+                      Памятники в г. {city.name}
+                    </p>
+                  </div>
+                  <Icon name="ArrowRight" size={20} className="text-slate-400 group-hover:text-primary transition-colors" />
+                </div>
                 
-                <div className="flex items-center justify-center text-primary text-sm">
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Изготовление и установка памятников из гранита и мрамора в городе {city.name}. Бесплатный выезд мастера на дом.
+                </p>
+                
+                <div className="flex items-center text-primary text-sm font-medium">
                   <Icon name="MapPin" size={16} className="mr-2" />
-                  <span>Подробнее</span>
+                  Подробнее о городе {city.name}
                 </div>
               </Link>
             ))}
