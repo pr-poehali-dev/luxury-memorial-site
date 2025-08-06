@@ -1,92 +1,40 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 
 interface City {
   name: string;
   slug: string;
-  population?: number;
-  isPopular?: boolean;
+  population: number;
+  description: string;
 }
 
-const moscowRegionCities: City[] = [
-  // Крупные города (популярные)
-  { name: 'Балашиха', slug: 'balashiha', population: 507366, isPopular: true },
-  { name: 'Подольск', slug: 'podolsk', population: 297948, isPopular: true },
-  { name: 'Химки', slug: 'khimki', population: 259550, isPopular: true },
-  { name: 'Королёв', slug: 'korolev', population: 225796, isPopular: true },
-  { name: 'Мытищи', slug: 'mytishchi', population: 222924, isPopular: true },
-  { name: 'Люберцы', slug: 'lyubertsy', population: 209781, isPopular: true },
-  { name: 'Электросталь', slug: 'elektrostal', population: 158652, isPopular: true },
-  { name: 'Красногорск', slug: 'krasnogorsk', population: 177426, isPopular: true },
-  { name: 'Одинцово', slug: 'odintsovo', population: 141135, isPopular: true },
-  { name: 'Серпухов', slug: 'serpukhov', population: 125994, isPopular: true },
-  
-  // Остальные города по алфавиту
-  { name: 'Апрелевка', slug: 'apelevka' },
-  { name: 'Бронницы', slug: 'bronnitsy' },
-  { name: 'Верея', slug: 'vereya' },
-  { name: 'Видное', slug: 'vidnoe' },
-  { name: 'Волоколамск', slug: 'volokolamsk' },
-  { name: 'Воскресенск', slug: 'voskresensk' },
-  { name: 'Высоковск', slug: 'vysokovsk' },
-  { name: 'Голицыно', slug: 'golitsino' },
-  { name: 'Дедовск', slug: 'dedovsk' },
-  { name: 'Дзержинский', slug: 'dzerzhinsky' },
-  { name: 'Дмитров', slug: 'dmitrov' },
-  { name: 'Долгопрудный', slug: 'dolgoprudny' },
-  { name: 'Домодедово', slug: 'domodedovo' },
-  { name: 'Дубна', slug: 'dubna' },
-  { name: 'Егорьевск', slug: 'egorievsk' },
-  { name: 'Жуковский', slug: 'zhukovsky' },
-  { name: 'Зарайск', slug: 'zaraysk' },
-  { name: 'Звенигород', slug: 'zvenigorod' },
-  { name: 'Ивантеевка', slug: 'ivanteevka' },
-  { name: 'Истра', slug: 'istra' },
-  { name: 'Кашира', slug: 'kashira' },
-  { name: 'Климовск', slug: 'klimovsk' },
-  { name: 'Клин', slug: 'klin' },
-  { name: 'Коломна', slug: 'kolomna' },
-  { name: 'Котельники', slug: 'kotelniki' },
-  { name: 'Красноармейск', slug: 'krasnoarmeysk' },
-  { name: 'Краснознаменск', slug: 'krasnoznamensk' },
-  { name: 'Лобня', slug: 'lobnya' },
-  { name: 'Лосино-Петровский', slug: 'losino-petrovsky' },
-  { name: 'Луховицы', slug: 'lukhovitsy' },
-  { name: 'Лыткарино', slug: 'lytkarino' },
-  { name: 'Малаховка', slug: 'malakhovka' },
-  { name: 'Можайск', slug: 'mozhaysk' },
-  { name: 'Наро-Фоминск', slug: 'naro-fominsk' },
-  { name: 'Ногинск', slug: 'noginsk' },
-  { name: 'Орехово-Зуево', slug: 'orekhovo-zuevo' },
-  { name: 'Озёры', slug: 'ozery' },
-  { name: 'Павловский Посад', slug: 'pavlovsky-posad' },
-  { name: 'Пересвет', slug: 'peresvet' },
-  { name: 'Протвино', slug: 'protvino' },
-  { name: 'Пушкино', slug: 'pushkino' },
-  { name: 'Пущино', slug: 'pushchino' },
-  { name: 'Раменское', slug: 'ramenskoye' },
-  { name: 'Реутов', slug: 'reutov' },
-  { name: 'Рошаль', slug: 'roshal' },
-  { name: 'Руза', slug: 'ruza' },
-  { name: 'Сергиев Посад', slug: 'sergiev-posad' },
-  { name: 'Солнечногорск', slug: 'solnechnogorsk' },
-  { name: 'Ступино', slug: 'stupino' },
-  { name: 'Талдом', slug: 'taldom' },
-  { name: 'Фрязино', slug: 'fryazino' },
-  { name: 'Хотьково', slug: 'hotkovo' },
-  { name: 'Черноголовка', slug: 'chernogolovka' },
-  { name: 'Чехов', slug: 'chekhov' },
-  { name: 'Шатура', slug: 'shatura' },
-  { name: 'Щёлково', slug: 'shchelkovo' },
-  { name: 'Электрогорск', slug: 'elektrogorsk' },
-  { name: 'Юбилейный', slug: 'yubileyny' },
-  { name: 'Яхрома', slug: 'yakhroma' }
+const featuredCities: City[] = [
+  { 
+    name: 'Балашиха', 
+    slug: 'balashiha', 
+    population: 507366,
+    description: 'Крупнейший город Московской области. Быстрая доставка и установка памятников.'
+  },
+  { 
+    name: 'Химки', 
+    slug: 'khimki', 
+    population: 259550,
+    description: 'Современный город с развитой инфраструктурой. Полный спектр ритуальных услуг.'
+  },
+  { 
+    name: 'Мытищи', 
+    slug: 'mytishchi', 
+    population: 222924,
+    description: 'Один из старейших городов Подмосковья. Традиционные и современные памятники.'
+  },
+  { 
+    name: 'Королёв', 
+    slug: 'korolev', 
+    population: 225796,
+    description: 'Наукоград с богатой историей. Изготовление памятников любой сложности.'
+  }
 ];
-
-const popularCities = moscowRegionCities.filter(city => city.isPopular);
-const otherCities = moscowRegionCities.filter(city => !city.isPopular);
 
 export default function MoscowRegion() {
   return (
@@ -100,7 +48,7 @@ export default function MoscowRegion() {
               Изготовление и установка памятников в Московской области
             </h1>
             <p className="text-xl text-slate-300 mb-8">
-              Профессиональные услуги по изготовлению памятников из гранита и мрамора во всех городах Подмосковья. 
+              Профессиональные услуги по изготовлению памятников из гранита и мрамора в крупных городах Подмосковья. 
               Бесплатный выезд мастера, гарантия качества, доставка и установка.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -128,13 +76,20 @@ export default function MoscowRegion() {
       {/* Services Overview */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Наши услуги</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Полный комплекс услуг по изготовлению и установке памятников в Московской области
+            </p>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
               <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
                 <Icon name="Hammer" size={24} className="text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Изготовление</h3>
-              <p className="text-sm text-slate-600">Памятники из гранита, мрамора и других материалов</p>
+              <p className="text-sm text-slate-600">Памятники из гранита, мрамора и других натуральных материалов</p>
             </div>
             
             <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
@@ -150,7 +105,7 @@ export default function MoscowRegion() {
                 <Icon name="Settings" size={24} className="text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Установка</h3>
-              <p className="text-sm text-slate-600">Профессиональный монтаж и благоустройство</p>
+              <p className="text-sm text-slate-600">Профессиональный монтаж и благоустройство места захоронения</p>
             </div>
             
             <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
@@ -164,70 +119,90 @@ export default function MoscowRegion() {
         </div>
       </section>
 
-      {/* Popular Cities */}
+      {/* Featured Cities */}
       <section className="py-16 px-4 bg-slate-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Популярные направления</h2>
-            <p className="text-slate-600">
-              Крупные города Московской области, где мы чаще всего выполняем заказы
+            <h2 className="text-3xl font-bold mb-4">Города, в которых мы работаем</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Основные направления нашей работы в Московской области. Выберите свой город для получения подробной информации.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-            {popularCities.map((city) => (
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {featuredCities.map((city) => (
               <Link
                 key={city.slug}
                 to={`/regions/moscow-region/${city.slug}`}
-                className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow group"
+                className="bg-white p-8 rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold group-hover:text-primary transition-colors">
-                    {city.name}
-                  </h3>
-                  <Badge variant="secondary">Популярно</Badge>
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors mb-2">
+                      {city.name}
+                    </h3>
+                    <p className="text-sm text-slate-500">
+                      Население: {city.population.toLocaleString('ru-RU')} человек
+                    </p>
+                  </div>
+                  <Icon name="ArrowRight" size={20} className="text-slate-400 group-hover:text-primary transition-colors" />
                 </div>
-                {city.population && (
-                  <p className="text-sm text-slate-500">
-                    Население: {city.population.toLocaleString('ru-RU')}
-                  </p>
-                )}
-                <div className="flex items-center mt-3 text-xs text-slate-400">
-                  <Icon name="ArrowRight" size={12} className="mr-1" />
-                  <span>Памятники в г. {city.name}</span>
+                
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  {city.description}
+                </p>
+                
+                <div className="flex items-center text-primary text-sm font-medium">
+                  <Icon name="MapPin" size={16} className="mr-2" />
+                  Памятники в г. {city.name}
                 </div>
               </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-slate-600 mb-6">
+              Работаем и в других городах Московской области. Уточните возможность выезда по телефону.
+            </p>
+            <Button size="lg">
+              <Icon name="Phone" size={20} className="mr-2" />
+              Уточнить возможность выезда
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* All Cities */}
+      {/* Why Choose Us */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Все города Московской области</h2>
-            <p className="text-slate-600">
-              Полный список городов, где мы изготавливаем и устанавливаем памятники
-            </p>
+            <h2 className="text-3xl font-bold mb-4">Почему выбирают нас</h2>
           </div>
           
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {otherCities.map((city) => (
-              <Link
-                key={city.slug}
-                to={`/regions/moscow-region/${city.slug}`}
-                className="bg-white p-4 rounded-lg border hover:border-primary hover:shadow-sm transition-all group"
-              >
-                <h3 className="font-medium group-hover:text-primary transition-colors mb-1">
-                  {city.name}
-                </h3>
-                <div className="flex items-center text-xs text-slate-400">
-                  <Icon name="MapPin" size={12} className="mr-1" />
-                  <span>Подробнее</span>
-                </div>
-              </Link>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Icon name="Users" size={32} className="text-green-600" />
+              </div>
+              <h3 className="font-semibold mb-2">15+ лет опыта</h3>
+              <p className="text-slate-600">Тысячи выполненных заказов в Московской области</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Icon name="Shield" size={32} className="text-blue-600" />
+              </div>
+              <h3 className="font-semibold mb-2">Гарантия качества</h3>
+              <p className="text-slate-600">Все работы выполняются с гарантией на 5 лет</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Icon name="Heart" size={32} className="text-purple-600" />
+              </div>
+              <h3 className="font-semibold mb-2">Индивидуальный подход</h3>
+              <p className="text-slate-600">Учитываем все ваши пожелания и особенности</p>
+            </div>
           </div>
         </div>
       </section>
@@ -248,7 +223,7 @@ export default function MoscowRegion() {
               className="text-primary"
             >
               <Icon name="Phone" size={20} className="mr-2" />
-              Позвонить сейчас
+              +7 (495) 201-32-27
             </Button>
             <Button 
               size="lg" 
@@ -261,18 +236,18 @@ export default function MoscowRegion() {
           </div>
           
           <div className="mt-8 pt-8 border-t border-primary-foreground/20">
-            <div className="grid md:grid-cols-3 gap-6 text-center">
+            <div className="grid md:grid-cols-3 gap-6 text-center max-w-2xl mx-auto">
               <div>
-                <h4 className="font-semibold mb-2">Телефон</h4>
-                <p className="text-primary-foreground/90">+7 (495) 201-32-27</p>
+                <h4 className="font-semibold mb-2">Режим работы</h4>
+                <p className="text-primary-foreground/90">Ежедневно с 9:00 до 21:00</p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Email</h4>
                 <p className="text-primary-foreground/90">info@postament.ru</p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Режим работы</h4>
-                <p className="text-primary-foreground/90">Ежедневно с 9:00 до 21:00</p>
+                <h4 className="font-semibold mb-2">Выезд мастера</h4>
+                <p className="text-primary-foreground/90">Бесплатно по МО</p>
               </div>
             </div>
           </div>
