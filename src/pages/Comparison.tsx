@@ -89,7 +89,7 @@ export default function Comparison() {
                       <Icon name="X" size={12} />
                     </Button>
                     
-                    <div className="aspect-[4/3] bg-muted rounded-t-lg overflow-hidden h-32">
+                    <div className="aspect-square bg-muted rounded-t-lg overflow-hidden">
                       <img 
                         src={product.image} 
                         alt={product.title}
