@@ -183,6 +183,15 @@ export default function Header() {
                 <span className="hidden lg:inline text-sm">Заказать звонок</span>
               </button>
 
+              {/* Email */}
+              <a 
+                href="mailto:info@memorial.ru" 
+                className="hidden md:inline text-gray-600 hover:text-green-600 text-sm transition-colors"
+                title="Написать на почту"
+              >
+                info@memorial.ru
+              </a>
+
               {/* Phone number */}
               <a 
                 href="tel:+71234567890" 
