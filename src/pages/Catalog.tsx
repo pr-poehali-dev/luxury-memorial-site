@@ -56,7 +56,6 @@ export default function Catalog() {
 
   const filteredMonuments = monuments.filter(monument => {
     const categoryMatch = selectedCategory === 'all' || monument.category === selectedCategory;
-    const materialMatch = selectedMaterial === 'all' || monument.material === selectedMaterial;
     
     let priceMatch = true;
     if (selectedPrice !== 'all') {
@@ -77,7 +76,7 @@ export default function Catalog() {
       }
     }
     
-    return categoryMatch && materialMatch && priceMatch;
+    return categoryMatch && priceMatch;
   });
 
   const handleResetFilters = () => {
