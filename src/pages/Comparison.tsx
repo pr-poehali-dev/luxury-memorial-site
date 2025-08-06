@@ -89,12 +89,14 @@ export default function Comparison() {
                       <Icon name="X" size={12} />
                     </Button>
                     
-                    <div className="aspect-[4/3] bg-muted rounded-t-lg overflow-hidden h-32">
-                      <img 
-                        src={product.image} 
-                        alt={product.title}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="bg-muted rounded-t-lg overflow-hidden">
+                      <div className="w-full aspect-square">
+                        <img 
+                          src={product.image} 
+                          alt={product.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
                     
                     <CardHeader className="p-3 pb-2">
