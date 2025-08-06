@@ -68,19 +68,7 @@ export default function CatalogFilters({
               </Select>
             </div>
 
-            {/* Reset button */}
-            <div className="flex-shrink-0">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={onReset}
-                className="h-10 bg-white border-2 border-gray-200 rounded-xl hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-all shadow-sm"
-              >
-                <Icon name="RotateCcw" size={14} className="mr-2" />
-                <span className="hidden sm:inline">Сбросить</span>
-                <span className="sm:hidden">Сброс</span>
-              </Button>
-            </div>
+
           </div>
         </div>
       </div>
