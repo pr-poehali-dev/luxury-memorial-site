@@ -72,7 +72,7 @@ export default function Comparison() {
           <div className="overflow-x-auto">
             <div className="min-w-max">
               {/* Product Images and Basic Info */}
-              <div className="grid grid-cols-1 gap-2 mb-4" style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}>
+              <div className="grid grid-cols-1 gap-2 mb-4" style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(180px, 240px))` }}>
                 {/* Header */}
                 <div className="text-xs font-medium text-muted-foreground self-end pb-2">
                   Товары
@@ -161,7 +161,7 @@ export default function Comparison() {
                   <div 
                     key={field.key} 
                     className="grid grid-cols-1 gap-2 py-2 border-b border-muted/50"
-                    style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}
+                    style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(180px, 240px))` }}
                   >
                     <div className="text-xs font-medium text-muted-foreground">
                       {field.label}
@@ -207,7 +207,7 @@ export default function Comparison() {
                     <div 
                       key={field.key}
                       className="grid grid-cols-1 gap-2 py-1 border-b border-muted/30"
-                      style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}
+                      style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(180px, 240px))` }}
                     >
                       <div className="text-xs text-muted-foreground">
                         {field.label}
