@@ -24,6 +24,7 @@ import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
 import GoldLeaf from "./pages/GoldLeaf";
 import ScalpelLettering from "./pages/ScalpelLettering";
+import MoscowRegion from "./pages/MoscowRegion";
 import Error404 from "./pages/Error404";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/gold-leaf" element={<GoldLeaf />} />
             <Route path="/scalpel-lettering" element={<ScalpelLettering />} />
+            <Route path="/regions/moscow-region" element={<MoscowRegion />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<Error404 />} />
           </Routes>
