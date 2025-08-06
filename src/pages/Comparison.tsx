@@ -47,23 +47,24 @@ export default function Comparison() {
     <Layout>
       <div className="bg-background">
       
-      <section className="pt-8 pb-16 px-4">
-        <div className="container mx-auto max-w-7xl">
+      <section className="pt-4 pb-8 px-4">
+        <div className="container mx-auto max-w-6xl">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Сравнение товаров</h1>
-              <p className="text-muted-foreground">
-                {state.comparison.length} {state.comparison.length === 1 ? 'товар' : state.comparison.length < 5 ? 'товара' : 'товаров'} для сравнения
+              <h1 className="text-2xl font-bold mb-1">Сравнение товаров</h1>
+              <p className="text-sm text-muted-foreground">
+                {state.comparison.length} {state.comparison.length === 1 ? 'товар' : state.comparison.length < 5 ? 'товара' : 'товаров'}
               </p>
             </div>
             <Button 
               variant="outline" 
+              size="sm"
               onClick={clearComparison}
-              className="text-destructive hover:text-destructive"
+              className="text-destructive hover:text-destructive h-8"
             >
-              <Icon name="Trash2" size={16} className="mr-2" />
-              Очистить список
+              <Icon name="Trash2" size={14} className="mr-1" />
+              <span className="hidden sm:inline">Очистить</span>
             </Button>
           </div>
 
@@ -71,9 +72,9 @@ export default function Comparison() {
           <div className="overflow-x-auto">
             <div className="min-w-max">
               {/* Product Images and Basic Info */}
-              <div className="grid grid-cols-1 gap-4 mb-8" style={{ gridTemplateColumns: `200px repeat(${state.comparison.length}, 1fr)` }}>
+              <div className="grid grid-cols-1 gap-2 mb-4" style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}>
                 {/* Header */}
-                <div className="font-medium text-muted-foreground self-end pb-4">
+                <div className="text-xs font-medium text-muted-foreground self-end pb-2">
                   Товары
                 </div>
                 
@@ -82,10 +83,10 @@ export default function Comparison() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="absolute top-2 right-2 z-10 h-6 w-6 text-muted-foreground hover:text-destructive"
+                      className="absolute top-1 right-1 z-10 h-5 w-5 text-muted-foreground hover:text-destructive"
                       onClick={() => removeFromComparison(product.id)}
                     >
-                      <Icon name="X" size={14} />
+                      <Icon name="X" size={12} />
                     </Button>
                     
                     <div className="aspect-square bg-muted rounded-t-lg overflow-hidden">
@@ -96,31 +97,31 @@ export default function Comparison() {
                       />
                     </div>
                     
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base line-clamp-2">
+                    <CardHeader className="p-3 pb-2">
+                      <CardTitle className="text-sm leading-tight line-clamp-2">
                         {product.title}
                       </CardTitle>
                       {product.subtitle && (
-                        <CardDescription className="text-sm">
+                        <CardDescription className="text-xs leading-tight">
                           {product.subtitle}
                         </CardDescription>
                       )}
                     </CardHeader>
                     
-                    <CardContent className="space-y-3">
+                    <CardContent className="p-3 pt-0 space-y-2">
                       <div className="flex gap-1 flex-wrap">
                         {product.isNew && (
-                          <Badge variant="secondary" className="text-xs">Новинка</Badge>
+                          <Badge variant="secondary" className="text-xs px-1 py-0 h-4">Новинка</Badge>
                         )}
                         {product.isPopular && (
-                          <Badge variant="secondary" className="text-xs">Популярный</Badge>
+                          <Badge variant="secondary" className="text-xs px-1 py-0 h-4">Хит</Badge>
                         )}
                       </div>
                       
-                      <div className="flex gap-2">
+                      <div className="flex gap-1">
                         <Button 
                           size="sm" 
-                          className="flex-1"
+                          className="flex-1 h-7 text-xs"
                           onClick={() => addToCart({
                             ...product,
                             quantity: 1,
@@ -128,18 +129,19 @@ export default function Comparison() {
                             selectedSize: 'standard'
                           })}
                         >
-                          <Icon name="ShoppingCart" size={14} className="mr-1" />
-                          В корзину
+                          <Icon name="ShoppingCart" size={12} className="mr-1" />
+                          Купить
                         </Button>
                         <Button 
                           variant="outline" 
                           size="sm"
+                          className="h-7 w-7 p-0"
                           onClick={() => addToFavorites(product)}
                           disabled={isInFavorites(product.id)}
                         >
                           <Icon 
                             name="Heart" 
-                            size={14}
+                            size={12}
                             className={isInFavorites(product.id) ? "text-red-500 fill-current" : ""} 
                           />
                         </Button>
@@ -149,28 +151,28 @@ export default function Comparison() {
                 ))}
               </div>
 
-              <Separator className="my-8" />
+              <Separator className="my-4" />
 
               {/* Comparison Fields */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {comparisonFields.map((field) => (
                   <div 
                     key={field.key} 
-                    className="grid grid-cols-1 gap-4 py-4 border-b border-muted"
-                    style={{ gridTemplateColumns: `200px repeat(${state.comparison.length}, 1fr)` }}
+                    className="grid grid-cols-1 gap-2 py-2 border-b border-muted/50"
+                    style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}
                   >
-                    <div className="font-medium text-muted-foreground">
+                    <div className="text-xs font-medium text-muted-foreground">
                       {field.label}
                     </div>
                     
                     {state.comparison.map((product) => (
-                      <div key={product.id} className="font-medium">
+                      <div key={product.id} className="text-sm font-medium">
                         {field.key === 'price' ? (
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-bold">{product.price.toLocaleString()} ₽</span>
+                          <div className="flex items-center gap-1 flex-wrap">
+                            <span className="font-bold">{product.price}</span>
                             {product.originalPrice && (
-                              <span className="text-sm text-muted-foreground line-through">
-                                {product.originalPrice.toLocaleString()} ₽
+                              <span className="text-xs text-muted-foreground line-through">
+                                {product.originalPrice}
                               </span>
                             )}
                           </div>
@@ -190,28 +192,28 @@ export default function Comparison() {
               </div>
 
               {/* Additional Characteristics */}
-              <div className="mt-8">
-                <h3 className="text-xl font-bold mb-4">Дополнительные характеристики</h3>
+              <div className="mt-4">
+                <h3 className="text-lg font-bold mb-2">Дополнительные характеристики</h3>
                 
-                <div className="space-y-4">
+                <div className="space-y-1">
                   {[
-                    { label: 'Тип установки', key: 'installation' },
+                    { label: 'Установка', key: 'installation' },
                     { label: 'Гарантия', key: 'warranty' },
-                    { label: 'Срок изготовления', key: 'production_time' },
-                    { label: 'Включено в стоимость', key: 'included' },
+                    { label: 'Изготовление', key: 'production_time' },
+                    { label: 'Включено', key: 'included' },
                   ].map((field) => (
                     <div 
                       key={field.key}
-                      className="grid grid-cols-1 gap-4 py-3 border-b border-muted/50"
-                      style={{ gridTemplateColumns: `200px repeat(${state.comparison.length}, 1fr)` }}
+                      className="grid grid-cols-1 gap-2 py-1 border-b border-muted/30"
+                      style={{ gridTemplateColumns: `140px repeat(${state.comparison.length}, minmax(200px, 1fr))` }}
                     >
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-xs text-muted-foreground">
                         {field.label}
                       </div>
                       
                       {state.comparison.map((product) => (
-                        <div key={product.id} className="text-sm">
-                          {field.key === 'installation' ? 'Профессиональная установка' :
+                        <div key={product.id} className="text-xs">
+                          {field.key === 'installation' ? 'Профессиональная' :
                            field.key === 'warranty' ? '10 лет' :
                            field.key === 'production_time' ? '14-21 день' :
                            field.key === 'included' ? 'Гравировка, доставка' :
@@ -226,11 +228,11 @@ export default function Comparison() {
           </div>
 
           {/* Recommendations */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
-            <div className="text-center py-8 bg-muted rounded-lg">
-              <p className="text-muted-foreground mb-4">Посмотрите другие варианты в каталоге</p>
-              <Button asChild>
+          <div className="mt-6">
+            <h2 className="text-lg font-bold mb-3">Похожие товары</h2>
+            <div className="text-center py-4 bg-muted/50 rounded-lg">
+              <p className="text-sm text-muted-foreground mb-3">Посмотрите другие варианты в каталоге</p>
+              <Button asChild size="sm">
                 <Link to="/catalog">Смотреть каталог</Link>
               </Button>
             </div>
