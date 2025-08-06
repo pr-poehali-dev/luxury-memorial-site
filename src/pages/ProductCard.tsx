@@ -253,11 +253,11 @@ export default function ProductCard() {
       <div className="bg-background">
 
       {/* Main Content */}
-      <section className="pt-4 pb-12 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
+      <section className="pt-4 pb-12 px-2 sm:px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Product Images */}
-            <div className="space-y-3">
+            <div className="space-y-3 w-full min-w-0">
               <div className="aspect-square bg-muted rounded-xl overflow-hidden">
                 <img 
                   src={product.images[selectedImage]}
@@ -265,10 +265,9 @@ export default function ProductCard() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
 
-
-              <div>
+              {/* Mobile: Move services below product info on small screens */}
+              <div className="lg:block hidden">
                 <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
                 <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
                   {[
@@ -294,7 +293,7 @@ export default function ProductCard() {
                     return (
                       <div 
                         key={service.id}
-                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 ${
+                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 min-w-0 ${
                           isSelected ? 'border-primary bg-primary/5' : 'border-border'
                         }`}
                         onClick={() => {
@@ -305,8 +304,8 @@ export default function ProductCard() {
                           );
                         }}
                       >
-                        <div className="flex items-center gap-2 flex-1">
-                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 ${
                             isSelected
                               ? 'border-primary bg-primary'
                               : 'border-muted-foreground'
@@ -315,12 +314,12 @@ export default function ProductCard() {
                               <Icon name="Check" size={8} className="text-primary-foreground" />
                             )}
                           </div>
-                          <div className="flex-1">
-                            <div className="text-xs font-medium">{service.name}</div>
-                            <div className="text-[10px] text-muted-foreground">{service.category}</div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-xs font-medium truncate">{service.name}</div>
+                            <div className="text-[10px] text-muted-foreground truncate">{service.category}</div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1 shrink-0 ml-2">
                           {isSelected && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && (
                             <Select 
                               value={serviceQuantities[service.id]?.toString() || '1'} 
@@ -331,7 +330,7 @@ export default function ProductCard() {
                                 }));
                               }}
                             >
-                              <SelectTrigger className="w-12 h-6 text-xs p-1">
+                              <SelectTrigger className="w-10 h-6 text-xs p-0.5">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -343,15 +342,15 @@ export default function ProductCard() {
                               </SelectContent>
                             </Select>
                           )}
-                          <div className="text-xs font-semibold">
+                          <div className="text-xs font-semibold whitespace-nowrap">
                             {isFree ? (
-                              <span className="text-green-500">Бесплатно</span>
+                              <span className="text-green-500">0₽</span>
                             ) : (
                               <span className="text-primary">
                                 {(['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && isSelected
                                   ? (service.price * (serviceQuantities[service.id] || 1))
                                   : service.price
-                                ).toLocaleString()} ₽
+                                ).toLocaleString()}₽
                               </span>
                             )}
                           </div>
@@ -394,40 +393,40 @@ export default function ProductCard() {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-4">
+            <div className="space-y-4 w-full min-w-0">
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  {product.isNew && <Badge className="bg-green-500">Новинка</Badge>}
-                  {product.isPopular && <Badge className="bg-orange-500">Популярный</Badge>}
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  {product.isNew && <Badge className="bg-green-500 text-xs">Новинка</Badge>}
+                  {product.isPopular && <Badge className="bg-orange-500 text-xs">Популярный</Badge>}
                 </div>
-                <h1 className="font-heading text-2xl lg:text-3xl font-bold mb-1">{product.title}</h1>
-                <p className="text-lg text-muted-foreground mb-3">{product.subtitle}</p>
+                <h1 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold mb-1 break-words">{product.title}</h1>
+                <p className="text-base sm:text-lg text-muted-foreground mb-3 break-words">{product.subtitle}</p>
                 
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
                   <div className="flex items-center gap-1">
                     {[1,2,3,4,5].map((star) => (
                       <Icon 
                         key={star}
                         name="Star" 
-                        size={20} 
+                        size={16} 
                         className={star <= Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-muted-foreground"}
                       />
                     ))}
-                    <span className="text-sm text-muted-foreground ml-2">
-                      {product.rating} ({product.reviewsCount} отзывов)
+                    <span className="text-xs sm:text-sm text-muted-foreground ml-1">
+                      {product.rating} ({product.reviewsCount})
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Price */}
-              <div className="bg-muted/30 p-4 rounded-xl">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl font-bold text-primary">
+              <div className="bg-muted/30 p-3 sm:p-4 rounded-xl">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                  <span className="text-xl sm:text-2xl font-bold text-primary">
                     {getCurrentPrice().toLocaleString()} ₽
                   </span>
                   {product.originalPrice && (
-                    <span className="text-lg line-through text-muted-foreground">
+                    <span className="text-base sm:text-lg line-through text-muted-foreground">
                       {product.originalPrice.toLocaleString()} ₽
                     </span>
                   )}
@@ -438,26 +437,26 @@ export default function ProductCard() {
               </div>
 
               {/* Material Selection */}
-              <div className="space-y-3">
+              <div className="space-y-3 w-full">
                 <div>
                   <label className="text-xs font-medium text-muted-foreground mb-2 block">Материал</label>
                   <Select value={selectedMaterial} onValueChange={setSelectedMaterial}>
-                    <SelectTrigger className="h-auto p-3">
+                    <SelectTrigger className="h-auto p-3 w-full">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="w-full">
                       {materials.map(material => (
                         <SelectItem key={material.id} value={material.id} className="p-3">
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-3 w-full">
                             <div 
-                              className="w-6 h-6 rounded-full border-2 border-muted" 
+                              className="w-6 h-6 rounded-full border-2 border-muted shrink-0" 
                               style={{ backgroundColor: material.color }}
                             />
-                            <div>
-                              <div className="font-medium">{material.name}</div>
-                              <div className="text-sm text-muted-foreground">{material.description}</div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm">{material.name}</div>
+                              <div className="text-xs text-muted-foreground truncate">{material.description}</div>
                               {material.price > 0 && (
-                                <div className="text-sm font-medium text-primary">+{material.price.toLocaleString()} ₽</div>
+                                <div className="text-xs font-medium text-primary">+{material.price.toLocaleString()} ₽</div>
                               )}
                             </div>
                           </div>
@@ -478,16 +477,16 @@ export default function ProductCard() {
                       return (
                         <div 
                           key={elementId} 
-                          className={`border rounded-lg p-4 transition-colors cursor-pointer hover:shadow-md ${
+                          className={`border rounded-lg p-3 sm:p-4 transition-colors cursor-pointer hover:shadow-md w-full min-w-0 ${
                             isEnabled 
                               ? 'border-primary bg-primary/5' 
                               : 'border-border hover:border-primary/30'
                           }`}
                           onClick={() => !element.required && toggleElement(elementId)}
                         >
-                          <div className="flex items-center gap-3 mb-2">
+                          <div className="flex items-start gap-3 mb-2">
                             <div 
-                              className={`w-4 h-4 rounded border flex items-center justify-center ${
+                              className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 mt-0.5 ${
                                 isEnabled
                                   ? 'border-primary bg-primary'
                                   : 'border-muted-foreground'
@@ -497,19 +496,19 @@ export default function ProductCard() {
                                 <Icon name="Check" size={10} className="text-primary-foreground" />
                               )}
                             </div>
-                            <div className="flex-1">
-                              <div className="font-semibold text-sm flex items-center gap-2">
-                                {element.name}
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-sm flex flex-wrap items-center gap-2">
+                                <span className="break-words">{element.name}</span>
                                 {element.required && (
-                                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5">Обязательно</Badge>
+                                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 shrink-0">Обязательно</Badge>
                                 )}
                               </div>
-                              <div className="text-xs text-muted-foreground mt-0.5">
+                              <div className="text-xs text-muted-foreground mt-0.5 break-words">
                                 {element.description}
                               </div>
                             </div>
                             {isEnabled && currentSizeData && (
-                              <div className="text-sm font-bold text-primary">
+                              <div className="text-sm font-bold text-primary shrink-0">
                                 {currentSizeData.price.toLocaleString()} ₽
                               </div>
                             )}
@@ -521,15 +520,15 @@ export default function ProductCard() {
                                 value={currentSize} 
                                 onValueChange={(value) => updateElementSize(elementId, value)}
                               >
-                                <SelectTrigger className="h-9 text-sm">
+                                <SelectTrigger className="h-9 text-sm w-full">
                                   <SelectValue />
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent className="w-full">
                                   {element.sizes.map(size => (
                                     <SelectItem key={size.id} value={size.id} className="text-sm">
-                                      <div className="flex justify-between items-center w-full min-w-[200px]">
+                                      <div className="flex justify-between items-center w-full">
                                         <span className="font-medium">{size.name}</span>
-                                        <span className="text-primary font-semibold ml-3">
+                                        <span className="text-primary font-semibold ml-3 shrink-0">
                                           {size.price.toLocaleString()} ₽
                                         </span>
                                       </div>
@@ -561,52 +560,175 @@ export default function ProductCard() {
               </div>
 
               {/* Actions */}
-              <div className="space-y-3">
-                <div className="flex gap-3">
+              <div className="space-y-3 w-full">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <Button 
                     onClick={handleAddToCart}
-                    className="flex-1 bg-primary hover:bg-primary/90"
+                    className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-sm"
                   >
-                    <Icon name="ShoppingCart" className="mr-2" size={18} />
+                    <Icon name="ShoppingCart" className="mr-2" size={16} />
                     В корзину
                   </Button>
                   <Button 
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                    className="w-full sm:flex-1 bg-green-600 hover:bg-green-700 text-white text-sm"
                   >
-                    <Icon name="Zap" className="mr-2" size={18} />
+                    <Icon name="Zap" className="mr-2" size={16} />
                     Заказать в 1 клик
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Icon name="Heart" size={18} />
+                  <Button variant="outline" size="icon" className="shrink-0">
+                    <Icon name="Heart" size={16} />
                   </Button>
                 </div>
-                
-
               </div>
 
               {/* Features */}
-              <div className="bg-card border rounded-xl p-4">
+              <div className="bg-card border rounded-xl p-3 sm:p-4 w-full">
                 <h3 className="font-heading text-sm font-semibold mb-3">Что входит в стоимость</h3>
                 <div className="grid grid-cols-1 gap-2">
                   {product.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <Icon name="Check" size={14} className="text-green-500" />
-                      <span className="text-xs">{feature}</span>
+                      <Icon name="Check" size={14} className="text-green-500 shrink-0" />
+                      <span className="text-xs break-words">{feature}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Mobile Services Section */}
+              <div className="lg:hidden w-full">
+                <h3 className="font-medium text-sm mb-2 text-muted-foreground">Дополнительное оформление</h3>
+                <div className="grid grid-cols-1 gap-1.5 max-h-[280px] overflow-y-auto pr-1">
+                  {[
+                    { id: 'portrait-gravir', name: 'Портрет гравировка', price: 8000, category: 'Портрет' },
+                    { id: 'portrait-hand', name: 'Портрет ручной', price: 15000, category: 'Портрет' },
+                    { id: 'fio-gravir', name: 'ФИО гравировка', price: 2000, category: 'Текст' },
+                    { id: 'fio-skarpel', name: 'ФИО скарпель', price: 4000, category: 'Текст' },
+                    { id: 'fio-gold', name: 'ФИО сусальное золото', price: 6000, category: 'Текст' },
+                    { id: 'gravir-cross', name: 'Гравировка креста', price: 3000, category: 'Символы' },
+                    { id: 'gravir-cvety', name: 'Гравировка цветы', price: 0, category: 'Декор' },
+                    { id: 'gravir-epitafiya', name: 'Гравировка эпитафия', price: 0, category: 'Текст' },
+                    { id: 'gravir-vinetka', name: 'Гравировка виньетки', price: 2500, category: 'Декор' },
+                    { id: 'gravir-svechi', name: 'Гравировка свечи', price: 1500, category: 'Декор' },
+                    { id: 'gravir-ikona', name: 'Гравировка иконы', price: 5000, category: 'Символы' },
+                    { id: 'gravir-kartinka', name: 'Гравировка картинки', price: 3500, category: 'Декор' },
+                    { id: 'retush-photo', name: 'Ретушь фотографии', price: 1000, category: 'Обработка' },
+                    { id: 'protection', name: 'Защитное покрытие', price: 4000, category: 'Обработка' },
+                    { id: 'storage', name: 'Хранение на складе', price: 500, category: 'Услуги' }
+                  ].map((service) => {
+                    const isSelected = selectedServices.includes(service.id);
+                    const isFree = service.price === 0;
+                    
+                    return (
+                      <div 
+                        key={service.id}
+                        className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-colors hover:bg-muted/30 min-w-0 ${
+                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
+                        }`}
+                        onClick={() => {
+                          setSelectedServices(prev => 
+                            prev.includes(service.id) 
+                              ? prev.filter(id => id !== service.id)
+                              : [...prev, service.id]
+                          );
+                        }}
+                      >
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? 'border-primary bg-primary'
+                              : 'border-muted-foreground'
+                          }`}>
+                            {isSelected && (
+                              <Icon name="Check" size={8} className="text-primary-foreground" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-xs font-medium truncate">{service.name}</div>
+                            <div className="text-[10px] text-muted-foreground truncate">{service.category}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 shrink-0 ml-2">
+                          {isSelected && ['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && (
+                            <Select 
+                              value={serviceQuantities[service.id]?.toString() || '1'} 
+                              onValueChange={(value) => {
+                                setServiceQuantities(prev => ({
+                                  ...prev,
+                                  [service.id]: parseInt(value)
+                                }));
+                              }}
+                            >
+                              <SelectTrigger className="w-10 h-6 text-xs p-0.5">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {[1, 2, 3, 4].map(num => (
+                                  <SelectItem key={num} value={num.toString()} className="text-xs">
+                                    {num}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
+                          <div className="text-xs font-semibold whitespace-nowrap">
+                            {isFree ? (
+                              <span className="text-green-500">0₽</span>
+                            ) : (
+                              <span className="text-primary">
+                                {(['portrait-gravir', 'portrait-hand', 'fio-gravir', 'fio-skarpel'].includes(service.id) && isSelected
+                                  ? (service.price * (serviceQuantities[service.id] || 1))
+                                  : service.price
+                                ).toLocaleString()}₽
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-muted-foreground">Итого за оформление:</span>
+                    <span className="font-semibold text-primary">
+                      {[
+                        { id: 'portrait-gravir', price: 8000 },
+                        { id: 'portrait-hand', price: 15000 },
+                        { id: 'fio-gravir', price: 2000 },
+                        { id: 'fio-skarpel', price: 4000 },
+                        { id: 'fio-gold', price: 6000 },
+                        { id: 'gravir-cross', price: 3000 },
+                        { id: 'gravir-cvety', price: 0 },
+                        { id: 'gravir-epitafiya', price: 0 },
+                        { id: 'gravir-vinetka', price: 2500 },
+                        { id: 'gravir-svechi', price: 1500 },
+                        { id: 'gravir-ikona', price: 5000 },
+                        { id: 'gravir-kartinka', price: 3500 },
+                        { id: 'retush-photo', price: 1000 },
+                        { id: 'protection', price: 4000 },
+                        { id: 'storage', price: 500 }
+                      ]
+                        .filter(service => selectedServices.includes(service.id))
+                        .reduce((total, service) => {
+                          const quantity = serviceQuantities[service.id] || 1;
+                          return total + (service.price * quantity);
+                        }, 0)
+                        .toLocaleString()} ₽
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Product Details */}
-          <div className="mt-12">
+          <div className="mt-8 sm:mt-12 px-2 sm:px-0">
             <Tabs defaultValue="description" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="description">Описание</TabsTrigger>
-                <TabsTrigger value="specifications">Характеристики</TabsTrigger>
-                <TabsTrigger value="reviews">Отзывы</TabsTrigger>
-                <TabsTrigger value="delivery">Доставка</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+                <TabsTrigger value="description" className="text-xs sm:text-sm py-2">Описание</TabsTrigger>
+                <TabsTrigger value="specifications" className="text-xs sm:text-sm py-2">Характеристики</TabsTrigger>
+                <TabsTrigger value="reviews" className="text-xs sm:text-sm py-2">Отзывы</TabsTrigger>
+                <TabsTrigger value="delivery" className="text-xs sm:text-sm py-2">Доставка</TabsTrigger>
               </TabsList>
 
               <TabsContent value="description" className="mt-6">
@@ -759,11 +881,11 @@ export default function ProductCard() {
           </div>
 
           {/* Related Products */}
-          <div className="mt-12">
-            <h3 className="font-heading text-2xl font-bold mb-6 text-center">Похожие товары</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="mt-8 sm:mt-12 px-2 sm:px-0">
+            <h3 className="font-heading text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Похожие товары</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {relatedProducts.map(product => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow w-full">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img 
                       src={product.image}
@@ -771,14 +893,14 @@ export default function ProductCard() {
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <CardHeader className="p-4">
-                    <CardTitle className="font-heading text-base">{product.title}</CardTitle>
-                    <CardDescription className="text-base font-semibold text-primary">
+                  <CardHeader className="p-3 sm:p-4">
+                    <CardTitle className="font-heading text-sm sm:text-base break-words">{product.title}</CardTitle>
+                    <CardDescription className="text-sm sm:text-base font-semibold text-primary">
                       {product.price}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <Button className="w-full text-sm">Подробнее</Button>
+                  <CardContent className="p-3 sm:p-4 pt-0">
+                    <Button className="w-full text-xs sm:text-sm">Подробнее</Button>
                   </CardContent>
                 </Card>
               ))}
