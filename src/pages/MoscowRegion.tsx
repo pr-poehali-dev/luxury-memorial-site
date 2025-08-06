@@ -11,28 +11,52 @@ interface City {
 
 const featuredCities: City[] = [
   { 
-    name: 'Балашиха', 
-    slug: 'balashiha', 
-    population: 507366,
-    description: 'Крупнейший город Московской области. Быстрая доставка и установка памятников.'
+    name: 'Апрелевка', 
+    slug: 'apelevka', 
+    population: 28530,
+    description: 'Город в западной части Московской области. Качественное изготовление памятников из гранита.'
   },
   { 
-    name: 'Химки', 
-    slug: 'khimki', 
-    population: 259550,
-    description: 'Современный город с развитой инфраструктурой. Полный спектр ритуальных услуг.'
+    name: 'Бронницы', 
+    slug: 'bronnitsy', 
+    population: 22836,
+    description: 'Древний город на берегу Москвы-реки. Традиционные и современные памятники.'
   },
   { 
-    name: 'Мытищи', 
-    slug: 'mytishchi', 
-    population: 222924,
-    description: 'Один из старейших городов Подмосковья. Традиционные и современные памятники.'
+    name: 'Верея', 
+    slug: 'vereya', 
+    population: 5847,
+    description: 'Один из древнейших городов Подмосковья. Индивидуальный подход к каждому заказу.'
   },
   { 
-    name: 'Королёв', 
-    slug: 'korolev', 
-    population: 225796,
-    description: 'Наукоград с богатой историей. Изготовление памятников любой сложности.'
+    name: 'Видное', 
+    slug: 'vidnoe', 
+    population: 59959,
+    description: 'Город в Ленинском районе. Полный спектр ритуальных услуг и благоустройства.'
+  },
+  { 
+    name: 'Волоколамск', 
+    slug: 'volokolamsk', 
+    population: 19492,
+    description: 'Исторический город с богатым наследием. Памятники из натурального камня.'
+  },
+  { 
+    name: 'Воскресенск', 
+    slug: 'voskresensk', 
+    population: 94130,
+    description: 'Крупный промышленный центр. Быстрая доставка и профессиональная установка.'
+  },
+  { 
+    name: 'Высоковск', 
+    slug: 'vysokovsk', 
+    population: 11398,
+    description: 'Уютный город в Клинском районе. Персональный подход и качественные материалы.'
+  },
+  { 
+    name: 'Голицыно', 
+    slug: 'golitsino', 
+    population: 17825,
+    description: 'Город в Одинцовском районе. Элитные и эконом варианты памятников.'
   }
 ];
 
@@ -129,7 +153,7 @@ export default function MoscowRegion() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {featuredCities.map((city) => (
               <Link
                 key={city.slug}
