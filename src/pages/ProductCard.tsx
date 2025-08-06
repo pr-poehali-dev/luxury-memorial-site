@@ -515,7 +515,7 @@ export default function ProductCard() {
                           </div>
                           
                           {isEnabled && (
-                            <div className="ml-7 mt-2">
+                            <div className="ml-7 mt-2" onClick={(e) => e.stopPropagation()}>
                               <Select 
                                 value={currentSize} 
                                 onValueChange={(value) => updateElementSize(elementId, value)}
