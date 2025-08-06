@@ -381,7 +381,8 @@ export default function HeaderBottomMenu() {
                     variant="ghost"
                     className={cn(
                       "text-slate-700 hover:text-primary hover:bg-primary/5 px-4 py-2 text-sm font-medium transition-all duration-200 flex items-center space-x-1",
-                      activeSection === section.id && "bg-primary/5 text-primary shadow-sm"
+                      activeSection === section.id && "bg-primary/5 text-primary shadow-sm",
+                      section.id === 'monuments' && "bg-green-500 text-white hover:bg-green-600 hover:text-white"
                     )}
                     onMouseEnter={() => handleMouseEnter(section.id)}
                     asChild
