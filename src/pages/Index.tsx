@@ -168,7 +168,7 @@ export default function Index() {
       <section id="catalog" className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h3 className="font-heading text-4xl font-bold mb-4">Каталог памятников</h3>
+            <h3 className="font-heading text-4xl font-bold mb-4">Каталог товаров и услуг</h3>
             <p className="text-xl text-muted-foreground">Широкий выбор готовых решений для любого бюджета</p>
           </div>
 
