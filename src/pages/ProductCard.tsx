@@ -407,6 +407,28 @@ export default function ProductCard() {
                 </p>
               </div>
 
+              {/* Actions */}
+              <div className="space-y-3 w-full">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                  <Button 
+                    onClick={handleAddToCart}
+                    className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-sm"
+                  >
+                    <Icon name="ShoppingCart" className="mr-2" size={16} />
+                    В корзину
+                  </Button>
+                  <Button 
+                    className="w-full sm:flex-1 bg-green-600 hover:bg-green-700 text-white text-sm"
+                  >
+                    <Icon name="Zap" className="mr-2" size={16} />
+                    Заказать в 1 клик
+                  </Button>
+                  <Button variant="outline" size="icon" className="shrink-0">
+                    <Icon name="Heart" size={16} />
+                  </Button>
+                </div>
+              </div>
+
               {/* Material Selection */}
               <div className="space-y-3 w-full">
                 <div>
@@ -514,28 +536,6 @@ export default function ProductCard() {
                     })}
                   </div>
 
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="space-y-3 w-full">
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                  <Button 
-                    onClick={handleAddToCart}
-                    className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-sm"
-                  >
-                    <Icon name="ShoppingCart" className="mr-2" size={16} />
-                    В корзину
-                  </Button>
-                  <Button 
-                    className="w-full sm:flex-1 bg-green-600 hover:bg-green-700 text-white text-sm"
-                  >
-                    <Icon name="Zap" className="mr-2" size={16} />
-                    Заказать в 1 клик
-                  </Button>
-                  <Button variant="outline" size="icon" className="shrink-0">
-                    <Icon name="Heart" size={16} />
-                  </Button>
                 </div>
               </div>
 
