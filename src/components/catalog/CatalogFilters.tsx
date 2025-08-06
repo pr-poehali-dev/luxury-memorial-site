@@ -48,7 +48,6 @@ export default function CatalogFilters({
 
             {/* Price dropdown */}
             <div className="w-auto">
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Цена</label>
               <Select value={selectedPrice} onValueChange={onPriceChange}>
                 <SelectTrigger className="h-8 w-28 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
                   <SelectValue placeholder="Любая" />
