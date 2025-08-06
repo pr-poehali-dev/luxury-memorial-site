@@ -12,11 +12,11 @@ export default function Error404() {
             {/* Error Icon */}
             <div className="mb-8">
               <div className="mx-auto w-32 h-32 bg-muted rounded-full flex items-center justify-center mb-6">
-                <Icon name="AlertTriangle" size={64} className="text-muted-foreground" />
+                <Icon name="AlertTriangle" size={64} className="text-[rgb(46,184,45)]" />
               </div>
               
               {/* 404 Text */}
-              <h1 className="text-8xl font-bold text-muted-foreground mb-4">404</h1>
+              <h1 className="text-8xl font-bold text-[rgb(46,184,45)] mb-4">404</h1>
               
               {/* Error Message */}
               <h2 className="text-3xl font-bold mb-4">Страница не найдена</h2>
