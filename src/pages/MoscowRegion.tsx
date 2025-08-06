@@ -12,39 +12,45 @@ interface City {
 const featuredCities: City[] = [
   { 
     name: 'Апрелевка', 
-    slug: 'apelevka', 
-    population: 28530,
-    description: 'Город в западной части Московской области. Качественное изготовление памятников из гранита.'
+    slug: 'aprelevka', 
+    population: 29218,
+    description: 'Современный город в Наро-Фоминском районе. Качественные памятники по доступным ценам.'
+  },
+  { 
+    name: 'Балашиха', 
+    slug: 'balashikha', 
+    population: 507366,
+    description: 'Крупнейший город области после Подольска. Полный спектр ритуальных услуг высочайшего качества.'
   },
   { 
     name: 'Бронницы', 
     slug: 'bronnitsy', 
-    population: 22836,
-    description: 'Древний город на берегу Москвы-реки. Традиционные и современные памятники.'
+    population: 22930,
+    description: 'Уютный город на Москве-реке. Индивидуальный подход к каждому заказу.'
   },
   { 
     name: 'Верея', 
     slug: 'vereya', 
     population: 5847,
-    description: 'Один из древнейших городов Подмосковья. Индивидуальный подход к каждому заказу.'
+    description: 'Самый маленький город области с богатой историей. Уникальные памятники ручной работы.'
   },
   { 
     name: 'Видное', 
     slug: 'vidnoe', 
-    population: 59959,
-    description: 'Город в Ленинском районе. Полный спектр ритуальных услуг и благоустройства.'
+    population: 59917,
+    description: 'Быстроразвивающийся город рядом с Москвой. Современные технологии изготовления памятников.'
   },
   { 
     name: 'Волоколамск', 
     slug: 'volokolamsk', 
-    population: 19492,
-    description: 'Исторический город с богатым наследием. Памятники из натурального камня.'
+    population: 18770,
+    description: 'Древний город-герой. Памятники военной славы и мемориальные комплексы.'
   },
   { 
     name: 'Воскресенск', 
     slug: 'voskresensk', 
-    population: 94130,
-    description: 'Крупный промышленный центр. Быстрая доставка и профессиональная установка.'
+    population: 94661,
+    description: 'Промышленный центр на юго-востоке области. Надёжные материалы и проверенные технологии.'
   },
   { 
     name: 'Высоковск', 
@@ -155,6 +161,12 @@ const featuredCities: City[] = [
     description: 'Крупный исторический центр. Полный спектр услуг от эскиза до установки.'
   },
   { 
+    name: 'Королёв', 
+    slug: 'korolev', 
+    population: 225993,
+    description: 'Космическая столица России. Высокотехнологичное производство памятников с элементами космической символики.'
+  },
+  { 
     name: 'Котельники', 
     slug: 'kotelniki', 
     population: 47339,
@@ -237,6 +249,12 @@ const featuredCities: City[] = [
     slug: 'mozhaysk', 
     population: 30952,
     description: 'Древний город-воин на западных рубежах. Памятники с военно-исторической тематикой.'
+  },
+  { 
+    name: 'Мытищи', 
+    slug: 'mytishchi', 
+    population: 222924,
+    description: 'Старинный промышленный город. Традиционные и современные решения в мемориальном искусстве.'
   },
   { 
     name: 'Наро-Фоминск', 
@@ -371,6 +389,12 @@ const featuredCities: City[] = [
     description: 'Наукоград электроники. Современные технологии лазерной гравировки и обработки.'
   },
   { 
+    name: 'Химки', 
+    slug: 'khimki', 
+    population: 259550,
+    description: 'Промышленный и научный центр. Современные технологии изготовления памятников и благоустройства.'
+  },
+  { 
     name: 'Хотьково', 
     slug: 'hotkovo', 
     population: 22313,
@@ -423,250 +447,111 @@ const featuredCities: City[] = [
     slug: 'yakhroma', 
     population: 13708,
     description: 'Северный город на канале Москва-Волга. Памятники с учётом водного ландшафта.'
-  },
-  { 
-    name: 'Балашиха', 
-    slug: 'balashikha', 
-    population: 507366,
-    description: 'Крупнейший город области после Подольска. Полный спектр ритуальных услуг высочайшего качества.'
-  },
-  { 
-    name: 'Химки', 
-    slug: 'khimki', 
-    population: 259550,
-    description: 'Промышленный и научный центр. Современные технологии изготовления памятников и благоустройства.'
-  },
-  { 
-    name: 'Мытищи', 
-    slug: 'mytishchi', 
-    population: 222924,
-    description: 'Старинный промышленный город. Традиционные и современные решения в мемориальном искусстве.'
-  },
-  { 
-    name: 'Королёв', 
-    slug: 'korolev', 
-    population: 225993,
-    description: 'Космическая столица России. Высокотехнологичное производство памятников с элементами космической символики.'
   }
 ];
 
 export default function MoscowRegion() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
       {/* Hero Section */}
-      <section className="relative bg-slate-900 text-white py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 to-slate-800/95"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Изготовление и установка памятников в Московской области
+      <div className="relative py-24 px-4 text-center">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-4xl mx-auto">
+          <div className="flex items-center justify-center mb-6">
+            <Icon name="MapPin" className="w-12 h-12 text-amber-400 mr-4" />
+            <h1 className="text-5xl font-bold text-white">
+              Памятники в Московской области
             </h1>
-            <p className="text-xl text-slate-300 mb-8">
-              Профессиональные услуги по изготовлению памятников из гранита и мрамора в крупных городах Подмосковья. 
-              Бесплатный выезд мастера, гарантия качества, доставка и установка.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="flex items-center space-x-2">
-                <Icon name="CheckCircle" size={16} className="text-green-400" />
-                <span>Бесплатный выезд мастера</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Icon name="Truck" size={16} className="text-blue-400" />
-                <span>Доставка по всей области</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Icon name="Award" size={16} className="text-yellow-400" />
-                <span>Гарантия качества</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Icon name="Clock" size={16} className="text-purple-400" />
-                <span>Работаем 15+ лет</span>
-              </div>
+          </div>
+          <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+            Изготовление и установка памятников, надгробий и мемориальных комплексов 
+            во всех городах Московской области. Профессиональный подход, качественные материалы, 
+            доступные цены.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+              <div className="text-2xl font-bold text-amber-400">{featuredCities.length}</div>
+              <div className="text-sm text-slate-300">городов области</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+              <div className="text-2xl font-bold text-amber-400">24/7</div>
+              <div className="text-sm text-slate-300">консультации</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+              <div className="text-2xl font-bold text-amber-400">15+</div>
+              <div className="text-sm text-slate-300">лет опыта</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Services Overview */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
+      {/* Cities Grid */}
+      <div className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Наши услуги</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Полный комплекс услуг по изготовлению и установке памятников в Московской области
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Города Московской области
+            </h2>
+            <p className="text-slate-300 max-w-2xl mx-auto">
+              Выберите ваш город для получения информации о наших услугах, ценах и условиях работы
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Hammer" size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold mb-2">Изготовление</h3>
-              <p className="text-sm text-slate-600">Памятники из гранита, мрамора и других натуральных материалов</p>
-            </div>
-            
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Truck" size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold mb-2">Доставка</h3>
-              <p className="text-sm text-slate-600">Бесплатная доставка по Московской области</p>
-            </div>
-            
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Settings" size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold mb-2">Установка</h3>
-              <p className="text-sm text-slate-600">Профессиональный монтаж и благоустройство места захоронения</p>
-            </div>
-            
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm border">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Palette" size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold mb-2">Оформление</h3>
-              <p className="text-sm text-slate-600">Портреты, гравировка, художественное оформление</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Featured Cities */}
-      <section className="py-16 px-4 bg-slate-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Города, в которых мы работаем</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Основные направления нашей работы в Московской области. Выберите свой город для получения подробной информации.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {featuredCities.map((city) => (
               <Link
                 key={city.slug}
                 to={`/regions/moscow-region/${city.slug}`}
-                className="bg-white p-8 rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group"
+                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 
+                         hover:bg-white/10 hover:border-amber-400/50 transition-all duration-300 
+                         hover:transform hover:scale-105"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-2xl font-bold group-hover:text-primary transition-colors mb-2">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-amber-400 transition-colors">
                       {city.name}
                     </h3>
-                    <p className="text-sm text-slate-500">
-                      Население: {city.population.toLocaleString('ru-RU')} человек
+                    <p className="text-sm text-slate-400">
+                      {city.population.toLocaleString('ru-RU')} чел.
                     </p>
                   </div>
-                  <Icon name="ArrowRight" size={20} className="text-slate-400 group-hover:text-primary transition-colors" />
+                  <Icon 
+                    name="ArrowRight" 
+                    className="w-5 h-5 text-slate-400 group-hover:text-amber-400 transform 
+                             group-hover:translate-x-1 transition-all duration-300" 
+                  />
                 </div>
-                
-                <p className="text-slate-600 mb-6 leading-relaxed">
+                <p className="text-sm text-slate-300 line-clamp-3">
                   {city.description}
                 </p>
-                
-                <div className="flex items-center text-primary text-sm font-medium">
-                  <Icon name="MapPin" size={16} className="mr-2" />
-                  Памятники в г. {city.name}
-                </div>
               </Link>
             ))}
           </div>
-          
-          <div className="text-center mt-12">
-            <p className="text-slate-600 mb-6">
-              Работаем и в других городах Московской области. Уточните возможность выезда по телефону.
-            </p>
-            <Button size="lg">
-              <Icon name="Phone" size={20} className="mr-2" />
-              Уточнить возможность выезда
-            </Button>
-          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Why Choose Us */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Почему выбирают нас</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Users" size={32} className="text-green-600" />
-              </div>
-              <h3 className="font-semibold mb-2">15+ лет опыта</h3>
-              <p className="text-slate-600">Тысячи выполненных заказов в Московской области</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Shield" size={32} className="text-blue-600" />
-              </div>
-              <h3 className="font-semibold mb-2">Гарантия качества</h3>
-              <p className="text-slate-600">Все работы выполняются с гарантией на 5 лет</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Icon name="Heart" size={32} className="text-purple-600" />
-              </div>
-              <h3 className="font-semibold mb-2">Индивидуальный подход</h3>
-              <p className="text-slate-600">Учитываем все ваши пожелания и особенности</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-primary text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Нужна консультация по изготовлению памятника?
+      {/* Contact Section */}
+      <div className="py-16 px-4 bg-slate-800/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">
+            Нужна консультация?
           </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Наши мастера бесплатно выедут к вам на участок, проведут замеры и составят смету
+          <p className="text-slate-300 mb-8 text-lg">
+            Наши специалисты помогут выбрать подходящий памятник и ответят на все вопросы
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              variant="secondary"
-              className="text-primary"
-            >
-              <Icon name="Phone" size={20} className="mr-2" />
-              +7 (495) 201-32-27
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3">
+              <Icon name="Phone" className="w-5 h-5 mr-2" />
+              Позвонить сейчас
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-white border-white hover:bg-white hover:text-primary"
-            >
-              <Icon name="MessageCircle" size={20} className="mr-2" />
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-3">
+              <Icon name="MessageCircle" className="w-5 h-5 mr-2" />
               Написать в WhatsApp
             </Button>
           </div>
-          
-          <div className="mt-8 pt-8 border-t border-primary-foreground/20">
-            <div className="grid md:grid-cols-3 gap-6 text-center max-w-2xl mx-auto">
-              <div>
-                <h4 className="font-semibold mb-2">Режим работы</h4>
-                <p className="text-primary-foreground/90">Ежедневно с 9:00 до 21:00</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2">Email</h4>
-                <p className="text-primary-foreground/90">info@postament.ru</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2">Выезд мастера</h4>
-                <p className="text-primary-foreground/90">Бесплатно по МО</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
