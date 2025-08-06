@@ -27,6 +27,7 @@ export default function ProductCard() {
     'fio-skarpel': 1
   });
   const [quantity, setQuantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const getTotalPrice = () => {
     const selectedMaterialData = materials.find(m => m.id === selectedMaterial);
@@ -423,8 +424,23 @@ export default function ProductCard() {
                     <Icon name="Zap" className="mr-2" size={16} />
                     Заказать в 1 клик
                   </Button>
-                  <Button variant="outline" size="icon" className="shrink-0">
-                    <Icon name="Heart" size={16} />
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className={`shrink-0 transition-all duration-300 hover:scale-110 ${
+                      isFavorite 
+                        ? 'bg-red-50 border-red-500 text-red-500' 
+                        : 'hover:border-red-400 hover:text-red-400'
+                    }`}
+                    onClick={() => setIsFavorite(!isFavorite)}
+                  >
+                    <Icon 
+                      name="Heart" 
+                      size={16} 
+                      className={`transition-all duration-300 ${
+                        isFavorite ? 'fill-current text-red-500' : ''
+                      }`}
+                    />
                   </Button>
                 </div>
               </div>
