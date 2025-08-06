@@ -25,7 +25,6 @@ export default function CatalogFilters({
           <div className="flex gap-2 items-center justify-start">
             {/* Categories dropdown */}
             <div className="w-auto">
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Категория</label>
               <Select value={selectedCategory} onValueChange={onCategoryChange}>
                 <SelectTrigger className="h-8 w-32 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
                   <SelectValue placeholder="Выберите" />
