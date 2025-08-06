@@ -10,7 +10,6 @@ import { monuments, sizeOptions, type MonumentSize, type Monument } from '@/comp
 
 export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
   // Состояние для выбранных размеров и вариантов каждого товара
   const [selectedSizes, setSelectedSizes] = useState<Record<string, MonumentSize>>({});
@@ -83,7 +82,6 @@ export default function Catalog() {
 
   const handleResetFilters = () => {
     setSelectedCategory('all');
-    setSelectedMaterial('all');
     setSelectedPrice('all');
   };
 
@@ -101,10 +99,8 @@ export default function Catalog() {
         
         <CatalogFilters
           selectedCategory={selectedCategory}
-          selectedMaterial={selectedMaterial}
           selectedPrice={selectedPrice}
           onCategoryChange={setSelectedCategory}
-          onMaterialChange={setSelectedMaterial}
           onPriceChange={setSelectedPrice}
           onReset={handleResetFilters}
         />

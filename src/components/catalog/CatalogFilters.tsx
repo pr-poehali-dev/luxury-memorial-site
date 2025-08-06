@@ -1,24 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
-import { categories, materials, priceRanges } from './CatalogData';
+import { categories, priceRanges } from './CatalogData';
 
 interface CatalogFiltersProps {
   selectedCategory: string;
-  selectedMaterial: string;
   selectedPrice: string;
   onCategoryChange: (value: string) => void;
-  onMaterialChange: (value: string) => void;
   onPriceChange: (value: string) => void;
   onReset: () => void;
 }
 
 export default function CatalogFilters({
   selectedCategory,
-  selectedMaterial,
   selectedPrice,
   onCategoryChange,
-  onMaterialChange,
   onPriceChange,
   onReset
 }: CatalogFiltersProps) {
@@ -31,30 +27,20 @@ export default function CatalogFilters({
             <div className="flex-1 min-w-[120px] md:min-w-[160px]">
               <label className="text-xs font-medium text-muted-foreground mb-1 block">Категория</label>
               <Select value={selectedCategory} onValueChange={onCategoryChange}>
-                <SelectTrigger className="h-9">
-                  <SelectValue />
+                <SelectTrigger className="h-10 bg-white border-2 border-gray-200 rounded-xl hover:border-primary transition-colors shadow-sm">
+                  <SelectValue placeholder="Выберите категорию" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border-2 border-gray-100 rounded-xl shadow-lg">
                   {categories.map(category => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name} ({category.count})
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Material dropdown */}
-            <div className="flex-1 min-w-[120px] md:min-w-[160px]">
-              <label className="text-xs font-medium text-muted-foreground mb-1 block">Материал</label>
-              <Select value={selectedMaterial} onValueChange={onMaterialChange}>
-                <SelectTrigger className="h-9">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {materials.map(material => (
-                    <SelectItem key={material.id} value={material.id}>
-                      {material.name}
+                    <SelectItem 
+                      key={category.id} 
+                      value={category.id}
+                      className="hover:bg-primary/5 rounded-lg mx-1 my-0.5 cursor-pointer transition-colors"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <span>{category.name}</span>
+                        <span className="text-xs text-muted-foreground ml-2">({category.count})</span>
+                      </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -65,12 +51,16 @@ export default function CatalogFilters({
             <div className="flex-1 min-w-[120px] md:min-w-[160px]">
               <label className="text-xs font-medium text-muted-foreground mb-1 block">Цена</label>
               <Select value={selectedPrice} onValueChange={onPriceChange}>
-                <SelectTrigger className="h-9">
-                  <SelectValue />
+                <SelectTrigger className="h-10 bg-white border-2 border-gray-200 rounded-xl hover:border-primary transition-colors shadow-sm">
+                  <SelectValue placeholder="Выберите цену" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border-2 border-gray-100 rounded-xl shadow-lg">
                   {priceRanges.map(range => (
-                    <SelectItem key={range.id} value={range.id}>
+                    <SelectItem 
+                      key={range.id} 
+                      value={range.id}
+                      className="hover:bg-primary/5 rounded-lg mx-1 my-0.5 cursor-pointer transition-colors"
+                    >
                       {range.name}
                     </SelectItem>
                   ))}
@@ -84,9 +74,9 @@ export default function CatalogFilters({
                 variant="outline" 
                 size="sm"
                 onClick={onReset}
-className="h-8 md:h-9 text-sm"
+                className="h-10 bg-white border-2 border-gray-200 rounded-xl hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-all shadow-sm"
               >
-                <Icon name="RotateCcw" size={12} className="md:size-14 mr-1" />
+                <Icon name="RotateCcw" size={14} className="mr-2" />
                 <span className="hidden sm:inline">Сбросить</span>
                 <span className="sm:hidden">Сброс</span>
               </Button>
