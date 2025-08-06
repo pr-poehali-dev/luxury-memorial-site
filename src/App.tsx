@@ -24,7 +24,7 @@ import OfferAgreement from "./pages/OfferAgreement";
 import Sitemap from "./pages/Sitemap";
 import GoldLeaf from "./pages/GoldLeaf";
 import ScalpelLettering from "./pages/ScalpelLettering";
-import NotFound from "./pages/NotFound";
+import Error404 from "./pages/Error404";
 
 const queryClient = new QueryClient();
 
@@ -56,7 +56,7 @@ const App = () => (
             <Route path="/gold-leaf" element={<GoldLeaf />} />
             <Route path="/scalpel-lettering" element={<ScalpelLettering />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
