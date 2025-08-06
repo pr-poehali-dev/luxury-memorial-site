@@ -359,36 +359,7 @@ export default function ProductCard() {
                     );
                   })}
                 </div>
-                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">Итого за оформление:</span>
-                    <span className="font-semibold text-primary">
-                      {[
-                        { id: 'portrait-gravir', price: 8000 },
-                        { id: 'portrait-hand', price: 15000 },
-                        { id: 'fio-gravir', price: 2000 },
-                        { id: 'fio-skarpel', price: 4000 },
-                        { id: 'fio-gold', price: 6000 },
-                        { id: 'gravir-cross', price: 3000 },
-                        { id: 'gravir-cvety', price: 0 },
-                        { id: 'gravir-epitafiya', price: 0 },
-                        { id: 'gravir-vinetka', price: 2500 },
-                        { id: 'gravir-svechi', price: 1500 },
-                        { id: 'gravir-ikona', price: 5000 },
-                        { id: 'gravir-kartinka', price: 3500 },
-                        { id: 'retush-photo', price: 1000 },
-                        { id: 'protection', price: 4000 },
-                        { id: 'storage', price: 500 }
-                      ]
-                        .filter(service => selectedServices.includes(service.id))
-                        .reduce((total, service) => {
-                          const quantity = serviceQuantities[service.id] || 1;
-                          return total + (service.price * quantity);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
-                  </div>
-                </div>
+
               </div>
             </div>
 
@@ -542,20 +513,7 @@ export default function ProductCard() {
                       );
                     })}
                   </div>
-                  <Separator className="my-4" />
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-medium text-muted-foreground">Итого за комплектацию:</span>
-                    <span className="font-bold text-sm text-primary">
-                      {Object.entries(selectedElements)
-                        .filter(([, config]) => config.enabled)
-                        .reduce((total, [elementId, config]) => {
-                          const element = monumentElements[elementId as keyof typeof monumentElements];
-                          const size = element.sizes.find(s => s.id === config.size);
-                          return total + (size?.price || 0);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
-                  </div>
+
                 </div>
               </div>
 
@@ -687,36 +645,7 @@ export default function ProductCard() {
                     );
                   })}
                 </div>
-                <div className="mt-2 p-2 bg-muted/20 rounded-lg">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">Итого за оформление:</span>
-                    <span className="font-semibold text-primary">
-                      {[
-                        { id: 'portrait-gravir', price: 8000 },
-                        { id: 'portrait-hand', price: 15000 },
-                        { id: 'fio-gravir', price: 2000 },
-                        { id: 'fio-skarpel', price: 4000 },
-                        { id: 'fio-gold', price: 6000 },
-                        { id: 'gravir-cross', price: 3000 },
-                        { id: 'gravir-cvety', price: 0 },
-                        { id: 'gravir-epitafiya', price: 0 },
-                        { id: 'gravir-vinetka', price: 2500 },
-                        { id: 'gravir-svechi', price: 1500 },
-                        { id: 'gravir-ikona', price: 5000 },
-                        { id: 'gravir-kartinka', price: 3500 },
-                        { id: 'retush-photo', price: 1000 },
-                        { id: 'protection', price: 4000 },
-                        { id: 'storage', price: 500 }
-                      ]
-                        .filter(service => selectedServices.includes(service.id))
-                        .reduce((total, service) => {
-                          const quantity = serviceQuantities[service.id] || 1;
-                          return total + (service.price * quantity);
-                        }, 0)
-                        .toLocaleString()} ₽
-                    </span>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
