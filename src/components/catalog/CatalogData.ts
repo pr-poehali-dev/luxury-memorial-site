@@ -43,6 +43,25 @@ export const sizeOptions: SizeOption[] = [
   }
 ];
 
+// Формы памятников
+export const forms = [
+  { id: 'all', name: 'Все формы', count: 24 },
+  { id: 'vertical', name: 'Вертикальные', count: 10 },
+  { id: 'horizontal', name: 'Горизонтальные', count: 6 },
+  { id: 'complex', name: 'Комплексы', count: 4 },
+  { id: 'plaques', name: 'Мемориальные плиты', count: 4 }
+];
+
+// Для кого предназначен памятник
+export const recipients = [
+  { id: 'all', name: 'Для всех' },
+  { id: 'man', name: 'Мужчине' },
+  { id: 'woman', name: 'Женщине' },
+  { id: 'child', name: 'Ребенку' },
+  { id: 'family', name: 'Семейный' },
+  { id: 'military', name: 'Военному' }
+];
+
 export const categories = [
   { id: 'all', name: 'Все категории', count: 24 },
   { id: 'vertical', name: 'Вертикальные', count: 10 },

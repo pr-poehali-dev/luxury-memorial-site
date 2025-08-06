@@ -1,20 +1,24 @@
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
-import { categories, priceRanges } from './CatalogData';
+import { forms, recipients, priceRanges } from './CatalogData';
 
 interface CatalogFiltersProps {
-  selectedCategory: string;
+  selectedForm: string;
+  selectedRecipient: string;
   selectedPrice: string;
-  onCategoryChange: (value: string) => void;
+  onFormChange: (value: string) => void;
+  onRecipientChange: (value: string) => void;
   onPriceChange: (value: string) => void;
   onReset: () => void;
 }
 
 export default function CatalogFilters({
-  selectedCategory,
+  selectedForm,
+  selectedRecipient,
   selectedPrice,
-  onCategoryChange,
+  onFormChange,
+  onRecipientChange,
   onPriceChange,
   onReset
 }: CatalogFiltersProps) {
@@ -23,23 +27,43 @@ export default function CatalogFilters({
       <div className="container mx-auto">
         <div className="bg-muted/30 rounded-lg p-2 md:p-3">
           <div className="flex gap-2 items-center justify-start">
-            {/* Categories dropdown */}
+            {/* Form dropdown */}
             <div className="w-auto">
-              <Select value={selectedCategory} onValueChange={onCategoryChange}>
+              <Select value={selectedForm} onValueChange={onFormChange}>
                 <SelectTrigger className="h-8 w-32 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
-                  <SelectValue placeholder="Выберите" />
+                  <SelectValue placeholder="Форма" />
                 </SelectTrigger>
                 <SelectContent className="bg-white border border-gray-100 rounded-lg shadow-lg">
-                  {categories.map(category => (
+                  {forms.map(form => (
                     <SelectItem 
-                      key={category.id} 
-                      value={category.id}
+                      key={form.id} 
+                      value={form.id}
                       className="hover:bg-primary/5 rounded cursor-pointer transition-colors text-sm"
                     >
                       <div className="flex items-center justify-between w-full">
-                        <span>{category.name}</span>
-                        <span className="text-xs text-muted-foreground ml-2">({category.count})</span>
+                        <span>{form.name}</span>
+                        <span className="text-xs text-muted-foreground ml-2">({form.count})</span>
                       </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Recipient dropdown */}
+            <div className="w-auto">
+              <Select value={selectedRecipient} onValueChange={onRecipientChange}>
+                <SelectTrigger className="h-8 w-28 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
+                  <SelectValue placeholder="Кому" />
+                </SelectTrigger>
+                <SelectContent className="bg-white border border-gray-100 rounded-lg shadow-lg">
+                  {recipients.map(recipient => (
+                    <SelectItem 
+                      key={recipient.id} 
+                      value={recipient.id}
+                      className="hover:bg-primary/5 rounded cursor-pointer transition-colors text-sm"
+                    >
+                      {recipient.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -49,8 +73,8 @@ export default function CatalogFilters({
             {/* Price dropdown */}
             <div className="w-auto">
               <Select value={selectedPrice} onValueChange={onPriceChange}>
-                <SelectTrigger className="h-8 w-28 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
-                  <SelectValue placeholder="Любая" />
+                <SelectTrigger className="h-8 w-32 bg-white border border-gray-200 rounded-lg hover:border-primary transition-colors text-sm">
+                  <SelectValue placeholder="Цена" />
                 </SelectTrigger>
                 <SelectContent className="bg-white border border-gray-100 rounded-lg shadow-lg">
                   {priceRanges.map(range => (

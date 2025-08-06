@@ -9,7 +9,8 @@ import CustomOrderBanner from '@/components/catalog/CustomOrderBanner';
 import { monuments, sizeOptions, type MonumentSize, type Monument } from '@/components/catalog/CatalogData';
 
 export default function Catalog() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedForm, setSelectedForm] = useState('all');
+  const [selectedRecipient, setSelectedRecipient] = useState('all');
   const [selectedPrice, setSelectedPrice] = useState('all');
   // Состояние для выбранных размеров и вариантов каждого товара
   const [selectedSizes, setSelectedSizes] = useState<Record<string, MonumentSize>>({});
@@ -55,7 +56,9 @@ export default function Catalog() {
   };
 
   const filteredMonuments = monuments.filter(monument => {
-    const categoryMatch = selectedCategory === 'all' || monument.category === selectedCategory;
+    const formMatch = selectedForm === 'all' || monument.category === selectedForm;
+    // Пока все памятники подходят для всех категорий получателей
+    const recipientMatch = selectedRecipient === 'all' || true;
     
     let priceMatch = true;
     if (selectedPrice !== 'all') {
@@ -76,11 +79,12 @@ export default function Catalog() {
       }
     }
     
-    return categoryMatch && priceMatch;
+    return formMatch && recipientMatch && priceMatch;
   });
 
   const handleResetFilters = () => {
-    setSelectedCategory('all');
+    setSelectedForm('all');
+    setSelectedRecipient('all');
     setSelectedPrice('all');
   };
 
@@ -97,9 +101,11 @@ export default function Catalog() {
         <CatalogHeader />
         
         <CatalogFilters
-          selectedCategory={selectedCategory}
+          selectedForm={selectedForm}
+          selectedRecipient={selectedRecipient}
           selectedPrice={selectedPrice}
-          onCategoryChange={setSelectedCategory}
+          onFormChange={setSelectedForm}
+          onRecipientChange={setSelectedRecipient}
           onPriceChange={setSelectedPrice}
           onReset={handleResetFilters}
         />
