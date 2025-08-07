@@ -293,6 +293,15 @@ const mainSections: MainSection[] = [
           { title: 'Часто задаваемые вопросы', href: '/faq' },
           { title: 'Уход за памятниками', href: '/care-guide' },
         ]
+      },
+      {
+        title: 'Блог',
+        items: [
+          { title: 'О благоустройстве могил', href: '/blog/grave-improvement' },
+          { title: 'О материалах', href: '/blog/materials' },
+          { title: 'Нормативные документы', href: '/blog/regulations' },
+          { title: 'О кладбищах', href: '/blog/cemeteries' },
+        ]
       }
     ]
   }
