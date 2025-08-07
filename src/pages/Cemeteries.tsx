@@ -12,6 +12,7 @@ interface Cemetery {
   description: string;
   established?: string;
   area?: string;
+  address: string;
 }
 
 const moscowCemeteries: Cemetery[] = [
@@ -22,7 +23,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'СВАО',
     description: 'Одно из крупнейших кладбищ Москвы, расположенное в Северо-Восточном округе. Здесь покоятся многие известные деятели культуры и науки.',
     established: '1963',
-    area: '75 га'
+    area: '75 га',
+    address: 'Алтуфьевское шоссе, 8, Москва'
   },
   {
     name: 'Алтуфьевское кладбище',
@@ -31,7 +33,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'СВАО',
     description: 'Современное кладбище в районе Алтуфьево. Благоустроенная территория с удобными подъездными путями.',
     established: '1978',
-    area: '45 га'
+    area: '45 га',
+    address: 'Алтуфьевское шоссе, 165А, Москва'
   },
   {
     name: 'Армянское кладбище',
@@ -40,7 +43,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'ЮАО',
     description: 'Историческое армянское кладбище с уникальными памятниками и традициями национального погребения.',
     established: '1896',
-    area: '12 га'
+    area: '12 га',
+    address: 'ул. Миклухо-Маклая, 28А, Москва'
   },
   {
     name: 'Бабушкинское кладбище',
@@ -49,7 +53,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'СВАО',
     description: 'Кладбище в районе Бабушкинский, известное своими мемориальными комплексами и ухоженной территорией.',
     established: '1959',
-    area: '38 га'
+    area: '38 га',
+    address: 'ул. Менжинского, 37, Москва'
   },
   {
     name: 'Богородское кладбище',
@@ -58,7 +63,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'ВАО',
     description: 'Одно из старейших кладбищ Восточного округа Москвы с богатой историей и архитектурными памятниками.',
     established: '1771',
-    area: '51 га'
+    area: '51 га',
+    address: 'ул. Открытое шоссе, 29, стр. 1, Москва'
   },
   {
     name: 'Борисовское кладбище',
@@ -67,7 +73,8 @@ const moscowCemeteries: Cemetery[] = [
     district: 'ЮАО',
     description: 'Современное кладбище в Южном округе с развитой инфраструктурой и удобным расположением.',
     established: '1985',
-    area: '42 га'
+    area: '42 га',
+    address: 'ул. Борисовские пруды, 4А, Москва'
   }
 ];
 
@@ -158,9 +165,13 @@ export default function Cemeteries() {
                                group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" 
                     />
                   </div>
-                  <p className="text-sm text-muted-foreground line-clamp-3">
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
                     {cemetery.description}
                   </p>
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <Icon name="MapPin" className="w-3 h-3 mr-1" />
+                    {cemetery.address}
+                  </div>
                 </Link>
               ))}
             </div>
