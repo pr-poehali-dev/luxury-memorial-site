@@ -113,6 +113,7 @@ const ListItem = ({ className, title, children, href, ...props }: any) => {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { state, getCartCount } = useApp();
 
   return (
@@ -124,6 +125,36 @@ export default function Header() {
             {/* Left side - User actions */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2 ml-4">
+                {/* Search */}
+                <div className="relative">
+                  {!searchOpen && (
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      onClick={() => setSearchOpen(true)}
+                    >
+                      <Icon name="Search" size={16} />
+                    </Button>
+                  )}
+                  {searchOpen && (
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="text"
+                        placeholder="Поиск..."
+                        className="w-48 px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        autoFocus
+                        onBlur={() => setSearchOpen(false)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Escape') {
+                            setSearchOpen(false);
+                          }
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+
                 {/* Cart */}
                 <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
                   <Link to="/cart" className="flex items-center space-x-2">
