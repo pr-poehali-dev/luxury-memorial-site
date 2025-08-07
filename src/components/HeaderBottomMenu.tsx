@@ -662,11 +662,12 @@ export default function HeaderBottomMenu() {
                       <div className="col-span-3">
                         <div className={cn(
                           "grid gap-4",
+                          section.id === 'information' ? "grid-cols-3" :
                           section.categories.length <= 2 ? "grid-cols-2" :
                           section.categories.length === 3 ? "grid-cols-3" :
                           "grid-cols-3"
                         )}>
-                          {section.categories.map((category) => (
+                          {section.categories.slice(0, section.id === 'information' ? 3 : section.categories.length).map((category) => (
                             <div 
                               key={category.title} 
                               className="space-y-2"
@@ -727,18 +728,53 @@ export default function HeaderBottomMenu() {
                         </div>
                       </div>
 
-                      {/* 4-й столбец для изображения предпросмотра */}
+                      {/* 4-й столбец для изображения предпросмотра или блога */}
                       <div className="col-span-1">
-                        {section.previewImage && (
+                        {section.id === 'information' ? (
+                          /* Блок "Блог" для раздела Информация */
                           <div className="sticky top-4">
-                            <div className="aspect-square overflow-hidden rounded-lg bg-white border border-slate-200">
-                              <img 
-                                src={section.previewImage} 
-                                alt={`Предпросмотр ${section.title}`}
-                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                              />
-                            </div>
+                            {(() => {
+                              const blogCategory = section.categories.find(cat => cat.title === 'Блог');
+                              if (!blogCategory) return null;
+                              
+                              return (
+                                <div className="space-y-2">
+                                  {/* Заголовок блога */}
+                                  <div className="border-b border-slate-200 pb-1">
+                                    <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">
+                                      {blogCategory.title}
+                                    </h4>
+                                  </div>
+
+                                  {/* Список элементов блога */}
+                                  <div className="space-y-1">
+                                    {blogCategory.items.map((item) => (
+                                      <Link
+                                        key={item.title}
+                                        to={item.href}
+                                        className="block text-sm text-slate-600 hover:text-primary transition-colors duration-200 py-0.5 px-1 rounded hover:bg-slate-50"
+                                      >
+                                        <span>{item.title}</span>
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            })()}
                           </div>
+                        ) : (
+                          /* Изображение для остальных разделов */
+                          section.previewImage && (
+                            <div className="sticky top-4">
+                              <div className="aspect-square overflow-hidden rounded-lg bg-white border border-slate-200">
+                                <img 
+                                  src={section.previewImage} 
+                                  alt={`Предпросмотр ${section.title}`}
+                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                />
+                              </div>
+                            </div>
+                          )
                         )}
                       </div>
                     </div>
