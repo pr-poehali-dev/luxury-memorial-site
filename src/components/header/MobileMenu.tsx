@@ -21,6 +21,7 @@ export default function MobileMenu({
 }: MobileMenuProps) {
   const [mobileExpandedSections, setMobileExpandedSections] = useState<string[]>([]);
   const [mobileExpandedCategories, setMobileExpandedCategories] = useState<string[]>([]);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const { state, getCartCount } = useApp();
 
   const toggleMobileSection = (sectionId: string) => {
@@ -52,6 +53,49 @@ export default function MobileMenu({
         </SheetHeader>
         
         <div className="space-y-4">
+          {/* Поиск */}
+          <div className="bg-slate-50 rounded-lg p-3">
+            {!mobileSearchOpen && (
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-2 h-auto"
+                onClick={() => setMobileSearchOpen(true)}
+              >
+                <Icon name="Search" size={18} className="mr-3 text-slate-500" />
+                <span className="text-slate-600">Поиск товаров...</span>
+              </Button>
+            )}
+            {mobileSearchOpen && (
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="text"
+                    placeholder="Введите запрос для поиска..."
+                    className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    autoFocus
+                  />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9"
+                    onClick={() => setMobileSearchOpen(false)}
+                  >
+                    <Icon name="X" size={16} />
+                  </Button>
+                </div>
+                <div className="flex space-x-2">
+                  <Button size="sm" className="flex-1">
+                    <Icon name="Search" size={14} className="mr-1" />
+                    Найти
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setMobileSearchOpen(false)}>
+                    Отмена
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Основные разделы */}
           {mainSections.map((section) => (
             <Collapsible key={section.id}>

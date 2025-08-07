@@ -125,8 +125,8 @@ export default function Header() {
             {/* Left side - User actions */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2 ml-4">
-                {/* Search */}
-                <div className="relative">
+                {/* Search - скрыт на мобильных */}
+                <div className="relative hidden sm:block">
                   {!searchOpen && (
                     <Button 
                       variant="ghost" 
