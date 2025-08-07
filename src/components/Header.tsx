@@ -125,6 +125,22 @@ export default function Header() {
             {/* Left side - User actions */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2 ml-4">
+                {/* Cart */}
+                <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
+                  <Link to="/cart" className="flex items-center space-x-2">
+                    <Icon name="ShoppingBasket" size={18} />
+                    <span className="text-sm font-medium">Корзина</span>
+                    {getCartCount() > 0 && (
+                      <Badge 
+                        variant="default" 
+                        className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white animate-pulse"
+                      >
+                        {getCartCount()}
+                      </Badge>
+                    )}
+                  </Link>
+                </Button>
+
                 {/* Search - скрыт на мобильных */}
                 <div className="relative hidden sm:block">
                   {!searchOpen && (
@@ -154,22 +170,6 @@ export default function Header() {
                     </div>
                   )}
                 </div>
-
-                {/* Cart */}
-                <Button variant="ghost" className="relative h-auto px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50" asChild>
-                  <Link to="/cart" className="flex items-center space-x-2">
-                    <Icon name="ShoppingBasket" size={18} />
-                    <span className="text-sm font-medium">Корзина</span>
-                    {getCartCount() > 0 && (
-                      <Badge 
-                        variant="default" 
-                        className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-green-500 text-white animate-pulse"
-                      >
-                        {getCartCount()}
-                      </Badge>
-                    )}
-                  </Link>
-                </Button>
 
                 {/* Comparison - скрыт на мобильных */}
                 <Button variant="ghost" size="icon" className="relative h-9 w-9 text-gray-600 hover:text-gray-900 hover:bg-gray-50 hidden sm:inline-flex" asChild>

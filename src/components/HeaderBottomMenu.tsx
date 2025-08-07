@@ -412,49 +412,6 @@ export default function HeaderBottomMenu() {
                   </SheetHeader>
                   
                   <div className="space-y-4">
-                    {/* Поиск */}
-                    <div className="bg-slate-50 rounded-lg p-3">
-                      {!mobileSearchOpen && (
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-start p-2 h-auto"
-                          onClick={() => setMobileSearchOpen(true)}
-                        >
-                          <Icon name="Search" size={18} className="mr-3 text-slate-500" />
-                          <span className="text-slate-600">Поиск товаров...</span>
-                        </Button>
-                      )}
-                      {mobileSearchOpen && (
-                        <div className="space-y-3">
-                          <div className="flex items-center space-x-2">
-                            <input
-                              type="text"
-                              placeholder="Введите запрос для поиска..."
-                              className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                              autoFocus
-                            />
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-9 w-9"
-                              onClick={() => setMobileSearchOpen(false)}
-                            >
-                              <Icon name="X" size={16} />
-                            </Button>
-                          </div>
-                          <div className="flex space-x-2">
-                            <Button size="sm" className="flex-1">
-                              <Icon name="Search" size={14} className="mr-1" />
-                              Найти
-                            </Button>
-                            <Button variant="outline" size="sm" onClick={() => setMobileSearchOpen(false)}>
-                              Отмена
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
                     {/* Основные разделы */}
                     {mainSections.map((section) => (
                       <Collapsible key={section.id}>
@@ -534,6 +491,49 @@ export default function HeaderBottomMenu() {
                     <div className="pt-4 border-t space-y-3">
                       <div className="text-xs font-medium text-slate-500 px-2">ФУНКЦИИ</div>
                       
+                      {/* Поиск */}
+                      <div className="bg-slate-50 rounded-lg">
+                        {!mobileSearchOpen && (
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start p-3 h-auto hover:bg-slate-100"
+                            onClick={() => setMobileSearchOpen(true)}
+                          >
+                            <Icon name="Search" size={18} className="mr-3 text-slate-500" />
+                            <span className="font-medium">Поиск товаров</span>
+                          </Button>
+                        )}
+                        {mobileSearchOpen && (
+                          <div className="p-3 space-y-3">
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="text"
+                                placeholder="Введите запрос для поиска..."
+                                className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                autoFocus
+                              />
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-9 w-9"
+                                onClick={() => setMobileSearchOpen(false)}
+                              >
+                                <Icon name="X" size={16} />
+                              </Button>
+                            </div>
+                            <div className="flex space-x-2">
+                              <Button size="sm" className="flex-1">
+                                <Icon name="Search" size={14} className="mr-1" />
+                                Найти
+                              </Button>
+                              <Button variant="outline" size="sm" onClick={() => setMobileSearchOpen(false)}>
+                                Отмена
+                              </Button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
                       <Link
                         to="/favorites"
                         className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors"
