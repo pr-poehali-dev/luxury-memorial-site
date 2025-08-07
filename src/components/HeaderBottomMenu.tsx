@@ -271,7 +271,7 @@ const mainSections: MainSection[] = [
           { title: 'Доставка и установка', href: '/delivery' },
           { title: 'Оплата', href: '/payment' },
           { title: 'Фото наших работ', href: '/portfolio' },
-          { title: 'Кладбища Москвы и МО', href: '/regions/moscow-region' },
+          { title: 'Кладбища Москвы и МО', href: '/cemeteries' },
           { title: 'Памятники в городах МО', href: '/regions/moscow-region' },
         ]
       },
