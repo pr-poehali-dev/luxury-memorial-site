@@ -25,7 +25,6 @@ interface MenuItem {
 interface MainSection {
   id: string;
   title: string;
-  href: string;
   categories: MenuSection[];
   previewImage?: string;
 }
@@ -35,7 +34,6 @@ const mainSections: MainSection[] = [
   {
     id: 'monuments',
     title: 'Памятники',
-    href: '/catalog?category=monuments',
     previewImage: 'https://cdn.poehali.dev/files/5433cf05-89d5-4a4d-af20-60160b7eb60e.png',
     categories: [
       {
@@ -133,7 +131,6 @@ const mainSections: MainSection[] = [
   {
     id: 'complexes',
     title: 'Комплексы',
-    href: '/catalog?category=complexes',
     previewImage: '/img/5964ad83-e43f-4005-a721-8f16011459d7.jpg',
     categories: [
       {
@@ -162,7 +159,6 @@ const mainSections: MainSection[] = [
   {
     id: 'improvement',
     title: 'Благоустройство',
-    href: '/catalog?category=improvement',
     previewImage: '/img/57fe978f-1872-48be-a19d-a644801ee280.jpg',
     categories: [
       {
@@ -200,7 +196,6 @@ const mainSections: MainSection[] = [
   {
     id: 'decoration',
     title: 'Оформление',
-    href: '/catalog?category=decoration',
     previewImage: '/img/9eb6e1bb-9f90-48ad-ae6f-c2aa33ffae1e.jpg',
     categories: [
       {
@@ -266,7 +261,6 @@ const mainSections: MainSection[] = [
   {
     id: 'information',
     title: 'Информация',
-    href: '/info',
     categories: [
       {
         title: 'Услуги',
@@ -381,17 +375,14 @@ export default function HeaderBottomMenu() {
                   <Button
                     variant="ghost"
                     className={cn(
-                      "text-slate-700 hover:text-primary hover:bg-primary/5 px-4 py-2 text-sm font-medium transition-all duration-200 flex items-center space-x-1",
+                      "text-slate-700 hover:text-primary hover:bg-primary/5 px-4 py-2 text-sm font-medium transition-all duration-200 flex items-center space-x-1 cursor-default",
                       activeSection === section.id && "bg-primary/5 text-primary shadow-sm",
                       section.id === 'monuments' && "bg-green-500 text-white hover:bg-green-600 hover:text-white"
                     )}
                     onMouseEnter={() => handleMouseEnter(section.id)}
-                    asChild
                   >
-                    <Link to={section.href}>
-                      <span>{section.title}</span>
-                      {section.categories.length > 0 && <ChevronDown className="h-3 w-3" />}
-                    </Link>
+                    <span>{section.title}</span>
+                    {section.categories.length > 0 && <ChevronDown className="h-3 w-3" />}
                   </Button>
                 </div>
               ))}
