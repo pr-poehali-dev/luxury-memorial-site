@@ -140,7 +140,6 @@ const mainSections: MainSection[] = [
         title: 'Типы комплексов',
         items: [
           { title: 'Мемориальные комплексы', href: '/catalog?type=memorial', isPopular: true },
-          { title: 'Элитные комплексы', href: '/catalog?type=elite' },
           { title: 'Комбинированный гранит', href: '/catalog?type=combined-granite' },
           { title: 'С оградой', href: '/catalog?type=with-fence' },
           { title: 'Со стеклом', href: '/catalog?type=with-glass' },
