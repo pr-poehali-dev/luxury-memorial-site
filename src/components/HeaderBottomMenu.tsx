@@ -695,12 +695,15 @@ export default function HeaderBottomMenu() {
                                   variant="ghost"
                                   size="sm"
                                   onClick={() => toggleCategory(category.title)}
-                                  className="w-full justify-between text-xs text-slate-500 hover:text-slate-700"
+                                  className="w-full justify-between text-xs hover:bg-slate-50"
+                                  style={{ 
+                                    color: 'rgb(46, 184, 45)',
+                                  }}
                                 >
                                   <span>
                                     {expandedCategories.includes(category.title) 
                                       ? 'Свернуть' 
-                                      : `Показать ещё ${category.items.length - 6}`
+                                      : 'Развернуть'
                                     }
                                   </span>
                                   {expandedCategories.includes(category.title) ? (
