@@ -505,7 +505,7 @@ export default function MoscowRegion() {
               {featuredCities.map((city) => (
                 <Link
                   key={city.slug}
-                  to={`/regions/moscow-region/${city.slug}`}
+                  to={city.slug === 'balashikha' ? '/balashiha-monuments' : `/regions/moscow-region/${city.slug}`}
                   className="group bg-card border border-border rounded-xl p-6 
                            hover:shadow-lg hover:border-primary/50 transition-all duration-300 
                            hover:transform hover:scale-105"
