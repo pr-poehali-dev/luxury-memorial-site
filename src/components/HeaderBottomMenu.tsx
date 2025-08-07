@@ -290,7 +290,6 @@ const mainSections: MainSection[] = [
         title: 'Полезная информация',
         items: [
           { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
-          { title: 'Памятники в Балашихе', href: '/balashiha-monuments' },
           { title: 'Часто задаваемые вопросы', href: '/faq' },
           { title: 'Уход за памятниками', href: '/care-guide' },
         ]
