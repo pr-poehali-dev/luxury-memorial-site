@@ -172,34 +172,158 @@ export default function Index() {
             <p className="text-xl text-muted-foreground">Широкий выбор готовых решений для любого бюджета</p>
           </div>
 
-          <Tabs defaultValue="all" className="w-full">
+          <Tabs defaultValue="monuments" className="w-full">
             <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8">
               <TabsTrigger 
-                value="all"
+                value="monuments"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
                 Памятники на могилу
               </TabsTrigger>
               <TabsTrigger 
-                value="granite"
+                value="improvement"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
                 Благоустройство захоронения
               </TabsTrigger>
               <TabsTrigger 
-                value="marble"
+                value="decoration"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
                 Оформление памятника
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="all">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {monuments.map(monument => (
-                  <MonumentCard key={monument.id} monument={monument} />
-                ))}
-              </div>
+            {/* Памятники на могилу */}
+            <TabsContent value="monuments">
+              <Tabs defaultValue="manufacture" className="w-full">
+                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-6">
+                  <TabsTrigger value="manufacture">Заказать изготовление памятника</TabsTrigger>
+                  <TabsTrigger value="military">Памятники военным СВО</TabsTrigger>
+                  <TabsTrigger value="complex">Мемориальные комплексы</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="manufacture">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Полный цикл изготовления памятников из гранита и мрамора с доставкой и установкой</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.map(monument => (
+                      <MonumentCard key={monument.id} monument={monument} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="military">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Специальные памятники для героев СВО с военной символикой и льготными условиями</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(0, 3).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: monument.title + " (СВО)", badge: "Военный"}} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="complex">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Готовые решения включающие памятник, благоустройство и оформление захоронения</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(1, 4).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Мемориальный комплекс " + monument.title, price: monument.price + 20000}} />
+                    ))}
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </TabsContent>
+
+            {/* Благоустройство захоронения */}
+            <TabsContent value="improvement">
+              <Tabs defaultValue="foundation" className="w-full">
+                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-6">
+                  <TabsTrigger value="foundation">Заказать цоколь</TabsTrigger>
+                  <TabsTrigger value="furniture">Столики и лавочки</TabsTrigger>
+                  <TabsTrigger value="fences">Ограды на могилу</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="foundation">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Гранитные и бетонные цоколи для надёжного основания памятника</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(0, 3).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Цоколь " + monument.title, price: Math.floor(monument.price * 0.4)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="furniture">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Гранитные столики и лавочки для комфортного посещения места захоронения</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(1, 4).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Столик и лавочка", price: Math.floor(monument.price * 0.6)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="fences">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Кованые и гранитные ограды для благоустройства территории захоронения</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(2, 5).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Ограда " + monument.title, price: Math.floor(monument.price * 0.5)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </TabsContent>
+
+            {/* Оформление памятника */}
+            <TabsContent value="decoration">
+              <Tabs defaultValue="ceramics" className="w-full">
+                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-6">
+                  <TabsTrigger value="ceramics">Фотокерамика</TabsTrigger>
+                  <TabsTrigger value="epitaphs">Эпитафии</TabsTrigger>
+                  <TabsTrigger value="glass">Фото на стекле</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="ceramics">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Высококачественные керамические портреты с долговечным покрытием</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(0, 3).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Фотокерамика", price: Math.floor(monument.price * 0.2)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="epitaphs">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Гравировка памятных надписей и эпитафий золотом и краской</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(1, 4).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Эпитафии", price: Math.floor(monument.price * 0.15)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="glass">
+                  <div className="mb-6 text-center">
+                    <p className="text-lg text-muted-foreground">Элитные портреты на стекле с лазерной гравировкой высокой детализации</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {monuments.slice(2, 5).map(monument => (
+                      <MonumentCard key={monument.id} monument={{...monument, title: "Фото на стекле", price: Math.floor(monument.price * 0.3)}} />
+                    ))}
+                  </div>
+                </TabsContent>
+              </Tabs>
             </TabsContent>
           </Tabs>
         </div>
