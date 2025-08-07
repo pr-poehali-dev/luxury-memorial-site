@@ -178,26 +178,51 @@ export default function Index() {
                 value="all"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
-                Памятники на могилу
+                Заказать изготовление памятника
               </TabsTrigger>
               <TabsTrigger 
-                value="granite"
+                value="military"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
-                Благоустройство захоронения
+                Памятники военным СВО
               </TabsTrigger>
               <TabsTrigger 
-                value="marble"
+                value="complex"
                 className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
               >
-                Оформление памятника
+                Мемориальные комплексы
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="all">
+              <div className="mb-6 text-center">
+                <p className="text-lg text-muted-foreground">Полный цикл изготовления памятников из гранита и мрамора с доставкой и установкой</p>
+              </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {monuments.map(monument => (
                   <MonumentCard key={monument.id} monument={monument} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="military">
+              <div className="mb-6 text-center">
+                <p className="text-lg text-muted-foreground">Специальные памятники для героев СВО с военной символикой и льготными условиями</p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {monuments.slice(0, 3).map(monument => (
+                  <MonumentCard key={monument.id} monument={{...monument, title: monument.title + " (СВО)", badge: "Военный"}} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="complex">
+              <div className="mb-6 text-center">
+                <p className="text-lg text-muted-foreground">Готовые решения включающие памятник, благоустройство и оформление захоронения</p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {monuments.slice(1, 4).map(monument => (
+                  <MonumentCard key={monument.id} monument={{...monument, title: "Мемориальный комплекс " + monument.title, price: monument.price + 20000}} />
                 ))}
               </div>
             </TabsContent>
