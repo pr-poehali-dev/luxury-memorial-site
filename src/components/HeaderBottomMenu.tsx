@@ -291,7 +291,6 @@ const mainSections: MainSection[] = [
         items: [
           { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
           { title: 'Часто задаваемые вопросы', href: '/faq' },
-          { title: 'Уход за памятниками', href: '/care-guide' },
         ]
       },
       {
@@ -301,6 +300,7 @@ const mainSections: MainSection[] = [
           { title: 'О материалах', href: '/blog/materials' },
           { title: 'Нормативные документы', href: '/blog/regulations' },
           { title: 'О кладбищах', href: '/blog/cemeteries' },
+          { title: 'Уход за памятниками', href: '/care-guide' },
         ]
       }
     ]
