@@ -379,7 +379,7 @@ export default function Index() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">350+</div>
+              <div className="text-4xl font-bold text-primary mb-2">2000+</div>
               <div className="text-sm text-muted-foreground">Довольных клиентов</div>
             </div>
             <div className="text-center">
