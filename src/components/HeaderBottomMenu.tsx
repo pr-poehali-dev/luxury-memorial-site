@@ -279,7 +279,6 @@ const mainSections: MainSection[] = [
         title: 'О нас',
         items: [
           { title: 'О компании', href: '/about' },
-          { title: 'Наши мастера', href: '/masters' },
           { title: 'Гранитная мастерская', href: '/granite-workshop' },
           { title: 'Сертификаты', href: '/certificates' },
           { title: 'Гарантии', href: '/warranty' },
