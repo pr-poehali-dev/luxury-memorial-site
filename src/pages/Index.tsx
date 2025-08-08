@@ -168,62 +168,78 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Заказать изготовление памятника */}
-            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 aspect-square">
-              <CardContent className="p-6 h-full flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors mb-4">
-                  <Icon name="Mountain" size={32} className="text-primary" />
+            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                    <Icon name="Mountain" size={32} className="text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-2">
+                      Заказать изготовление памятника
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Индивидуальное изготовление памятников из гранита и мрамора
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-3">
-                  Заказать изготовление памятника
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Индивидуальное изготовление памятников из гранита и мрамора
-                </p>
               </CardContent>
             </Card>
 
             {/* Мемориальные комплексы */}
-            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200 aspect-square">
-              <CardContent className="p-6 h-full flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center group-hover:bg-blue-300 transition-colors mb-4">
-                  <Icon name="Building" size={32} className="text-blue-600" />
+            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center group-hover:bg-blue-300 transition-colors">
+                    <Icon name="Building" size={32} className="text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-2">
+                      Мемориальные комплексы
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Полные мемориальные комплексы с благоустройством территории
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-3">
-                  Мемориальные комплексы
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Полные мемориальные комплексы с благоустройством территории
-                </p>
               </CardContent>
             </Card>
 
             {/* Заказать цоколь */}
-            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-emerald-50 to-emerald-100 border-emerald-200 aspect-square">
-              <CardContent className="p-6 h-full flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-emerald-200 rounded-full flex items-center justify-center group-hover:bg-emerald-300 transition-colors mb-4">
-                  <Icon name="Square" size={32} className="text-emerald-600" />
+            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-emerald-50 to-emerald-100 border-emerald-200">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-emerald-200 rounded-full flex items-center justify-center group-hover:bg-emerald-300 transition-colors">
+                    <Icon name="Square" size={32} className="text-emerald-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-2">
+                      Заказать цоколь
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Изготовление и установка цоколей различных размеров и форм
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-3">
-                  Заказать цоколь
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Изготовление и установка цоколей различных размеров и форм
-                </p>
               </CardContent>
             </Card>
 
             {/* Заказать благоустройство */}
-            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-amber-50 to-amber-100 border-amber-200 aspect-square">
-              <CardContent className="p-6 h-full flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center group-hover:bg-amber-300 transition-colors mb-4">
-                  <Icon name="Flower2" size={32} className="text-amber-600" />
+            <Card className="group hover:shadow-xl transition-all duration-300 cursor-pointer bg-gradient-to-r from-amber-50 to-amber-100 border-amber-200">
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center group-hover:bg-amber-300 transition-colors">
+                    <Icon name="Flower2" size={32} className="text-amber-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-2">
+                      Заказать благоустройство
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Благоустройство могил: плитка, ограды, озеленение
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-3">
-                  Заказать благоустройство
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Благоустройство могил: плитка, ограды, озеленение
-                </p>
               </CardContent>
             </Card>
           </div>
