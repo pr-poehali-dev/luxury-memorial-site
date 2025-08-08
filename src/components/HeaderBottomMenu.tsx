@@ -245,16 +245,6 @@ const mainSections: MainSection[] = [
           { title: 'Эпитафии', href: '/catalog?type=epitaphs-text' },
           { title: 'Шрифты', href: '/catalog?type=fonts' },
         ]
-      },
-      {
-        title: 'Украшение',
-        expandable: true,
-        items: [
-          { title: 'Золочение букв', href: '/catalog?type=letter-gilding' },
-          { title: 'Бронзовые элементы', href: '/catalog?type=bronze-elements' },
-          { title: 'Цветы и растения', href: '/catalog?type=floral-elements' },
-          { title: 'Религиозные символы', href: '/catalog?type=religious-symbols' },
-        ]
       }
     ]
   },
