@@ -164,6 +164,16 @@ const moscowCemeteries: Cemetery[] = [
     established: '1560',
     area: '29 га',
     address: 'ул. Духовской, 18, Москва'
+  },
+  {
+    name: 'Троекуровское кладбище',
+    slug: 'troekurovskoye',
+    type: 'moscow',
+    district: 'ЗАО',
+    description: 'Современное благоустроенное кладбище в Западном округе, известное высоким уровнем сервиса и ухоженной территорией.',
+    established: '1970',
+    area: '134 га',
+    address: 'ул. Рябиновая, 28, стр. 1, Москва'
   }
 ];
 
