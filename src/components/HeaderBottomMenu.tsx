@@ -280,6 +280,7 @@ const mainSections: MainSection[] = [
           { title: 'Фото наших работ', href: '/portfolio' },
           { title: 'Кладбища Москвы и МО', href: '/cemeteries' },
           { title: 'Памятники в городах МО', href: '/regions/moscow-region' },
+          { title: 'Сроки изготовления', href: '/production-times' },
         ]
       },
       {
