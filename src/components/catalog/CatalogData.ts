@@ -45,11 +45,25 @@ export const sizeOptions: SizeOption[] = [
 
 // Формы памятников
 export const forms = [
-  { id: 'all', name: 'Все формы', count: 24 },
-  { id: 'vertical', name: 'Вертикальные', count: 10 },
-  { id: 'horizontal', name: 'Горизонтальные', count: 6 },
-  { id: 'complex', name: 'Комплексы', count: 4 },
-  { id: 'plaques', name: 'Мемориальные плиты', count: 4 }
+  { id: 'all', name: 'Все формы', count: 156 },
+  { id: 'straight', name: 'Прямые', count: 42 },
+  { id: 'vertical', name: 'Вертикальные', count: 38 },
+  { id: 'horizontal', name: 'Горизонтальные', count: 24 },
+  { id: 'carved', name: 'Резные', count: 18 },
+  { id: 'figured', name: 'Фигурные', count: 15 },
+  { id: 'double', name: 'Двойные', count: 12 },
+  { id: 'exclusive', name: 'Эксклюзивные', count: 8 },
+  { id: 'heart', name: 'Сердце', count: 6 },
+  { id: 'with-cross', name: 'С Крестом', count: 22 },
+  { id: 'granite-crosses', name: 'Кресты из гранита', count: 14 },
+  { id: 'flowers', name: 'Цветы', count: 10 },
+  { id: 'trees-birch', name: 'Деревья (Берёза)', count: 7 },
+  { id: 'angel', name: 'Ангел', count: 9 },
+  { id: 'birds', name: 'Птицы (Лебеди, голуби)', count: 8 },
+  { id: 'grieving', name: 'Скорбящая', count: 5 },
+  { id: 'candle', name: 'Свеча', count: 4 },
+  { id: 'arch', name: 'Арка', count: 6 },
+  { id: 'composite', name: 'Составные', count: 11 }
 ];
 
 // Для кого предназначен памятник
