@@ -247,7 +247,7 @@ const mainSections: MainSection[] = [
         ]
       },
       {
-        title: 'Декоративные элементы',
+        title: 'Украшение',
         expandable: true,
         items: [
           { title: 'Золочение букв', href: '/catalog?type=letter-gilding' },
