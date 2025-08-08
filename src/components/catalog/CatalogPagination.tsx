@@ -21,7 +21,7 @@ export default function CatalogPagination({
         <div className="mt-12 mb-6">
           <Button 
             size="lg"
-            className="w-full max-w-4xl mx-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
+            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
             onClick={onLoadMore}
           >
             <Icon name="Plus" size={16} />
