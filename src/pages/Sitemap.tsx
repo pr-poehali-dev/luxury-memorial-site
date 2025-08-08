@@ -16,63 +16,157 @@ export default function Sitemap() {
       ]
     },
     {
-      title: 'Каталог и товары',
-      icon: 'Package',
+      title: 'Памятники - Форма',
+      icon: 'Mountain',
       links: [
-        { title: 'Памятники на могилу', href: '/catalog?category=monuments', description: 'Гранитные и мраморные памятники' },
-        { title: 'Ограды на могилу', href: '/catalog?category=fences', description: 'Металлические и каменные ограды' },
-        { title: 'Мемориальные комплексы', href: '/catalog?category=complexes', description: 'Комплексное оформление захоронений' },
-        { title: 'Благоустройство', href: '/catalog?category=improvement', description: 'Облицовка, цветники, дорожки' },
-        { title: 'Карточка товара', href: '/product/1', description: 'Детальная информация о памятнике' },
+        { title: 'Прямые памятники', href: '/catalog?form=straight', description: 'Классические прямоугольные памятники' },
+        { title: 'Вертикальные памятники', href: '/catalog?form=vertical', description: 'Вытянутые по вертикали монументы' },
+        { title: 'Горизонтальные памятники', href: '/catalog?form=horizontal', description: 'Широкие горизонтальные плиты' },
+        { title: 'Резные памятники', href: '/catalog?form=carved', description: 'Художественная резка по камню' },
+        { title: 'Фигурные памятники', href: '/catalog?form=figured', description: 'Необычные авторские формы' },
+        { title: 'Двойные памятники', href: '/catalog?form=double', description: 'Памятники для двух человек' },
+        { title: 'Эксклюзивные памятники', href: '/catalog?form=exclusive', description: 'Уникальные дизайнерские решения' },
+        { title: 'Памятники-сердце', href: '/catalog?form=heart', description: 'Романтичная форма сердца' },
+        { title: 'Памятники-крест', href: '/catalog?form=cross', description: 'Христианская символика' },
+        { title: 'Памятники-арка', href: '/catalog?form=arch', description: 'Элегантная арочная форма' },
+        { title: 'Составные памятники', href: '/catalog?form=composite', description: 'Многоэлементные композиции' },
+      ]
+    },
+    {
+      title: 'Памятники - Материал',
+      icon: 'Gem',
+      links: [
+        { title: 'Гранитные памятники', href: '/catalog?material=granite', description: 'Прочный и долговечный гранит' },
+        { title: 'Мраморные памятники', href: '/catalog?material=marble', description: 'Элегантный натуральный мрамор' },
+        { title: 'Памятники из габбро', href: '/catalog?material=gabbro', description: 'Черный прочный габбро-диабаз' },
+        { title: 'Базальтовые памятники', href: '/catalog?material=basalt', description: 'Темный вулканический базальт' },
+        { title: 'Лабрадоритовые памятники', href: '/catalog?material=labradorite', description: 'Благородный лабрадорит с переливами' },
+      ]
+    },
+    {
+      title: 'Памятники - Цвет',
+      icon: 'Palette',
+      links: [
+        { title: 'Черные памятники', href: '/catalog?color=black', description: 'Классический черный цвет' },
+        { title: 'Серые памятники', href: '/catalog?color=gray', description: 'Благородные оттенки серого' },
+        { title: 'Красные памятники', href: '/catalog?color=red', description: 'Красный гранит и мрамор' },
+        { title: 'Зеленые памятники', href: '/catalog?color=green', description: 'Природные зеленые оттенки' },
+        { title: 'Коричневые памятники', href: '/catalog?color=brown', description: 'Теплые коричневые тона' },
+        { title: 'Белые памятники', href: '/catalog?color=white', description: 'Белый мрамор и светлый гранит' },
+      ]
+    },
+    {
+      title: 'Памятники - Размер',
+      icon: 'Ruler',
+      links: [
+        { title: 'Малые памятники', href: '/catalog?size=small', description: 'Компактные памятники до 80 см' },
+        { title: 'Средние памятники', href: '/catalog?size=medium', description: 'Стандартные размеры 80-120 см' },
+        { title: 'Большие памятники', href: '/catalog?size=large', description: 'Крупные памятники свыше 120 см' },
+        { title: 'Памятники нестандартных размеров', href: '/catalog?size=custom', description: 'Индивидуальные размеры на заказ' },
+      ]
+    },
+    {
+      title: 'Оформление - Портреты',
+      icon: 'User',
+      links: [
+        { title: 'Фотокерамика', href: '/catalog?type=photo-ceramics', description: 'Керамические портреты на памятнике' },
+        { title: 'Лазерная гравировка портрета', href: '/catalog?type=laser-portrait', description: 'Высокоточная лазерная гравировка' },
+        { title: 'Цветные портреты', href: '/catalog?type=color-portraits', description: 'Яркие цветные изображения' },
+        { title: 'Ручная гравировка портрета', href: '/catalog?type=hand-engraved-portrait', description: 'Художественная ручная работа' },
+      ]
+    },
+    {
+      title: 'Оформление - Надписи',
+      icon: 'Type',
+      links: [
+        { title: 'Имена и даты', href: '/catalog?type=names-dates', description: 'Основная информация о покойном' },
+        { title: 'Эпитафии', href: '/catalog?type=epitaphs-text', description: 'Памятные тексты и стихи' },
+        { title: 'Шрифты', href: '/catalog?type=fonts', description: 'Различные варианты шрифтов' },
+      ]
+    },
+    {
+      title: 'Дополнительные элементы',
+      icon: 'Plus',
+      links: [
+        { title: 'Цветники из гранита', href: '/catalog?type=granite-flowerbeds', description: 'Места для цветов из камня' },
+        { title: 'Столы и скамейки', href: '/catalog?type=tables-benches', description: 'Мемориальная мебель из камня' },
+        { title: 'Вазы для цветов', href: '/catalog?type=vases', description: 'Гранитные и мраморные вазы' },
+        { title: 'Фонари памятные', href: '/catalog?type=memorial-lamps', description: 'Освещение для могилы' },
+        { title: 'Кресты', href: '/catalog?type=crosses', description: 'Религиозные символы' },
+      ]
+    },
+    {
+      title: 'Благоустройство',
+      icon: 'Wrench',
+      links: [
+        { title: 'Тротуарная плитка', href: '/catalog?type=paving-stones', description: 'Мощение дорожек на могиле' },
+        { title: 'Мраморная крошка', href: '/catalog?type=marble-chips', description: 'Декоративная отсыпка' },
+        { title: 'Искусственная трава', href: '/catalog?type=artificial-grass', description: 'Всесезонное озеленение' },
+        { title: 'Ограды кованые', href: '/catalog?type=forged-fences', description: 'Художественная ковка' },
+        { title: 'Ограды сварные', href: '/catalog?type=welded-fences', description: 'Прочные металлические ограды' },
+        { title: 'Цоколи', href: '/catalog?type=plinths', description: 'Основания для памятников' },
       ]
     },
     {
       title: 'Услуги',
       icon: 'Settings',
       links: [
-        { title: 'Изготовление', href: '/manufacturing', description: 'Процесс изготовления памятников' },
-        { title: 'Установка', href: '/installation', description: 'Профессиональная установка памятников' },
-        { title: 'Гранитная мастерская', href: '/workshop', description: 'Наше производство и технологии' },
-        { title: 'Как заказать памятник?', href: '/how-to-order', description: 'Пошаговое руководство по заказу' },
-        { title: 'Калькулятор стоимости', href: '/calculator', description: 'Рассчитайте стоимость памятника онлайн' },
-      ]
-    },
-    {
-      title: 'Галерея и портфолио',
-      icon: 'Image',
-      links: [
-        { title: 'Фотографии работ', href: '/gallery', description: 'Примеры выполненных проектов' },
-        { title: 'Портфолио памятников', href: '/portfolio/monuments', description: 'Наши лучшие памятники' },
-        { title: 'Портфолио оград', href: '/portfolio/fences', description: 'Установленные ограды' },
-        { title: 'До и после', href: '/before-after', description: 'Преображение мест захоронения' },
-      ]
-    },
-    {
-      title: 'Личный кабинет',
-      icon: 'User',
-      links: [
-        { title: 'Корзина', href: '/cart', description: 'Товары, добавленные в корзину' },
-        { title: 'Избранное', href: '/favorites', description: 'Понравившиеся товары' },
-        { title: 'Сравнение', href: '/comparison', description: 'Сравнение характеристик товаров' },
-        { title: 'Недавно просмотренное', href: '/recently-viewed', description: 'История просмотров товаров' },
-      ]
-    },
-    {
-      title: 'География',
-      icon: 'MapPin',
-      links: [
-        { title: 'Города', href: '/cities', description: 'Города, где мы работаем' },
-        { title: 'Кладбища', href: '/cemeteries', description: 'Кладбища, где мы устанавливаем памятники' },
+        { title: 'Как заказать памятник', href: '/how-to-order', description: 'Пошаговое руководство по заказу' },
+        { title: 'Вызов менеджера', href: '/manager-call', description: 'Консультация на дому или кладбище' },
+        { title: 'Дизайн памятников', href: '/monument-design', description: 'Создание индивидуального дизайна' },
         { title: 'Доставка', href: '/delivery', description: 'Условия доставки по регионам' },
+        { title: 'Установка', href: '/installation', description: 'Профессиональная установка памятников' },
+        { title: 'Оплата', href: '/payment', description: 'Способы оплаты и рассрочка' },
+      ]
+    },
+    {
+      title: 'О нас',
+      icon: 'Info',
+      links: [
+        { title: 'О компании', href: '/about', description: 'История и философия компании' },
+        { title: 'Гранитная мастерская', href: '/granite-workshop', description: 'Наше производство и технологии' },
+        { title: 'Сертификаты', href: '/certificates', description: 'Документы о качестве и лицензии' },
+        { title: 'Гарантии', href: '/warranty', description: 'Условия гарантийного обслуживания' },
+        { title: 'Отзывы клиентов', href: '/reviews', description: 'Мнения наших клиентов' },
+      ]
+    },
+    {
+      title: 'Полезная информация',
+      icon: 'BookOpen',
+      links: [
+        { title: 'Часто задаваемые вопросы', href: '/faq', description: 'Ответы на популярные вопросы' },
+        { title: 'Фото наших работ', href: '/portfolio', description: 'Портфолио выполненных проектов' },
+        { title: 'Кладбища Москвы и МО', href: '/cemeteries', description: 'Справочник кладбищ региона' },
+        { title: 'Памятники в городах МО', href: '/regions/moscow-region', description: 'Установка в городах области' },
+        { title: 'Сроки изготовления', href: '/production-times', description: 'Временные рамки изготовления' },
+      ]
+    },
+    {
+      title: 'Блог',
+      icon: 'FileText',
+      links: [
+        { title: 'О благоустройстве могил', href: '/blog/grave-improvement', description: 'Советы по оформлению захоронений' },
+        { title: 'О материалах', href: '/blog/materials', description: 'Информация о камне и других материалах' },
+        { title: 'Нормативные документы', href: '/blog/regulations', description: 'Правила и требования кладбищ' },
+        { title: 'О кладбищах', href: '/blog/cemeteries', description: 'История и особенности кладбищ' },
+        { title: 'Уход за памятниками', href: '/care-guide', description: 'Как поддерживать памятник в хорошем состоянии' },
+      ]
+    },
+    {
+      title: 'Специальные страницы',
+      icon: 'Star',
+      links: [
+        { title: 'Золочение надписей', href: '/gold-leaf', description: 'Золотое покрытие букв и рисунков' },
+        { title: 'Скальпельная гравировка', href: '/scalpel-lettering', description: 'Точная ручная гравировка' },
+        { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery', description: 'Подробная информация о кладбище' },
       ]
     },
     {
       title: 'Правовая информация',
-      icon: 'FileText',
+      icon: 'Shield',
       links: [
         { title: 'Политика конфиденциальности', href: '/privacy-policy', description: 'Обработка персональных данных' },
-        { title: 'Согласие на обработку данных', href: '/personal-data', description: 'Согласие пользователя' },
-        { title: 'Договор оферты', href: '/offer-agreement', description: 'Условия сотрудничества' },
+        { title: 'Публичная оферта', href: '/offer-agreement', description: 'Условия сотрудничества' },
         { title: 'Карта сайта', href: '/sitemap', description: 'Все страницы сайта' },
       ]
     },
@@ -129,7 +223,7 @@ export default function Sitemap() {
           {/* Quick Stats */}
           <div className="mt-16 grid md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary mb-2">50+</div>
+              <div className="text-2xl font-bold text-primary mb-2">80+</div>
               <p className="text-sm text-muted-foreground">Страниц сайта</p>
             </div>
             <div className="text-center">
@@ -141,8 +235,8 @@ export default function Sitemap() {
               <p className="text-sm text-muted-foreground">Фотографий работ</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary mb-2">50+</div>
-              <p className="text-sm text-muted-foreground">Городов присутствия</p>
+              <div className="text-2xl font-bold text-primary mb-2">16</div>
+              <p className="text-sm text-muted-foreground">Кладбищ в справочнике</p>
             </div>
           </div>
 
