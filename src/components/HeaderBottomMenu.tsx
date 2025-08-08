@@ -270,9 +270,6 @@ const mainSections: MainSection[] = [
           { title: 'Дизайн памятников', href: '/monument-design' },
           { title: 'Доставка и установка', href: '/delivery' },
           { title: 'Оплата', href: '/payment' },
-          { title: 'Фото наших работ', href: '/portfolio' },
-          { title: 'Кладбища Москвы и МО', href: '/cemeteries' },
-          { title: 'Памятники в городах МО', href: '/regions/moscow-region' },
         ]
       },
       {
@@ -290,6 +287,9 @@ const mainSections: MainSection[] = [
         items: [
           { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
           { title: 'Часто задаваемые вопросы', href: '/faq' },
+          { title: 'Фото наших работ', href: '/portfolio' },
+          { title: 'Кладбища Москвы и МО', href: '/cemeteries' },
+          { title: 'Памятники в городах МО', href: '/regions/moscow-region' },
         ]
       },
       {
