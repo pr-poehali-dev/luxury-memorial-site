@@ -125,7 +125,6 @@ export default function Index() {
 
                 {/* Compact Form */}
                 <div className="bg-muted/30 rounded-lg p-3 sm:p-4">
-                  <h4 className="font-semibold text-sm sm:text-base mb-3 text-center">Заказать 3D макет</h4>
                   <form className="space-y-2 sm:space-y-3">
                     <input
                       type="text"
