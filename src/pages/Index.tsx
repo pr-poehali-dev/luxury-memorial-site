@@ -387,7 +387,7 @@ export default function Index() {
               <div className="text-sm text-muted-foreground">Рекомендуют нас</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">5</div>
+              <div className="text-4xl font-bold text-primary mb-2">15</div>
               <div className="text-sm text-muted-foreground">Лет на рынке</div>
             </div>
           </div>
