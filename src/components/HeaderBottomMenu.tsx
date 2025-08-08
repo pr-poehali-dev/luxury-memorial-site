@@ -275,7 +275,6 @@ const mainSections: MainSection[] = [
       {
         title: 'Полезная информация',
         items: [
-          { title: 'Троекуровское кладбище', href: '/troekurovskoye-cemetery' },
           { title: 'Часто задаваемые вопросы', href: '/faq' },
           { title: 'Фото наших работ', href: '/portfolio' },
           { title: 'Кладбища Москвы и МО', href: '/cemeteries' },
