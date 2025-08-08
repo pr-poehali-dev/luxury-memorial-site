@@ -370,7 +370,7 @@ export default function Index() {
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">4.9</div>
+              <div className="text-4xl font-bold text-primary mb-2">5.0</div>
               <div className="text-sm text-muted-foreground">Средняя оценка</div>
               <div className="flex justify-center gap-1 mt-2">
                 {[...Array(5)].map((_, i) => (
