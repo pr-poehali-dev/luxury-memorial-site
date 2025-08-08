@@ -18,10 +18,10 @@ export default function CatalogPagination({
     <div>
       {/* Load more button */}
       {showLoadMore && (
-        <div className="mt-12 mb-6">
+        <div className="mt-12 mb-6 flex justify-center">
           <Button 
             size="lg"
-            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
+            className="px-8 py-3 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
             onClick={onLoadMore}
           >
             <Icon name="Plus" size={16} />
