@@ -69,11 +69,21 @@ export const forms = [
 // Для кого предназначен памятник
 export const recipients = [
   { id: 'all', name: 'Для всех' },
-  { id: 'man', name: 'Мужчине' },
-  { id: 'woman', name: 'Женщине' },
-  { id: 'child', name: 'Ребенку' },
+  { id: 'military-svo', name: 'Военный (СВО)' },
   { id: 'family', name: 'Семейный' },
-  { id: 'military', name: 'Военному' }
+  { id: 'european', name: 'Европейские' },
+  { id: 'woman', name: 'Женский' },
+  { id: 'orthodox', name: 'Православный' },
+  { id: 'man', name: 'Мужской' },
+  { id: 'muslim', name: 'Мусульманский' },
+  { id: 'parents', name: 'Родителям' },
+  { id: 'mother', name: 'Маме' },
+  { id: 'catholic', name: 'Католический' },
+  { id: 'father', name: 'Отцу' },
+  { id: 'child', name: 'Детский' },
+  { id: 'armenian', name: 'Армянские' },
+  { id: 'double', name: 'Двойной' },
+  { id: 'jewish', name: 'Еврейские' }
 ];
 
 export const categories = [
