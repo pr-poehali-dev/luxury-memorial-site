@@ -11,28 +11,32 @@ export default function Footer() {
     { name: 'Одноклассники', icon: 'Globe', href: 'https://ok.ru/memorial_studio', color: 'text-orange-500' },
   ];
 
-  const catalogLinks = [
-    { title: 'Каталог памятников', href: '/catalog' },
-    { title: 'Памятники на могилу', href: '/catalog?category=monuments' },
-    { title: 'Ограды на могилу', href: '/catalog?category=fences' },
-    { title: 'Гранитная мастерская', href: '/workshop' },
-    { title: 'Установка', href: '/installation' },
-    { title: 'Купить памятник', href: '/catalog' },
+  const servicesLinks = [
+    { title: 'Установка памятников', href: '/installation' },
+    { title: 'Доставка', href: '/delivery' },
+    { title: 'Дизайн памятников', href: '/monument-design' },
+    { title: 'Выезд на кладбище', href: '/cemetery-visit' },
   ];
 
-  const infoLinks = [
-    { title: 'О нас', href: '/about' },
-    { title: 'Как заказать памятник?', href: '/how-to-order' },
-    { title: 'Фотографии работ', href: '/gallery' },
-    { title: 'Изготовление', href: '/manufacturing' },
-    { title: 'Города', href: '/cities' },
-    { title: 'Кладбища', href: '/cemeteries' },
+  const blogLinks = [
+    { title: 'Как заказать', href: '/how-to-order' },
+    { title: 'Сроки изготовления', href: '/production-times' },
+    { title: 'Оплата', href: '/payment' },
+    { title: 'Скидки', href: '/discounts' },
+    { title: 'Компенсация', href: '/compensation' },
+  ];
+
+  const companyLinks = [
+    { title: 'Отзывы', href: '/reviews' },
+    { title: 'О гранитной мастерской', href: '/granite-workshop' },
+    { title: 'Гарантии', href: '/warranty' },
+    { title: 'Фото памятников', href: '/portfolio' },
+    { title: 'Сертификаты', href: '/certificates' },
   ];
 
   const legalLinks = [
+    { title: 'Публичная оферта', href: '/offer-agreement' },
     { title: 'Политика конфиденциальности', href: '/privacy-policy' },
-    { title: 'Обработка персональных данных', href: '/personal-data' },
-    { title: 'Договор оферты', href: '/offer-agreement' },
     { title: 'Карта сайта', href: '/sitemap' },
   ];
 
@@ -51,38 +55,17 @@ export default function Footer() {
                 </div>
                 <span className="font-bold text-xl">Вечная Память</span>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Мемориальная мастерская полного цикла. Изготавливаем и устанавливаем 
-                памятники, ограды, надгробия из гранита и мрамора с 2010 года.
-              </p>
             </div>
 
-            {/* Contact Info */}
+            {/* Address & Schedule */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Icon name="Phone" size={18} className="text-primary flex-shrink-0" />
-                <div>
-                  <a href="tel:+71234567890" className="font-medium hover:text-primary transition-colors">
-                    +7 (123) 456-78-90
-                  </a>
-                  <p className="text-xs text-slate-400">Бесплатно по России</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-3">
-                <Icon name="Mail" size={18} className="text-primary flex-shrink-0" />
-                <a href="mailto:info@memorial.ru" className="hover:text-primary transition-colors">
-                  info@memorial.ru
-                </a>
-              </div>
-              
               <div className="flex items-start space-x-3">
                 <Icon name="MapPin" size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div className="text-sm">
-                  <p>г. Москва, ул. Мемориальная, 15</p>
+                  <h4 className="font-semibold mb-2">Адрес</h4>
+                  <p className="text-slate-300">г. Москва, ул. Мемориальная, 15</p>
                   <p className="text-slate-400 mt-1">
-                    Пн-Пт: 9:00-18:00<br />
-                    Сб-Вс: 10:00-16:00
+                    Ежедневно с 9:00 до 22:00
                   </p>
                 </div>
               </div>
@@ -118,11 +101,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Catalog Links */}
+          {/* Services Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Каталог и услуги</h3>
+            <h3 className="font-semibold text-lg mb-4">Услуги</h3>
             <ul className="space-y-2">
-              {catalogLinks.map((link) => (
+              {servicesLinks.map((link) => (
                 <li key={link.href}>
                   <Link 
                     to={link.href} 
@@ -135,11 +118,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Information Links */}
+          {/* Blog Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Информация</h3>
+            <h3 className="font-semibold text-lg mb-4">Блог</h3>
             <ul className="space-y-2">
-              {infoLinks.map((link) => (
+              {blogLinks.map((link) => (
                 <li key={link.href}>
                   <Link 
                     to={link.href} 
@@ -152,61 +135,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Actions & Legal */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Быстрые действия</h3>
-              <div className="space-y-2">
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/catalog">
-                    <Icon name="Search" size={16} className="mr-2" />
-                    Подобрать памятник
+          {/* Company Links */}
+          <div>
+            <h3 className="font-semibold text-lg mb-4">О компании</h3>
+            <ul className="space-y-2">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link 
+                    to={link.href} 
+                    className="text-slate-300 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block"
+                  >
+                    {link.title}
                   </Link>
-                </Button>
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/calculator">
-                    <Icon name="Calculator" size={16} className="mr-2" />
-                    Рассчитать стоимость
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full justify-start border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800" asChild>
-                  <Link to="/gallery">
-                    <Icon name="Image" size={16} className="mr-2" />
-                    Смотреть работы
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Legal Links */}
-            <div>
-              <h4 className="font-medium mb-3">Правовая информация</h4>
-              <ul className="space-y-1">
-                {legalLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link 
-                      to={link.href} 
-                      className="text-slate-400 hover:text-slate-300 text-xs transition-colors"
-                    >
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Certificates */}
-            <div>
-              <h4 className="font-medium mb-3">Сертификаты</h4>
-              <div className="flex space-x-2">
-                <div className="w-12 h-8 bg-slate-800 rounded border border-slate-600 flex items-center justify-center">
-                  <span className="text-xs font-bold">ISO</span>
-                </div>
-                <div className="w-12 h-8 bg-slate-800 rounded border border-slate-600 flex items-center justify-center">
-                  <span className="text-xs font-bold">РСТ</span>
-                </div>
-              </div>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -218,21 +161,22 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-slate-400">
             <p>© 2024 Вечная Память. Все права защищены.</p>
-            <div className="flex items-center space-x-4">
-              <span>ИНН: 7701234567</span>
-              <span>ОГРН: 1037701234567</span>
-            </div>
           </div>
           
-          <div className="flex items-center space-x-4 text-sm text-slate-400">
-            <div className="flex items-center space-x-2">
-              <Icon name="Shield" size={16} className="text-green-500" />
-              <span>Данные защищены SSL</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Icon name="Award" size={16} className="text-blue-500" />
-              <span>Лицензия № 12345</span>
-            </div>
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 text-sm text-slate-400">
+            {legalLinks.map((link, index) => (
+              <span key={link.href} className="flex items-center">
+                <Link 
+                  to={link.href} 
+                  className="hover:text-slate-300 transition-colors"
+                >
+                  {link.title}
+                </Link>
+                {index < legalLinks.length - 1 && (
+                  <span className="mx-2 text-slate-600">|</span>
+                )}
+              </span>
+            ))}
           </div>
         </div>
       </div>
