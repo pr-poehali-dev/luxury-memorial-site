@@ -232,7 +232,7 @@ export default function Cemeteries() {
               {moscowCemeteries.map((cemetery) => (
                 <Link
                   key={cemetery.slug}
-                  to={`/cemeteries/${cemetery.slug}`}
+                  to={cemetery.slug === 'troekurovskoye' ? '/troekurovskoye-cemetery' : `/cemeteries/${cemetery.slug}`}
                   className="group bg-card border border-border rounded-xl p-6 
                            hover:shadow-lg hover:border-primary/50 transition-all duration-300 
                            hover:transform hover:scale-105"
