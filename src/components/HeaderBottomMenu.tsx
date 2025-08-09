@@ -364,7 +364,7 @@ export default function HeaderBottomMenu() {
               <div className="h-7 w-7 rounded bg-primary flex items-center justify-center">
                 <Icon name="Mountain" size={16} className="text-primary-foreground" />
               </div>
-              <span className="font-bold text-lg text-slate-900">Вечная Память</span>
+              <span className="font-bold text-lg text-slate-900">Pamyatniki.Memorial</span>
             </Link>
 
             {/* Навигационные разделы - скрыто на мобильных */}
