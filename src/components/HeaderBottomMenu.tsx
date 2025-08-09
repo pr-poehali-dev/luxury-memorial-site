@@ -361,7 +361,10 @@ export default function HeaderBottomMenu() {
           >
             {/* Логотип слева */}
             <Link to="/" className="flex items-center space-x-2 ml-4 mr-8">
-              <span className="font-sans text-xl font-semibold text-green-600 tracking-tight">Pamyatniki.Memorial</span>
+              <div className="flex flex-col">
+                <span className="text-xl font-semibold text-green-600 tracking-tight" style={{ fontFamily: 'Bahnschrift, sans-serif' }}>Pamyatniki.Memorial</span>
+                <span className="text-xs text-slate-600 -mt-1" style={{ fontFamily: 'Bahnschrift, sans-serif' }}>Изготовление памятников</span>
+              </div>
             </Link>
 
             {/* Навигационные разделы - скрыто на мобильных */}
