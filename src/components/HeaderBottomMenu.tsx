@@ -360,9 +360,8 @@ export default function HeaderBottomMenu() {
             onMouseLeave={handleMouseLeave}
           >
             {/* Логотип слева */}
-            <Link to="/" className="flex items-center space-x-2 mr-8">
-
-              <span className="font-mono text-xl font-bold text-green-600">Pamyatniki.Memorial</span>
+            <Link to="/" className="flex items-center space-x-2 ml-4 mr-8">
+              <span className="font-sans text-xl font-semibold text-green-600 tracking-tight">Pamyatniki.Memorial</span>
             </Link>
 
             {/* Навигационные разделы - скрыто на мобильных */}
