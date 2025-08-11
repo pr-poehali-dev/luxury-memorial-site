@@ -361,9 +361,7 @@ export default function HeaderBottomMenu() {
           >
             {/* Логотип слева */}
             <Link to="/" className="flex items-center space-x-2 mr-8">
-              <div className="h-7 w-7 rounded bg-primary flex items-center justify-center">
-                <Icon name="Mountain" size={16} className="text-primary-foreground" />
-              </div>
+
               <span className="font-bold text-lg text-slate-900">Pamyatniki.Memorial</span>
             </Link>
 
